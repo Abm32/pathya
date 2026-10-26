@@ -51,6 +51,6 @@ await step("asr", async () => {
     h.writeUInt32LE(24000, 24); h.writeUInt32LE(48000, 28); h.writeUInt16LE(2, 32); h.writeUInt16LE(16, 34); h.write("data", 36); h.writeUInt32LE(data.length, 40);
     buf = Buffer.concat([h, data]);
   }
-  const r = await transcribe(new Blob([buf], { type: "audio/wav" }), { diarize: true, languages: ["Malayalam", "English"], keywords: ["capecitabine", "irinotecan"] });
+  const r = await transcribe(new Blob([new Uint8Array(buf)], { type: "audio/wav" }), { diarize: true, languages: ["Malayalam", "English"], keywords: ["capecitabine", "irinotecan"] });
   console.log(d(), JSON.stringify(r).slice(0, 600));
 });

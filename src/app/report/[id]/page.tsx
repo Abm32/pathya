@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { readJson } from "@/lib/store";
 import type { PgxProfile } from "@/lib/pharmcat";
 import type { AiReport } from "@/lib/report-ai";
+import type { LensNote } from "@/lib/india-lens";
+import type { LabExtract } from "@/lib/pdf-extract";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +21,8 @@ export default async function Report({ params }: { params: Promise<{ id: string 
   if (!c) notFound();
   const profile = (await readJson<PgxProfile>(id, "profile.json"))!;
   const ai = await readJson<AiReport>(id, "ai.json");
+  const lens = (await readJson<LensNote[]>(id, "lens.json")) ?? [];
+  const extract = await readJson<LabExtract>(id, "extract.json");
   const called = profile.genes.filter((g) => g.called);
   // Deterministic fallback (no AI): only guideline drugs that match the entered medication list by name.
   const medsLc = c.meds.map((m) => m.toLowerCase());
@@ -40,6 +44,32 @@ export default async function Report({ params }: { params: Promise<{ id: string 
         </section>
       ) : (
         <p className="mt-6 rounded border border-dashed p-3 text-sm text-neutral-500">AI narrative unavailable (MODEL_API_KEY not set or call failed). Deterministic PharmCAT results below.</p>
+      )}
+
+      {lens.length > 0 && (
+        <section className="mt-6 space-y-2">
+          <h2 className="font-medium">India lens <span className="ml-2 text-xs text-neutral-500">population-specific evidence, deterministic</span></h2>
+          {lens.map((n, i) => (
+            <div key={i} className={`rounded-lg border p-3 text-sm ${n.level === "warn" ? "border-amber-400 bg-amber-50" : "border-sky-300 bg-sky-50"}`}>
+              <div className="font-medium">{n.gene}: {n.title}</div>
+              <p className="mt-1">{n.body}</p>
+              <p className="mt-1 text-xs text-neutral-600">{n.sources.join(" · ")}</p>
+            </div>
+          ))}
+        </section>
+      )}
+
+      {extract && (
+        <section className="mt-6 rounded-lg border p-4 text-sm">
+          <h2 className="font-medium">Read from lab report <span className="ml-2 text-xs text-neutral-500">Muse Spark, verbatim-quoted</span></h2>
+          <p className="mt-1 text-xs text-neutral-600">{extract.labName}{extract.reportDate ? ` · ${extract.reportDate}` : ""}{extract.methodNotes ? ` · ${extract.methodNotes}` : ""}</p>
+          <ul className="mt-2 space-y-1">
+            {extract.genes.map((g, i) => (
+              <li key={i}><span className="font-mono">{g.gene} {g.diplotype || g.phenotype || g.activityScore}</span> <span className="text-neutral-500">“{g.verbatim}”</span></li>
+            ))}
+          </ul>
+          {extract.warnings.length > 0 && <p className="mt-2 text-xs text-amber-700">{extract.warnings.join(" ")}</p>}
+        </section>
       )}
 
       <section className="mt-8">

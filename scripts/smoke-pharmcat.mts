@@ -9,7 +9,7 @@ const vcf = process.argv[2] ?? "fixtures/oncology-patient-A.vcf";
 const dir = await fs.mkdtemp(path.join(os.tmpdir(), "pgx-"));
 const name = path.basename(vcf);
 await fs.copyFile(vcf, path.join(dir, name));
-const report = await runPharmcat(dir, name);
+const report = await runPharmcat(dir, { vcf: name });
 const p = await loadProfile(report);
 const g = (s: string) => p.genes.find((x) => x.gene === s)!;
 console.table(p.genes.filter((x) => x.called).map(({ gene, diplotype, phenotype, activityScore }) => ({ gene, diplotype, phenotype, activityScore })));

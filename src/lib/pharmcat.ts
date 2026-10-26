@@ -2,21 +2,41 @@ import { spawn } from "node:child_process";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
-/** Run PharmCAT (docker or jar) on a VCF that already lives inside `dir`. Returns path to <base>.report.json. */
-export async function runPharmcat(dir: string, vcfName: string, outsideCallsName?: string) {
+export const VCF_STUB_HEADER = `##fileformat=VCFv4.2
+##INFO=<ID=PX,Number=.,Type=String,Description="Gene">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\tSAMPLE
+`;
+
+/**
+ * Run PharmCAT on files that already live inside `dir`.
+ * - vcf only: full pipeline (preprocess + match + phenotype + report).
+ * - outsideCalls only: header-only stub VCF + `pharmcat -po` (lab-report path).
+ * Returns path to <base>.report.json.
+ */
+export async function runPharmcat(dir: string, input: { vcf?: string; outsideCalls?: string }) {
   const runner = process.env.PHARMCAT_RUNNER ?? "docker";
-  const base = vcfName.replace(/\.vcf(\.gz|\.bgz)?$/i, "");
-  const args =
-    runner === "jar"
-      ? ["-jar", process.env.PHARMCAT_JAR!, "-vcf", path.join(dir, vcfName), "-o", dir, "-reporterJson", "-del"]
-      : ["run", "--rm", "-v", `${path.resolve(dir)}:/pharmcat/data`, "pgkb/pharmcat", "pharmcat_pipeline",
-         `/pharmcat/data/${vcfName}`, "-reporterJson", "-del"];
-  if (outsideCallsName) {
-    args.push("-po", runner === "jar" ? path.join(dir, outsideCallsName) : `/pharmcat/data/${outsideCallsName}`);
+  const abs = path.resolve(dir);
+  const inC = (f: string) => (runner === "jar" ? path.join(abs, f) : `/pharmcat/data/${f}`);
+  let vcf = input.vcf;
+  if (!vcf) {
+    if (!input.outsideCalls) throw new Error("vcf or outsideCalls required");
+    vcf = "stub.vcf";
+    await fs.writeFile(path.join(abs, vcf), VCF_STUB_HEADER);
   }
-  const cmd = runner === "jar" ? "java" : "docker";
+  const base = vcf.replace(/\.vcf(\.gz|\.bgz)?$/i, "");
+  // pharmcat_pipeline has no -po flag; the jar entrypoint does. Use the jar when outside calls are present.
+  const tool = input.outsideCalls ? "pharmcat" : "pharmcat_pipeline";
+  const toolArgs =
+    tool === "pharmcat"
+      ? ["-vcf", inC(vcf), "-po", inC(input.outsideCalls!), "-o", runner === "jar" ? abs : "/pharmcat/data", "-bf", base, "-reporterJson"]
+      : [inC(vcf), "-reporterJson", "-del"];
+  const [cmd, args] =
+    runner === "jar"
+      ? ["java", ["-jar", process.env.PHARMCAT_JAR!, ...(tool === "pharmcat" ? toolArgs : ["-vcf", inC(vcf), "-o", abs, "-reporterJson", "-del"])]]
+      : ["docker", ["run", "--rm", "-v", `${abs}:/pharmcat/data`, "pgkb/pharmcat", tool, ...toolArgs]];
   const log = await exec(cmd, args);
-  const report = path.join(dir, `${base}.report.json`);
+  const report = path.join(abs, `${base}.report.json`);
   await fs.access(report).catch(() => {
     throw new Error(`PharmCAT produced no report.\n${log.slice(-2000)}`);
   });
@@ -43,6 +63,8 @@ export type GeneCall = {
   called: boolean;
   source: "MATCHER" | "OUTSIDE" | "NONE";
   relatedDrugs: string[];
+  /** every named allele seen for this gene (source + component haplotypes); DPYD recommendation diplotype keeps only the two lowest-function alleles */
+  alleles: string[];
 };
 
 export type Citation = { pmid?: string; title: string; year?: number; url?: string };
@@ -103,6 +125,8 @@ export function parseReport(report: any): PgxProfile {
       called,
       source: g.callSource === "MATCHER" ? "MATCHER" : g.callSource === "OUTSIDE" ? "OUTSIDE" : "NONE",
       relatedDrugs: (g.relatedDrugs ?? []).map((d: any) => d.name),
+      alleles: [...new Set<string>([...(g.sourceDiplotypes ?? []), ...(g.matcherComponentHaplotypes ?? []), ...(g.recommendationDiplotypes ?? [])]
+        .flatMap((x: any) => [x?.allele1?.name, x?.allele2?.name]).filter((n: unknown): n is string => typeof n === "string" && n !== "Unknown"))],
     };
   });
 

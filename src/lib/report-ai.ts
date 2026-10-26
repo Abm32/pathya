@@ -1,5 +1,6 @@
 import { structured } from "./meta";
 import type { PgxProfile } from "./pharmcat";
+import type { LensNote } from "./india-lens";
 
 export type MedAssessment = {
   drug: string;
@@ -79,9 +80,10 @@ Rules:
 - Prefer CPIC; when CPIC absent use DPWG then FDA. State the source and classification in evidence.
 - clinicianSummary: <= 4 sentences, the actionable findings first.
 - patient.en: warm, plain English at 8th-grade level, no gene jargon without a one-phrase explanation, explain what the doctor may change and why, 120-180 words. patient.ml: the same content in natural Malayalam (not transliterated English), using common Malayalam medical terms.
+- If POPULATION NOTES are present, reflect them in the relevant medication headline/action with risk at least "caution", and in the patient text, citing their sources.
 - limitations: list uncalled relevant genes (e.g., CYP2D6, HLA-B need separate testing), that this is decision support requiring clinician confirmation, and that non-genetic factors (renal/hepatic function, interactions) are not assessed.`;
 
-export async function generateReport(profile: PgxProfile, meds: string[]) {
+export async function generateReport(profile: PgxProfile, meds: string[], lens: LensNote[] = []) {
   const compact = {
     genes: profile.genes.filter((g) => g.called).map(({ gene, diplotype, phenotype, activityScore }) => ({ gene, diplotype, phenotype, activityScore })),
     uncalled: profile.genes.filter((g) => !g.called).map((g) => g.gene),
@@ -96,7 +98,7 @@ export async function generateReport(profile: PgxProfile, meds: string[]) {
     name: "PgxReport",
     schema,
     system: SYSTEM,
-    user: `MEDICATION LIST:\n${meds.map((m) => `- ${m}`).join("\n") || "(none provided)"}\n\nPHARMCAT PROFILE (JSON):\n${JSON.stringify(compact)}`,
+    user: `MEDICATION LIST:\n${meds.map((m) => `- ${m}`).join("\n") || "(none provided)"}\n\nPHARMCAT PROFILE (JSON):\n${JSON.stringify(compact)}\n\nPOPULATION NOTES (India lens, deterministic; cite their sources verbatim when used):\n${JSON.stringify(lens)}`,
     reasoning: "medium",
   });
 }
