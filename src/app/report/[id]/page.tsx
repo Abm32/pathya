@@ -20,7 +20,11 @@ export default async function Report({ params }: { params: Promise<{ id: string 
   const profile = (await readJson<PgxProfile>(id, "profile.json"))!;
   const ai = await readJson<AiReport>(id, "ai.json");
   const called = profile.genes.filter((g) => g.called);
-  const actionable = profile.drugs.filter((d) => d.source === "CPIC" && d.recommendation && !d.noChange);
+  // Deterministic fallback (no AI): only guideline drugs that match the entered medication list by name.
+  const medsLc = c.meds.map((m) => m.toLowerCase());
+  const actionable = profile.drugs.filter(
+    (d) => d.source === "CPIC" && d.recommendation && !d.noChange && medsLc.some((m) => m.includes(d.drug) || d.drug.includes(m)),
+  );
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-10">
