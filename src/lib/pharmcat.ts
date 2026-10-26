@@ -15,9 +15,9 @@ export const VCF_STUB_HEADER = `##fileformat=VCFv4.2
  * Returns path to <base>.report.json.
  */
 export async function runPharmcat(dir: string, input: { vcf?: string; outsideCalls?: string }) {
-  const runner = process.env.PHARMCAT_RUNNER ?? "docker";
+  const runner = (process.env.PHARMCAT_RUNNER ?? "docker") as "docker" | "jar" | "local";
   const abs = path.resolve(dir);
-  const inC = (f: string) => (runner === "jar" ? path.join(abs, f) : `/pharmcat/data/${f}`);
+  const inC = (f: string) => (runner === "docker" ? `/pharmcat/data/${f}` : path.join(abs, f));
   let vcf = input.vcf;
   if (!vcf) {
     if (!input.outsideCalls) throw new Error("vcf or outsideCalls required");
@@ -31,8 +31,11 @@ export async function runPharmcat(dir: string, input: { vcf?: string; outsideCal
     tool === "pharmcat"
       ? ["-vcf", inC(vcf), "-po", inC(input.outsideCalls!), "-o", runner === "jar" ? abs : "/pharmcat/data", "-bf", base, "-reporterJson"]
       : [inC(vcf), "-reporterJson", "-del"];
+  const home = process.env.PHARMCAT_HOME ?? "/pharmcat";
   const [cmd, args] =
-    runner === "jar"
+    runner === "local"
+      ? [path.join(home, tool), tool === "pharmcat" ? ["-vcf", inC(vcf), "-po", inC(input.outsideCalls!), "-o", abs, "-bf", base, "-reporterJson"] : [inC(vcf), "-reporterJson", "-del"]]
+      : runner === "jar"
       ? ["java", ["-jar", process.env.PHARMCAT_JAR!, ...(tool === "pharmcat" ? toolArgs : ["-vcf", inC(vcf), "-o", abs, "-reporterJson", "-del"])]]
       : ["docker", ["run", "--rm", "-v", `${abs}:/pharmcat/data`, "pgkb/pharmcat", tool, ...toolArgs]];
   const log = await exec(cmd, args);
