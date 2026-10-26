@@ -35,11 +35,33 @@ export async function structured<T>(opts: {
   return JSON.parse(text) as T;
 }
 
-/** Transcribe an audio file (batch). Returns raw API JSON; shape confirmed once key is live. */
-export async function transcribe(file: Blob, filename: string) {
+export type Transcript = {
+  sessionId: string;
+  transcript: string;
+  audioDurationMs: number;
+  turns: { turnId: number; startMs: number; endMs: number; transcript: string; speaker?: string }[];
+};
+
+/** Batch transcription. WAV only (mono, 16-bit PCM, 16 or 24 kHz, <=10 min). */
+export async function transcribe(
+  wav: Blob,
+  opts: { diarize?: boolean; languages?: string[]; keywords?: string[] } = {},
+): Promise<Transcript> {
   const fd = new FormData();
-  fd.append("model", "muse-voice-transcribe-1.0");
-  fd.append("file", file, filename);
+  fd.append(
+    "request",
+    new Blob(
+      [JSON.stringify({
+        model: "muse-voice-transcribe-1.0",
+        audioEncoding: "WAV",
+        mode: opts.diarize ? "DIARIZATION" : "ENDPOINTING",
+        ...(opts.languages ? { languageBias: opts.languages } : {}),
+        ...(opts.keywords ? { keywords: opts.keywords } : {}),
+      })],
+      { type: "application/json" },
+    ),
+  );
+  fd.append("audio", wav, "audio.wav");
   const r = await fetch(`${process.env.MODEL_API_BASE_URL ?? "https://api.meta.ai/v1"}/asr/transcribe`, {
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.MODEL_API_KEY}` },
