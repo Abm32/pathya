@@ -1,4 +1,4 @@
-# Anukriti PGx Copilot — Meta Global AI Developer Hackathon plan
+# Pathya — Meta Global AI Developer Hackathon plan
 
 **Deadline:** Nov 4 2026, 9:00 PM ET (= Nov 5, 07:30 IST). Submit via Cerebral Valley portal: working demo + demo video.
 **Track:** Startup (as applied). **Theme:** Build for Your World (oncology pharmacogenomics, Kochi).
@@ -25,6 +25,10 @@ Upload a patient's genotype (VCF) + their medication list → CPIC-grounded toxi
 - `src/app/api/transcribe`: POST audio → Muse Voice → Spark extracts meds (structured) → returns med list.
 - UI: `/` upload + meds; `/report/[id]` gene grid, drug risk table with CPIC badge + citations, patient tab (EN/ML), "Ask" chat grounded on the report.
 - Storage: filesystem JSON under DATA_DIR for hackathon (ponytail: swap for Postgres when multi-tenant).
+
+## Status (updated 2026-10-27 00:30 IST)
+- DONE: Meta key verified from India (Spark chat/JSON/PDF/web_search; Voice ML+EN diarized). VCF path, lab-PDF path, India lens, Muse report EN+ML, voice consult + recorder, confirm gate + audit, latest-guidance web search, access code, Dockerfile on pgkb/pharmcat, README, EVIDENCE.md, eval 3/3.
+- NEXT: UI polish, deploy (EC2 or Fly), lab calls (LAB-CALLS.md), clinician pilot, demo video (DEMO.md), submission text.
 
 ## Day plan (IST)
 - Oct 27: Meta key + smoke test all 3 endpoints. PharmCAT lib + parser + synthetic risky VCF fixtures. `/api/analyze` returns deterministic profile. Commit.

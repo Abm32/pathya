@@ -1,4 +1,4 @@
-# Evidence brief — Anukriti PGx Copilot (compiled 2026-10-26)
+# Evidence brief — Pathya (compiled 2026-10-26)
 
 Every claim links to its source. Items marked UNVERIFIED need a primary check before use in pitch/README.
 

@@ -1,8 +1,8 @@
-# Anukriti PGx Copilot
+# Pathya (പഥ്യം)
 
 **Pharmacogenomic result in. Oncologist-ready toxicity report out. In the patient's language.**
 
-Built for the Meta Global AI Developer Hackathon 2026 (Startup track, "Build for Your World") by Anukriti AI, Kochi.
+*Pathya* is the Ayurvedic word for the regimen that suits a particular patient. Built by [Anukriti AI](https://anukritiai.com), Kochi, for the Meta Global AI Developer Hackathon 2026 (Startup track, "Build for Your World").
 
 ## The problem
 
