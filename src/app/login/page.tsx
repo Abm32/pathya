@@ -20,8 +20,8 @@ function Form() {
     >
       <h1 className="text-xl font-semibold">Pathya</h1>
       <p className="text-sm text-neutral-600">Pilot access. Enter the code you were given.</p>
-      <input value={code} onChange={(e) => setCode(e.target.value)} type="password" autoFocus className="w-full rounded border px-3 py-2" placeholder="Access code" />
-      <button className="w-full rounded bg-black px-4 py-2 text-white">Enter</button>
+      <input value={code} onChange={(e) => setCode(e.target.value)} type="password" autoFocus className="field" placeholder="Access code" />
+      <button className="btn btn-primary w-full">Enter</button>
       {err && <p className="text-sm text-red-600">{err}</p>}
     </form>
   );

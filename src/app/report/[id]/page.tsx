@@ -36,7 +36,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
   return (
     <main className="mx-auto max-w-4xl px-4 py-8 print:py-0">
       <header className="flex flex-wrap items-center gap-3 border-b pb-4">
-        <Link href="/" className="text-sm text-neutral-500 print:hidden">← New case</Link>
+        <Link href="/" className="text-sm text-muted print:hidden">← New case</Link>
         <h1 className="text-2xl font-semibold">Case {c.label || id}</h1>
         <span className="rounded bg-neutral-100 px-2 py-0.5 text-xs">{c.source === "vcf" ? "VCF" : "Lab report"}</span>
         <span className="ml-auto text-xs text-neutral-500">{new Date(c.createdAt).toLocaleString()} · PharmCAT {profile.pharmcatVersion} · CPIC data {profile.dataVersion}</span>
@@ -44,8 +44,8 @@ export default async function Report({ params }: { params: Promise<{ id: string 
       </header>
 
       {ai ? (
-        <section className="mt-6 rounded-lg border-l-4 border-black bg-neutral-50 p-4">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-neutral-500">Clinician summary</h2>
+        <section className="card mt-6 border-l-4 border-l-accent p-4">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">Clinician summary <span className="badge badge-meta ml-2">Muse Spark</span></h2>
           <p className="mt-2 text-lg leading-snug">{ai.clinicianSummary}</p>
         </section>
       ) : (
@@ -54,7 +54,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
 
       <section className="mt-8">
         <h2 className="font-medium">Medications</h2>
-        <div className="mt-3 divide-y rounded-lg border">
+        <div className="card mt-3 divide-y divide-line">
           {ai
             ? meds.map((m) => (
                 <div key={m.drug + m.matchedInput} className="p-4">
@@ -130,13 +130,13 @@ export default async function Report({ params }: { params: Promise<{ id: string 
       {ai && (
         <>
           <section className="mt-8 grid gap-4 md:grid-cols-2 print:break-before-page">
-            <div className="rounded-lg border p-4">
+            <div className="card p-4">
               <h2 className="font-medium">For the patient (English)</h2>
               <p className="mt-2 whitespace-pre-line text-sm leading-relaxed">{ai.patient.en}</p>
             </div>
-            <div className="rounded-lg border p-4">
-              <h2 className="font-medium">രോഗിക്ക് (മലയാളം)</h2>
-              <p className="mt-2 whitespace-pre-line text-sm leading-relaxed">{ai.patient.ml}</p>
+            <div className="card p-4">
+              <h2 className="ml font-medium">രോഗിക്ക് (മലയാളം)</h2>
+              <p className="ml mt-2 whitespace-pre-line text-sm leading-relaxed">{ai.patient.ml}</p>
             </div>
           </section>
           <section className="mt-6 text-xs text-neutral-500">

@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf8f4;
+  --foreground: #1b1a17;
+  --muted: #6b675f;
+  --line: #e6e1d8;
+  --card: #ffffff;
+  --accent: #0f6e6e;
+  --accent-soft: #e4f1f0;
+  --warn: #b45309;
+  --warn-soft: #fff4e5;
+  --danger: #b91c1c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-card: var(--card);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-malayalam: var(--font-noto-malayalam);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html { color-scheme: light; }
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+.ml { font-family: var(--font-noto-malayalam), var(--font-geist-sans), sans-serif; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 0.75rem; }
+.btn { border-radius: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem; font-weight: 500; transition: background 120ms, opacity 120ms; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #0b5858; }
+.btn-ghost { border: 1px solid var(--line); background: var(--card); }
+.btn-ghost:hover { background: var(--accent-soft); }
+.btn:disabled { opacity: 0.5; cursor: wait; }
+.field { width: 100%; border: 1px solid var(--line); border-radius: 0.5rem; background: var(--card); padding: 0.5rem 0.75rem; font-size: 0.9rem; }
+.field:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.badge { display: inline-flex; align-items: center; gap: 0.3rem; border-radius: 999px; padding: 0.15rem 0.6rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
+.badge-meta { background: #eef0ff; color: #2b36a8; }
+.badge-det { background: var(--accent-soft); color: var(--accent); }
+@media print {
+  body { background: #fff; }
+  .card { border-color: #ccc; }
 }

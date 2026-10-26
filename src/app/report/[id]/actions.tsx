@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 export function PrintButton() {
-  return <button type="button" onClick={() => window.print()} className="rounded border px-3 py-1.5 text-sm print:hidden">Print / PDF</button>;
+  return <button type="button" onClick={() => window.print()} className="btn btn-ghost print:hidden">Print / PDF</button>;
 }
 
 export function LatestCheck({ id, enabled }: { id: string; enabled: boolean }) {
@@ -24,7 +24,7 @@ export function LatestCheck({ id, enabled }: { id: string; enabled: boolean }) {
             if (!r.ok) { setErr(j.error ?? "failed"); setState("idle"); return; }
             setRows(j.latest); setState("done");
           }}
-          className="rounded border px-3 py-1.5 text-sm disabled:opacity-50"
+          className="btn btn-ghost"
         >
           {state === "busy" ? "Searching with Muse Spark…" : "Check labels & guidelines (web search)"}
         </button>
@@ -54,7 +54,7 @@ export function ConfirmPanel({ id, drugs, confirmed }: { id: string; drugs: { dr
   if (done) return <p className="mt-8 rounded-lg border border-green-300 bg-green-50 p-3 text-sm">Reviewed and confirmed by <b>{done.clinician}</b> on {new Date(done.at).toLocaleString()}. Logged in the case audit trail.</p>;
   return (
     <form
-      className="mt-8 rounded-lg border p-4 print:hidden"
+      className="card mt-8 p-4 print:hidden"
       onSubmit={async (e) => {
         e.preventDefault(); setErr(null);
         const r = await fetch(`/api/confirm/${id}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ clinician, decisions, note }) });
@@ -80,7 +80,7 @@ export function ConfirmPanel({ id, drugs, confirmed }: { id: string; drugs: { dr
       <div className="mt-3 flex flex-wrap gap-3">
         <input value={clinician} onChange={(e) => setClinician(e.target.value)} placeholder="Your initials / ID" className="rounded border px-3 py-1.5 text-sm" required />
         <input value={note} onChange={(e) => setNote(e.target.value)} placeholder="Note (optional)" className="flex-1 rounded border px-3 py-1.5 text-sm" />
-        <button className="rounded bg-black px-4 py-1.5 text-sm text-white">Confirm review</button>
+        <button className="btn btn-primary">Confirm review</button>
       </div>
       {err && <p className="mt-2 text-sm text-red-600">{err}</p>}
     </form>

@@ -40,9 +40,9 @@ export function Recorder({ onResult }: { onResult: (r: { transcript: string; ext
   return (
     <div className="flex items-center gap-3">
       {state === "rec" ? (
-        <button type="button" onClick={finish} className="rounded bg-red-600 px-3 py-2 text-sm text-white">■ Stop & extract</button>
+        <button type="button" onClick={finish} className="btn bg-danger text-white">■ Stop & extract</button>
       ) : (
-        <button type="button" disabled={state === "busy"} onClick={start} className="rounded border px-3 py-2 text-sm disabled:opacity-50">
+        <button type="button" disabled={state === "busy"} onClick={start} className="btn btn-ghost">
           {state === "busy" ? "Transcribing with Muse Voice…" : "🎙 Dictate consult (EN/ML)"}
         </button>
       )}

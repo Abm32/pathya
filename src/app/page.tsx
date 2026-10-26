@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Recorder } from "./recorder";
 
@@ -9,23 +9,33 @@ const SAMPLE_MEDS: Record<string, string> = {
   lab: "capecitabine\nirinotecan\nazathioprine\nondansetron\ntamoxifen",
 };
 
+const STAGES = ["Reading the result", "Calling phenotypes (PharmCAT)", "Mapping medications & writing the report (Muse Spark)"];
+
 export default function Home() {
   const r = useRouter();
   const [mode, setMode] = useState<"report" | "vcf">("report");
   const [meds, setMeds] = useState(SAMPLE_MEDS.lab);
   const [label, setLabel] = useState("");
   const [transcript, setTranscript] = useState<string | null>(null);
-  const [busy, setBusy] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
   const [err, setErr] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!busy) return;
+    setElapsed(0);
+    const t = setInterval(() => setElapsed((e) => e + 1), 1000);
+    return () => clearInterval(t);
+  }, [busy]);
 
   async function submit(fd: FormData) {
     setErr(null);
-    setBusy(mode === "report" && !fd.get("sample")?.toString().match(/^[AB]$/) ? "Reading the report with Muse Spark, calling phenotypes with PharmCAT, writing the report…" : "Calling alleles with PharmCAT, then reasoning with Muse Spark…");
+    setBusy(true);
     fd.set("meds", meds);
     fd.set("label", label);
     const res = await fetch("/api/analyze", { method: "POST", body: fd });
     const j = await res.json();
-    setBusy(null);
+    setBusy(false);
     if (!res.ok) return setErr(j.detail ?? j.error ?? "failed");
     r.push(`/report/${j.id}`);
   }
@@ -36,69 +46,100 @@ export default function Home() {
     setMeds(SAMPLE_MEDS[s]);
     submit(fd);
   };
+  const stage = elapsed < 8 ? 0 : elapsed < 14 ? 1 : 2;
 
   return (
-    <main className="mx-auto max-w-2xl px-4 py-12">
-      <h1 className="text-3xl font-semibold tracking-tight">Pathya</h1>
-      <p className="mt-2 text-neutral-600">
-        Pharmacogenomic result in, oncologist-ready toxicity report out. Dose actions from CPIC, DPWG and FDA labels with citations,
-        an India-specific variant lens, and a patient explanation in English and Malayalam.
-      </p>
+    <main className="mx-auto max-w-5xl px-4 py-10">
+      <div className="max-w-2xl">
+        <h1 className="text-3xl font-semibold leading-tight tracking-tight">
+          The lab report says <span className="font-mono text-accent">HapB3 heterozygous</span>.<br />
+          What do you prescribe at 9 a.m.?
+        </h1>
+        <p className="mt-3 text-muted">
+          Pathya turns a pharmacogenomic result into an oncologist-ready toxicity report: dose actions from CPIC, DPWG and FDA labels with
+          citations, an India-specific variant lens, and a patient explanation in English and Malayalam.
+        </p>
+      </div>
 
-      <form className="mt-8 space-y-5" onSubmit={(e) => { e.preventDefault(); submit(new FormData(e.currentTarget)); }}>
-        <div className="flex gap-2 text-sm">
-          {(["report", "vcf"] as const).map((m) => (
-            <button key={m} type="button" onClick={() => setMode(m)} className={`rounded-full border px-3 py-1 ${mode === m ? "bg-black text-white" : ""}`}>
-              {m === "report" ? "Lab report (PDF / photo)" : "Genotype VCF (GRCh38)"}
-            </button>
-          ))}
-        </div>
-        {mode === "report" ? (
+      <div className="mt-8 grid gap-6 md:grid-cols-[1fr_300px]">
+        <form className="card space-y-5 p-5" onSubmit={(e) => { e.preventDefault(); submit(new FormData(e.currentTarget)); }}>
+          <div className="flex gap-2 text-sm">
+            {(["report", "vcf"] as const).map((m) => (
+              <button key={m} type="button" onClick={() => setMode(m)} className={`rounded-full border px-3 py-1 ${mode === m ? "border-accent bg-accent text-white" : "border-line"}`}>
+                {m === "report" ? "Lab report (PDF / photo)" : "Genotype VCF (GRCh38)"}
+              </button>
+            ))}
+          </div>
+          {mode === "report" ? (
+            <label className="block">
+              <span className="text-sm font-medium">Lab PGx report</span>
+              <input name="report" type="file" accept="application/pdf,image/*" className="mt-1 block w-full text-sm" />
+              <span className="text-xs text-muted">Muse Spark reads the PDF or photo and quotes every call verbatim; PharmCAT assigns phenotypes.</span>
+            </label>
+          ) : (
+            <label className="block">
+              <span className="text-sm font-medium">VCF</span>
+              <input name="vcf" type="file" accept=".vcf,.gz,.bgz" className="mt-1 block w-full text-sm" />
+            </label>
+          )}
           <label className="block">
-            <span className="text-sm font-medium">Lab PGx report</span>
-            <input name="report" type="file" accept="application/pdf,image/*" className="mt-1 block w-full text-sm" />
-            <span className="text-xs text-neutral-500">Muse Spark reads the PDF or photo, quotes every call verbatim, then PharmCAT assigns phenotypes.</span>
+            <span className="text-sm font-medium">Case label <span className="font-normal text-muted">(no patient identifiers)</span></span>
+            <input value={label} onChange={(e) => setLabel(e.target.value)} placeholder="e.g. CRC-2026-014" className="field mt-1" />
           </label>
-        ) : (
           <label className="block">
-            <span className="text-sm font-medium">VCF</span>
-            <input name="vcf" type="file" accept=".vcf,.gz,.bgz" className="mt-1 block w-full text-sm" />
+            <span className="text-sm font-medium">Medications, current and planned</span>
+            <textarea value={meds} onChange={(e) => setMeds(e.target.value)} rows={6} className="field mt-1 font-mono" />
           </label>
-        )}
-        <label className="block">
-          <span className="text-sm font-medium">Case label (no patient identifiers)</span>
-          <input value={label} onChange={(e) => setLabel(e.target.value)} placeholder="e.g. CRC-2026-014" className="mt-1 w-full rounded border px-3 py-2" />
-        </label>
-        <label className="block">
-          <span className="text-sm font-medium">Medications (current + planned), one per line</span>
-          <textarea value={meds} onChange={(e) => setMeds(e.target.value)} rows={6} className="mt-1 w-full rounded border px-3 py-2 font-mono text-sm" />
-        </label>
-        <Recorder
-          onResult={(res) => {
-            setTranscript(res.transcript);
-            const names = res.extract.medications.map((m) => (m.dose ? `${m.name} (${m.dose}, ${m.context})` : `${m.name} (${m.context})`));
-            setMeds((prev) => [...prev.split("\n").filter(Boolean), ...names].join("\n"));
-          }}
-        />
-        {transcript && (
-          <details className="rounded border p-3 text-sm">
-            <summary className="cursor-pointer">Transcript (Muse Voice, diarized)</summary>
-            <pre className="mt-2 whitespace-pre-wrap text-xs">{transcript}</pre>
-          </details>
-        )}
-        <div className="flex flex-wrap items-center gap-3">
-          <button disabled={!!busy} className="rounded bg-black px-4 py-2 text-white disabled:opacity-50">Analyse</button>
-          <span className="text-sm text-neutral-500">or a sample:</span>
-          <button type="button" disabled={!!busy} onClick={() => sample("lab")} className="rounded border px-3 py-2 text-sm disabled:opacity-50">Lab PDF (Indian panel)</button>
-          <button type="button" disabled={!!busy} onClick={() => sample("A")} className="rounded border px-3 py-2 text-sm disabled:opacity-50">VCF A</button>
-          <button type="button" disabled={!!busy} onClick={() => sample("B")} className="rounded border px-3 py-2 text-sm disabled:opacity-50">VCF B</button>
-        </div>
-        {busy && <p className="text-sm text-neutral-600">{busy}</p>}
-        {err && <p className="text-sm text-red-600">{err}</p>}
-      </form>
-      <p className="mt-10 text-xs text-neutral-500">
-        Decision support only. Every recommendation carries its guideline source; the treating clinician confirms before any change in therapy.
-      </p>
+          <Recorder
+            onResult={(res) => {
+              setTranscript(res.transcript);
+              const names = res.extract.medications.map((m) => (m.dose ? `${m.name} (${m.dose}, ${m.context})` : `${m.name} (${m.context})`));
+              setMeds((prev) => [...prev.split("\n").filter(Boolean), ...names].join("\n"));
+            }}
+          />
+          {transcript && (
+            <details className="rounded-lg border border-line bg-background p-3 text-sm">
+              <summary className="cursor-pointer">Transcript <span className="badge badge-meta ml-1">Muse Voice · diarized</span></summary>
+              <pre className="ml mt-2 whitespace-pre-wrap text-xs">{transcript}</pre>
+            </details>
+          )}
+          <div className="flex flex-wrap items-center gap-3 border-t border-line pt-4">
+            <button disabled={busy} className="btn btn-primary">Analyse</button>
+            <span className="text-sm text-muted">or a sample:</span>
+            <button type="button" disabled={busy} onClick={() => sample("lab")} className="btn btn-ghost">Lab PDF, Indian panel</button>
+            <button type="button" disabled={busy} onClick={() => sample("A")} className="btn btn-ghost">VCF A</button>
+            <button type="button" disabled={busy} onClick={() => sample("B")} className="btn btn-ghost">VCF B</button>
+          </div>
+          {busy && (
+            <ol className="space-y-1 text-sm">
+              {STAGES.map((s, i) => (
+                <li key={s} className={i < stage ? "text-muted line-through" : i === stage ? "font-medium text-accent" : "text-muted"}>
+                  {i < stage ? "✓ " : i === stage ? "● " : "○ "}{s}{i === stage ? ` · ${elapsed}s` : ""}
+                </li>
+              ))}
+            </ol>
+          )}
+          {err && <p className="text-sm text-danger">{err}</p>}
+        </form>
+
+        <aside className="space-y-4 text-sm">
+          <div className="card p-4">
+            <h2 className="font-medium">How it works</h2>
+            <ol className="mt-2 space-y-2 text-muted">
+              <li><b className="text-foreground">1. Read.</b> <span className="badge badge-meta">Muse Spark</span> extracts gene calls from the PDF, quoting the source text.</li>
+              <li><b className="text-foreground">2. Call.</b> <span className="badge badge-det">PharmCAT</span> assigns phenotypes and attaches CPIC, DPWG and FDA-label text. No dose comes from an LLM.</li>
+              <li><b className="text-foreground">3. India lens.</b> Rule-based notes for HapB3, c.85T&gt;C and NUDT15, each with a PMID.</li>
+              <li><b className="text-foreground">4. Explain.</b> <span className="badge badge-meta">Muse Spark</span> ranks risk per medication and writes for the clinician and, in Malayalam, for the patient.</li>
+              <li><b className="text-foreground">5. Dictate.</b> <span className="badge badge-meta">Muse Voice</span> turns the consult into a medication list.</li>
+            </ol>
+          </div>
+          <div className="card p-4">
+            <h2 className="font-medium">Why India needs its own lens</h2>
+            <p className="mt-2 text-muted">CPIC's DPYD panel was derived from Europeans. In Indians, *2A is near-absent, HapB3 is the dominant risk variant and c.85T&gt;C runs at ~25% with replicated toxicity association in Kerala cohorts.</p>
+            <p className="mt-2 text-xs text-muted">PMID 40810747 · PMC11300675 · PMID 33105068</p>
+          </div>
+        </aside>
+      </div>
     </main>
   );
 }
