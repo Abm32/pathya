@@ -1,0 +1,14 @@
+services:
+  pathya:
+    build: .
+    image: pathya:latest
+    ports: ["3000:3000"]
+    env_file: .env
+    environment:
+      PHARMCAT_RUNNER: local
+      DATA_DIR: /data
+    volumes:
+      - pathya-data:/data
+    restart: unless-stopped
+volumes:
+  pathya-data:
