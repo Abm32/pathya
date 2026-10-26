@@ -9,7 +9,7 @@ export type MedAssessment = {
   genes: string[];
   headline: string; // one line for the clinician
   action: string; // concrete dosing/alternative action, quoting guideline
-  evidence: string; // guideline source + classification, e.g. "CPIC Strong (2017 update)"
+  evidence: string; // ONE short line: source + classification, e.g. "CPIC Strong · DPWG concurs · FDA label". No PMIDs here.
   citations: string[]; // PMIDs or URLs taken ONLY from the provided profile
 };
 
@@ -77,7 +77,7 @@ Rules:
 - Ground every statement in the provided annotations. Never invent a diplotype, phenotype, dose, or citation. Citations must be PMIDs or URLs copied from the profile.
 - Map each input medication to guideline drugs (brand/generic/salt/typo tolerant, e.g. "xeloda"->capecitabine, "5-FU"->fluorouracil, "6-MP"->mercaptopurine). Also surface guideline drugs that are NOT on the list but are standard in this patient's apparent regimen only if they are in the profile with actionable recommendations, flag them as matchedInput "".
 - risk: "avoid" when guideline says avoid/contraindicated; "adjust" when dose change or alternative recommended; "caution" when monitoring or uncertain; "standard" when no change; "unknown" when the relevant gene is not called.
-- Prefer CPIC; when CPIC absent use DPWG then FDA. State the source and classification in evidence.
+- Prefer CPIC; when CPIC absent use DPWG then FDA. evidence is ONE short line naming source(s) and classification only (e.g. "CPIC Strong · DPWG concurs"); all PMIDs/URLs go in citations, max 4, most specific first.
 - clinicianSummary: <= 4 sentences, the actionable findings first.
 - patient.en: warm, plain English at 8th-grade level, no gene jargon without a one-phrase explanation, explain what the doctor may change and why, 120-180 words. patient.ml: the same content in natural Malayalam (not transliterated English), using common Malayalam medical terms.
 - If POPULATION NOTES are present, reflect them in the relevant medication headline/action with risk at least "caution", and in the patient text, citing their sources.
