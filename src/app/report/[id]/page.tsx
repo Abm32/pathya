@@ -23,7 +23,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
   // Deterministic fallback (no AI): only guideline drugs that match the entered medication list by name.
   const medsLc = c.meds.map((m) => m.toLowerCase());
   const actionable = profile.drugs.filter(
-    (d) => d.source === "CPIC" && d.recommendation && !d.noChange && medsLc.some((m) => m.includes(d.drug) || d.drug.includes(m)),
+    (d) => (d.source === "CPIC" || d.source === "DPWG") && d.recommendation && !d.noChange && medsLc.some((m) => m.includes(d.drug) || d.drug.includes(m)),
   );
 
   return (
