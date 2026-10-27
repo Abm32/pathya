@@ -34,7 +34,8 @@ Full evidence brief with sources: [docs/EVIDENCE.md](docs/EVIDENCE.md).
 |---|---|
 | `muse-spark-1.3` | Lab-report reading (PDF/image input, strict JSON schema), medication mapping and risk reasoning (strict JSON schema), bilingual patient explanation |
 | `muse-voice-transcribe-1.0` | Consult dictation: diarization mode, `languageBias` English + Malayalam, `keywords` biased to oncology drug names |
-| Meta Model API | OpenAI-SDK compatible, `https://api.meta.ai/v1` |
+| `meta-models/muse-spark-open-1026` (Muse Spark Open, open weights, via Baseten) | Second inference path for the same medication-mapping and patient-explanation step. Automatic fallback when api.meta.ai fails; `MUSE_PROVIDER=baseten` makes it primary. Open weights are what a hospital would self-host so genomic reports never leave the building |
+| Meta Model API / Baseten | Both OpenAI-SDK compatible: `https://api.meta.ai/v1`, `https://inference.baseten.co/v1` |
 
 Not used on purpose: Muse Image (no clinical value here), SAM 3.1 (no imaging task).
 
@@ -42,13 +43,14 @@ Not used on purpose: Muse Image (no clinical value here), SAM 3.1 (no imaging ta
 
 - **No dose comes from the LLM.** Every recommendation is PharmCAT's CPIC/DPWG/FDA text. Muse Spark ranks, maps and explains; it cannot invent a diplotype, dose or citation (schema-constrained, profile-only citations, verbatim quotes from the lab report).
 - **Deterministic eval.** `pnpm tsx scripts/eval.mts` runs three synthetic patients end to end and asserts phenotypes and risk calls (DPYD IM → capecitabine adjust; DPYD PM → 5-FU avoid; lab PDF with HapB3 + c.85T>C → called IM, India lens fires).
+- **Two inference paths, one wire format.** Hosted Muse Spark 1.3 (strict JSON schema, PDF input, web search) and open-weights Muse Spark Open on Baseten (schema in prompt, JSON extracted and validated). Either can be primary; the other is the fallback. Open weights give the data-residency answer every Indian hospital IT team asks first.
 - **Single container.** Node app on top of the official `pgkb/pharmcat` image; no docker-in-docker, no external PGx service.
 - **Access gate, rate-limited login, audit log, no PHI fields.** Cases are labelled, not named.
 
 ## Run it
 
 ```bash
-cp .env.example .env            # add MODEL_API_KEY
+cp .env.example .env            # add MODEL_API_KEY (+ BASETEN_API_KEY for the open-weights path)
 docker pull pgkb/pharmcat       # dev mode runs PharmCAT via docker
 pnpm install && pnpm dev        # http://localhost:3000, click "Lab PDF (Indian panel)"
 pnpm tsx scripts/eval.mts http://localhost:3000

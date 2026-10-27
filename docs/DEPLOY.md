@@ -7,7 +7,7 @@ One container (Node 22 on the official `pgkb/pharmcat` image). Needs ~2 GB RAM (
 ```bash
 # on the VM
 git clone https://github.com/Abm32/pathya && cd pathya
-cp .env.example .env   # set MODEL_API_KEY and ACCESS_CODE
+cp .env.example .env   # set MODEL_API_KEY, BASETEN_API_KEY and ACCESS_CODE
 docker compose up -d --build
 # https via Caddy (auto TLS):
 docker run -d --name caddy --network host -v caddy:/data caddy:2 caddy reverse-proxy --from pathya.<your-domain> --to localhost:3000
@@ -19,7 +19,7 @@ Open ports 80/443 in the security group. Point an A record at the VM. First buil
 
 ```bash
 fly launch --no-deploy --name pathya --vm-memory 2048
-fly secrets set MODEL_API_KEY=... ACCESS_CODE=...
+fly secrets set MODEL_API_KEY=... BASETEN_API_KEY=... ACCESS_CODE=...
 fly volumes create pathya_data --size 3
 # add to fly.toml: [mounts] source="pathya_data" destination="/data"  and  [env] PHARMCAT_RUNNER="local" DATA_DIR="/data"
 fly deploy
