@@ -11,7 +11,9 @@ export function Recorder({ onResult }: { onResult: (r: { transcript: string; ext
 
   async function start() {
     setErr(null);
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    let stream: MediaStream;
+    try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); }
+    catch { setErr("Microphone blocked. Allow mic access in the browser and try again."); return; }
     const ac = new AudioContext({ sampleRate: 16000 });
     ctx.current = ac;
     const src = ac.createMediaStreamSource(stream);
@@ -40,13 +42,14 @@ export function Recorder({ onResult }: { onResult: (r: { transcript: string; ext
   return (
     <div className="flex items-center gap-3">
       {state === "rec" ? (
-        <button type="button" onClick={finish} className="btn bg-danger text-white">■ Stop & extract</button>
+        <button type="button" onClick={finish} className="btn btn-danger"><span aria-hidden className="inline-block size-2.5 rounded-sm bg-white" /> Stop &amp; extract</button>
       ) : (
-        <button type="button" disabled={state === "busy"} onClick={start} className="btn btn-ghost">
-          {state === "busy" ? "Transcribing with Muse Voice…" : "🎙 Dictate consult (EN/ML)"}
+        <button type="button" disabled={state === "busy"} aria-busy={state === "busy"} onClick={start} className="btn btn-ghost">
+          <svg aria-hidden width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8" /></svg>
+          {state === "busy" ? "Transcribing with Muse Voice…" : "Dictate consult (EN / ML)"}
         </button>
       )}
-      {err && <span className="text-sm text-red-600">{err}</span>}
+      {err && <span role="alert" className="text-sm text-danger">{err}</span>}
     </div>
   );
 }

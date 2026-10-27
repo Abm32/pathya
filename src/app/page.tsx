@@ -65,7 +65,7 @@ export default function Home() {
         <form className="card space-y-5 p-5" onSubmit={(e) => { e.preventDefault(); submit(new FormData(e.currentTarget)); }}>
           <div className="flex gap-2 text-sm">
             {(["report", "vcf"] as const).map((m) => (
-              <button key={m} type="button" onClick={() => setMode(m)} className={`rounded-full border px-3 py-1 ${mode === m ? "border-accent bg-accent text-white" : "border-line"}`}>
+              <button key={m} type="button" onClick={() => setMode(m)} aria-pressed={mode === m} className="chip">
                 {m === "report" ? "Lab report (PDF / photo)" : "Genotype VCF (GRCh38)"}
               </button>
             ))}
@@ -73,18 +73,18 @@ export default function Home() {
           {mode === "report" ? (
             <label className="block">
               <span className="text-sm font-medium">Lab PGx report</span>
-              <input name="report" type="file" accept="application/pdf,image/*" className="mt-1 block w-full text-sm" />
-              <span className="text-xs text-muted">Muse Spark reads the PDF or photo and quotes every call verbatim; PharmCAT assigns phenotypes.</span>
+              <input name="report" type="file" accept="application/pdf,image/*" className="file mt-1" />
+              <span className="mt-1 block text-xs text-muted">Muse Spark reads the PDF or photo and quotes every call verbatim; PharmCAT assigns phenotypes.</span>
             </label>
           ) : (
             <label className="block">
               <span className="text-sm font-medium">VCF</span>
-              <input name="vcf" type="file" accept=".vcf,.gz,.bgz" className="mt-1 block w-full text-sm" />
+              <input name="vcf" type="file" accept=".vcf,.gz,.bgz" className="file mt-1" />
             </label>
           )}
           <label className="block">
             <span className="text-sm font-medium">Case label <span className="font-normal text-muted">(no patient identifiers)</span></span>
-            <input value={label} onChange={(e) => setLabel(e.target.value)} placeholder="e.g. CRC-2026-014" className="field mt-1" />
+            <input value={label} onChange={(e) => setLabel(e.target.value)} placeholder="e.g. CRC-2026-014" autoComplete="off" className="field mt-1" />
           </label>
           <label className="block">
             <span className="text-sm font-medium">Medications, current and planned</span>
@@ -103,16 +103,18 @@ export default function Home() {
               <pre className="ml mt-2 whitespace-pre-wrap text-xs">{transcript}</pre>
             </details>
           )}
-          <div className="flex flex-wrap items-center gap-3 border-t border-line pt-4">
-            <button disabled={busy} className="btn btn-primary">Analyse</button>
-            <span className="text-sm text-muted">or a sample:</span>
-            <button type="button" disabled={busy} onClick={() => sample("lab")} className="btn btn-ghost">Lab PDF, Indian panel</button>
-            <button type="button" disabled={busy} onClick={() => sample("photo")} className="btn btn-ghost">Same report, phone photo</button>
-            <button type="button" disabled={busy} onClick={() => sample("A")} className="btn btn-ghost">VCF A</button>
-            <button type="button" disabled={busy} onClick={() => sample("B")} className="btn btn-ghost">VCF B</button>
+          <div className="space-y-3 border-t border-line pt-4">
+            <button disabled={busy} aria-busy={busy} className="btn btn-primary w-full sm:w-auto sm:min-w-40">{busy ? "Analysing…" : "Analyse"}</button>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="mr-1 text-xs text-muted">Try a sample:</span>
+              <button type="button" disabled={busy} onClick={() => sample("lab")} className="btn btn-ghost btn-sm">Lab PDF, Indian panel</button>
+              <button type="button" disabled={busy} onClick={() => sample("photo")} className="btn btn-ghost btn-sm">Same report, phone photo</button>
+              <button type="button" disabled={busy} onClick={() => sample("A")} className="btn btn-ghost btn-sm">VCF A</button>
+              <button type="button" disabled={busy} onClick={() => sample("B")} className="btn btn-ghost btn-sm">VCF B</button>
+            </div>
           </div>
           {busy && (
-            <ol className="space-y-1 text-sm">
+            <ol aria-live="polite" className="space-y-1 text-sm">
               {STAGES.map((s, i) => (
                 <li key={s} className={i < stage ? "text-muted line-through" : i === stage ? "font-medium text-accent" : "text-muted"}>
                   {i < stage ? "✓ " : i === stage ? "● " : "○ "}{s}{i === stage ? ` · ${elapsed}s` : ""}
@@ -120,14 +122,14 @@ export default function Home() {
               ))}
             </ol>
           )}
-          {err && <p className="text-sm text-danger">{err}</p>}
+          {err && <p role="alert" className="text-sm text-danger">{err}</p>}
         </form>
 
         <aside className="space-y-4 text-sm">
           <div className="card p-4">
-            <h2 className="font-medium">How it works</h2>
+            <h2 className="section-title">How it works</h2>
             <ol className="mt-2 space-y-2 text-muted">
-              <li><b className="text-foreground">1. Read.</b> <span className="badge badge-meta">Muse Spark</span> extracts gene calls from the PDF, quoting the source text.</li>
+              <li><b className="text-foreground">1. Read.</b> <span className="badge badge-meta">Muse Spark</span> extracts gene calls from the PDF or phone photo, quoting the source text.</li>
               <li><b className="text-foreground">2. Call.</b> <span className="badge badge-det">PharmCAT</span> assigns phenotypes and attaches CPIC, DPWG and FDA-label text. No dose comes from an LLM.</li>
               <li><b className="text-foreground">3. India lens.</b> Rule-based notes for HapB3, c.85T&gt;C and NUDT15, each with a PMID.</li>
               <li><b className="text-foreground">4. Explain.</b> <span className="badge badge-meta">Muse Spark</span> ranks risk per medication and writes for the clinician and, in Malayalam, for the patient.</li>
@@ -135,9 +137,9 @@ export default function Home() {
             </ol>
           </div>
           <div className="card p-4">
-            <h2 className="font-medium">Why India needs its own lens</h2>
+            <h2 className="section-title">Why India needs its own lens</h2>
             <p className="mt-2 text-muted">CPIC's DPYD panel was derived from Europeans. In Indians, *2A is near-absent, HapB3 is the dominant risk variant and c.85T&gt;C runs at ~25% with replicated toxicity association in Kerala cohorts.</p>
-            <p className="mt-2 text-xs text-muted">PMID 40810747 · PMC11300675 · PMID 33105068</p>
+            <p className="num mt-2 text-xs text-muted">PMID 40810747 · PMC11300675 · PMID 33105068</p>
           </div>
         </aside>
       </div>
