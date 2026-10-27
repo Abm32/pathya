@@ -6,6 +6,7 @@ import type { AiReport } from "@/lib/report-ai";
 import type { LensNote } from "@/lib/india-lens";
 import type { LabExtract } from "@/lib/pdf-extract";
 import { ConfirmPanel, LatestCheck, PrintButton } from "./actions";
+import { Cite } from "@/app/cite";
 
 export const dynamic = "force-dynamic";
 
@@ -75,7 +76,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
                   <p className="mt-1 text-sm leading-relaxed">{m.action}</p>
                   <p className="mt-1.5 text-xs text-muted">
                     {m.evidence}
-                    {m.citations.length > 0 && <span> · {m.citations.join(", ")}</span>}
+                    {m.citations.length > 0 && <span> · <Cite text={m.citations.join(", ")} /></span>}
                   </p>
                 </article>
               ))
@@ -100,7 +101,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
             <div key={i} className={`rounded-lg border p-4 text-sm ${n.level === "warn" ? "note-warn" : "note-info"}`}>
               <div className="font-semibold">{n.gene}: {n.title}</div>
               <p className="mt-1 leading-relaxed">{n.body}</p>
-              <p className="mt-1.5 text-xs text-muted">{n.sources.join(" · ")}</p>
+              <p className="mt-1.5 text-xs text-muted"><Cite text={n.sources.join(" · ")} /></p>
             </div>
           ))}
         </section>

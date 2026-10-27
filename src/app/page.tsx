@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Recorder } from "./recorder";
+import { Cite } from "./cite";
 
 const SAMPLE_MEDS: Record<string, string> = {
   A: "Xeloda\nirinotecan\nondansetron\npantoprazole\nclopidogrel",
@@ -139,7 +140,7 @@ export default function Home() {
           <div className="card p-4">
             <h2 className="section-title">Why India needs its own lens</h2>
             <p className="mt-2 text-muted">CPIC's DPYD panel was derived from Europeans. In Indians, *2A is near-absent, HapB3 is the dominant risk variant and c.85T&gt;C runs at ~25% with replicated toxicity association in Kerala cohorts.</p>
-            <p className="num mt-2 text-xs text-muted">PMID 40810747 · PMC11300675 · PMID 33105068</p>
+            <p className="mt-2 text-xs text-muted"><Cite text="PMID 40810747 · PMC11300675 · PMID 33105068" /></p>
           </div>
         </aside>
       </div>
