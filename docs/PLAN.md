@@ -30,7 +30,18 @@ Upload a patient's genotype (VCF) + their medication list → CPIC-grounded toxi
 
 - Baseten credits ($100, 2M TPM) for Muse Spark Open wired as second provider in `src/lib/meta.ts`: `structured()` tries `MUSE_PROVIDER` first, other on failure. Open model does not enforce json_schema, so schema goes in the prompt and JSON is extracted from text. No responses API there, so PDF extraction and web search stay on api.meta.ai. Smoke: `pnpm tsx --env-file=.env scripts/smoke-baseten.mts` (needs `BASETEN_API_KEY`). Smoke passed (chat, prompt-guided JSON, PNG image input). Eval 3/3 with `MUSE_PROVIDER=baseten`, 73 s total, no fallback. Pitch line: open weights = self-hostable inside the hospital.
 - DONE: Meta key verified from India (Spark chat/JSON/PDF/web_search; Voice ML+EN diarized). VCF path, lab-PDF path, India lens, Muse report EN+ML, voice consult + recorder, confirm gate + audit, latest-guidance web search, access code, Dockerfile on pgkb/pharmcat, README, EVIDENCE.md, eval 3/3.
-- NEXT: UI polish, deploy (EC2 or Fly), lab calls (LAB-CALLS.md), clinician pilot, demo video (DEMO.md), submission text.
+- Deployed 2026-10-27: https://16.4.131.103.sslip.io (EC2, docs/DEPLOY.md). Login, PDF, phone photo, voice, mic all verified on prod. Phone-photo fixture added as 4th eval case and home-page sample.
+- NEXT, in priority order: (1) oncologist pilot booked and run (LAB-CALLS.md, the Impact differentiator); (2) lab calls; (3) demo video per DEMO.md with the phone photo as the input; (4) submission text; (5) report-page polish pass.
+
+## Field scan (Discord intros, 2026-10-27)
+
+Read ~70 builder intros. No oncologist, clinician, pharmacist, or PGx/genomics project in the channel. Nearest: Jason/Qingyuan Zhang (NJ, clinical-trial data platform), VerbaGPT (US insurance ranking), Aritra (SafeCity Lens: evidence score + human approval for police/fire/hospital). Pathya is alone in clinical decision support.
+
+Patterns that change what we emphasise:
+- Multi-model stacking is the norm: SAM 3.1 + Spark + Voice + Glimmer in several India "Build for Your World" entries (Smeet Mehta FieldWitness crop-damage claims, Sumer, devDonald crop copilot). Tooling score risk. Answer: phone photo through Spark vision on screen (not just PDF); say on camera why SAM/Image are not used; open-weights Spark Open as the self-host path.
+- "Human approves before action" is table stakes (Ankita, Sho, Aritra). Confirm gate alone does not differentiate. Lead with PharmCAT determinism, cited India lens, code-switched Malayalam voice, open weights for data residency.
+- Every credible pitch names a real user (brother's dealership, drinks distributor, farmers). Our equivalent is the two-oncologist pilot with quotes. Without it Pathya is one more demo.
+- Nearly everyone is Indie. Startup track looks thin; production proof (deployed URL, eval, one container, audit log) is the edge over Indie polish.
 
 ## Day plan (IST)
 - Oct 27: Meta key + smoke test all 3 endpoints. PharmCAT lib + parser + synthetic risky VCF fixtures. `/api/analyze` returns deterministic profile. Commit.

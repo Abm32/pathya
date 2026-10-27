@@ -1,12 +1,17 @@
-// End-to-end eval against a running dev server: pnpm tsx scripts/eval.mts [baseUrl]
+// End-to-end eval against a running server: pnpm tsx scripts/eval.mts [baseUrl]  (set ACCESS_CODE for a deployed instance)
 import assert from "node:assert/strict";
 const base = process.argv[2] ?? "http://localhost:3077";
+const headers: Record<string, string> = {};
+if (process.env.ACCESS_CODE) { // deployed instance behind the access gate
+  const r = await fetch(`${base}/api/login`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ code: process.env.ACCESS_CODE }) });
+  assert.ok(r.ok, `login ${r.status}`); headers.cookie = r.headers.get("set-cookie")?.split(";")[0] ?? "";
+}
 type Med = { drug: string; risk: string };
 async function run(sample: string, meds: string) {
   const fd = new FormData(); fd.set("sample", sample); fd.set("meds", meds); fd.set("label", `eval-${sample}`);
-  const r = await fetch(`${base}/api/analyze`, { method: "POST", body: fd }); const j = await r.json();
+  const r = await fetch(`${base}/api/analyze`, { method: "POST", body: fd, headers }); const j = await r.json();
   assert.ok(r.ok, `analyze ${sample}: ${JSON.stringify(j)}`);
-  const rep = await (await fetch(`${base}/api/report/${j.id}`)).json();
+  const rep = await (await fetch(`${base}/api/report/${j.id}`, { headers })).json();
   return { id: j.id as string, genes: rep.profile.genes as { gene: string; phenotype: string; called: boolean }[], meds: (rep.ai?.medications ?? []) as Med[], lens: rep.lens ?? [] };
 }
 const risk = (m: Med[], d: string) => m.find((x) => x.drug.toLowerCase() === d)?.risk;
@@ -24,14 +29,16 @@ const cases = [
       assert.equal(risk(r.meds, "fluorouracil"), "avoid");
       assert.ok(["adjust", "avoid"].includes(risk(r.meds, "mercaptopurine")!));
   } },
-  { s: "lab", meds: "capecitabine\nazathioprine\ntamoxifen", check: (r: Awaited<ReturnType<typeof run>>) => {
+  { s: "lab", meds: "capecitabine\nazathioprine\ntamoxifen", check: labCheck },
+  { s: "photo", meds: "capecitabine\nazathioprine\ntamoxifen", check: labCheck },
+];
+function labCheck(r: Awaited<ReturnType<typeof run>>) {
       assert.ok(r.genes.find((g) => g.gene === "DPYD")?.called, "DPYD must be called from lab report");
       assert.equal(pheno(r.genes, "DPYD"), "Intermediate Metabolizer");
       assert.ok(["adjust", "caution"].includes(risk(r.meds, "capecitabine")!));
       assert.equal(risk(r.meds, "azathioprine"), "adjust");
       assert.ok(r.lens.some((n: { gene: string }) => n.gene === "DPYD"), "India lens must flag c.85T>C");
-  } },
-];
+}
 let fail = 0;
 for (const c of cases) {
   const t = Date.now();

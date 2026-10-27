@@ -29,6 +29,7 @@ export async function POST(req: Request) {
   let report = fd.get("report");
   if (/^[AB]$/.test(sample)) vcf = new File([await fs.readFile(path.resolve(`fixtures/oncology-patient-${sample}.vcf`))], `oncology-patient-${sample}.vcf`);
   if (sample === "lab") report = new File([await fs.readFile(path.resolve("fixtures/lab-report-demo.pdf"))], "lab-report-demo.pdf", { type: "application/pdf" });
+  if (sample === "photo") report = new File([await fs.readFile(path.resolve("fixtures/lab-report-photo.jpg"))], "lab-report-photo.jpg", { type: "image/jpeg" });
 
   const hasVcf = vcf instanceof File && vcf.size > 0;
   const hasReport = report instanceof File && report.size > 0;

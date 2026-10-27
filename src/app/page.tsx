@@ -107,6 +107,7 @@ export default function Home() {
             <button disabled={busy} className="btn btn-primary">Analyse</button>
             <span className="text-sm text-muted">or a sample:</span>
             <button type="button" disabled={busy} onClick={() => sample("lab")} className="btn btn-ghost">Lab PDF, Indian panel</button>
+            <button type="button" disabled={busy} onClick={() => sample("photo")} className="btn btn-ghost">Same report, phone photo</button>
             <button type="button" disabled={busy} onClick={() => sample("A")} className="btn btn-ghost">VCF A</button>
             <button type="button" disabled={busy} onClick={() => sample("B")} className="btn btn-ghost">VCF B</button>
           </div>
