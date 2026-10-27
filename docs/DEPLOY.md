@@ -2,18 +2,22 @@
 
 One container (Node 22 on the official `pgkb/pharmcat` image). Needs ~2 GB RAM (PharmCAT JVM) and outbound HTTPS to api.meta.ai.
 
-## Option A: EC2 / any VM with Docker (recommended for the demo)
+## Option A: EC2 (what the demo runs on)
+
+Account: Anukriti AI AWS (`AWS_PROFILE=anukriti`), region ap-south-1. Instance `pathya` (t3.medium, 30 GB gp3, Ubuntu 24.04, Docker via user-data), security group `pathya` (22/80/443), Elastic IP, key `~/.ssh/pathya.pem`. Public URL uses sslip.io so no DNS record is needed; Caddy gets a Let's Encrypt cert for it.
 
 ```bash
+# from the laptop: repo is private, so ship the working tree instead of git clone
+rsync -az --delete -e "ssh -i ~/.ssh/pathya.pem" --exclude node_modules --exclude .next --exclude data --exclude .git --exclude '.env*' ./ ubuntu@<ip>:~/pathya/
+scp -i ~/.ssh/pathya.pem .env.ec2 ubuntu@<ip>:~/pathya/.env   # .env.ec2 = local .env + ACCESS_CODE, PHARMCAT_RUNNER=local, DATA_DIR=/data (gitignored)
+
 # on the VM
-git clone https://github.com/Abm32/pathya && cd pathya
-cp .env.example .env   # set MODEL_API_KEY, BASETEN_API_KEY and ACCESS_CODE
-docker compose up -d --build
-# https via Caddy (auto TLS):
-docker run -d --name caddy --network host -v caddy:/data caddy:2 caddy reverse-proxy --from pathya.<your-domain> --to localhost:3000
+cd ~/pathya && docker compose up -d --build
+docker run -d --name caddy --restart unless-stopped --network host -v caddy:/data caddy:2 \
+  caddy reverse-proxy --from <ip>.sslip.io --to localhost:3000
 ```
 
-Open ports 80/443 in the security group. Point an A record at the VM. First build takes ~5 min (Node install + pnpm).
+Redeploy = rerun the rsync, then `docker compose up -d --build` (2-3 min, PharmCAT layer is cached). HTTPS is required for the mic recorder (getUserMedia needs a secure context).
 
 ## Option B: Fly.io
 
