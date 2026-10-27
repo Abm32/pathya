@@ -28,7 +28,7 @@ Upload a patient's genotype (VCF) + their medication list → CPIC-grounded toxi
 
 ## Status (updated 2026-10-27 03:00 IST)
 
-- Baseten credits ($100, 2M TPM) for Muse Spark Open wired as second provider in `src/lib/meta.ts`: `structured()` tries `MUSE_PROVIDER` first, other on failure. Open model does not enforce json_schema, so schema goes in the prompt and JSON is extracted from text. No responses API there, so PDF extraction and web search stay on api.meta.ai. Smoke: `pnpm tsx --env-file=.env scripts/smoke-baseten.mts` (needs `BASETEN_API_KEY`). Pitch line: open weights = self-hostable inside the hospital.
+- Baseten credits ($100, 2M TPM) for Muse Spark Open wired as second provider in `src/lib/meta.ts`: `structured()` tries `MUSE_PROVIDER` first, other on failure. Open model does not enforce json_schema, so schema goes in the prompt and JSON is extracted from text. No responses API there, so PDF extraction and web search stay on api.meta.ai. Smoke: `pnpm tsx --env-file=.env scripts/smoke-baseten.mts` (needs `BASETEN_API_KEY`). Smoke passed (chat, prompt-guided JSON, PNG image input). Eval 3/3 with `MUSE_PROVIDER=baseten`, 73 s total, no fallback. Pitch line: open weights = self-hostable inside the hospital.
 - DONE: Meta key verified from India (Spark chat/JSON/PDF/web_search; Voice ML+EN diarized). VCF path, lab-PDF path, India lens, Muse report EN+ML, voice consult + recorder, confirm gate + audit, latest-guidance web search, access code, Dockerfile on pgkb/pharmcat, README, EVIDENCE.md, eval 3/3.
 - NEXT: UI polish, deploy (EC2 or Fly), lab calls (LAB-CALLS.md), clinician pilot, demo video (DEMO.md), submission text.
 

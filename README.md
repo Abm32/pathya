@@ -43,6 +43,7 @@ Not used on purpose: Muse Image (no clinical value here), SAM 3.1 (no imaging ta
 
 - **No dose comes from the LLM.** Every recommendation is PharmCAT's CPIC/DPWG/FDA text. Muse Spark ranks, maps and explains; it cannot invent a diplotype, dose or citation (schema-constrained, profile-only citations, verbatim quotes from the lab report).
 - **Deterministic eval.** `pnpm tsx scripts/eval.mts` runs three synthetic patients end to end and asserts phenotypes and risk calls (DPYD IM → capecitabine adjust; DPYD PM → 5-FU avoid; lab PDF with HapB3 + c.85T>C → called IM, India lens fires).
+  Passes 3/3 on both paths: hosted Muse Spark 1.3 and open-weights Muse Spark Open on Baseten (`MUSE_PROVIDER=baseten`, 2026-10-27, no fallback triggered). Same genotype calls, same risk ranking, same PMIDs; only the prose differs.
 - **Two inference paths, one wire format.** Hosted Muse Spark 1.3 (strict JSON schema, PDF input, web search) and open-weights Muse Spark Open on Baseten (schema in prompt, JSON extracted and validated). Either can be primary; the other is the fallback. Open weights give the data-residency answer every Indian hospital IT team asks first.
 - **Single container.** Node app on top of the official `pgkb/pharmcat` image; no docker-in-docker, no external PGx service.
 - **Access gate, rate-limited login, audit log, no PHI fields.** Cases are labelled, not named.
