@@ -69,13 +69,13 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-6xl px-4">
       {/* Hero */}
-      <section className="grid items-center gap-10 pb-14 pt-14 md:pt-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
+      <section className="grid grid-cols-1 items-center gap-10 pb-14 pt-14 md:pt-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
         <div className="rise">
           <div className="inline-flex items-center gap-2 rounded-full border border-line bg-[rgba(255,255,255,0.03)] px-3 py-1.5 text-xs text-muted">
             <span className="live-dot" aria-hidden /> Live on AWS Mumbai · 4/4 eval on the deployed system
           </div>
           <h1 className="display mt-6 text-[2.7rem] sm:text-6xl">
-            Chemo toxicity,<br />caught <span className="glow-text">before cycle one.</span>
+            Chemo toxicity,<br />caught <span className="glow-text">before<br />cycle one.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
             The lab report says <span className="num text-foreground">HapB3 heterozygous</span>. Pathya tells the oncologist what to prescribe at 9 a.m.,
@@ -166,7 +166,7 @@ export default function Home() {
           <div className="space-y-3 border-t border-line pt-4">
             <button disabled={busy} aria-busy={busy} className="btn btn-primary w-full sm:w-auto sm:min-w-40">{busy ? "Analysing…" : "Analyse"}</button>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="mr-1 text-xs text-muted">Try a sample:</span>
+              <span className="mr-1 text-xs text-muted">Try a sample</span>
               <button type="button" disabled={busy} onClick={() => sample("lab")} className="btn btn-ghost btn-sm">Lab PDF, Indian panel</button>
               <button type="button" disabled={busy} onClick={() => sample("photo")} className="btn btn-ghost btn-sm">Same report, phone photo</button>
               <button type="button" disabled={busy} onClick={() => sample("A")} className="btn btn-ghost btn-sm">VCF A</button>
@@ -187,11 +187,11 @@ export default function Home() {
             <div className="card spot p-5">
               <h3 className="section-title">What happens when you press Analyse</h3>
               <ol className="mt-4 space-y-3 text-sm text-muted">
-                <li className="flex items-start gap-3"><span className="badge badge-meta">Muse Spark</span><span>reads the PDF or photo and quotes each gene call verbatim</span></li>
-                <li className="flex items-start gap-3"><span className="badge badge-det">PharmCAT</span><span>assigns phenotypes, attaches CPIC, DPWG and FDA-label dosing</span></li>
-                <li className="flex items-start gap-3"><span className="badge badge-det">India lens</span><span>fires cited rules for HapB3, c.85T&gt;C, NUDT15</span></li>
-                <li className="flex items-start gap-3"><span className="badge badge-meta">Muse Spark</span><span>ranks each drug and writes EN + Malayalam</span></li>
-                <li className="flex items-start gap-3"><span className="badge badge-meta">Muse Voice</span><span>turns a dictated consult into the medication list</span></li>
+                <li className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-start gap-3"><span className="badge justify-self-start badge-meta">Muse Spark</span><span>reads the PDF or photo and quotes each gene call verbatim</span></li>
+                <li className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-start gap-3"><span className="badge justify-self-start badge-det">PharmCAT</span><span>assigns phenotypes, attaches CPIC, DPWG and FDA-label dosing</span></li>
+                <li className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-start gap-3"><span className="badge justify-self-start badge-det">India lens</span><span>fires cited rules for HapB3, c.85T&gt;C, NUDT15</span></li>
+                <li className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-start gap-3"><span className="badge justify-self-start badge-meta">Muse Spark</span><span>ranks each drug and writes EN + Malayalam</span></li>
+                <li className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-start gap-3"><span className="badge justify-self-start badge-meta">Muse Voice</span><span>turns a dictated consult into the medication list</span></li>
               </ol>
             </div>
           )}

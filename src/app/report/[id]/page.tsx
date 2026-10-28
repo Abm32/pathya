@@ -72,7 +72,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
   ];
 
   return (
-    <main className="mx-auto max-w-5xl px-4 pb-10 print:py-0">
+    <main className="mx-auto max-w-6xl px-4 pb-10 print:py-0">
       {/* Case hero */}
       <header className="rise pt-10">
         <Link href="/" className="text-sm text-muted hover:text-foreground print:hidden">← New case</Link>
@@ -98,7 +98,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
             <div className="mt-2 text-xs font-medium uppercase tracking-wider text-muted">Genes called</div>
           </div>
           <div className="card spot kpi rise p-4" style={{ animationDelay: "380ms", ["--kpi-glow" as string]: "rgba(46,230,200,0.35)" }}>
-            <div className="kpi-value text-accent">{total ? <CountUp to={total / 1000} decimals={1} suffix="s" ms={900} /> : "—"}</div>
+            <div className="kpi-value"><span className="glow-text">{total ? <CountUp to={total / 1000} decimals={1} suffix="s" ms={900} /> : "—"}</span></div>
             <div className="mt-2 text-xs font-medium uppercase tracking-wider text-muted">Upload to report</div>
           </div>
         </section>
@@ -123,7 +123,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
       <div id="summary" className="scroll-mt-32" />
       {ai ? (
         <section className="card spot mt-8 overflow-hidden p-6 sm:p-8">
-          <div aria-hidden className="absolute inset-y-0 left-0 w-1 bg-accent shadow-[0_0_24px_rgba(46,230,200,0.8)]" />
+          <div aria-hidden className="absolute inset-y-0 left-0 w-1 bg-[image:var(--brand-v)] shadow-[0_0_24px_rgba(46,230,200,0.6)] print:bg-accent" />
           <div className="flex items-center gap-2"><span className="eyebrow">Clinician summary</span><span className="badge badge-meta">Muse Spark</span></div>
           <p className="mt-4 text-xl leading-relaxed sm:text-[22px]">{ai.clinicianSummary}</p>
         </section>
@@ -138,7 +138,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
             ? meds.map((m, i) => (
                 <article key={m.drug + m.matchedInput} className={`card spot lift rise overflow-hidden p-5 ${m.risk === "avoid" ? "row-avoid" : m.risk === "adjust" ? "row-adjust" : ""}`} style={{ animationDelay: `${i * 50}ms` }}>
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                    <span className={`risk risk-${m.risk}`}>{m.risk}</span>
+                    <span className={`risk risk-${m.risk} min-w-[5.6rem] justify-center`}>{m.risk}</span>
                     <span className="text-lg font-semibold tracking-tight">{m.drug}</span>
                     {m.matchedInput && m.matchedInput !== m.drug && <span className="text-xs text-muted">from “{m.matchedInput}”</span>}
                     {!m.matchedInput && <span className="text-xs text-muted">not on list, same pathway</span>}
@@ -155,7 +155,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
             : fallback.map((d, i) => (
                 <article key={i} className="card row-adjust p-5">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="risk risk-adjust">actionable</span>
+                    <span className="risk risk-adjust min-w-[5.6rem] justify-center">actionable</span>
                     <span className="text-lg font-semibold">{d.drug}</span>
                     <span className="num ml-auto text-xs text-muted">{d.genes.join(", ")} · {d.source} {d.classification}</span>
                   </div>
@@ -169,7 +169,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
       {lens.length > 0 && (
         <section className="mt-14">
           <H2 id="india" sub="population-specific evidence · deterministic rules, not the model">India lens</H2>
-          <div className="mt-5 grid gap-3 md:grid-cols-2">
+          <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2">
             {lens.map((n, i) => (
               <div key={i} className={`card spot lift p-5 text-sm ${n.level === "warn" ? "note-warn" : "note-info"}`}>
                 <div className="flex items-center gap-2"><span className="num rounded-md border border-line px-1.5 py-0.5 text-[11px]">{n.gene}</span><span className="eyebrow">{n.level === "warn" ? "Flag" : "Context"}</span></div>
@@ -184,12 +184,12 @@ export default async function Report({ params }: { params: Promise<{ id: string 
 
       <section className="mt-14">
         <H2 id="genotype" sub={`${called.length} genes called by PharmCAT`}>Genotype</H2>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {called.map((g, i) => {
             const a = activity(g.phenotype);
             return (
               <div key={g.gene} className="card spot lift p-4">
-                <div className="flex items-baseline justify-between">
+                <div className="flex items-baseline justify-between gap-3">
                   <span className="text-base font-semibold">{g.gene}</span>
                   <span className="text-[10px] uppercase tracking-wider text-muted">{g.source === "OUTSIDE" ? "from lab report" : "from VCF"}</span>
                 </div>

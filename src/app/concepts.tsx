@@ -39,7 +39,7 @@ function Seg<T extends string | number>({ label, value, options, onChange, stack
 function Verdict({ tone, big, what, why }: { tone: "ok" | "warn" | "bad"; big: string; what: string; why: string }) {
   return (
     <div className="verdict" data-tone={tone} aria-live="polite">
-      <div className="kpi-value text-[28px]">{big}</div>
+      <div className="display text-[30px]">{big}</div>
       <div className="mt-1.5 font-semibold">{what}</div>
       <div className="mt-1.5 text-[13px] text-muted">{why}</div>
     </div>
@@ -92,13 +92,13 @@ function EnzymeSim() {
         ctx.beginPath(); ctx.arc(p.x * (w - 40) + 20, 46 + p.y * (vh - 56), 2.4, 0, Math.PI * 2); ctx.fill();
       }
       ctx.globalAlpha = 1;
-      const cy0 = vh + 14, ch = h - cy0 - 16, cx0 = 46, cw = w - cx0 - 16, maxY = TOXIC * 1.9;
+      const cy0 = vh + 14, ch = h - cy0 - 16, cx0 = 20, cw = w - cx0 - 20, maxY = TOXIC * 1.9;
       const Y = (v: number) => cy0 + ch - Math.min(1, v / maxY) * ch;
       ctx.fillStyle = "rgba(95,227,154,0.07)"; ctx.fillRect(cx0, Y(BASE * 1.3), cw, Y(BASE * 0.7) - Y(BASE * 1.3));
       ctx.strokeStyle = "rgba(255,100,100,0.7)"; ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.moveTo(cx0, Y(TOXIC)); ctx.lineTo(cx0 + cw, Y(TOXIC)); ctx.stroke(); ctx.setLineDash([]);
       ctx.fillStyle = COL.red; ctx.fillText("TOXIC", cx0 + 6, Y(TOXIC) - 5);
       ctx.fillStyle = COL.green; ctx.fillText("THERAPEUTIC", cx0 + 6, Y(BASE * 0.7) - 5);
-      ctx.fillStyle = COL.muted; ctx.fillText("EXPOSURE", 8, cy0 + 10);
+      ctx.fillStyle = COL.muted; ctx.fillText("EXPOSURE", cx0 + 2, cy0 + 10);
       const X = (i: number) => cx0 + (i / 359) * cw;
       const g = ctx.createLinearGradient(0, cy0, 0, cy0 + ch); g.addColorStop(0, "rgba(46,230,200,0.35)"); g.addColorStop(1, "rgba(46,230,200,0)");
       ctx.beginPath(); hist.forEach((v, i) => (i ? ctx.lineTo(X(i), Y(v)) : ctx.moveTo(X(i), Y(v))));

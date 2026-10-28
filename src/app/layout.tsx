@@ -22,7 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${notoMalayalam.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <Spotlight />
-        <header className="sticky top-0 z-30 border-b border-line bg-[rgba(6,8,10,0.72)] backdrop-blur-xl print:hidden">
+        <header className="sticky top-0 z-30 bg-[rgba(6,8,10,0.72)] backdrop-blur-xl print:hidden">
           <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4">
             <Link href="/" className="flex items-center gap-2.5">
               <Mark size={30} />
@@ -37,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <span className="badge badge-meta">Spark Open</span>
             </span>
           </div>
+          <div aria-hidden className="hairline" />
         </header>
         <div className="flex-1">{children}</div>
         <footer className="mt-16 border-t border-line px-4 py-6 text-center text-xs text-muted print:hidden">

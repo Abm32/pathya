@@ -44,7 +44,7 @@ export function Pipeline({ steps }: { steps: StepEvent[] }) {
         <span className="eyebrow">{running ? "Live pipeline" : "Pipeline"}</span>
         {running
           ? <span className="num ml-auto text-sm text-accent">{(elapsed / 1000).toFixed(1)} s</span>
-          : <span className="num ml-auto text-[11px] text-muted">deterministic core · LLM at the edges</span>}
+          : <span className="num ml-auto hidden text-[11px] text-muted sm:inline">deterministic core · LLM at the edges</span>}
       </div>
       <ol className="relative space-y-2.5">
         {NODES.map((n, i) => {
