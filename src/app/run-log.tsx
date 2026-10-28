@@ -6,6 +6,7 @@ export type StepEvent = {
   step: "upload" | "extract" | "pharmcat" | "lens" | "report";
   status: "active" | "done" | "fail";
   ms?: number;
+  at?: number; // client arrival time, for live timers
   detail?: string;
   genes?: { gene: string; call: string; verbatim: string }[];
   phenotypes?: { gene: string; diplotype: string; phenotype: string }[];
@@ -24,15 +25,12 @@ const META: Record<StepEvent["step"], { title: string; badge: string; kind: "met
 /** Live pipeline trace: one row per real server event, results revealed as they land. */
 export function RunLog({ steps, onDone }: { steps: StepEvent[]; onDone?: boolean }) {
   const [now, setNow] = useState(() => Date.now());
-  const [since, setSince] = useState<Record<string, number>>({});
+
   useEffect(() => {
     const t = setInterval(() => setNow(Date.now()), 250);
     return () => clearInterval(t);
   }, []);
-  // Remember when each step went active, for its live timer.
-  useEffect(() => {
-    for (const s of steps) if (s.status === "active" && !since[s.step]) setSince((p) => ({ ...p, [s.step]: Date.now() }));
-  }, [steps, since]);
+
 
   const rows = new Map<string, StepEvent>();
   for (const s of steps) rows.set(s.step, { ...rows.get(s.step), ...s });
@@ -42,7 +40,7 @@ export function RunLog({ steps, onDone }: { steps: StepEvent[]; onDone?: boolean
       {[...rows.values()].map((s) => {
         const m = META[s.step];
         const active = s.status === "active";
-        const secs = active ? (now - (since[s.step] ?? now)) / 1000 : (s.ms ?? 0) / 1000;
+        const secs = active ? Math.max(0, now - (s.at ?? now)) / 1000 : (s.ms ?? 0) / 1000;
         return (
           <li key={s.step} className={`run-row p-3.5 ${active ? "run-active" : ""}`}>
             <div className="flex items-center gap-2.5">

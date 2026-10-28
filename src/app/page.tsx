@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { Recorder } from "./recorder";
 import { Cite } from "./cite";
 import { RunLog, type StepEvent } from "./run-log";
+import { Pipeline } from "./pipeline";
+import { CountUp } from "./fx";
 
 const SAMPLE_MEDS: Record<string, string> = {
   A: "Xeloda\nirinotecan\nondansetron\npantoprazole\nclopidogrel",
@@ -22,13 +24,14 @@ export default function Home() {
   const [ready, setReady] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const logRef = useRef<HTMLDivElement>(null);
+  const consoleRef = useRef<HTMLElement>(null);
 
-  async function submit(fd: FormData, medList = meds) {
+  async function submit(fd: FormData, medList = meds, scroll = true) {
     setErr(null); setReady(false); setBusy(true);
-    setSteps([{ type: "step", step: "upload", status: "active", detail: "Uploading" }]);
+    setSteps([{ type: "step", step: "upload", status: "active", detail: "Uploading", at: Date.now() }]);
     fd.set("meds", medList);
     fd.set("label", label);
-    requestAnimationFrame(() => logRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }));
+    if (scroll) setTimeout(() => logRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
     try {
       const res = await fetch("/api/analyze?stream=1", { method: "POST", body: fd });
       if (!res.ok || !res.body) { const j = await res.json().catch(() => ({})); throw new Error(j.detail ?? j.error ?? `HTTP ${res.status}`); }
@@ -42,7 +45,7 @@ export default function Home() {
         for (const line of lines) {
           if (!line.trim()) continue;
           const e = JSON.parse(line);
-          if (e.type === "step") setSteps((p) => [...p, e]);
+          if (e.type === "step") setSteps((p) => [...p, { ...e, at: Date.now() }]);
           else if (e.type === "error") throw new Error(e.detail ?? e.error ?? "analysis failed");
           else if (e.type === "done") { setReady(true); setTimeout(() => r.push(`/report/${e.id}`), 1400); return; }
         }
@@ -54,29 +57,69 @@ export default function Home() {
     }
   }
 
-  const sample = (s: string) => {
+  const sample = (s: string, scroll = true) => {
     const fd = new FormData();
     fd.set("sample", s);
     const m = SAMPLE_MEDS[s === "photo" ? "lab" : s];
     setMeds(m);
-    submit(fd, m);
+    submit(fd, m, scroll);
   };
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10">
-      <div className="max-w-2xl">
-        <h1 className="text-3xl font-semibold leading-tight tracking-tight">
-          The lab report says <span className="font-mono text-accent">HapB3 heterozygous</span>.<br />
-          What do you prescribe at 9 a.m.?
-        </h1>
-        <p className="mt-3 text-muted">
-          Pathya turns a pharmacogenomic result into an oncologist-ready toxicity report: dose actions from CPIC, DPWG and FDA labels with
-          citations, an India-specific variant lens, and a patient explanation in English and Malayalam.
-        </p>
-      </div>
+    <main className="mx-auto max-w-6xl px-4">
+      {/* Hero */}
+      <section className="grid items-center gap-10 pb-14 pt-14 md:pt-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
+        <div className="rise">
+          <div className="inline-flex items-center gap-2 rounded-full border border-line bg-[rgba(255,255,255,0.03)] px-3 py-1.5 text-xs text-muted">
+            <span className="live-dot" aria-hidden /> Live on AWS Mumbai · 4/4 eval on the deployed system
+          </div>
+          <h1 className="display mt-6 text-[2.7rem] sm:text-6xl">
+            Chemo toxicity,<br />caught <span className="glow-text">before cycle one.</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+            The lab report says <span className="num text-foreground">HapB3 heterozygous</span>. Pathya tells the oncologist what to prescribe at 9 a.m.,
+            from CPIC, DPWG and FDA-label text with citations, adds the Indian evidence CPIC misses, and explains it to the patient in Malayalam.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <button type="button" disabled={busy} onClick={() => sample("photo", false)} className="btn btn-primary btn-lg">
+              Run it on a phone photo <span aria-hidden>→</span>
+            </button>
+            <button type="button" onClick={() => consoleRef.current?.scrollIntoView({ behavior: "smooth" })} className="btn btn-ghost btn-lg">Upload your report</button>
+          </div>
+          <p className="mt-4 text-xs text-muted">Synthetic Indian-panel report, skewed and noisy like a WhatsApp photo. About 45 seconds end to end.</p>
+        </div>
+        <div className="rise" style={{ animationDelay: "120ms" }}>
+          <Pipeline steps={steps} />
+        </div>
+      </section>
 
-      <div className="mt-8 grid gap-6 md:grid-cols-[1fr_340px]">
-        <form className="card space-y-5 p-5" onSubmit={(e) => { e.preventDefault(); submit(new FormData(e.currentTarget)); }}>
+      {/* Evidence bento */}
+      <section aria-label="Why this matters" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { v: 48, s: "%", t: "of fluoropyrimidine deaths are DPYD carriers, who are only 4% of patients", src: "Sharma 2021", glow: "rgba(255,100,100,0.5)" },
+          { v: 25, s: "%", p: "~", t: "of Indians carry DPYD c.85T>C. CPIC calls it normal; South Indian cohorts link it to toxicity", src: "PMC11300675", glow: "rgba(255,181,71,0.5)" },
+          { v: 0, s: "", t: "Indian national guidelines on DPYD or UGT1A1 testing before chemotherapy", src: "ICMR / NCG, none found", glow: "rgba(124,138,255,0.5)" },
+          { v: 75, s: "%", t: "of Indian prescribers say they are not confident reading a pharmacogenomic report", src: "PMC9696651", glow: "rgba(46,230,200,0.5)" },
+        ].map((k, i) => (
+          <div key={i} className="card spot lift kpi rise p-5" style={{ animationDelay: `${200 + i * 70}ms`, ["--kpi-glow" as string]: k.glow }}>
+            <div className="kpi-value"><CountUp to={k.v} prefix={k.p ?? ""} suffix={k.s} /></div>
+            <p className="mt-3 text-sm leading-snug text-foreground/85">{k.t}</p>
+            <p className="mt-3 text-[11px] text-muted"><Cite text={k.src} /></p>
+          </div>
+        ))}
+      </section>
+
+      {/* Console */}
+      <section ref={consoleRef} className="scroll-mt-20 pt-16">
+        <div className="mb-5 flex flex-wrap items-end gap-3">
+          <div>
+            <p className="eyebrow">Console</p>
+            <h2 className="display mt-2 text-3xl">Run a case</h2>
+          </div>
+          <p className="ml-auto max-w-md text-sm text-muted">Every step streams from the server as it finishes. No dose ever comes from the language model.</p>
+        </div>
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_400px]">
+        <form className="card spot space-y-5 p-6" onSubmit={(e) => { e.preventDefault(); submit(new FormData(e.currentTarget)); }}>
           <div className="flex gap-2 text-sm">
             {(["report", "vcf"] as const).map((m) => (
               <button key={m} type="button" onClick={() => setMode(m)} aria-pressed={mode === m} className="chip">
@@ -130,30 +173,28 @@ export default function Home() {
           {err && <p role="alert" className="text-sm text-danger">{err}</p>}
         </form>
 
-        <aside className="space-y-4 text-sm">
+        <aside className="space-y-4 text-sm lg:sticky lg:top-20 lg:self-start">
           {steps.length > 0 && (
             <div ref={logRef} className="scroll-mt-4">
               <h2 className="section-title mb-2">Live run</h2>
               <RunLog steps={steps} onDone={ready} />
             </div>
           )}
-          <div className={`card p-4 ${steps.length ? "hidden md:block" : ""}`}>
-            <h2 className="section-title">How it works</h2>
-            <ol className="mt-2 space-y-2 text-muted">
-              <li><b className="text-foreground">1. Read.</b> <span className="badge badge-meta">Muse Spark</span> extracts gene calls from the PDF or phone photo, quoting the source text.</li>
-              <li><b className="text-foreground">2. Call.</b> <span className="badge badge-det">PharmCAT</span> assigns phenotypes and attaches CPIC, DPWG and FDA-label text. No dose comes from an LLM.</li>
-              <li><b className="text-foreground">3. India lens.</b> Rule-based notes for HapB3, c.85T&gt;C and NUDT15, each with a PMID.</li>
-              <li><b className="text-foreground">4. Explain.</b> <span className="badge badge-meta">Muse Spark</span> ranks risk per medication and writes for the clinician and, in Malayalam, for the patient.</li>
-              <li><b className="text-foreground">5. Dictate.</b> <span className="badge badge-meta">Muse Voice</span> turns the consult into a medication list.</li>
-            </ol>
-          </div>
-          <div className="card p-4">
-            <h2 className="section-title">Why India needs its own lens</h2>
-            <p className="mt-2 text-muted">CPIC's DPYD panel was derived from Europeans. In Indians, *2A is near-absent, HapB3 is the dominant risk variant and c.85T&gt;C runs at ~25% with replicated toxicity association in Kerala cohorts.</p>
-            <p className="mt-2 text-xs text-muted"><Cite text="PMID 40810747 · PMC11300675 · PMID 33105068" /></p>
-          </div>
+          {steps.length === 0 && (
+            <div className="card spot p-5">
+              <h3 className="section-title">What happens when you press Analyse</h3>
+              <ol className="mt-4 space-y-3 text-sm text-muted">
+                <li className="flex items-start gap-3"><span className="badge badge-meta">Muse Spark</span><span>reads the PDF or photo and quotes each gene call verbatim</span></li>
+                <li className="flex items-start gap-3"><span className="badge badge-det">PharmCAT</span><span>assigns phenotypes, attaches CPIC, DPWG and FDA-label dosing</span></li>
+                <li className="flex items-start gap-3"><span className="badge badge-det">India lens</span><span>fires cited rules for HapB3, c.85T&gt;C, NUDT15</span></li>
+                <li className="flex items-start gap-3"><span className="badge badge-meta">Muse Spark</span><span>ranks each drug and writes EN + Malayalam</span></li>
+                <li className="flex items-start gap-3"><span className="badge badge-meta">Muse Voice</span><span>turns a dictated consult into the medication list</span></li>
+              </ol>
+            </div>
+          )}
         </aside>
       </div>
+      </section>
     </main>
   );
 }
