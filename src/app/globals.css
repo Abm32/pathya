@@ -212,6 +212,22 @@ details.ev[open] .ev-caret { transform: rotate(90deg); }
 @keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(400%); } }
 .scan { position: absolute; inset-inline: 0; top: 0; height: 25%; background: linear-gradient(180deg, transparent, rgba(46,230,200,0.12), transparent); animation: scan 2.4s linear infinite; pointer-events: none; }
 
+/* Concept models */
+.pill { font: 600 11px/1 var(--font-geist-mono), monospace; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 9px; border-radius: 999px; border: 1px solid var(--line-strong); background: rgba(6,8,10,0.75); backdrop-filter: blur(8px); }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; padding: 4px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--line); }
+.seg-stack { grid-auto-flow: row; }
+.seg button { font-size: 13px; font-weight: 500; color: var(--muted); border-radius: 9px; padding: 9px 8px; min-height: 40px; cursor: pointer; transition: background-color 160ms, color 160ms, box-shadow 200ms; }
+.seg button:hover { color: var(--foreground); }
+.seg button[aria-pressed="true"] { background: rgba(46,230,200,0.12); color: var(--foreground); box-shadow: inset 0 0 0 1px rgba(46,230,200,0.6), 0 0 20px -6px rgba(46,230,200,0.7); }
+.verdict { border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; background: rgba(255,255,255,0.025); transition: border-color 300ms, box-shadow 300ms; }
+.verdict[data-tone="ok"] { border-color: rgba(95,227,154,0.45); box-shadow: 0 0 30px -12px rgba(95,227,154,0.6); }
+.verdict[data-tone="warn"] { border-color: rgba(255,181,71,0.5); box-shadow: 0 0 30px -12px rgba(255,181,71,0.6); }
+.verdict[data-tone="bad"] { border-color: rgba(255,100,100,0.55); box-shadow: 0 0 34px -10px rgba(255,100,100,0.7); }
+.packet { animation: travel 7s var(--ease-out) infinite; }
+@keyframes travel { 0% { offset-distance: 0%; opacity: 0; } 4% { opacity: 1; } 92% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+.lock { animation: lockglow 2.4s ease-in-out infinite; }
+@keyframes lockglow { 50% { filter: drop-shadow(0 0 8px rgba(46,230,200,0.9)); } }
+
 /* Print: paper, ink, no effects. */
 @media print {
   :root {

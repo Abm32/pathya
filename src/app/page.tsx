@@ -6,6 +6,7 @@ import { Cite } from "./cite";
 import { RunLog, type StepEvent } from "./run-log";
 import { Pipeline } from "./pipeline";
 import { CountUp } from "./fx";
+import { Concepts } from "./concepts";
 
 const SAMPLE_MEDS: Record<string, string> = {
   A: "Xeloda\nirinotecan\nondansetron\npantoprazole\nclopidogrel",
@@ -108,6 +109,8 @@ export default function Home() {
           </div>
         ))}
       </section>
+
+      <Concepts />
 
       {/* Console */}
       <section ref={consoleRef} className="scroll-mt-20 pt-16">
