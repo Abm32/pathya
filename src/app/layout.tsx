@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Geist, Geist_Mono, Noto_Sans_Malayalam } from "next/font/google";
 import "./globals.css";
 import { Spotlight } from "./fx";
-import { Mark } from "./logo";
+import { Wordmark } from "./logo";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -24,9 +24,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Spotlight />
         <header className="sticky top-0 z-30 bg-[rgba(6,8,10,0.72)] backdrop-blur-xl print:hidden">
           <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4">
-            <Link href="/" className="flex items-center gap-2.5">
-              <Mark size={30} />
-              <span className="text-[17px] font-semibold tracking-tight">Pathya</span>
+            <Link href="/" className="flex items-baseline gap-2.5">
+              <Wordmark className="text-[24px] leading-none" />
               <span className="ml text-sm text-muted">പഥ്യം</span>
             </Link>
             <span className="hidden text-xs text-muted md:inline">by Anukriti AI · Kochi</span>
