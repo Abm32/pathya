@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import { Mark } from "../logo";
 
 function Form() {
   const r = useRouter();
@@ -21,7 +22,8 @@ function Form() {
       }}
     >
       <div>
-        <h1 className="text-xl font-semibold tracking-tight">Pilot access</h1>
+        <Mark size={44} />
+        <h1 className="mt-4 text-xl font-semibold tracking-tight">Pilot access</h1>
         <p className="mt-1 text-sm text-muted">Pathya is in a clinician pilot. Enter the code you were given.</p>
       </div>
       <label className="block">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Geist, Geist_Mono, Noto_Sans_Malayalam } from "next/font/google";
 import "./globals.css";
 import { Spotlight } from "./fx";
+import { Mark } from "./logo";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -21,7 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <header className="sticky top-0 z-30 border-b border-line bg-[rgba(6,8,10,0.72)] backdrop-blur-xl print:hidden">
           <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4">
             <Link href="/" className="flex items-center gap-2.5">
-              <span aria-hidden className="grid size-7 place-items-center rounded-lg bg-accent text-[13px] font-bold text-[var(--ink-on-accent)] shadow-[0_0_20px_-2px_rgba(46,230,200,0.7)]">P</span>
+              <Mark size={30} />
               <span className="text-[17px] font-semibold tracking-tight">Pathya</span>
               <span className="ml text-sm text-muted">പഥ്യം</span>
             </Link>
