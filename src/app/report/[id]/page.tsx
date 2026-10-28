@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { readJson } from "@/lib/store";
+import { promises as fs } from "node:fs";
+import path from "node:path";
+import { readJson, caseDir } from "@/lib/store";
 import type { PgxProfile } from "@/lib/pharmcat";
 import type { AiReport } from "@/lib/report-ai";
 import type { LensNote } from "@/lib/india-lens";
@@ -30,6 +32,9 @@ export default async function Report({ params }: { params: Promise<{ id: string 
   const lens = (await readJson<LensNote[]>(id, "lens.json")) ?? [];
   const extract = await readJson<LabExtract>(id, "extract.json");
   const confirmed = await readJson<{ clinician: string; at: string }>(id, "confirmation.json");
+  const trace = await runTrace(id);
+  const sourceKind = await fs.access(path.join(caseDir(id), "report.pdf")).then(() => "pdf" as const, () =>
+    fs.access(path.join(caseDir(id), "report.img")).then(() => "img" as const, () => null));
   const called = profile.genes.filter((g) => g.called);
   const uncalled = profile.genes.filter((g) => !g.called).map((g) => g.gene);
   const meds = ai ? [...ai.medications].sort((a, b) => ORDER.indexOf(a.risk) - ORDER.indexOf(b.risk)) : [];
@@ -48,6 +53,20 @@ export default async function Report({ params }: { params: Promise<{ id: string 
           <span className="ml-auto"><PrintButton /></span>
         </div>
         <p className="num mt-2 text-xs text-muted">{new Date(c.createdAt).toLocaleString()} · PharmCAT {profile.pharmcatVersion} · CPIC data {profile.dataVersion}</p>
+        {trace.length > 0 && (
+          <ol className="mt-4 flex flex-wrap items-stretch gap-1.5 print:hidden" aria-label="How this report was produced">
+            {trace.map((s, i) => (
+              <li key={i} className="flex items-center gap-1.5">
+                {i > 0 && <span aria-hidden className="text-muted">›</span>}
+                <span className="inline-flex items-center gap-2 rounded-md border border-line bg-card px-2.5 py-1 text-xs">
+                  <span className={`badge ${s.meta ? "badge-meta" : "badge-det"}`}>{s.who}</span>
+                  <span>{s.what}</span>
+                  {s.ms !== undefined && <span className="num text-muted">{(s.ms / 1000).toFixed(1)} s</span>}
+                </span>
+              </li>
+            ))}
+          </ol>
+        )}
       </header>
 
       {ai ? (
@@ -130,7 +149,17 @@ export default async function Report({ params }: { params: Promise<{ id: string 
       {extract && (
         <section className="card mt-10 p-4 text-sm">
           <H2 sub={<><span className="badge badge-meta">Muse Spark</span> each call quoted verbatim</>}>Read from the lab report</H2>
-          <p className="mt-2 text-xs text-muted">{extract.labName}{extract.reportDate ? ` · ${extract.reportDate}` : ""}</p>
+          <p className="mt-2 text-xs text-muted">
+            {extract.labName}{extract.reportDate ? ` · ${extract.reportDate}` : ""}
+            {sourceKind && <> · <a href={`/api/report/${id}/source`} target="_blank" rel="noreferrer" className="text-accent underline decoration-accent/30 underline-offset-2 hover:decoration-accent">open original {sourceKind === "pdf" ? "PDF" : "photo"}</a></>}
+          </p>
+          <div className={sourceKind === "img" ? "mt-3 grid gap-4 md:grid-cols-[180px_1fr]" : ""}>
+          {sourceKind === "img" && (
+            <a href={`/api/report/${id}/source`} target="_blank" rel="noreferrer" className="block self-start overflow-hidden rounded-md border border-line print:hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/api/report/${id}/source`} alt="Uploaded lab report photo" className="w-full" />
+            </a>
+          )}
           <ul className="mt-2 space-y-1.5">
             {extract.genes.map((g, i) => (
               <li key={i} className="grid gap-x-3 sm:grid-cols-[14rem_1fr]">
@@ -139,6 +168,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
               </li>
             ))}
           </ul>
+          </div>
           {extract.methodNotes && <p className="mt-3 text-xs text-muted">{extract.methodNotes}</p>}
           {extract.warnings.length > 0 && <p className="mt-2 text-xs text-warn">{extract.warnings.join(" ")}</p>}
         </section>
@@ -169,4 +199,29 @@ export default async function Report({ params }: { params: Promise<{ id: string 
       </footer>
     </main>
   );
+}
+
+type TraceStep = { who: string; what: string; ms?: number; meta: boolean };
+/** Reconstructs the pipeline from the append-only audit log: who did what, and how long it took. */
+async function runTrace(id: string): Promise<TraceStep[]> {
+  const raw = await fs.readFile(path.join(caseDir(id), "audit.log"), "utf8").catch(() => "");
+  const ev = raw.split("\n").filter(Boolean).map((l) => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean) as { ts: string; event: string; [k: string]: unknown }[];
+  const out: TraceStep[] = [];
+  let prev = ev.find((e) => e.event === "upload");
+  if (!prev) return out;
+  const t0 = Date.parse(prev.ts);
+  for (const e of ev) {
+    const ms = Date.parse(e.ts) - Date.parse(prev.ts);
+    if (e.event === "muse.extract.ok") out.push({ who: "Muse Spark", what: `read ${e.genes} gene calls`, ms, meta: true });
+    else if (e.event === "pharmcat.ok") { out.push({ who: "PharmCAT", what: `called ${e.genesCalled} phenotypes`, ms, meta: false }); if (Number(e.lens) > 0) out.push({ who: "India lens", what: `${e.lens} ${Number(e.lens) === 1 ? "rule" : "rules"} fired`, meta: false }); }
+    else if (e.event === "muse.report.ok") out.push({ who: "Muse Spark", what: `ranked ${e.meds} medications, EN + ML`, ms, meta: true });
+    else if (e.event === "muse.report.fail") out.push({ who: "Muse Spark", what: "narrative failed, deterministic kept", ms, meta: true });
+    else if (e.event === "muse.web_search.ok") out.push({ who: "Muse Spark", what: "checked labels on the web", meta: true });
+    else if (e.event === "clinician.confirm") out.push({ who: "Clinician", what: `confirmed (${e.clinician})`, meta: false });
+    else continue;
+    prev = e;
+  }
+  const last = [...ev].reverse().find((e) => e.event === "muse.report.ok" || e.event === "pharmcat.ok");
+  if (last) out.push({ who: "Total", what: "upload to report", ms: Date.parse(last.ts) - t0, meta: false });
+  return out;
 }

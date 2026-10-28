@@ -146,3 +146,14 @@
   .card { border-color: #ccc; }
   .row-avoid, .row-adjust { box-shadow: none; }
 }
+
+/* Live run trace */
+.run-row { transition: background-color 200ms var(--ease-out); }
+.run-active { background: color-mix(in srgb, var(--accent-soft) 55%, transparent); }
+.run-dot { width: 0.6rem; height: 0.6rem; border-radius: 999px; flex: none; background: var(--line); }
+.run-dot.done { background: var(--accent); }
+.run-dot.fail { background: var(--danger); }
+.run-dot.active { background: var(--accent); animation: run-pulse 1.1s var(--ease-out) infinite; }
+@keyframes run-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); } 100% { box-shadow: 0 0 0 7px transparent; } }
+.reveal { animation: reveal 260ms var(--ease-out) both; }
+@keyframes reveal { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }

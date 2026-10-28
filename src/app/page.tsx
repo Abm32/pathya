@@ -1,16 +1,15 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Recorder } from "./recorder";
 import { Cite } from "./cite";
+import { RunLog, type StepEvent } from "./run-log";
 
 const SAMPLE_MEDS: Record<string, string> = {
   A: "Xeloda\nirinotecan\nondansetron\npantoprazole\nclopidogrel",
   B: "fluorouracil (5-FU)\nmercaptopurine\ntramadol",
   lab: "capecitabine\nirinotecan\nazathioprine\nondansetron\ntamoxifen",
 };
-
-const STAGES = ["Reading the result", "Calling phenotypes (PharmCAT)", "Mapping medications & writing the report (Muse Spark)"];
 
 export default function Home() {
   const r = useRouter();
@@ -19,35 +18,49 @@ export default function Home() {
   const [label, setLabel] = useState("");
   const [transcript, setTranscript] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const [elapsed, setElapsed] = useState(0);
+  const [steps, setSteps] = useState<StepEvent[]>([]);
+  const [ready, setReady] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const logRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!busy) return;
-    setElapsed(0);
-    const t = setInterval(() => setElapsed((e) => e + 1), 1000);
-    return () => clearInterval(t);
-  }, [busy]);
-
-  async function submit(fd: FormData) {
-    setErr(null);
-    setBusy(true);
-    fd.set("meds", meds);
+  async function submit(fd: FormData, medList = meds) {
+    setErr(null); setReady(false); setBusy(true);
+    setSteps([{ type: "step", step: "upload", status: "active", detail: "Uploading" }]);
+    fd.set("meds", medList);
     fd.set("label", label);
-    const res = await fetch("/api/analyze", { method: "POST", body: fd });
-    const j = await res.json();
-    setBusy(false);
-    if (!res.ok) return setErr(j.detail ?? j.error ?? "failed");
-    r.push(`/report/${j.id}`);
+    requestAnimationFrame(() => logRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }));
+    try {
+      const res = await fetch("/api/analyze?stream=1", { method: "POST", body: fd });
+      if (!res.ok || !res.body) { const j = await res.json().catch(() => ({})); throw new Error(j.detail ?? j.error ?? `HTTP ${res.status}`); }
+      const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
+      let buf = "";
+      for (;;) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        buf += value;
+        const lines = buf.split("\n"); buf = lines.pop() ?? "";
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          const e = JSON.parse(line);
+          if (e.type === "step") setSteps((p) => [...p, e]);
+          else if (e.type === "error") throw new Error(e.detail ?? e.error ?? "analysis failed");
+          else if (e.type === "done") { setReady(true); setTimeout(() => r.push(`/report/${e.id}`), 1400); return; }
+        }
+      }
+      throw new Error("Connection closed before the report finished. Try again.");
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : String(e));
+      setBusy(false);
+    }
   }
 
   const sample = (s: string) => {
     const fd = new FormData();
     fd.set("sample", s);
-    setMeds(SAMPLE_MEDS[s]);
-    submit(fd);
+    const m = SAMPLE_MEDS[s === "photo" ? "lab" : s];
+    setMeds(m);
+    submit(fd, m);
   };
-  const stage = elapsed < 8 ? 0 : elapsed < 14 ? 1 : 2;
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-10">
@@ -62,7 +75,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="mt-8 grid gap-6 md:grid-cols-[1fr_300px]">
+      <div className="mt-8 grid gap-6 md:grid-cols-[1fr_340px]">
         <form className="card space-y-5 p-5" onSubmit={(e) => { e.preventDefault(); submit(new FormData(e.currentTarget)); }}>
           <div className="flex gap-2 text-sm">
             {(["report", "vcf"] as const).map((m) => (
@@ -114,20 +127,17 @@ export default function Home() {
               <button type="button" disabled={busy} onClick={() => sample("B")} className="btn btn-ghost btn-sm">VCF B</button>
             </div>
           </div>
-          {busy && (
-            <ol aria-live="polite" className="space-y-1 text-sm">
-              {STAGES.map((s, i) => (
-                <li key={s} className={i < stage ? "text-muted line-through" : i === stage ? "font-medium text-accent" : "text-muted"}>
-                  {i < stage ? "✓ " : i === stage ? "● " : "○ "}{s}{i === stage ? ` · ${elapsed}s` : ""}
-                </li>
-              ))}
-            </ol>
-          )}
           {err && <p role="alert" className="text-sm text-danger">{err}</p>}
         </form>
 
         <aside className="space-y-4 text-sm">
-          <div className="card p-4">
+          {steps.length > 0 && (
+            <div ref={logRef} className="scroll-mt-4">
+              <h2 className="section-title mb-2">Live run</h2>
+              <RunLog steps={steps} onDone={ready} />
+            </div>
+          )}
+          <div className={`card p-4 ${steps.length ? "hidden md:block" : ""}`}>
             <h2 className="section-title">How it works</h2>
             <ol className="mt-2 space-y-2 text-muted">
               <li><b className="text-foreground">1. Read.</b> <span className="badge badge-meta">Muse Spark</span> extracts gene calls from the PDF or phone photo, quoting the source text.</li>
