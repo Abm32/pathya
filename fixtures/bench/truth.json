@@ -1,0 +1,467 @@
+[
+ {
+  "id": "r00-star-pdf",
+  "file": "r00-star.pdf",
+  "layout": "star",
+  "render": "pdf",
+  "genes": {
+   "DPYD": "Reference/Reference",
+   "CYP2D6": "*1/*1",
+   "NUDT15": "*3/*3",
+   "TPMT": "*1/*3A"
+  },
+  "text": "Synthetic Genomics Lab (Kochi) \u00b7 TEST DOCUMENT\nReport ID BENCH-000 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 21 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 45/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nVariants tested\n\nResult\n\nInterpretation\n\nDPYD\n\nrs3918290 (*2A), rs55886062 (*13),\nrs67376798 (c.2846A>T), rs75017182\n(HapB3), rs1801265 (c.85T>C)\n\nNo tested variant detected\n\nNormal metabolizer (activity\nscore 2)\n\nCYP2D6\n\n*2, *3, *4, *5, *6, *10, *41\n\n*1/*1\n\nNormal metabolizer (activity\nscore 2)\n\nNUDT15\n\nrs116855232 (*3)\n\n*3/*3\n\nPoor metabolizer\n\nTPMT\n\n*2, *3A, *3B, *3C\n\n*1/*3A (*3B + *3C in cis)\n\nIntermediate metabolizer\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r00-star-photo",
+  "file": "r00-star-photo.jpg",
+  "layout": "star",
+  "render": "photo",
+  "genes": {
+   "DPYD": "Reference/Reference",
+   "CYP2D6": "*1/*1",
+   "NUDT15": "*3/*3",
+   "TPMT": "*1/*3A"
+  },
+  "text": "Synthetic Genomics Lab (Kochi) \u00b7 TEST DOCUMENT\nReport ID BENCH-000 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 21 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 45/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nVariants tested\n\nResult\n\nInterpretation\n\nDPYD\n\nrs3918290 (*2A), rs55886062 (*13),\nrs67376798 (c.2846A>T), rs75017182\n(HapB3), rs1801265 (c.85T>C)\n\nNo tested variant detected\n\nNormal metabolizer (activity\nscore 2)\n\nCYP2D6\n\n*2, *3, *4, *5, *6, *10, *41\n\n*1/*1\n\nNormal metabolizer (activity\nscore 2)\n\nNUDT15\n\nrs116855232 (*3)\n\n*3/*3\n\nPoor metabolizer\n\nTPMT\n\n*2, *3A, *3B, *3C\n\n*1/*3A (*3B + *3C in cis)\n\nIntermediate metabolizer\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r00-star-harsh",
+  "file": "r00-star-harsh.jpg",
+  "layout": "star",
+  "render": "harsh",
+  "genes": {
+   "DPYD": "Reference/Reference",
+   "CYP2D6": "*1/*1",
+   "NUDT15": "*3/*3",
+   "TPMT": "*1/*3A"
+  },
+  "text": "Synthetic Genomics Lab (Kochi) \u00b7 TEST DOCUMENT\nReport ID BENCH-000 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 21 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 45/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nVariants tested\n\nResult\n\nInterpretation\n\nDPYD\n\nrs3918290 (*2A), rs55886062 (*13),\nrs67376798 (c.2846A>T), rs75017182\n(HapB3), rs1801265 (c.85T>C)\n\nNo tested variant detected\n\nNormal metabolizer (activity\nscore 2)\n\nCYP2D6\n\n*2, *3, *4, *5, *6, *10, *41\n\n*1/*1\n\nNormal metabolizer (activity\nscore 2)\n\nNUDT15\n\nrs116855232 (*3)\n\n*3/*3\n\nPoor metabolizer\n\nTPMT\n\n*2, *3A, *3B, *3C\n\n*1/*3A (*3B + *3C in cis)\n\nIntermediate metabolizer\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r01-rsid-pdf",
+  "file": "r01-rsid.pdf",
+  "layout": "rsid",
+  "render": "pdf",
+  "genes": {
+   "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/Reference",
+   "TPMT": "*1/*3C",
+   "NUDT15": "*1/*1",
+   "UGT1A1": "*1/*1"
+  },
+  "text": "Sample Molecular Diagnostics, Bengaluru \u00b7 NOT A REAL LAB\nReport ID BENCH-001 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 10 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 37/F\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nrsID\n\nGenotype\n\nZygosity\n\nDPYD\n\nrs75017182\n\nC/G\n\nHeterozygous\n\nDPYD\n\nrs1801265\n\nA/A\n\nWild type\n\nDPYD\n\nrs3918290\n\nC/C\n\nWild type\n\nDPYD\n\nrs55886062\n\nA/A\n\nWild type\n\nDPYD\n\nrs67376798\n\nT/T\n\nWild type\n\nTPMT\n\nrs1142345\n\nA/G\n\nHeterozygous\n\nTPMT\n\nrs1800460\n\nC/C\n\nWild type\n\nNUDT15\n\nrs116855232\n\nC/C\n\nWild type\n\nUGT1A1\n\nrs3064744\n\n(TA)6/(TA)6\n\nWild type\n\nUGT1A1\n\nrs4148323\n\nG/G\n\nWild type\n\nGenotypes are reported per rsID on the forward strand. Star-allele assignment is left to the treating clinician.\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r01-rsid-photo",
+  "file": "r01-rsid-photo.jpg",
+  "layout": "rsid",
+  "render": "photo",
+  "genes": {
+   "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/Reference",
+   "TPMT": "*1/*3C",
+   "NUDT15": "*1/*1",
+   "UGT1A1": "*1/*1"
+  },
+  "text": "Sample Molecular Diagnostics, Bengaluru \u00b7 NOT A REAL LAB\nReport ID BENCH-001 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 10 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 37/F\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nrsID\n\nGenotype\n\nZygosity\n\nDPYD\n\nrs75017182\n\nC/G\n\nHeterozygous\n\nDPYD\n\nrs1801265\n\nA/A\n\nWild type\n\nDPYD\n\nrs3918290\n\nC/C\n\nWild type\n\nDPYD\n\nrs55886062\n\nA/A\n\nWild type\n\nDPYD\n\nrs67376798\n\nT/T\n\nWild type\n\nTPMT\n\nrs1142345\n\nA/G\n\nHeterozygous\n\nTPMT\n\nrs1800460\n\nC/C\n\nWild type\n\nNUDT15\n\nrs116855232\n\nC/C\n\nWild type\n\nUGT1A1\n\nrs3064744\n\n(TA)6/(TA)6\n\nWild type\n\nUGT1A1\n\nrs4148323\n\nG/G\n\nWild type\n\nGenotypes are reported per rsID on the forward strand. Star-allele assignment is left to the treating clinician.\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r01-rsid-harsh",
+  "file": "r01-rsid-harsh.jpg",
+  "layout": "rsid",
+  "render": "harsh",
+  "genes": {
+   "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/Reference",
+   "TPMT": "*1/*3C",
+   "NUDT15": "*1/*1",
+   "UGT1A1": "*1/*1"
+  },
+  "text": "Sample Molecular Diagnostics, Bengaluru \u00b7 NOT A REAL LAB\nReport ID BENCH-001 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 10 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 37/F\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nrsID\n\nGenotype\n\nZygosity\n\nDPYD\n\nrs75017182\n\nC/G\n\nHeterozygous\n\nDPYD\n\nrs1801265\n\nA/A\n\nWild type\n\nDPYD\n\nrs3918290\n\nC/C\n\nWild type\n\nDPYD\n\nrs55886062\n\nA/A\n\nWild type\n\nDPYD\n\nrs67376798\n\nT/T\n\nWild type\n\nTPMT\n\nrs1142345\n\nA/G\n\nHeterozygous\n\nTPMT\n\nrs1800460\n\nC/C\n\nWild type\n\nNUDT15\n\nrs116855232\n\nC/C\n\nWild type\n\nUGT1A1\n\nrs3064744\n\n(TA)6/(TA)6\n\nWild type\n\nUGT1A1\n\nrs4148323\n\nG/G\n\nWild type\n\nGenotypes are reported per rsID on the forward strand. Star-allele assignment is left to the treating clinician.\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r02-narrative-pdf",
+  "file": "r02-narrative.pdf",
+  "layout": "narrative",
+  "render": "pdf",
+  "genes": {
+   "DPYD": "c.85T>C (*9A)/Reference",
+   "UGT1A1": "*1/*6",
+   "CYP2D6": "*1/*2",
+   "TPMT": "*3A/*3C",
+   "NUDT15": "*1/*1"
+  },
+  "text": "Demo Precision Oncology Labs, Chennai \u00b7 SYNTHETIC\nReport ID BENCH-002 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 20 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 43/F\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD. The patient carries DPYD c.85T>C (*9A) heterozygous. Predicted DPD phenotype: normal metabolizer\n(activity score 2).\nUGT1A1. Genotype *1/*6, consistent with a intermediate metabolizer.\nCYP2D6. Genotype *1/*2, consistent with a normal metabolizer (activity score 2).\nTPMT. Genotype *3A/*3C (*3B + *3C in cis), consistent with a poor metabolizer.\nNUDT15. Genotype *1/*1, consistent with a normal metabolizer.\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r02-narrative-photo",
+  "file": "r02-narrative-photo.jpg",
+  "layout": "narrative",
+  "render": "photo",
+  "genes": {
+   "DPYD": "c.85T>C (*9A)/Reference",
+   "UGT1A1": "*1/*6",
+   "CYP2D6": "*1/*2",
+   "TPMT": "*3A/*3C",
+   "NUDT15": "*1/*1"
+  },
+  "text": "Demo Precision Oncology Labs, Chennai \u00b7 SYNTHETIC\nReport ID BENCH-002 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 20 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 43/F\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD. The patient carries DPYD c.85T>C (*9A) heterozygous. Predicted DPD phenotype: normal metabolizer\n(activity score 2).\nUGT1A1. Genotype *1/*6, consistent with a intermediate metabolizer.\nCYP2D6. Genotype *1/*2, consistent with a normal metabolizer (activity score 2).\nTPMT. Genotype *3A/*3C (*3B + *3C in cis), consistent with a poor metabolizer.\nNUDT15. Genotype *1/*1, consistent with a normal metabolizer.\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r02-narrative-harsh",
+  "file": "r02-narrative-harsh.jpg",
+  "layout": "narrative",
+  "render": "harsh",
+  "genes": {
+   "DPYD": "c.85T>C (*9A)/Reference",
+   "UGT1A1": "*1/*6",
+   "CYP2D6": "*1/*2",
+   "TPMT": "*3A/*3C",
+   "NUDT15": "*1/*1"
+  },
+  "text": "Demo Precision Oncology Labs, Chennai \u00b7 SYNTHETIC\nReport ID BENCH-002 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 20 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 43/F\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD. The patient carries DPYD c.85T>C (*9A) heterozygous. Predicted DPD phenotype: normal metabolizer\n(activity score 2).\nUGT1A1. Genotype *1/*6, consistent with a intermediate metabolizer.\nCYP2D6. Genotype *1/*2, consistent with a normal metabolizer (activity score 2).\nTPMT. Genotype *3A/*3C (*3B + *3C in cis), consistent with a poor metabolizer.\nNUDT15. Genotype *1/*1, consistent with a normal metabolizer.\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r03-checklist-pdf",
+  "file": "r03-checklist.pdf",
+  "layout": "checklist",
+  "render": "pdf",
+  "genes": {
+   "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+   "UGT1A1": "*1/*28",
+   "CYP2C19": "*2/*3",
+   "CYP2D6": "*4/*10"
+  },
+  "text": "Example Pharmacogenomics Centre, Mumbai \u00b7 FOR SOFTWARE\nTESTING\nReport ID BENCH-003 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 16 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 64/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD\n\nPhenotype: Intermediate metabolizer\n\nc.1236G>A (HapB3)\n\nDetected (heterozygous)\n\nc.85T>C (*9A)\n\nDetected (heterozygous)\n\nc.1905+1G>A (*2A)\n\nNot detected\n\nc.1679T>G (*13)\n\nNot detected\n\nc.2846A>T\n\nNot detected\n\nUGT1A1\n\nPhenotype: Intermediate metabolizer\n\n*28\n\nDetected (heterozygous)\n\n*6\n\nNot detected\n\nCYP2C19\n\nPhenotype: Poor metabolizer\n\n*2\n\nDetected (heterozygous)\n\n*3\n\nDetected (heterozygous)\n\n*17\n\nNot detected\n\nCYP2D6\n\nPhenotype: Intermediate metabolizer\n\n*2\n\nNot detected\n\n*3\n\nNot detected\n\n*4\n\nDetected (heterozygous)\n\n*5\n\nNot detected\n\n*6\n\nNot detected\n\n*10\n\nDetected (heterozygous)\n\n*41\n\nNot detected\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r03-checklist-photo",
+  "file": "r03-checklist-photo.jpg",
+  "layout": "checklist",
+  "render": "photo",
+  "genes": {
+   "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+   "UGT1A1": "*1/*28",
+   "CYP2C19": "*2/*3",
+   "CYP2D6": "*4/*10"
+  },
+  "text": "Example Pharmacogenomics Centre, Mumbai \u00b7 FOR SOFTWARE\nTESTING\nReport ID BENCH-003 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 16 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 64/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD\n\nPhenotype: Intermediate metabolizer\n\nc.1236G>A (HapB3)\n\nDetected (heterozygous)\n\nc.85T>C (*9A)\n\nDetected (heterozygous)\n\nc.1905+1G>A (*2A)\n\nNot detected\n\nc.1679T>G (*13)\n\nNot detected\n\nc.2846A>T\n\nNot detected\n\nUGT1A1\n\nPhenotype: Intermediate metabolizer\n\n*28\n\nDetected (heterozygous)\n\n*6\n\nNot detected\n\nCYP2C19\n\nPhenotype: Poor metabolizer\n\n*2\n\nDetected (heterozygous)\n\n*3\n\nDetected (heterozygous)\n\n*17\n\nNot detected\n\nCYP2D6\n\nPhenotype: Intermediate metabolizer\n\n*2\n\nNot detected\n\n*3\n\nNot detected\n\n*4\n\nDetected (heterozygous)\n\n*5\n\nNot detected\n\n*6\n\nNot detected\n\n*10\n\nDetected (heterozygous)\n\n*41\n\nNot detected\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r03-checklist-harsh",
+  "file": "r03-checklist-harsh.jpg",
+  "layout": "checklist",
+  "render": "harsh",
+  "genes": {
+   "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+   "UGT1A1": "*1/*28",
+   "CYP2C19": "*2/*3",
+   "CYP2D6": "*4/*10"
+  },
+  "text": "Example Pharmacogenomics Centre, Mumbai \u00b7 FOR SOFTWARE\nTESTING\nReport ID BENCH-003 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 16 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 64/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD\n\nPhenotype: Intermediate metabolizer\n\nc.1236G>A (HapB3)\n\nDetected (heterozygous)\n\nc.85T>C (*9A)\n\nDetected (heterozygous)\n\nc.1905+1G>A (*2A)\n\nNot detected\n\nc.1679T>G (*13)\n\nNot detected\n\nc.2846A>T\n\nNot detected\n\nUGT1A1\n\nPhenotype: Intermediate metabolizer\n\n*28\n\nDetected (heterozygous)\n\n*6\n\nNot detected\n\nCYP2C19\n\nPhenotype: Poor metabolizer\n\n*2\n\nDetected (heterozygous)\n\n*3\n\nDetected (heterozygous)\n\n*17\n\nNot detected\n\nCYP2D6\n\nPhenotype: Intermediate metabolizer\n\n*2\n\nNot detected\n\n*3\n\nNot detected\n\n*4\n\nDetected (heterozygous)\n\n*5\n\nNot detected\n\n*6\n\nNot detected\n\n*10\n\nDetected (heterozygous)\n\n*41\n\nNot detected\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r04-star-pdf",
+  "file": "r04-star.pdf",
+  "layout": "star",
+  "render": "pdf",
+  "genes": {
+   "DPYD": "c.1905+1G>A (*2A)/Reference",
+   "CYP2C19": "*1/*1",
+   "TPMT": "*3A/*3C"
+  },
+  "text": "Synthetic Genomics Lab (Kochi) \u00b7 TEST DOCUMENT\nReport ID BENCH-004 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 13 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 59/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nVariants tested\n\nResult\n\nInterpretation\n\nDPYD\n\nrs3918290 (*2A), rs55886062 (*13),\nrs67376798 (c.2846A>T), rs75017182\n(HapB3), rs1801265 (c.85T>C)\n\nc.1905+1G>A (*2A) heterozygous\n\nIntermediate metabolizer\n(activity score 1)\n\nCYP2C19\n\n*2, *3, *17\n\n*1/*1\n\nNormal metabolizer\n\nTPMT\n\n*2, *3A, *3B, *3C\n\n*3A/*3C (*3B + *3C in cis)\n\nPoor metabolizer\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r04-star-photo",
+  "file": "r04-star-photo.jpg",
+  "layout": "star",
+  "render": "photo",
+  "genes": {
+   "DPYD": "c.1905+1G>A (*2A)/Reference",
+   "CYP2C19": "*1/*1",
+   "TPMT": "*3A/*3C"
+  },
+  "text": "Synthetic Genomics Lab (Kochi) \u00b7 TEST DOCUMENT\nReport ID BENCH-004 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 13 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 59/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nVariants tested\n\nResult\n\nInterpretation\n\nDPYD\n\nrs3918290 (*2A), rs55886062 (*13),\nrs67376798 (c.2846A>T), rs75017182\n(HapB3), rs1801265 (c.85T>C)\n\nc.1905+1G>A (*2A) heterozygous\n\nIntermediate metabolizer\n(activity score 1)\n\nCYP2C19\n\n*2, *3, *17\n\n*1/*1\n\nNormal metabolizer\n\nTPMT\n\n*2, *3A, *3B, *3C\n\n*3A/*3C (*3B + *3C in cis)\n\nPoor metabolizer\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r04-star-harsh",
+  "file": "r04-star-harsh.jpg",
+  "layout": "star",
+  "render": "harsh",
+  "genes": {
+   "DPYD": "c.1905+1G>A (*2A)/Reference",
+   "CYP2C19": "*1/*1",
+   "TPMT": "*3A/*3C"
+  },
+  "text": "Synthetic Genomics Lab (Kochi) \u00b7 TEST DOCUMENT\nReport ID BENCH-004 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 13 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 59/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nVariants tested\n\nResult\n\nInterpretation\n\nDPYD\n\nrs3918290 (*2A), rs55886062 (*13),\nrs67376798 (c.2846A>T), rs75017182\n(HapB3), rs1801265 (c.85T>C)\n\nc.1905+1G>A (*2A) heterozygous\n\nIntermediate metabolizer\n(activity score 1)\n\nCYP2C19\n\n*2, *3, *17\n\n*1/*1\n\nNormal metabolizer\n\nTPMT\n\n*2, *3A, *3B, *3C\n\n*3A/*3C (*3B + *3C in cis)\n\nPoor metabolizer\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r05-rsid-pdf",
+  "file": "r05-rsid.pdf",
+  "layout": "rsid",
+  "render": "pdf",
+  "genes": {
+   "DPYD": "c.2846A>T/Reference",
+   "UGT1A1": "*28/*28",
+   "TPMT": "*1/*1"
+  },
+  "text": "Sample Molecular Diagnostics, Bengaluru \u00b7 NOT A REAL LAB\nReport ID BENCH-005 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 23 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 69/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nrsID\n\nGenotype\n\nZygosity\n\nDPYD\n\nrs75017182\n\nC/C\n\nWild type\n\nDPYD\n\nrs1801265\n\nA/A\n\nWild type\n\nDPYD\n\nrs3918290\n\nC/C\n\nWild type\n\nDPYD\n\nrs55886062\n\nA/A\n\nWild type\n\nDPYD\n\nrs67376798\n\nT/A\n\nHeterozygous\n\nUGT1A1\n\nrs3064744\n\n(TA)7/(TA)7\n\nHomozygous\n\nUGT1A1\n\nrs4148323\n\nG/G\n\nWild type\n\nTPMT\n\nrs1142345\n\nA/A\n\nWild type\n\nTPMT\n\nrs1800460\n\nC/C\n\nWild type\n\nGenotypes are reported per rsID on the forward strand. Star-allele assignment is left to the treating clinician.\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r05-rsid-photo",
+  "file": "r05-rsid-photo.jpg",
+  "layout": "rsid",
+  "render": "photo",
+  "genes": {
+   "DPYD": "c.2846A>T/Reference",
+   "UGT1A1": "*28/*28",
+   "TPMT": "*1/*1"
+  },
+  "text": "Sample Molecular Diagnostics, Bengaluru \u00b7 NOT A REAL LAB\nReport ID BENCH-005 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 23 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 69/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nrsID\n\nGenotype\n\nZygosity\n\nDPYD\n\nrs75017182\n\nC/C\n\nWild type\n\nDPYD\n\nrs1801265\n\nA/A\n\nWild type\n\nDPYD\n\nrs3918290\n\nC/C\n\nWild type\n\nDPYD\n\nrs55886062\n\nA/A\n\nWild type\n\nDPYD\n\nrs67376798\n\nT/A\n\nHeterozygous\n\nUGT1A1\n\nrs3064744\n\n(TA)7/(TA)7\n\nHomozygous\n\nUGT1A1\n\nrs4148323\n\nG/G\n\nWild type\n\nTPMT\n\nrs1142345\n\nA/A\n\nWild type\n\nTPMT\n\nrs1800460\n\nC/C\n\nWild type\n\nGenotypes are reported per rsID on the forward strand. Star-allele assignment is left to the treating clinician.\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r05-rsid-harsh",
+  "file": "r05-rsid-harsh.jpg",
+  "layout": "rsid",
+  "render": "harsh",
+  "genes": {
+   "DPYD": "c.2846A>T/Reference",
+   "UGT1A1": "*28/*28",
+   "TPMT": "*1/*1"
+  },
+  "text": "Sample Molecular Diagnostics, Bengaluru \u00b7 NOT A REAL LAB\nReport ID BENCH-005 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 23 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 69/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nrsID\n\nGenotype\n\nZygosity\n\nDPYD\n\nrs75017182\n\nC/C\n\nWild type\n\nDPYD\n\nrs1801265\n\nA/A\n\nWild type\n\nDPYD\n\nrs3918290\n\nC/C\n\nWild type\n\nDPYD\n\nrs55886062\n\nA/A\n\nWild type\n\nDPYD\n\nrs67376798\n\nT/A\n\nHeterozygous\n\nUGT1A1\n\nrs3064744\n\n(TA)7/(TA)7\n\nHomozygous\n\nUGT1A1\n\nrs4148323\n\nG/G\n\nWild type\n\nTPMT\n\nrs1142345\n\nA/A\n\nWild type\n\nTPMT\n\nrs1800460\n\nC/C\n\nWild type\n\nGenotypes are reported per rsID on the forward strand. Star-allele assignment is left to the treating clinician.\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r06-narrative-pdf",
+  "file": "r06-narrative.pdf",
+  "layout": "narrative",
+  "render": "pdf",
+  "genes": {
+   "DPYD": "c.1905+1G>A (*2A)/c.1679T>G (*13)",
+   "TPMT": "*1/*3A",
+   "NUDT15": "*3/*3",
+   "UGT1A1": "*28/*28",
+   "CYP2D6": "*1/*4"
+  },
+  "text": "Demo Precision Oncology Labs, Chennai \u00b7 SYNTHETIC\nReport ID BENCH-006 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 17 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 62/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD. The patient carries DPYD c.1905+1G>A (*2A) heterozygous; c.1679T>G (*13) heterozygous. Predicted\nDPD phenotype: poor metabolizer (activity score 0).\nTPMT. Genotype *1/*3A (*3B + *3C in cis), consistent with a intermediate metabolizer.\nNUDT15. Genotype *3/*3, consistent with a poor metabolizer.\nUGT1A1. Genotype *28/*28 (TA7/TA7), consistent with a poor metabolizer.\nCYP2D6. Genotype *1/*4, consistent with a intermediate metabolizer (activity score 1).\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r06-narrative-photo",
+  "file": "r06-narrative-photo.jpg",
+  "layout": "narrative",
+  "render": "photo",
+  "genes": {
+   "DPYD": "c.1905+1G>A (*2A)/c.1679T>G (*13)",
+   "TPMT": "*1/*3A",
+   "NUDT15": "*3/*3",
+   "UGT1A1": "*28/*28",
+   "CYP2D6": "*1/*4"
+  },
+  "text": "Demo Precision Oncology Labs, Chennai \u00b7 SYNTHETIC\nReport ID BENCH-006 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 17 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 62/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD. The patient carries DPYD c.1905+1G>A (*2A) heterozygous; c.1679T>G (*13) heterozygous. Predicted\nDPD phenotype: poor metabolizer (activity score 0).\nTPMT. Genotype *1/*3A (*3B + *3C in cis), consistent with a intermediate metabolizer.\nNUDT15. Genotype *3/*3, consistent with a poor metabolizer.\nUGT1A1. Genotype *28/*28 (TA7/TA7), consistent with a poor metabolizer.\nCYP2D6. Genotype *1/*4, consistent with a intermediate metabolizer (activity score 1).\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r06-narrative-harsh",
+  "file": "r06-narrative-harsh.jpg",
+  "layout": "narrative",
+  "render": "harsh",
+  "genes": {
+   "DPYD": "c.1905+1G>A (*2A)/c.1679T>G (*13)",
+   "TPMT": "*1/*3A",
+   "NUDT15": "*3/*3",
+   "UGT1A1": "*28/*28",
+   "CYP2D6": "*1/*4"
+  },
+  "text": "Demo Precision Oncology Labs, Chennai \u00b7 SYNTHETIC\nReport ID BENCH-006 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 17 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 62/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD. The patient carries DPYD c.1905+1G>A (*2A) heterozygous; c.1679T>G (*13) heterozygous. Predicted\nDPD phenotype: poor metabolizer (activity score 0).\nTPMT. Genotype *1/*3A (*3B + *3C in cis), consistent with a intermediate metabolizer.\nNUDT15. Genotype *3/*3, consistent with a poor metabolizer.\nUGT1A1. Genotype *28/*28 (TA7/TA7), consistent with a poor metabolizer.\nCYP2D6. Genotype *1/*4, consistent with a intermediate metabolizer (activity score 1).\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r07-checklist-pdf",
+  "file": "r07-checklist.pdf",
+  "layout": "checklist",
+  "render": "pdf",
+  "genes": {
+   "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/c.1129-5923C>G, c.1236G>A (HapB3)",
+   "UGT1A1": "*6/*28",
+   "CYP2D6": "*1/*2",
+   "NUDT15": "*1/*3"
+  },
+  "text": "Example Pharmacogenomics Centre, Mumbai \u00b7 FOR SOFTWARE\nTESTING\nReport ID BENCH-007 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 16 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 57/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD\n\nPhenotype: Intermediate metabolizer\n\nc.1236G>A (HapB3)\n\nDetected (homozygous)\n\nc.85T>C (*9A)\n\nNot detected\n\nc.1905+1G>A (*2A)\n\nNot detected\n\nc.1679T>G (*13)\n\nNot detected\n\nc.2846A>T\n\nNot detected\n\nUGT1A1\n\nPhenotype: Poor metabolizer\n\n*28\n\nDetected (heterozygous)\n\n*6\n\nDetected (heterozygous)\n\nCYP2D6\n\nPhenotype: Normal metabolizer\n\n*2\n\nDetected (heterozygous)\n\n*3\n\nNot detected\n\n*4\n\nNot detected\n\n*5\n\nNot detected\n\n*6\n\nNot detected\n\n*10\n\nNot detected\n\n*41\n\nNot detected\n\nNUDT15\n\nPhenotype: Intermediate metabolizer\n\n*3\n\nDetected (heterozygous)\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r07-checklist-photo",
+  "file": "r07-checklist-photo.jpg",
+  "layout": "checklist",
+  "render": "photo",
+  "genes": {
+   "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/c.1129-5923C>G, c.1236G>A (HapB3)",
+   "UGT1A1": "*6/*28",
+   "CYP2D6": "*1/*2",
+   "NUDT15": "*1/*3"
+  },
+  "text": "Example Pharmacogenomics Centre, Mumbai \u00b7 FOR SOFTWARE\nTESTING\nReport ID BENCH-007 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 16 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 57/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD\n\nPhenotype: Intermediate metabolizer\n\nc.1236G>A (HapB3)\n\nDetected (homozygous)\n\nc.85T>C (*9A)\n\nNot detected\n\nc.1905+1G>A (*2A)\n\nNot detected\n\nc.1679T>G (*13)\n\nNot detected\n\nc.2846A>T\n\nNot detected\n\nUGT1A1\n\nPhenotype: Poor metabolizer\n\n*28\n\nDetected (heterozygous)\n\n*6\n\nDetected (heterozygous)\n\nCYP2D6\n\nPhenotype: Normal metabolizer\n\n*2\n\nDetected (heterozygous)\n\n*3\n\nNot detected\n\n*4\n\nNot detected\n\n*5\n\nNot detected\n\n*6\n\nNot detected\n\n*10\n\nNot detected\n\n*41\n\nNot detected\n\nNUDT15\n\nPhenotype: Intermediate metabolizer\n\n*3\n\nDetected (heterozygous)\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r07-checklist-harsh",
+  "file": "r07-checklist-harsh.jpg",
+  "layout": "checklist",
+  "render": "harsh",
+  "genes": {
+   "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/c.1129-5923C>G, c.1236G>A (HapB3)",
+   "UGT1A1": "*6/*28",
+   "CYP2D6": "*1/*2",
+   "NUDT15": "*1/*3"
+  },
+  "text": "Example Pharmacogenomics Centre, Mumbai \u00b7 FOR SOFTWARE\nTESTING\nReport ID BENCH-007 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 16 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 57/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD\n\nPhenotype: Intermediate metabolizer\n\nc.1236G>A (HapB3)\n\nDetected (homozygous)\n\nc.85T>C (*9A)\n\nNot detected\n\nc.1905+1G>A (*2A)\n\nNot detected\n\nc.1679T>G (*13)\n\nNot detected\n\nc.2846A>T\n\nNot detected\n\nUGT1A1\n\nPhenotype: Poor metabolizer\n\n*28\n\nDetected (heterozygous)\n\n*6\n\nDetected (heterozygous)\n\nCYP2D6\n\nPhenotype: Normal metabolizer\n\n*2\n\nDetected (heterozygous)\n\n*3\n\nNot detected\n\n*4\n\nNot detected\n\n*5\n\nNot detected\n\n*6\n\nNot detected\n\n*10\n\nNot detected\n\n*41\n\nNot detected\n\nNUDT15\n\nPhenotype: Intermediate metabolizer\n\n*3\n\nDetected (heterozygous)\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r08-star-pdf",
+  "file": "r08-star.pdf",
+  "layout": "star",
+  "render": "pdf",
+  "genes": {
+   "DPYD": "c.2846A>T/Reference",
+   "CYP2C19": "*2/*3",
+   "NUDT15": "*1/*3"
+  },
+  "text": "Synthetic Genomics Lab (Kochi) \u00b7 TEST DOCUMENT\nReport ID BENCH-008 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 3 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 51/F\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nVariants tested\n\nResult\n\nInterpretation\n\nDPYD\n\nrs3918290 (*2A), rs55886062 (*13),\nrs67376798 (c.2846A>T), rs75017182\n(HapB3), rs1801265 (c.85T>C)\n\nc.2846A>T heterozygous\n\nIntermediate metabolizer\n(activity score 1.5)\n\nCYP2C19\n\n*2, *3, *17\n\n*2/*3\n\nPoor metabolizer\n\nNUDT15\n\nrs116855232 (*3)\n\n*1/*3\n\nIntermediate metabolizer\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r08-star-photo",
+  "file": "r08-star-photo.jpg",
+  "layout": "star",
+  "render": "photo",
+  "genes": {
+   "DPYD": "c.2846A>T/Reference",
+   "CYP2C19": "*2/*3",
+   "NUDT15": "*1/*3"
+  },
+  "text": "Synthetic Genomics Lab (Kochi) \u00b7 TEST DOCUMENT\nReport ID BENCH-008 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 3 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 51/F\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nVariants tested\n\nResult\n\nInterpretation\n\nDPYD\n\nrs3918290 (*2A), rs55886062 (*13),\nrs67376798 (c.2846A>T), rs75017182\n(HapB3), rs1801265 (c.85T>C)\n\nc.2846A>T heterozygous\n\nIntermediate metabolizer\n(activity score 1.5)\n\nCYP2C19\n\n*2, *3, *17\n\n*2/*3\n\nPoor metabolizer\n\nNUDT15\n\nrs116855232 (*3)\n\n*1/*3\n\nIntermediate metabolizer\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r08-star-harsh",
+  "file": "r08-star-harsh.jpg",
+  "layout": "star",
+  "render": "harsh",
+  "genes": {
+   "DPYD": "c.2846A>T/Reference",
+   "CYP2C19": "*2/*3",
+   "NUDT15": "*1/*3"
+  },
+  "text": "Synthetic Genomics Lab (Kochi) \u00b7 TEST DOCUMENT\nReport ID BENCH-008 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 3 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 51/F\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nVariants tested\n\nResult\n\nInterpretation\n\nDPYD\n\nrs3918290 (*2A), rs55886062 (*13),\nrs67376798 (c.2846A>T), rs75017182\n(HapB3), rs1801265 (c.85T>C)\n\nc.2846A>T heterozygous\n\nIntermediate metabolizer\n(activity score 1.5)\n\nCYP2C19\n\n*2, *3, *17\n\n*2/*3\n\nPoor metabolizer\n\nNUDT15\n\nrs116855232 (*3)\n\n*1/*3\n\nIntermediate metabolizer\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r09-rsid-pdf",
+  "file": "r09-rsid.pdf",
+  "layout": "rsid",
+  "render": "pdf",
+  "genes": {
+   "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+   "TPMT": "*1/*1",
+   "NUDT15": "*1/*3",
+   "UGT1A1": "*28/*28"
+  },
+  "text": "Sample Molecular Diagnostics, Bengaluru \u00b7 NOT A REAL LAB\nReport ID BENCH-009 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 14 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 65/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nrsID\n\nGenotype\n\nZygosity\n\nDPYD\n\nrs75017182\n\nC/G\n\nHeterozygous\n\nDPYD\n\nrs1801265\n\nA/G\n\nHeterozygous\n\nDPYD\n\nrs3918290\n\nC/C\n\nWild type\n\nDPYD\n\nrs55886062\n\nA/A\n\nWild type\n\nDPYD\n\nrs67376798\n\nT/T\n\nWild type\n\nTPMT\n\nrs1142345\n\nA/A\n\nWild type\n\nTPMT\n\nrs1800460\n\nC/C\n\nWild type\n\nNUDT15\n\nrs116855232\n\nC/T\n\nHeterozygous\n\nUGT1A1\n\nrs3064744\n\n(TA)7/(TA)7\n\nHomozygous\n\nUGT1A1\n\nrs4148323\n\nG/G\n\nWild type\n\nGenotypes are reported per rsID on the forward strand. Star-allele assignment is left to the treating clinician.\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r09-rsid-photo",
+  "file": "r09-rsid-photo.jpg",
+  "layout": "rsid",
+  "render": "photo",
+  "genes": {
+   "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+   "TPMT": "*1/*1",
+   "NUDT15": "*1/*3",
+   "UGT1A1": "*28/*28"
+  },
+  "text": "Sample Molecular Diagnostics, Bengaluru \u00b7 NOT A REAL LAB\nReport ID BENCH-009 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 14 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 65/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nrsID\n\nGenotype\n\nZygosity\n\nDPYD\n\nrs75017182\n\nC/G\n\nHeterozygous\n\nDPYD\n\nrs1801265\n\nA/G\n\nHeterozygous\n\nDPYD\n\nrs3918290\n\nC/C\n\nWild type\n\nDPYD\n\nrs55886062\n\nA/A\n\nWild type\n\nDPYD\n\nrs67376798\n\nT/T\n\nWild type\n\nTPMT\n\nrs1142345\n\nA/A\n\nWild type\n\nTPMT\n\nrs1800460\n\nC/C\n\nWild type\n\nNUDT15\n\nrs116855232\n\nC/T\n\nHeterozygous\n\nUGT1A1\n\nrs3064744\n\n(TA)7/(TA)7\n\nHomozygous\n\nUGT1A1\n\nrs4148323\n\nG/G\n\nWild type\n\nGenotypes are reported per rsID on the forward strand. Star-allele assignment is left to the treating clinician.\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r09-rsid-harsh",
+  "file": "r09-rsid-harsh.jpg",
+  "layout": "rsid",
+  "render": "harsh",
+  "genes": {
+   "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+   "TPMT": "*1/*1",
+   "NUDT15": "*1/*3",
+   "UGT1A1": "*28/*28"
+  },
+  "text": "Sample Molecular Diagnostics, Bengaluru \u00b7 NOT A REAL LAB\nReport ID BENCH-009 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 14 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 65/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nGene\n\nrsID\n\nGenotype\n\nZygosity\n\nDPYD\n\nrs75017182\n\nC/G\n\nHeterozygous\n\nDPYD\n\nrs1801265\n\nA/G\n\nHeterozygous\n\nDPYD\n\nrs3918290\n\nC/C\n\nWild type\n\nDPYD\n\nrs55886062\n\nA/A\n\nWild type\n\nDPYD\n\nrs67376798\n\nT/T\n\nWild type\n\nTPMT\n\nrs1142345\n\nA/A\n\nWild type\n\nTPMT\n\nrs1800460\n\nC/C\n\nWild type\n\nNUDT15\n\nrs116855232\n\nC/T\n\nHeterozygous\n\nUGT1A1\n\nrs3064744\n\n(TA)7/(TA)7\n\nHomozygous\n\nUGT1A1\n\nrs4148323\n\nG/G\n\nWild type\n\nGenotypes are reported per rsID on the forward strand. Star-allele assignment is left to the treating clinician.\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r10-narrative-pdf",
+  "file": "r10-narrative.pdf",
+  "layout": "narrative",
+  "render": "pdf",
+  "genes": {
+   "DPYD": "c.1905+1G>A (*2A)/Reference",
+   "CYP2C19": "*2/*2",
+   "NUDT15": "*1/*1",
+   "CYP2D6": "*1/*4"
+  },
+  "text": "Demo Precision Oncology Labs, Chennai \u00b7 SYNTHETIC\nReport ID BENCH-010 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 8 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 49/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD. The patient carries DPYD c.1905+1G>A (*2A) heterozygous. Predicted DPD phenotype: intermediate\nmetabolizer (activity score 1).\nCYP2C19. Genotype *2/*2, consistent with a poor metabolizer.\nNUDT15. Genotype *1/*1, consistent with a normal metabolizer.\nCYP2D6. Genotype *1/*4, consistent with a intermediate metabolizer (activity score 1).\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r10-narrative-photo",
+  "file": "r10-narrative-photo.jpg",
+  "layout": "narrative",
+  "render": "photo",
+  "genes": {
+   "DPYD": "c.1905+1G>A (*2A)/Reference",
+   "CYP2C19": "*2/*2",
+   "NUDT15": "*1/*1",
+   "CYP2D6": "*1/*4"
+  },
+  "text": "Demo Precision Oncology Labs, Chennai \u00b7 SYNTHETIC\nReport ID BENCH-010 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 8 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 49/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD. The patient carries DPYD c.1905+1G>A (*2A) heterozygous. Predicted DPD phenotype: intermediate\nmetabolizer (activity score 1).\nCYP2C19. Genotype *2/*2, consistent with a poor metabolizer.\nNUDT15. Genotype *1/*1, consistent with a normal metabolizer.\nCYP2D6. Genotype *1/*4, consistent with a intermediate metabolizer (activity score 1).\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r10-narrative-harsh",
+  "file": "r10-narrative-harsh.jpg",
+  "layout": "narrative",
+  "render": "harsh",
+  "genes": {
+   "DPYD": "c.1905+1G>A (*2A)/Reference",
+   "CYP2C19": "*2/*2",
+   "NUDT15": "*1/*1",
+   "CYP2D6": "*1/*4"
+  },
+  "text": "Demo Precision Oncology Labs, Chennai \u00b7 SYNTHETIC\nReport ID BENCH-010 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 8 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 49/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD. The patient carries DPYD c.1905+1G>A (*2A) heterozygous. Predicted DPD phenotype: intermediate\nmetabolizer (activity score 1).\nCYP2C19. Genotype *2/*2, consistent with a poor metabolizer.\nNUDT15. Genotype *1/*1, consistent with a normal metabolizer.\nCYP2D6. Genotype *1/*4, consistent with a intermediate metabolizer (activity score 1).\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r11-checklist-pdf",
+  "file": "r11-checklist.pdf",
+  "layout": "checklist",
+  "render": "pdf",
+  "genes": {
+   "DPYD": "c.85T>C (*9A)/Reference",
+   "CYP2C19": "*2/*2",
+   "TPMT": "*1/*3C",
+   "CYP2D6": "*1/*1"
+  },
+  "text": "Example Pharmacogenomics Centre, Mumbai \u00b7 FOR SOFTWARE\nTESTING\nReport ID BENCH-011 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 2 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 53/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD\n\nPhenotype: Normal metabolizer\n\nc.1236G>A (HapB3)\n\nNot detected\n\nc.85T>C (*9A)\n\nDetected (heterozygous)\n\nc.1905+1G>A (*2A)\n\nNot detected\n\nc.1679T>G (*13)\n\nNot detected\n\nc.2846A>T\n\nNot detected\n\nCYP2C19\n\nPhenotype: Poor metabolizer\n\n*2\n\nDetected (homozygous)\n\n*3\n\nNot detected\n\n*17\n\nNot detected\n\nTPMT\n\nPhenotype: Intermediate metabolizer\n\n*2\n\nNot detected\n\n*3A\n\nNot detected\n\n*3B\n\nNot detected\n\n*3C\n\nDetected (heterozygous)\n\nCYP2D6\n\nPhenotype: Normal metabolizer\n\n*2\n\nNot detected\n\n*3\n\nNot detected\n\n*4\n\nNot detected\n\n*5\n\nNot detected\n\n*6\n\nNot detected\n\n*10\n\nNot detected\n\n*41\n\nNot detected\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r11-checklist-photo",
+  "file": "r11-checklist-photo.jpg",
+  "layout": "checklist",
+  "render": "photo",
+  "genes": {
+   "DPYD": "c.85T>C (*9A)/Reference",
+   "CYP2C19": "*2/*2",
+   "TPMT": "*1/*3C",
+   "CYP2D6": "*1/*1"
+  },
+  "text": "Example Pharmacogenomics Centre, Mumbai \u00b7 FOR SOFTWARE\nTESTING\nReport ID BENCH-011 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 2 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 53/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD\n\nPhenotype: Normal metabolizer\n\nc.1236G>A (HapB3)\n\nNot detected\n\nc.85T>C (*9A)\n\nDetected (heterozygous)\n\nc.1905+1G>A (*2A)\n\nNot detected\n\nc.1679T>G (*13)\n\nNot detected\n\nc.2846A>T\n\nNot detected\n\nCYP2C19\n\nPhenotype: Poor metabolizer\n\n*2\n\nDetected (homozygous)\n\n*3\n\nNot detected\n\n*17\n\nNot detected\n\nTPMT\n\nPhenotype: Intermediate metabolizer\n\n*2\n\nNot detected\n\n*3A\n\nNot detected\n\n*3B\n\nNot detected\n\n*3C\n\nDetected (heterozygous)\n\nCYP2D6\n\nPhenotype: Normal metabolizer\n\n*2\n\nNot detected\n\n*3\n\nNot detected\n\n*4\n\nNot detected\n\n*5\n\nNot detected\n\n*6\n\nNot detected\n\n*10\n\nNot detected\n\n*41\n\nNot detected\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ },
+ {
+  "id": "r11-checklist-harsh",
+  "file": "r11-checklist-harsh.jpg",
+  "layout": "checklist",
+  "render": "harsh",
+  "genes": {
+   "DPYD": "c.85T>C (*9A)/Reference",
+   "CYP2C19": "*2/*2",
+   "TPMT": "*1/*3C",
+   "CYP2D6": "*1/*1"
+  },
+  "text": "Example Pharmacogenomics Centre, Mumbai \u00b7 FOR SOFTWARE\nTESTING\nReport ID BENCH-011 \u00b7 Sample: peripheral blood (EDTA) \u00b7 Reported 2 Oct 2026 \u00b7 Patient: [redacted] \u00b7 Age/Sex: 53/M\n\nPHARMACOGENOMIC ONCOLOGY PANEL\nDPYD\n\nPhenotype: Normal metabolizer\n\nc.1236G>A (HapB3)\n\nNot detected\n\nc.85T>C (*9A)\n\nDetected (heterozygous)\n\nc.1905+1G>A (*2A)\n\nNot detected\n\nc.1679T>G (*13)\n\nNot detected\n\nc.2846A>T\n\nNot detected\n\nCYP2C19\n\nPhenotype: Poor metabolizer\n\n*2\n\nDetected (homozygous)\n\n*3\n\nNot detected\n\n*17\n\nNot detected\n\nTPMT\n\nPhenotype: Intermediate metabolizer\n\n*2\n\nNot detected\n\n*3A\n\nNot detected\n\n*3B\n\nNot detected\n\n*3C\n\nDetected (heterozygous)\n\nCYP2D6\n\nPhenotype: Normal metabolizer\n\n*2\n\nNot detected\n\n*3\n\nNot detected\n\n*4\n\nNot detected\n\n*5\n\nNot detected\n\n*6\n\nNot detected\n\n*10\n\nNot detected\n\n*41\n\nNot detected\n\nDrugs potentially affected: capecitabine, 5-fluorouracil, irinotecan, azathioprine, mercaptopurine, tamoxifen, clopidogrel, ondansetron.\nMethod: targeted genotyping by real-time PCR. Only the listed variants are assayed; variants outside this panel cannot be excluded.\nSynthetic document generated for software benchmarking. Not a real patient or laboratory.\n\n\f"
+ }
+]

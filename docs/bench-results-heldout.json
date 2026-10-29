@@ -1,0 +1,850 @@
+{
+ "generatedAt": "2026-10-29T19:22:36.068Z",
+ "cases": 36,
+ "readers": {
+  "rules": {
+   "all": {
+    "geneCalls": "47.5%",
+    "right": 84,
+    "calls": 177,
+    "dpyd": "52.8%",
+    "perfectReports": "13/36",
+    "extraGenes": 0,
+    "quotesGrounded": "n/a",
+    "errors": 0,
+    "medianSec": 3.2
+   },
+   "byRender": {
+    "pdf": {
+     "geneCalls": "98.3%",
+     "right": 58,
+     "calls": 59,
+     "dpyd": "100.0%",
+     "perfectReports": "11/12",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 0
+    },
+    "photo": {
+     "geneCalls": "44.1%",
+     "right": 26,
+     "calls": 59,
+     "dpyd": "58.3%",
+     "perfectReports": "2/12",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 3.2
+    },
+    "harsh": {
+     "geneCalls": "0.0%",
+     "right": 0,
+     "calls": 59,
+     "dpyd": "0.0%",
+     "perfectReports": "0/12",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 6.7
+    }
+   },
+   "byLayout": {
+    "star": {
+     "geneCalls": "50.0%",
+     "right": 24,
+     "calls": 48,
+     "dpyd": "66.7%",
+     "perfectReports": "3/9",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 3.2
+    },
+    "rsid": {
+     "geneCalls": "40.0%",
+     "right": 12,
+     "calls": 30,
+     "dpyd": "44.4%",
+     "perfectReports": "2/9",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 3.2
+    },
+    "narrative": {
+     "geneCalls": "64.6%",
+     "right": 31,
+     "calls": 48,
+     "dpyd": "66.7%",
+     "perfectReports": "5/9",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 3
+    },
+    "checklist": {
+     "geneCalls": "33.3%",
+     "right": 17,
+     "calls": 51,
+     "dpyd": "33.3%",
+     "perfectReports": "3/9",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 4.3
+    }
+   },
+   "misses": [
+    {
+     "id": "r01-rsid-pdf",
+     "gene": "UGT1A1",
+     "truth": "*6/*28",
+     "got": "*1/*28"
+    },
+    {
+     "id": "r00-star-photo",
+     "gene": "TPMT",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-photo",
+     "gene": "CYP2C19",
+     "truth": "*2/*17",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-photo",
+     "gene": "NUDT15",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r01-rsid-photo",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/Reference",
+     "got": "Reference/Reference"
+    },
+    {
+     "id": "r01-rsid-photo",
+     "gene": "UGT1A1",
+     "truth": "*6/*28",
+     "got": "*28/*1"
+    },
+    {
+     "id": "r01-rsid-photo",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r01-rsid-harsh",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r01-rsid-harsh",
+     "gene": "CYP2C19",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r01-rsid-harsh",
+     "gene": "UGT1A1",
+     "truth": "*6/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r01-rsid-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-harsh",
+     "gene": "DPYD",
+     "truth": "Reference/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-harsh",
+     "gene": "CYP2C19",
+     "truth": "*2/*17",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-harsh",
+     "gene": "UGT1A1",
+     "truth": "*28/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r04-star-photo",
+     "gene": "NUDT15",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r04-star-photo",
+     "gene": "TPMT",
+     "truth": "*1/*3A",
+     "got": "(missing)"
+    },
+    {
+     "id": "r04-star-photo",
+     "gene": "CYP2D6",
+     "truth": "*10/*10",
+     "got": "(missing)"
+    },
+    {
+     "id": "r02-narrative-harsh",
+     "gene": "DPYD",
+     "truth": "c.85T>C (*9A)/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r02-narrative-harsh",
+     "gene": "UGT1A1",
+     "truth": "*1/*6",
+     "got": "(missing)"
+    },
+    {
+     "id": "r02-narrative-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*3C",
+     "got": "(missing)"
+    },
+    {
+     "id": "r02-narrative-harsh",
+     "gene": "CYP2D6",
+     "truth": "*1/*41",
+     "got": "(missing)"
+    },
+    {
+     "id": "r02-narrative-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r02-narrative-harsh",
+     "gene": "CYP2C19",
+     "truth": "*2/*17",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-photo",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-photo",
+     "gene": "UGT1A1",
+     "truth": "*6/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-photo",
+     "gene": "CYP2D6",
+     "truth": "*1/*4",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-photo",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "*1/*1"
+    },
+    {
+     "id": "r03-checklist-photo",
+     "gene": "CYP2C19",
+     "truth": "*2/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r05-rsid-photo",
+     "gene": "DPYD",
+     "truth": "c.2846A>T/Reference",
+     "got": "Reference/Reference"
+    },
+    {
+     "id": "r05-rsid-photo",
+     "gene": "UGT1A1",
+     "truth": "*1/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-harsh",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-harsh",
+     "gene": "UGT1A1",
+     "truth": "*6/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-harsh",
+     "gene": "CYP2D6",
+     "truth": "*1/*4",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-harsh",
+     "gene": "CYP2C19",
+     "truth": "*2/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r04-star-harsh",
+     "gene": "DPYD",
+     "truth": "c.1905+1G>A (*2A)/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r04-star-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r04-star-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*3A",
+     "got": "(missing)"
+    },
+    {
+     "id": "r04-star-harsh",
+     "gene": "UGT1A1",
+     "truth": "*6/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r04-star-harsh",
+     "gene": "CYP2D6",
+     "truth": "*10/*10",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-photo",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/c.1129-5923C>G, c.1236G>A (HapB3)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-photo",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-photo",
+     "gene": "CYP2C19",
+     "truth": "*2/*2",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-photo",
+     "gene": "CYP2D6",
+     "truth": "*1/*4",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-photo",
+     "gene": "TPMT",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-photo",
+     "gene": "UGT1A1",
+     "truth": "*1/*6",
+     "got": "(missing)"
+    },
+    {
+     "id": "r06-narrative-harsh",
+     "gene": "DPYD",
+     "truth": "c.1905+1G>A (*2A)/c.1679T>G (*13)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r06-narrative-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r06-narrative-harsh",
+     "gene": "CYP2C19",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r06-narrative-harsh",
+     "gene": "CYP2D6",
+     "truth": "*4/*10",
+     "got": "(missing)"
+    },
+    {
+     "id": "r06-narrative-harsh",
+     "gene": "TPMT",
+     "truth": "*3A/*3C",
+     "got": "(missing)"
+    },
+    {
+     "id": "r05-rsid-harsh",
+     "gene": "DPYD",
+     "truth": "c.2846A>T/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r05-rsid-harsh",
+     "gene": "CYP2C19",
+     "truth": "*2/*2",
+     "got": "(missing)"
+    },
+    {
+     "id": "r05-rsid-harsh",
+     "gene": "UGT1A1",
+     "truth": "*1/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-photo",
+     "gene": "CYP2C19",
+     "truth": "*2/*17",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-photo",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-harsh",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/c.1129-5923C>G, c.1236G>A (HapB3)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-harsh",
+     "gene": "CYP2C19",
+     "truth": "*2/*2",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-harsh",
+     "gene": "CYP2D6",
+     "truth": "*1/*4",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-harsh",
+     "gene": "UGT1A1",
+     "truth": "*1/*6",
+     "got": "(missing)"
+    },
+    {
+     "id": "r09-rsid-photo",
+     "gene": "UGT1A1",
+     "truth": "*1/*28",
+     "got": "*1/*1"
+    },
+    {
+     "id": "r09-rsid-photo",
+     "gene": "CYP2C19",
+     "truth": "*2/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r10-narrative-photo",
+     "gene": "TPMT",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-harsh",
+     "gene": "DPYD",
+     "truth": "c.1905+1G>A (*2A)/c.1679T>G (*13)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-harsh",
+     "gene": "CYP2C19",
+     "truth": "*2/*17",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-harsh",
+     "gene": "CYP2D6",
+     "truth": "*4/*10",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-harsh",
+     "gene": "UGT1A1",
+     "truth": "*1/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*3A",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-photo",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-photo",
+     "gene": "UGT1A1",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-photo",
+     "gene": "CYP2C19",
+     "truth": "*1/*2",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-photo",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-photo",
+     "gene": "TPMT",
+     "truth": "*1/*3C",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-photo",
+     "gene": "CYP2D6",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r09-rsid-harsh",
+     "gene": "DPYD",
+     "truth": "c.85T>C (*9A)/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r09-rsid-harsh",
+     "gene": "UGT1A1",
+     "truth": "*1/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r09-rsid-harsh",
+     "gene": "CYP2C19",
+     "truth": "*2/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r10-narrative-harsh",
+     "gene": "DPYD",
+     "truth": "c.2846A>T/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r10-narrative-harsh",
+     "gene": "UGT1A1",
+     "truth": "*1/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r10-narrative-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r10-narrative-harsh",
+     "gene": "CYP2C19",
+     "truth": "*1/*17",
+     "got": "(missing)"
+    },
+    {
+     "id": "r10-narrative-harsh",
+     "gene": "NUDT15",
+     "truth": "*3/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-harsh",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-harsh",
+     "gene": "UGT1A1",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-harsh",
+     "gene": "CYP2C19",
+     "truth": "*1/*2",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*3C",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-harsh",
+     "gene": "CYP2D6",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    }
+   ]
+  },
+  "muse": {
+   "all": {
+    "geneCalls": "100.0%",
+    "right": 177,
+    "calls": 177,
+    "dpyd": "100.0%",
+    "perfectReports": "36/36",
+    "extraGenes": 0,
+    "quotesGrounded": "100.0%",
+    "errors": 0,
+    "medianSec": 23.2
+   },
+   "byRender": {
+    "pdf": {
+     "geneCalls": "100.0%",
+     "right": 59,
+     "calls": 59,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 13.6
+    },
+    "photo": {
+     "geneCalls": "100.0%",
+     "right": 59,
+     "calls": 59,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 25.7
+    },
+    "harsh": {
+     "geneCalls": "100.0%",
+     "right": 59,
+     "calls": 59,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 24.2
+    }
+   },
+   "byLayout": {
+    "star": {
+     "geneCalls": "100.0%",
+     "right": 48,
+     "calls": 48,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 23.9
+    },
+    "rsid": {
+     "geneCalls": "100.0%",
+     "right": 30,
+     "calls": 30,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 24
+    },
+    "narrative": {
+     "geneCalls": "100.0%",
+     "right": 48,
+     "calls": 48,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 16.3
+    },
+    "checklist": {
+     "geneCalls": "100.0%",
+     "right": 51,
+     "calls": 51,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 21.5
+    }
+   },
+   "misses": []
+  },
+  "open": {
+   "all": {
+    "geneCalls": "100.0%",
+    "right": 177,
+    "calls": 177,
+    "dpyd": "100.0%",
+    "perfectReports": "36/36",
+    "extraGenes": 0,
+    "quotesGrounded": "100.0%",
+    "errors": 0,
+    "medianSec": 16.7
+   },
+   "byRender": {
+    "pdf": {
+     "geneCalls": "100.0%",
+     "right": 59,
+     "calls": 59,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 16.7
+    },
+    "photo": {
+     "geneCalls": "100.0%",
+     "right": 59,
+     "calls": 59,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 16.8
+    },
+    "harsh": {
+     "geneCalls": "100.0%",
+     "right": 59,
+     "calls": 59,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 15.9
+    }
+   },
+   "byLayout": {
+    "star": {
+     "geneCalls": "100.0%",
+     "right": 48,
+     "calls": 48,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 16.7
+    },
+    "rsid": {
+     "geneCalls": "100.0%",
+     "right": 30,
+     "calls": 30,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 21.9
+    },
+    "narrative": {
+     "geneCalls": "100.0%",
+     "right": 48,
+     "calls": 48,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 12.3
+    },
+    "checklist": {
+     "geneCalls": "100.0%",
+     "right": 51,
+     "calls": 51,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 14
+    }
+   },
+   "misses": []
+  }
+ }
+}

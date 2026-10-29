@@ -1,0 +1,858 @@
+{
+ "generatedAt": "2026-10-29T19:15:19.825Z",
+ "cases": 36,
+ "readers": {
+  "rules": {
+   "all": {
+    "geneCalls": "48.9%",
+    "right": 69,
+    "calls": 141,
+    "dpyd": "47.2%",
+    "perfectReports": "15/36",
+    "extraGenes": 0,
+    "quotesGrounded": "n/a",
+    "errors": 0,
+    "medianSec": 2.7
+   },
+   "byRender": {
+    "pdf": {
+     "geneCalls": "100.0%",
+     "right": 47,
+     "calls": 47,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 0
+    },
+    "photo": {
+     "geneCalls": "46.8%",
+     "right": 22,
+     "calls": 47,
+     "dpyd": "41.7%",
+     "perfectReports": "3/12",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 2.7
+    },
+    "harsh": {
+     "geneCalls": "0.0%",
+     "right": 0,
+     "calls": 47,
+     "dpyd": "0.0%",
+     "perfectReports": "0/12",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 6.5
+    }
+   },
+   "byLayout": {
+    "star": {
+     "geneCalls": "46.7%",
+     "right": 14,
+     "calls": 30,
+     "dpyd": "55.6%",
+     "perfectReports": "3/9",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 2.7
+    },
+    "rsid": {
+     "geneCalls": "45.5%",
+     "right": 15,
+     "calls": 33,
+     "dpyd": "33.3%",
+     "perfectReports": "3/9",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 2.7
+    },
+    "narrative": {
+     "geneCalls": "66.7%",
+     "right": 28,
+     "calls": 42,
+     "dpyd": "66.7%",
+     "perfectReports": "6/9",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 2.4
+    },
+    "checklist": {
+     "geneCalls": "33.3%",
+     "right": 12,
+     "calls": 36,
+     "dpyd": "33.3%",
+     "perfectReports": "3/9",
+     "extraGenes": 0,
+     "quotesGrounded": "n/a",
+     "errors": 0,
+     "medianSec": 3.2
+    }
+   },
+   "misses": [
+    {
+     "id": "r01-rsid-photo",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/Reference",
+     "got": "Reference/Reference"
+    },
+    {
+     "id": "r01-rsid-photo",
+     "gene": "NUDT15",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-photo",
+     "gene": "CYP2D6",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-photo",
+     "gene": "NUDT15",
+     "truth": "*3/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r04-star-photo",
+     "gene": "CYP2C19",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r02-narrative-harsh",
+     "gene": "DPYD",
+     "truth": "c.85T>C (*9A)/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r02-narrative-harsh",
+     "gene": "UGT1A1",
+     "truth": "*1/*6",
+     "got": "(missing)"
+    },
+    {
+     "id": "r02-narrative-harsh",
+     "gene": "CYP2D6",
+     "truth": "*1/*2",
+     "got": "(missing)"
+    },
+    {
+     "id": "r02-narrative-harsh",
+     "gene": "TPMT",
+     "truth": "*3A/*3C",
+     "got": "(missing)"
+    },
+    {
+     "id": "r02-narrative-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-photo",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-photo",
+     "gene": "UGT1A1",
+     "truth": "*1/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-photo",
+     "gene": "CYP2C19",
+     "truth": "*2/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-photo",
+     "gene": "CYP2D6",
+     "truth": "*4/*10",
+     "got": "(missing)"
+    },
+    {
+     "id": "r01-rsid-harsh",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r01-rsid-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*3C",
+     "got": "(missing)"
+    },
+    {
+     "id": "r01-rsid-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r01-rsid-harsh",
+     "gene": "UGT1A1",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-harsh",
+     "gene": "DPYD",
+     "truth": "Reference/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-harsh",
+     "gene": "CYP2D6",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-harsh",
+     "gene": "NUDT15",
+     "truth": "*3/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r00-star-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*3A",
+     "got": "(missing)"
+    },
+    {
+     "id": "r05-rsid-photo",
+     "gene": "DPYD",
+     "truth": "c.2846A>T/Reference",
+     "got": "Reference/Reference"
+    },
+    {
+     "id": "r05-rsid-photo",
+     "gene": "UGT1A1",
+     "truth": "*28/*28",
+     "got": "*1/*1"
+    },
+    {
+     "id": "r03-checklist-harsh",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-harsh",
+     "gene": "UGT1A1",
+     "truth": "*1/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-harsh",
+     "gene": "CYP2C19",
+     "truth": "*2/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r03-checklist-harsh",
+     "gene": "CYP2D6",
+     "truth": "*4/*10",
+     "got": "(missing)"
+    },
+    {
+     "id": "r05-rsid-harsh",
+     "gene": "DPYD",
+     "truth": "c.2846A>T/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r05-rsid-harsh",
+     "gene": "UGT1A1",
+     "truth": "*28/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r05-rsid-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-photo",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/c.1129-5923C>G, c.1236G>A (HapB3)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-photo",
+     "gene": "UGT1A1",
+     "truth": "*6/*28",
+     "got": "*6/*3"
+    },
+    {
+     "id": "r07-checklist-photo",
+     "gene": "CYP2D6",
+     "truth": "*1/*2",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-photo",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-photo",
+     "gene": "DPYD",
+     "truth": "c.2846A>T/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-photo",
+     "gene": "CYP2C19",
+     "truth": "*2/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-photo",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r04-star-harsh",
+     "gene": "DPYD",
+     "truth": "c.1905+1G>A (*2A)/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r04-star-harsh",
+     "gene": "CYP2C19",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r04-star-harsh",
+     "gene": "TPMT",
+     "truth": "*3A/*3C",
+     "got": "(missing)"
+    },
+    {
+     "id": "r06-narrative-harsh",
+     "gene": "DPYD",
+     "truth": "c.1905+1G>A (*2A)/c.1679T>G (*13)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r06-narrative-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*3A",
+     "got": "(missing)"
+    },
+    {
+     "id": "r06-narrative-harsh",
+     "gene": "NUDT15",
+     "truth": "*3/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r06-narrative-harsh",
+     "gene": "UGT1A1",
+     "truth": "*28/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r06-narrative-harsh",
+     "gene": "CYP2D6",
+     "truth": "*1/*4",
+     "got": "(missing)"
+    },
+    {
+     "id": "r09-rsid-photo",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+     "got": "c.85T>C (*9A)/Reference"
+    },
+    {
+     "id": "r09-rsid-photo",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r09-rsid-photo",
+     "gene": "UGT1A1",
+     "truth": "*28/*28",
+     "got": "*1/*1"
+    },
+    {
+     "id": "r07-checklist-harsh",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/c.1129-5923C>G, c.1236G>A (HapB3)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-harsh",
+     "gene": "UGT1A1",
+     "truth": "*6/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-harsh",
+     "gene": "CYP2D6",
+     "truth": "*1/*2",
+     "got": "(missing)"
+    },
+    {
+     "id": "r07-checklist-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-photo",
+     "gene": "DPYD",
+     "truth": "c.85T>C (*9A)/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-photo",
+     "gene": "CYP2C19",
+     "truth": "*2/*2",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-photo",
+     "gene": "TPMT",
+     "truth": "*1/*3C",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-photo",
+     "gene": "CYP2D6",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-harsh",
+     "gene": "DPYD",
+     "truth": "c.2846A>T/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-harsh",
+     "gene": "CYP2C19",
+     "truth": "*2/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r08-star-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r09-rsid-harsh",
+     "gene": "DPYD",
+     "truth": "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)",
+     "got": "(missing)"
+    },
+    {
+     "id": "r09-rsid-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r09-rsid-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*3",
+     "got": "(missing)"
+    },
+    {
+     "id": "r09-rsid-harsh",
+     "gene": "UGT1A1",
+     "truth": "*28/*28",
+     "got": "(missing)"
+    },
+    {
+     "id": "r10-narrative-harsh",
+     "gene": "DPYD",
+     "truth": "c.1905+1G>A (*2A)/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r10-narrative-harsh",
+     "gene": "CYP2C19",
+     "truth": "*2/*2",
+     "got": "(missing)"
+    },
+    {
+     "id": "r10-narrative-harsh",
+     "gene": "NUDT15",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    },
+    {
+     "id": "r10-narrative-harsh",
+     "gene": "CYP2D6",
+     "truth": "*1/*4",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-harsh",
+     "gene": "DPYD",
+     "truth": "c.85T>C (*9A)/Reference",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-harsh",
+     "gene": "CYP2C19",
+     "truth": "*2/*2",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-harsh",
+     "gene": "TPMT",
+     "truth": "*1/*3C",
+     "got": "(missing)"
+    },
+    {
+     "id": "r11-checklist-harsh",
+     "gene": "CYP2D6",
+     "truth": "*1/*1",
+     "got": "(missing)"
+    }
+   ]
+  },
+  "open": {
+   "all": {
+    "geneCalls": "100.0%",
+    "right": 141,
+    "calls": 141,
+    "dpyd": "100.0%",
+    "perfectReports": "36/36",
+    "extraGenes": 0,
+    "quotesGrounded": "100.0%",
+    "errors": 0,
+    "medianSec": 14.3
+   },
+   "byRender": {
+    "pdf": {
+     "geneCalls": "100.0%",
+     "right": 47,
+     "calls": 47,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 17.5
+    },
+    "photo": {
+     "geneCalls": "100.0%",
+     "right": 47,
+     "calls": 47,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 14.3
+    },
+    "harsh": {
+     "geneCalls": "100.0%",
+     "right": 47,
+     "calls": 47,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 13
+    }
+   },
+   "byLayout": {
+    "star": {
+     "geneCalls": "100.0%",
+     "right": 30,
+     "calls": 30,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 13.6
+    },
+    "rsid": {
+     "geneCalls": "100.0%",
+     "right": 33,
+     "calls": 33,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 15.4
+    },
+    "narrative": {
+     "geneCalls": "100.0%",
+     "right": 42,
+     "calls": 42,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 14.3
+    },
+    "checklist": {
+     "geneCalls": "100.0%",
+     "right": 36,
+     "calls": 36,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 14.7
+    }
+   },
+   "misses": []
+  },
+  "muse": {
+   "all": {
+    "geneCalls": "100.0%",
+    "right": 141,
+    "calls": 141,
+    "dpyd": "100.0%",
+    "perfectReports": "36/36",
+    "extraGenes": 0,
+    "quotesGrounded": "100.0%",
+    "errors": 0,
+    "medianSec": 14.7
+   },
+   "byRender": {
+    "pdf": {
+     "geneCalls": "100.0%",
+     "right": 47,
+     "calls": 47,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 14.9
+    },
+    "photo": {
+     "geneCalls": "100.0%",
+     "right": 47,
+     "calls": 47,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 13.4
+    },
+    "harsh": {
+     "geneCalls": "100.0%",
+     "right": 47,
+     "calls": 47,
+     "dpyd": "100.0%",
+     "perfectReports": "12/12",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 16
+    }
+   },
+   "byLayout": {
+    "star": {
+     "geneCalls": "100.0%",
+     "right": 30,
+     "calls": 30,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 17.1
+    },
+    "rsid": {
+     "geneCalls": "100.0%",
+     "right": 33,
+     "calls": 33,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 15.3
+    },
+    "narrative": {
+     "geneCalls": "100.0%",
+     "right": 42,
+     "calls": 42,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 12.8
+    },
+    "checklist": {
+     "geneCalls": "100.0%",
+     "right": 36,
+     "calls": 36,
+     "dpyd": "100.0%",
+     "perfectReports": "9/9",
+     "extraGenes": 0,
+     "quotesGrounded": "100.0%",
+     "errors": 0,
+     "medianSec": 14.6
+    }
+   },
+   "misses": []
+  }
+ },
+ "meds": {
+  "generatedAt": "2026-10-29T19:07:51.709Z",
+  "inputs": 26,
+  "runs": 3,
+  "baseline": {
+   "correct": 8,
+   "misses": [
+    {
+     "input": "Xeloda 500 mg",
+     "expected": "capecitabine",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "capecitabin",
+     "expected": "capecitabine",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Xeloda tablet randu neram",
+     "expected": "capecitabine",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "5FU",
+     "expected": "fluorouracil",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Campto",
+     "expected": "irinotecan",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "CPT-11",
+     "expected": "irinotecan",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Imuran",
+     "expected": "azathioprine",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "6MP",
+     "expected": "mercaptopurine",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Purinethol",
+     "expected": "mercaptopurine",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Nolvadex",
+     "expected": "tamoxifen",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Emeset 8",
+     "expected": "ondansetron",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Zofran",
+     "expected": "ondansetron",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Clopilet 75",
+     "expected": "clopidogrel",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Plavix",
+     "expected": "clopidogrel",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Pan 40",
+     "expected": "pantoprazole",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Nexpro 40",
+     "expected": "esomeprazole",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Ultracet",
+     "expected": "tramadol",
+     "got": "",
+     "ok": false
+    },
+    {
+     "input": "Contramal",
+     "expected": "tramadol",
+     "got": "",
+     "ok": false
+    }
+   ]
+  },
+  "meta": {
+   "correctPerRun": [
+    26,
+    26,
+    26
+   ],
+   "misses": []
+  },
+  "baseten": {
+   "correctPerRun": [
+    26,
+    26,
+    26
+   ],
+   "misses": []
+  }
+ }
+}

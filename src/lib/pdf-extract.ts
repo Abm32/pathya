@@ -9,7 +9,7 @@ export type LabExtract = {
   warnings: string[];
 };
 
-const schema = {
+export const EXTRACT_SCHEMA = {
   type: "object", additionalProperties: false,
   required: ["labName", "reportDate", "patientRef", "genes", "methodNotes", "warnings"],
   properties: {
@@ -21,7 +21,7 @@ const schema = {
         required: ["gene", "diplotype", "phenotype", "activityScore", "verbatim"],
         properties: {
           gene: { type: "string", description: "HGNC symbol, e.g. DPYD, UGT1A1, TPMT, NUDT15, CYP2D6, CYP2C19, HLA-B" },
-          diplotype: { type: "string", description: "ALWAYS two alleles separated by /. For DPYD compose from the detected variants, one per chromosome: none detected -> Reference/Reference; one heterozygous variant -> <variant>/Reference; two different heterozygous variants -> <variant1>/<variant2>; homozygous -> <variant>/<variant>. Use names like c.1905+1G>A, c.1679T>G, c.2846A>T, HapB3, c.85T>C. For rsID-only reports, convert known variants: DPYD rs3918290 het -> *1/*2A; rs67376798 -> c.2846A>T; rs55886062 -> *13; rs75017182 -> HapB3. UGT1A1 TA6/TA7 -> *1/*28, TA7/TA7 -> *28/*28, TA6/TA6 -> *1/*1" },
+          diplotype: { type: "string", description: "ALWAYS two alleles separated by /. For DPYD compose from the detected variants, one per chromosome: none detected -> Reference/Reference; one heterozygous variant -> <variant>/Reference; two different heterozygous variants -> <variant1>/<variant2>; homozygous -> <variant>/<variant>. Use names like c.1905+1G>A, c.1679T>G, c.2846A>T, HapB3, c.85T>C. For rsID-only reports, convert known variants (heterozygous = one copy, homozygous = two, wild type = none; fill the other chromosome with *1, or Reference for DPYD): DPYD rs3918290 het -> *1/*2A; rs67376798 -> c.2846A>T; rs55886062 -> *13; rs75017182 -> HapB3; rs1801265 -> c.85T>C. UGT1A1 TA6/TA7 -> *1/*28, TA7/TA7 -> *28/*28, TA6/TA6 -> *1/*1; rs4148323 -> *6. TPMT rs1142345 alone -> *3C; rs1800460 alone -> *3B; both heterozygous -> *1/*3A. NUDT15 rs116855232 -> *3. CYP2C19 rs4244285 -> *2; rs4986893 -> *3; rs12248560 -> *17. Never return raw nucleotide genotypes like C/T as the diplotype" },
           phenotype: { type: "string", description: "as printed, e.g. Intermediate Metabolizer, or ''" },
           activityScore: { type: "string", description: "e.g. 1.0, or ''" },
           verbatim: { type: "string", description: "exact text copied from the report supporting this call" },
@@ -33,6 +33,8 @@ const schema = {
   },
 };
 
+export const EXTRACT_SYSTEM = "You are a pharmacogenomics lab-report reader. Extract ONLY what is printed. If a gene is reported as 'not detected' or 'wild type' for a targeted panel, record diplotype *1/*1 and put the panel coverage in methodNotes and a warning that untested variants cannot be excluded. If the report gives genotypes by rsID only, convert using the mapping in the schema and quote the rsID text in verbatim. Never invent a gene that is not on the report.";
+
 /** Read a lab PGx report (PDF or image) with Muse Spark and extract gene calls. Nothing is inferred beyond what is printed. */
 export async function extractLabReport(file: Buffer, mime: string, filename: string): Promise<LabExtract> {
   const part =
@@ -43,10 +45,10 @@ export async function extractLabReport(file: Buffer, mime: string, filename: str
   const r: any = await meta().responses.create({
     model: MUSE_MODEL,
     input: [
-      { role: "system", content: "You are a pharmacogenomics lab-report reader. Extract ONLY what is printed. If a gene is reported as 'not detected' or 'wild type' for a targeted panel, record diplotype *1/*1 and put the panel coverage in methodNotes and a warning that untested variants cannot be excluded. If the report gives genotypes by rsID only, convert using the mapping in the schema and quote the rsID text in verbatim. Never invent a gene that is not on the report." },
+      { role: "system", content: EXTRACT_SYSTEM },
       { type: "message", role: "user", content: [{ type: "input_text", text: "Extract the pharmacogenomic results from this report." }, part] },
     ],
-    text: { format: { type: "json_schema", name: "LabExtract", strict: true, schema } },
+    text: { format: { type: "json_schema", name: "LabExtract", strict: true, schema: EXTRACT_SCHEMA } },
   });
   return JSON.parse(r.output_text) as LabExtract;
 }
@@ -67,7 +69,8 @@ export function normaliseDiplotype(gene: string, dip: string) {
   const parts = dip.split("/").map((p) => p.trim()).filter(Boolean);
   if (parts.length !== 2) return dip.trim();
   if (gene.toUpperCase() !== "DPYD") return parts.join("/");
-  return parts.map((p) => DPYD_NAMES[p.toLowerCase().replace(/\s+/g, "")] ?? p).join("/");
+  // exact alias first; otherwise any known DPYD variant named inside the text, e.g. "c.1236G>A (HapB3)"
+  return parts.map((p) => DPYD_NAMES[p.toLowerCase().replace(/\s+/g, "")] ?? DPYD_TOKENS.find(([re]) => re.test(p))?.[1] ?? p).join("/");
 }
 
 /** PharmCAT outside-call TSV: gene \t diplotype \t phenotype \t activity score */
@@ -88,9 +91,10 @@ export function dpydFromText(text: string) {
     const state = m[2].toLowerCase();
     if (/not detected|absent|negative/i.test(text.slice(m.index!, m.index! + m[0].length + 15))) continue;
     found.push(name);
-    if (state === "homozygous") found.push(name);
+    // checklist reports print "Detected (homozygous)": the zygosity follows the matched word
+    if (state === "homozygous" || /^\s*\(?\s*homozygous/i.test(text.slice(m.index! + m[0].length))) found.push(name);
   }
-  if (found.length === 0) return /not detected|wild ?type|no variant|reference/i.test(text) ? "Reference/Reference" : "";
+  if (found.length === 0) return /not detected|wild ?type|no (tested )?variants?|reference/i.test(text) ? "Reference/Reference" : "";
   if (found.length === 1) return `${found[0]}/Reference`;
   return `${found[0]}/${found[1]}`;
 }
