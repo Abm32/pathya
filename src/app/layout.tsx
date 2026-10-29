@@ -4,6 +4,7 @@ import { Geist, Geist_Mono, Noto_Sans_Malayalam } from "next/font/google";
 import "./globals.css";
 import { Spotlight } from "./fx";
 import { Wordmark } from "./logo";
+import { ScrollFx } from "./story";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${notoMalayalam.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <Spotlight />
+        <ScrollFx />
         <header className="sticky top-0 z-30 bg-[rgba(6,8,10,0.72)] backdrop-blur-xl print:hidden">
           <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4">
             <Link href="/" className="flex items-baseline gap-2.5">

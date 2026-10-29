@@ -48,7 +48,7 @@ function Verdict({ tone, big, what, why }: { tone: "ok" | "warn" | "bad"; big: s
 
 /* 1. DPD enzyme clearing 5-FU: dN/dt = R*dose - k*activity*N */
 const BASE = 120, TOXIC = 185, R = 36, K = R / BASE;
-function EnzymeSim() {
+export function EnzymeSim() {
   const [act, setAct] = useState(1);
   const [dose, setDose] = useState(1);
   const [exp, setExp] = useState(1);
@@ -159,7 +159,7 @@ function popHeight() {
   return Math.round(52 + Math.ceil(1000 / c) * Math.min(20, (w - 28) / c) + 14);
 }
 
-function Population() {
+export function Population() {
   const [mode, setMode] = useState<PopMode>("all");
   const live = useRef({ mode: "all" as PopMode, at: 0 });
   useEffect(() => { live.current = { mode, at: performance.now() }; }, [mode]);
@@ -222,7 +222,7 @@ function Population() {
 }
 
 /* 3. Architecture */
-function Architecture() {
+export function Architecture() {
   return (
     <div className="card min-w-0 overflow-x-auto p-4">
       <svg viewBox="0 0 1000 370" className="block min-w-[760px]" role="img" aria-label="Lab report flows to Muse Spark reading, into a locked deterministic core of PharmCAT, guideline text and India rules, out to Muse Spark explaining, then to the oncologist">
@@ -254,34 +254,5 @@ function Architecture() {
         <circle r="7" fill={COL.teal} className="packet" style={{ offsetPath: "path('M40 180 H970')", filter: `drop-shadow(0 0 8px ${COL.teal})` }} />
       </svg>
     </div>
-  );
-}
-
-export function Concepts() {
-  return (
-    <section aria-labelledby="concepts" className="scroll-mt-20 pt-20">
-      <div className="mb-8 max-w-3xl">
-        <p className="eyebrow">How it works</p>
-        <h2 id="concepts" className="display mt-2 text-4xl sm:text-5xl">One gene decides whether a <span className="glow-text">chemo dose</span> is safe.</h2>
-        <p className="mt-4 text-lg text-muted">Three working models. Change the inputs and watch the outcome.</p>
-      </div>
-      <div className="grid min-w-0 gap-14 [&>*]:min-w-0">
-        <div>
-          <h3 className="mb-1 text-2xl font-semibold tracking-tight"><span className="num mr-3 text-sm text-accent">01</span>One enzyme, one dose</h3>
-          <p className="mb-5 max-w-2xl text-muted">DPD clears 5-FU and capecitabine. A DPYD variant slows it. Same dose, slower clearance, and the drug piles up past the toxic line.</p>
-          <EnzymeSim />
-        </div>
-        <div>
-          <h3 className="mb-1 text-2xl font-semibold tracking-tight"><span className="num mr-3 text-sm text-accent">02</span>1,000 Indian patients</h3>
-          <p className="mb-5 max-w-2xl text-muted">CPIC&apos;s DPYD rules were built on European data. In Indians the risk sits in different variants, and one variant CPIC calls normal carries a toxicity signal in South Indian cohorts.</p>
-          <Population />
-        </div>
-        <div>
-          <h3 className="mb-1 text-2xl font-semibold tracking-tight"><span className="num mr-3 text-sm text-accent">03</span>Deterministic core, model at the edges</h3>
-          <p className="mb-5 max-w-2xl text-muted">Muse Spark reads the report and explains the result. Everything that decides a dose sits in a locked core. The model can rank and explain the dose text. It cannot change it.</p>
-          <Architecture />
-        </div>
-      </div>
-    </section>
   );
 }

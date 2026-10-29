@@ -6,7 +6,8 @@ import { Cite } from "./cite";
 import { RunLog, type StepEvent } from "./run-log";
 import { Pipeline } from "./pipeline";
 import { CountUp } from "./fx";
-import { Concepts } from "./concepts";
+import { Architecture, EnzymeSim, Population } from "./concepts";
+import { Chapter, Proof, StoryRail, Vignette } from "./story";
 
 const SAMPLE_MEDS: Record<string, string> = {
   A: "Xeloda\nirinotecan\nondansetron\npantoprazole\nclopidogrel",
@@ -25,7 +26,7 @@ export default function Home() {
   const [ready, setReady] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const logRef = useRef<HTMLDivElement>(null);
-  const consoleRef = useRef<HTMLElement>(null);
+  const consoleRef = useRef<HTMLDivElement>(null);
 
   async function submit(fd: FormData, medList = meds, scroll = true) {
     setErr(null); setReady(false); setBusy(true);
@@ -68,8 +69,9 @@ export default function Home() {
 
   return (
     <main className="mx-auto max-w-6xl px-4">
+      <StoryRail />
       {/* Hero */}
-      <section className="grid grid-cols-1 items-center gap-10 pb-14 pt-14 md:pt-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
+      <section className="grid min-h-[calc(100svh-3.5rem)] grid-cols-1 content-center items-center gap-10 pb-10 pt-14 md:pt-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
         <div className="rise">
           <div className="inline-flex items-center gap-2 rounded-full border border-line bg-[rgba(255,255,255,0.03)] px-3 py-1.5 text-xs text-muted">
             <span className="live-dot" aria-hidden /> Live on AWS Mumbai · 4/4 eval on the deployed system
@@ -92,36 +94,60 @@ export default function Home() {
         <div className="rise" style={{ animationDelay: "120ms" }}>
           <Pipeline steps={steps} />
         </div>
+        <a href="#story-patient" className="cue rise justify-self-center lg:col-span-2 print:hidden" style={{ animationDelay: "500ms" }}>
+          <span>Scroll for the story</span><i aria-hidden />
+        </a>
       </section>
 
-      {/* Evidence bento */}
-      <section aria-label="Why this matters" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <Chapter id="story-patient" n="01" kicker="The patient" title={<>Her lab report is right.<br /><span className="glow-text">Her dose is still wrong.</span></>}
+        lede="One gene test, read correctly, changes the first dose of chemotherapy. Here is what happens when nobody reads it.">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+          <Vignette />
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <p className="sr eyebrow">This is not one patient</p>
+            <section aria-label="Why this matters" className="mt-4 grid gap-3 sm:grid-cols-2">
         {[
           { v: 48, s: "%", t: "of fluoropyrimidine deaths are DPYD carriers, who are only 4% of patients", src: "Sharma 2021", glow: "rgba(255,100,100,0.5)" },
           { v: 25, s: "%", p: "~", t: "of Indians carry DPYD c.85T>C. CPIC calls it normal; South Indian cohorts link it to toxicity", src: "PMC11300675", glow: "rgba(255,181,71,0.5)" },
           { v: 0, s: "", t: "Indian national guidelines on DPYD or UGT1A1 testing before chemotherapy", src: "ICMR / NCG, none found", glow: "rgba(124,138,255,0.5)" },
           { v: 75, s: "%", t: "of Indian prescribers say they are not confident reading a pharmacogenomic report", src: "PMC9696651", glow: "rgba(46,230,200,0.5)" },
         ].map((k, i) => (
-          <div key={i} className="card spot lift kpi rise p-5" style={{ animationDelay: `${200 + i * 70}ms`, ["--kpi-glow" as string]: k.glow }}>
+          <div key={i} className="sr card spot lift kpi p-5" style={{ ["--d" as string]: `${i * 90}ms`, ["--kpi-glow" as string]: k.glow }}>
             <div className="kpi-value"><CountUp to={k.v} prefix={k.p ?? ""} suffix={k.s} /></div>
             <p className="mt-3 text-sm leading-snug text-foreground/85">{k.t}</p>
             <p className="mt-3 text-[11px] text-muted"><Cite text={k.src} /></p>
           </div>
         ))}
-      </section>
+            </section>
 
-      <Concepts />
+          </div>
+        </div>
+      </Chapter>
+
+      <Chapter id="story-enzyme" n="02" kicker="The mechanism" title={<>One enzyme decides<br />whether the dose is <span className="glow-text">safe.</span></>}
+        lede="DPD clears 5-FU and capecitabine. A DPYD variant slows it. Same dose, slower clearance, and the drug piles up past the toxic line. Change the inputs.">
+        <div className="sr"><EnzymeSim /></div>
+      </Chapter>
+
+      <Chapter id="story-india" n="03" kicker="The population" title={<>India carries a <span className="glow-text">different risk.</span></>}
+        lede="CPIC's DPYD rules were built on European data. In Indians the risk sits in different variants, and one variant CPIC calls normal carries a toxicity signal in South Indian cohorts.">
+        <div className="sr"><Population /></div>
+      </Chapter>
+
+      <Chapter id="story-system" n="04" kicker="The system" title={<>The model reads.<br /><span className="glow-text">The guideline decides.</span></>}
+        lede="Muse Spark reads the report and explains the result. Everything that sets a dose sits in a locked, deterministic core. The model can rank and explain the dose text. It cannot change it.">
+        <div className="sr"><Architecture /></div>
+      </Chapter>
+
+      <Chapter id="story-proof" n="05" kicker="The proof" title={<>Tested on reports<br />it had <span className="glow-text">never seen.</span></>}
+        lede="Thirty-six synthetic Indian lab reports, as clean PDFs, phone photos and the kind of skewed, shadowed photo that arrives over WhatsApp. Every gene call scored against the truth.">
+        <Proof />
+      </Chapter>
 
       {/* Console */}
-      <section ref={consoleRef} className="scroll-mt-20 pt-16">
-        <div className="mb-5 flex flex-wrap items-end gap-3">
-          <div>
-            <p className="eyebrow">Console</p>
-            <h2 className="display mt-2 text-3xl">Run a case</h2>
-          </div>
-          <p className="ml-auto max-w-md text-sm text-muted">Every step streams from the server as it finishes. No dose ever comes from the language model.</p>
-        </div>
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_400px]">
+      <Chapter id="console" n="06" kicker="Your turn" title={<>Run a case. <span className="glow-text">Watch it think.</span></>}
+        lede="Upload a report or pick a sample. Every step streams from the server as it finishes. No dose ever comes from the language model.">
+      <div ref={consoleRef} className="sr grid scroll-mt-24 gap-6 lg:grid-cols-[minmax(0,1fr)_400px]">
         <form className="card spot space-y-5 p-6" onSubmit={(e) => { e.preventDefault(); submit(new FormData(e.currentTarget)); }}>
           <div className="flex gap-2 text-sm">
             {(["report", "vcf"] as const).map((m) => (
@@ -197,7 +223,7 @@ export default function Home() {
           )}
         </aside>
       </div>
-      </section>
+      </Chapter>
     </main>
   );
 }
