@@ -32,7 +32,7 @@ Ask: run 5 anonymised past patients (they already know the outcomes), score each
 
 ### Outreach message (WhatsApp/email, oncologist)
 
-> Dr ___, Abhimanyu from Anukriti AI (Kochi). We built Pathya: upload a DPYD/UGT1A1/TPMT-NUDT15 lab report (PDF or phone photo), get a CPIC/DPWG-grounded toxicity check for capecitabine, 5-FU, irinotecan, thiopurines, tamoxifen, plus a patient explanation in Malayalam. Genotype calling is PharmCAT (CPIC's engine); the model only maps, ranks and explains, and every PMID is from the guideline profile. Could you run 4-5 anonymised past cases (no names, no IDs) and score each 1-5 on "would this have changed what I did"? 20 minutes, link + access code, we are on a call while you do it. One sentence from you on the Malayalam text would go in our 3-minute hackathon video (deadline 4 Nov), only with your permission. Demo: https://16.4.131.103.sslip.io
+> Dr ___, Abhimanyu from Anukriti AI (Kochi). We built Pathya: upload a DPYD/UGT1A1/TPMT-NUDT15 lab report (PDF or phone photo), get a CPIC/DPWG-grounded toxicity check for capecitabine, 5-FU, irinotecan, thiopurines, tamoxifen, plus a patient explanation in Malayalam. Genotype calling is PharmCAT (CPIC's engine); the model only maps, ranks and explains, and every PMID is from the guideline profile. Could you run 4-5 anonymised past cases (no names, no IDs) and score each 1-5 on "would this have changed what I did"? 20 minutes, link + access code, we are on a call while you do it. One sentence from you on the Malayalam text would go in our 3-minute hackathon video (deadline 4 Nov), only with your permission. Demo: https://pathya.anukritiai.com
 
 ### Discord DM (Jason / Qingyuan Zhang, clinical data analytics)
 

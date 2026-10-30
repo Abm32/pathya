@@ -110,7 +110,7 @@ Anukriti AI, Kochi, Kerala. [Team member names and roles]
 
 ## Links
 
-- Live demo: https://16.4.131.103.sslip.io. The story, the pre-test check and a finished sample report (https://16.4.131.103.sslip.io/sample) open without a code. Live runs, uploads and dictation need the judge access code: [give judges a code]
+- Live demo: https://pathya.anukritiai.com. The story, the pre-test check and a finished sample report (https://pathya.anukritiai.com/sample) open without a code. Live runs, uploads and dictation need the judge access code: [give judges a code]
 - Demo video: [URL]
 - Repository: [URL; make public or add judges as collaborators]
 - Evidence brief with every source: `docs/EVIDENCE.md` in the repository

@@ -11,7 +11,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 const notoMalayalam = Noto_Sans_Malayalam({ variable: "--font-noto-malayalam", subsets: ["malayalam"], weight: ["400", "500"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://16.4.131.103.sslip.io"),
+  metadataBase: new URL("https://pathya.anukritiai.com"),
   title: "Pathya",
   description: "Pharmacogenomic result in, oncologist-ready toxicity report out, in the patient's language.",
   openGraph: { title: "Pathya · Chemo toxicity, caught before cycle one", type: "website", siteName: "Pathya" },

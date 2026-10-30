@@ -4,7 +4,7 @@ One container (Node 22 on the official `pgkb/pharmcat` image). Needs ~2 GB RAM (
 
 ## Option A: EC2 (what the demo runs on)
 
-Account: Anukriti AI AWS (`AWS_PROFILE=anukriti`), region ap-south-1. Instance `pathya` (t3.medium, 30 GB gp3, Ubuntu 24.04, Docker via user-data), security group `pathya` (22/80/443), Elastic IP, key `~/.ssh/pathya.pem`. Public URL uses sslip.io so no DNS record is needed; Caddy gets a Let's Encrypt cert for it.
+Account: Anukriti AI AWS (`AWS_PROFILE=anukriti`), region ap-south-1. Instance `pathya` (t3.medium, 30 GB gp3, Ubuntu 24.04, Docker via user-data), security group `pathya` (22/80/443), Elastic IP, key `~/.ssh/pathya.pem`. Public URL is https://pathya.anukritiai.com (A record to the Elastic IP); the original https://16.4.131.103.sslip.io still works. Caddy gets Let's Encrypt certs for both.
 
 ```bash
 # from the laptop: repo is private, so ship the working tree instead of git clone
@@ -29,7 +29,7 @@ Redeploy = rerun the rsync, then `docker compose up -d --build` (2-3 min, PharmC
 | `PUBLIC_CASES` | Comma-separated case ids readable without the code; `/sample` opens the first. |
 | `PHARMCAT_RUNNER=local`, `DATA_DIR=/data` | Set by `docker-compose.yml`. |
 
-### Custom domain: pathya.anukritiai.com
+### Custom domain: pathya.anukritiai.com (live since 2026-10-30)
 
 1. DNS: an `A` record for `pathya` pointing to `16.4.131.103`.
 2. Once `dig +short pathya.anukritiai.com` returns that IP, run Caddy with both hosts so the sslip link keeps working:

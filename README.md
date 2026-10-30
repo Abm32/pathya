@@ -2,6 +2,8 @@
 
 **A pre-chemo gene safety check for Indian oncology: which test to order at diagnosis, and what the result means for the first dose, in the patient's language.**
 
+**Live: https://pathya.anukritiai.com** (the story, the pre-test check and a [sample report](https://pathya.anukritiai.com/sample) open without a code).
+
 *Pathya* is the Ayurvedic word for the regimen that suits a particular patient. Built by [Anukriti AI](https://anukritiai.com), Kochi, for the Meta Global AI Developer Hackathon 2026 (Startup track, "Build for Your World").
 
 ## The problem
