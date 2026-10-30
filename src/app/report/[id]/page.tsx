@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { canRead, signedIn as isSignedIn } from "@/lib/access";
+import { canRead, cohortIsPublic, publicCohort, signedIn as isSignedIn } from "@/lib/access";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { readJson, caseDir } from "@/lib/store";
 import type { PgxProfile } from "@/lib/pharmcat";
 import type { LabExtract } from "@/lib/pdf-extract";
-import type { Quality } from "@/lib/quality";
+import { quality as recomputeQuality, type Quality } from "@/lib/quality";
 import type { CaseMeta, Review } from "@/lib/cohort";
 import { CuratorReview, LiteratureCheck, PrintButton } from "./actions";
 import { CountUp, SectionNav } from "@/app/fx";
@@ -33,14 +33,19 @@ export default async function RecordPage({ params }: { params: Promise<{ id: str
   if (!(await canRead(id))) redirect(`/login?next=/report/${id}`);
   const profile = (await readJson<PgxProfile>(id, "profile.json"))!;
   const extract = await readJson<LabExtract>(id, "extract.json");
-  const q = await readJson<Quality>(id, "quality.json");
+  const stored = await readJson<Quality>(id, "quality.json");
   const review = await readJson<Review>(id, "review.json");
   const trace = await runTrace(id);
   // Public sample records are readable without the code; actions that call a model or write data are not.
   const signedIn = await isSignedIn();
+  // an anonymous visitor can only open the public cohort, so never link them into a private one
+  const cohortVisible = signedIn || Boolean(c.cohort && cohortIsPublic(c.cohort));
   const sourceKind = await fs.access(path.join(caseDir(id), "report.pdf")).then(() => "pdf" as const, () =>
     fs.access(path.join(caseDir(id), "report.img")).then(() => "img" as const, () => null));
   const called = profile.genes.filter((g) => g.called);
+  // quality.json is the audit record written at ingest; the page recomputes from the stored extract
+  // so that a corrected rule applies to records ingested before it
+  const q = extract ? recomputeQuality(extract, profile) : stored;
   const gaps = q?.coverage.filter((x) => !x.stated) ?? [];
   const total = trace.find((t) => t.who === "Total")?.ms;
   const quoteFor = (gene: string) => extract?.genes.find((g) => g.gene.toUpperCase() === gene)?.verbatim;
@@ -58,7 +63,7 @@ export default async function RecordPage({ params }: { params: Promise<{ id: str
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
           <h1 className="display text-4xl sm:text-5xl">{c.label || `Record ${id}`}</h1>
           <span className="badge badge-det">{SOURCE[c.source] ?? c.source}</span>
-          {c.cohort && <Link href={`/cohort?c=${c.cohort}`} className="badge badge-meta">cohort · {c.cohort}</Link>}
+          {c.cohort && (cohortVisible ? <Link href={`/cohort?c=${c.cohort}`} className="badge badge-meta">cohort · {c.cohort}</Link> : <span className="badge badge-meta">cohort · {c.cohort}</span>)}
           {review && <span className="badge badge-det">Curator verified</span>}
           <span className="ml-auto"><PrintButton /></span>
         </div>
@@ -145,7 +150,7 @@ export default async function RecordPage({ params }: { params: Promise<{ id: str
                 <div className="flex items-center gap-2">
                   <span className="num rounded-md border border-line px-1.5 py-0.5 text-[11px]">{x.gene}</span>
                   <span className="num font-medium">{x.variant}</span>
-                  <span className={`ml-auto text-xs ${x.stated ? "text-ok" : "text-warn"}`}>{x.stated ? "named on the report" : "not stated as tested"}</span>
+                  <span className={`ml-auto text-xs ${x.stated ? "text-ok" : "text-warn"}`}>{x.stated ? "named on the report" : x.documented ? "not in this panel" : "panel not documented"}</span>
                 </div>
                 <p className="mt-2 text-xs text-muted">{x.why}</p>
               </div>
@@ -166,7 +171,7 @@ export default async function RecordPage({ params }: { params: Promise<{ id: str
           <a href={`/api/report/${id}/export?f=json`} className="btn btn-ghost btn-sm">JSON, full record</a>
           <a href={`/api/report/${id}/export?f=tsv`} className="btn btn-ghost btn-sm">PharmCAT outside-call TSV</a>
           <a href={`/api/report/${id}/export?f=csv`} className="btn btn-ghost btn-sm">CSV row</a>
-          {c.cohort && <Link href={`/cohort?c=${c.cohort}`} className="btn btn-ghost btn-sm">See the {c.cohort} cohort →</Link>}
+          <Link href={cohortVisible && c.cohort ? `/cohort?c=${c.cohort}` : "/cohort"} className="btn btn-ghost btn-sm">See the {cohortVisible && c.cohort ? c.cohort : publicCohort()} cohort →</Link>
         </div>
       </section>
 

@@ -61,3 +61,61 @@ BENCH_DIR=fixtures/bench-heldout npx tsx --env-file=.env scripts/bench.mts rules
 ```
 
 Raw results: `docs/bench-results.json` (development set) and `docs/bench-results-heldout.json` (held-out set). Each includes every miss. `docs/bench-results.json` also holds a medication-mapping run from before the pivot; that feature and its harness were removed.
+
+## IndiPGx-Pop v0.1: what partial panels do to a cohort
+
+Reading a report correctly is not the same as pooling reports correctly. This second set tests the
+pooling, and it is the part the project got wrong first.
+
+**The set.** 120 simulated people. Each person's genotype is drawn per chromosome from the allele
+frequencies in `ALLELE_FREQ` (`scripts/bench/gen.py`), which follow the published Indian figures where
+we could verify one and are marked `assumed` where we could not; every value and its source is in
+`fixtures/pop/truth.json`. Each person is then issued a report by one of five simulated labs, and a lab
+only prints what it assays. One lab runs the European tier-1 DPYD panel (`*2A`, `*13`, `c.2846A>T`),
+which cannot see the two variants that matter most in India. Because the complete-panel answer is known,
+both ways of pooling can be scored against it.
+
+```
+python3 scripts/bench/gen.py pop 815 fixtures/pop 120
+ACCESS_CODE=... npx tsx scripts/seed-cohort.mts <baseUrl> india-sim fixtures/pop
+ACCESS_CODE=... npx tsx scripts/verify-pop.mts <baseUrl>          # writes docs/pooling-results.json
+```
+
+**Reading.** 311 of 311 gene calls across the 120 records came back exactly as the report prints them,
+through the live production pipeline.
+
+**Pooling.** Against the complete-panel truth, over 11 variants:
+
+| | mean absolute error | truth inside the 95% interval |
+|---|---|---|
+| Coverage-aware (untested left out of the denominator) | 4.1 points | 11/11 |
+| Naive (untested counted as a non-carrier) | 1.3 points | — |
+
+That is not the result we expected, and it is worth stating plainly: **on this cohort the naive estimate
+was closer on average.** The coverage-aware estimate is unbiased but throws away records, so at these
+sample sizes it is noisier, and the average is dominated by variants where almost nothing was excluded.
+
+The difference the denominator makes shows up where panels genuinely differ in breadth. For DPYD
+c.85T>C, the variant about a quarter of Indians carry and the European tier-1 panel never tests:
+
+| | estimate |
+|---|---|
+| Complete-panel truth | 25.3% |
+| Counting untested panels as non-carriers | 15.2% |
+| Leaving them out of the denominator | 30.8% (95% CI 18.6–46.4) |
+
+Naive pooling is wrong by 10 points, in the direction that makes the variant look less common than it is,
+which is exactly the error that keeps a variant out of a guideline.
+
+**The bug this found.** 134 of the 226 record-variant exclusions (59%) were not panels that skipped a
+variant at all. They were reports that never state which variants they tested, mostly the narrative
+layout. Every simulated NUDT15 panel tests `*3`, yet 10 NUDT15 records were being excluded. The rule was
+conflating "the lab did not test this" with "the report does not say", which are a question about the lab
+and a question about the report. `quality()` now records `documented` alongside `stated`, the record page
+distinguishes "not in this panel" from "panel not documented", and the cohort page counts them separately
+and shows both estimates rather than picking one.
+
+**Limits.** The people are simulated and the variants are drawn independently, so there is no linkage
+disequilibrium and no population structure; the assumed frequencies are inputs, not measurements; and
+the reports are in layouts we wrote. The claim here is about how a cohort handles partial coverage, not
+about Indian allele frequencies.

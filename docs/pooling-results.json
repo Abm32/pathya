@@ -1,0 +1,245 @@
+{
+ "cohort": "india-sim",
+ "records": 120,
+ "generatedAt": "2026-10-30T14:04:41.882Z",
+ "reading": {
+  "records": 120,
+  "calls": 311,
+  "correct": 311,
+  "wrong": 0,
+  "missing": 0
+ },
+ "pooling": {
+  "covered": 11,
+  "comparable": 11,
+  "naiveBelow": 9,
+  "gaps": 11,
+  "maeCoverageAware": 0.04138132433335625,
+  "maeNaive": 0.012658227848101267,
+  "closer": 4,
+  "exclusions": 226,
+  "undocumented": 134
+ },
+ "variants": [
+  {
+   "variant": "DPYD HapB3",
+   "completePanelTruth": 0.02531645569620253,
+   "truthDenominator": 79,
+   "coverageAware": 0.058823529411764705,
+   "ci": [
+    0.016282313063842452,
+    0.1909393688946371
+   ],
+   "covers": true,
+   "naive": 0.02531645569620253,
+   "naiveCi": [
+    0.006970221164761904,
+    0.08768753532473128
+   ],
+   "n": 34,
+   "notStated": 45,
+   "drawnFrom": 0.033711000000000046,
+   "source": "3.3% carriers in a WES study of 1,612 Indians (PMID 40810747)"
+  },
+  {
+   "variant": "DPYD c.85T>C (*9A)",
+   "completePanelTruth": 0.25316455696202533,
+   "truthDenominator": 79,
+   "coverageAware": 0.3076923076923077,
+   "ci": [
+    0.1856575344598306,
+    0.464215486155646
+   ],
+   "covers": true,
+   "naive": 0.1518987341772152,
+   "naiveCi": [
+    0.08908180320986644,
+    0.2470005515490952
+   ],
+   "n": 39,
+   "notStated": 40,
+   "drawnFrom": 0.24309999999999998,
+   "source": "24.9% carriers in 2,000 Indians (PMID 33105068)"
+  },
+  {
+   "variant": "DPYD *2A",
+   "completePanelTruth": 0,
+   "truthDenominator": 79,
+   "coverageAware": 0,
+   "ci": [
+    0,
+    0.05924591620194442
+   ],
+   "covers": true,
+   "naive": 0,
+   "naiveCi": [
+    0,
+    0.04637283683559951
+   ],
+   "n": 61,
+   "notStated": 18,
+   "drawnFrom": 0.001998999999999973,
+   "source": "0.05-0.5% carriers in Indian cohorts (PMID 40810747)"
+  },
+  {
+   "variant": "DPYD *13",
+   "completePanelTruth": 0,
+   "truthDenominator": 79,
+   "coverageAware": 0,
+   "ci": [
+    0,
+    0.05924591620194442
+   ],
+   "covers": true,
+   "naive": 0,
+   "naiveCi": [
+    0,
+    0.04637283683559951
+   ],
+   "n": 61,
+   "notStated": 18,
+   "drawnFrom": 0.001998999999999973,
+   "source": "near-absent in Indians (PMID 40810747); assumed 0.1%"
+  },
+  {
+   "variant": "DPYD c.2846A>T",
+   "completePanelTruth": 0.012658227848101266,
+   "truthDenominator": 79,
+   "coverageAware": 0.01639344262295082,
+   "ci": [
+    0.002899656114363977,
+    0.08719065627768062
+   ],
+   "covers": true,
+   "naive": 0.012658227848101266,
+   "naiveCi": [
+    0.002237936230769212,
+    0.06827736043177712
+   ],
+   "n": 61,
+   "notStated": 18,
+   "drawnFrom": 0.0039959999999999996,
+   "source": "near-absent in Indians (PMID 40810747); assumed 0.2%"
+  },
+  {
+   "variant": "NUDT15 *3",
+   "completePanelTruth": 0.23076923076923078,
+   "truthDenominator": 39,
+   "coverageAware": 0.3103448275862069,
+   "ci": [
+    0.17275424489768068,
+    0.49230470472718546
+   ],
+   "covers": true,
+   "naive": 0.23076923076923078,
+   "naiveCi": [
+    0.1264566242878376,
+    0.38336560457382957
+   ],
+   "n": 29,
+   "notStated": 10,
+   "drawnFrom": 0.17189999999999994,
+   "source": "risk allele 7-11% in Indian cohorts (PMID 29470173)"
+  },
+  {
+   "variant": "UGT1A1 *28",
+   "completePanelTruth": 0.5569620253164557,
+   "truthDenominator": 79,
+   "coverageAware": 0.6285714285714286,
+   "ci": [
+    0.5114698481852806,
+    0.7322951839917036
+   ],
+   "covers": true,
+   "naive": 0.5569620253164557,
+   "naiveCi": [
+    0.4473171607311567,
+    0.661323908490104
+   ],
+   "n": 70,
+   "notStated": 9,
+   "drawnFrom": 0.5774999999999999,
+   "source": "assumed 35%, the usual South Asian figure; no single Indian source verified"
+  },
+  {
+   "variant": "UGT1A1 *6",
+   "completePanelTruth": 0.05063291139240506,
+   "truthDenominator": 79,
+   "coverageAware": 0.029411764705882353,
+   "ci": [
+    0.00521077192559663,
+    0.1491590221634482
+   ],
+   "covers": true,
+   "naive": 0.012658227848101266,
+   "naiveCi": [
+    0.002237936230769212,
+    0.06827736043177712
+   ],
+   "n": 34,
+   "notStated": 45,
+   "drawnFrom": 0.03960000000000008,
+   "source": "assumed 2%; reported at low frequency in India"
+  },
+  {
+   "variant": "TPMT *3C",
+   "completePanelTruth": 0.10256410256410256,
+   "truthDenominator": 39,
+   "coverageAware": 0.13793103448275862,
+   "ci": [
+    0.05497350852047822,
+    0.30559357712699325
+   ],
+   "covers": true,
+   "naive": 0.10256410256410256,
+   "naiveCi": [
+    0.04061265558286986,
+    0.2357915870224483
+   ],
+   "n": 29,
+   "notStated": 10,
+   "drawnFrom": 0.02780400000000005,
+   "source": "2.5-2.9% carriers in Indian cohorts; assumed 1.4% allele"
+  },
+  {
+   "variant": "CYP2C19 *2",
+   "completePanelTruth": 0.5714285714285714,
+   "truthDenominator": 42,
+   "coverageAware": 0.6486486486486487,
+   "ci": [
+    0.48758729517569566,
+    0.7817459336889914
+   ],
+   "covers": true,
+   "naive": 0.5714285714285714,
+   "naiveCi": [
+    0.4220597791187447,
+    0.7088257048085179
+   ],
+   "n": 37,
+   "notStated": 5,
+   "drawnFrom": 0.5774999999999999,
+   "source": "assumed 35%, the usual South Asian figure"
+  },
+  {
+   "variant": "CYP2C19 *17",
+   "completePanelTruth": 0.3333333333333333,
+   "truthDenominator": 42,
+   "coverageAware": 0.4117647058823529,
+   "ci": [
+    0.26365737785688864,
+    0.5777869585348072
+   ],
+   "covers": true,
+   "naive": 0.3333333333333333,
+   "naiveCi": [
+    0.2101228076197232,
+    0.4844777298833308
+   ],
+   "n": 34,
+   "notStated": 8,
+   "drawnFrom": 0.2775000000000001,
+   "source": "assumed 15%"
+  }
+ ]
+}

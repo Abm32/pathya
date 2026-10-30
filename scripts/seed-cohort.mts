@@ -1,6 +1,6 @@
 // Seed the public "demo" cohort with synthetic benchmark reports, through the real pipeline.
-//   ACCESS_CODE=... npx tsx scripts/seed-cohort.mts https://pathya.anukritiai.com
-// One phone photo per synthetic person (24 people across the two benchmark sets), so nobody is counted twice.
+//   ACCESS_CODE=... npx tsx scripts/seed-cohort.mts <baseUrl> [cohort] [dir...]
+// One phone photo per synthetic person, so nobody is counted twice.
 import { promises as fs } from "node:fs";
 
 const base = process.argv[2] ?? "http://localhost:3077";
@@ -11,7 +11,8 @@ if (process.env.ACCESS_CODE) {
   if (!r.ok) throw new Error(`login ${r.status}`);
   headers.cookie = r.headers.get("set-cookie")?.split(";")[0] ?? "";
 }
-const files = (await Promise.all(["fixtures/bench", "fixtures/bench-heldout"].map(async (d) => (await fs.readdir(d)).filter((f) => f.endsWith("-photo.jpg")).map((f) => `${d}/${f}`)))).flat();
+const dirs = process.argv.slice(4).length ? process.argv.slice(4) : ["fixtures/bench", "fixtures/bench-heldout"];
+const files = (await Promise.all(dirs.map(async (d) => (await fs.readdir(d)).filter((f) => f.endsWith("-photo.jpg")).sort().map((f) => `${d}/${f}`)))).flat();
 const q = [...files];
 let ok = 0;
 await Promise.all(Array.from({ length: 3 }, async () => {
@@ -19,7 +20,9 @@ await Promise.all(Array.from({ length: 3 }, async () => {
     const fd = new FormData();
     fd.set("report", new File([await fs.readFile(f)], f.split("/").pop()!, { type: "image/jpeg" }));
     fd.set("cohort", cohort);
-    fd.set("label", `IndiPGx-Read ${f.includes("heldout") ? "H" : "D"}-${f.split("/").pop()!.slice(0, 3)}`);
+    const stem = f.split("/").pop()!.replace("-photo.jpg", "");
+    // simulated-population photos are named p000-..., the reading benchmark's are r00-...
+    fd.set("label", /^p\d{3}-/.test(stem) ? `IndiPGx-Pop ${stem.split("-")[0]}` : `IndiPGx-Read ${f.includes("heldout") ? "H" : "D"}-${stem.slice(0, 3)}`);
     const r = await fetch(`${base}/api/analyze`, { method: "POST", body: fd, headers });
     const j = await r.json().catch(() => ({}));
     if (r.ok) ok++;

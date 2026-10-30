@@ -122,6 +122,8 @@ function Bars({ label, bars }: { label: string; bars: Bar[] }) {
 // Numbers from docs/bench-results-heldout.json (scripts/bench.mts on fixtures/bench-heldout) and docs/bench-results.json (meds).
 export const PROOF = {
   reports: 36, calls: 177,
+  // scripts/verify-pop.mts against the live india-sim cohort; numbers in docs/pooling-results.json
+  pop: { people: 120, calls: 311, undocumented: 59, truth: 25.3, naive: 15.2, aware: 30.8 },
   render: [
     { label: "Clean PDF", muse: 100, open: 100, rules: 98 },
     { label: "Phone photo", muse: 100, open: 100, rules: 44 },
@@ -156,6 +158,15 @@ export function Proof() {
         </div>
         <div className="sr card spot p-6 text-sm leading-relaxed text-muted">
           <p><span className="font-medium text-foreground">Open dataset.</span> IndiPGx-Read v0.1: 72 synthetic Indian lab reports with ground truth (4 layouts × 3 renders × 2 sets) and the scoring harness, in the public repository.</p>
+        </div>
+        <div className="sr card spot p-6 text-sm leading-relaxed text-muted">
+          <p><span className="font-medium text-foreground">Reading is not the hard part; pooling is.</span> We simulated {PROOF.pop.people} Indian people at published allele
+            frequencies and issued each a report from a lab that tests only part of the panel. Every one of the {PROOF.pop.calls} gene calls came back exactly as printed, but the
+            cohort estimate for DPYD c.85T&gt;C depends entirely on how a panel that never tested it is counted: {PROOF.pop.naive}% if counted absent, {PROOF.pop.aware}% if left out,
+            against a true {PROOF.pop.truth}%.</p>
+          <p className="mt-3"><span className="font-medium text-foreground">And the rule had a hole.</span> {PROOF.pop.undocumented}% of the exclusions turned out to be reports that
+            never say which variants they tested, not panels that genuinely skipped them. Pathya now separates the two and shows both estimates, because only one of them is a
+            question about the lab and the other is a question about the report.</p>
         </div>
         <div className="sr card spot p-6 text-sm leading-relaxed text-muted">
           <p><span className="font-medium text-foreground">Held out.</span> New genotypes and new photos, generated with a seed the pipeline was never tuned on, in four layouts Indian labs use: star table, rsID table, narrative, variant checklist. The OCR baseline was written knowing every layout, so this is its best case. Real lab formats will be harder; de-identified reports from a partner lab are the next test.</p>

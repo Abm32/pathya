@@ -1,4 +1,4 @@
-# Demo video storyboard (target 2:55, record Nov 3)
+# Demo video storyboard (target 3:10, record Nov 3)
 
 Judging (Official Rules): Impact 30, Use of Meta AI tooling 25, Technical depth 20, Demo 25. Judges watch the video, read the code and try the live product. Name the Meta model on screen in every scene.
 
@@ -13,7 +13,8 @@ Required by the rules: the video opens with one line on what existed before the 
 | 1:20 | Voice | "Read it aloud" mode: dictate in Malayalam and English; transcript appears; build record | Muse Voice takes the results read aloud, Malayalam and English mixed; Muse Spark reads the transcript into the same record. |
 | 1:40 | Curator + literature | Curator review chips; "Find Indian frequency data" with linked sources | A curator checks each call against the source. Muse Spark web search finds what has been published for India, with sources. |
 | 1:55 | Cohort | /cohort: carrier frequencies with confidence intervals, "panel did not name it" column, Download CSV | Every record joins a cohort. A panel that never tested a variant is left out of its denominator instead of being counted as a non-carrier. One CSV, ready for a study. |
-| 2:15 | Proof | Chapter 04: harsh-photo bars fill to 100% while OCR stays at 0; open-weights card | On 36 held-out reports, including skewed, shadowed photos, Muse Spark and open-weights Spark Open read all 177 gene calls. OCR read none of the harsh ones. Open weights mean a biobank can run this inside its own network. The dataset is public. |
+| 2:15 | Proof | Chapter 04: harsh-photo bars fill to 100% while OCR stays at 0; open-weights card | On 36 held-out reports, including skewed, shadowed photos, Muse Spark and open-weights Spark Open read all 177 gene calls. OCR read none of the harsh ones. Open weights mean a biobank can run this inside its own network. |
+| 2:30 | The harder half | /cohort?c=india-sim: the c.85T>C row, both estimate columns side by side | Reading is the easy half. We simulated 120 Indian people and gave each a report from a lab that tests only part of the panel. Counting a panel that never tested c.85T>C as a non-carrier puts it at 15%. Leaving those panels out puts it at 31. The truth was 25. The same run found a hole in our own rule: most of what we were excluding was reports that never say what they tested. Both numbers are on the page now, because only one of them is a question about the lab. |
 | 2:40 | Close | Logo, "India's gene data, out of WhatsApp photos.", live URL | Pathya. Research data from the reports India already has. |
 
 Recording notes:

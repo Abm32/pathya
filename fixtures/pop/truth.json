@@ -1,0 +1,3739 @@
+{
+ "n": 120,
+ "allele_freq": {
+  "DPYD": {
+   "c.1129-5923C>G, c.1236G>A (HapB3)": 0.017,
+   "c.85T>C (*9A)": 0.13,
+   "c.1905+1G>A (*2A)": 0.001,
+   "c.1679T>G (*13)": 0.001,
+   "c.2846A>T": 0.002
+  },
+  "UGT1A1": {
+   "*28": 0.35,
+   "*6": 0.02
+  },
+  "TPMT": {
+   "*3C": 0.014,
+   "*3A": 0.004
+  },
+  "NUDT15": {
+   "*3": 0.09
+  },
+  "CYP2C19": {
+   "*2": 0.35,
+   "*3": 0.01,
+   "*17": 0.15
+  },
+  "CYP2D6": {
+   "*4": 0.08,
+   "*10": 0.12,
+   "*41": 0.1,
+   "*2": 0.12
+  }
+ },
+ "freq_source": {
+  "DPYD HapB3": "3.3% carriers in a WES study of 1,612 Indians (PMID 40810747)",
+  "DPYD c.85T>C (*9A)": "24.9% carriers in 2,000 Indians (PMID 33105068)",
+  "DPYD *2A": "0.05-0.5% carriers in Indian cohorts (PMID 40810747)",
+  "DPYD *13": "near-absent in Indians (PMID 40810747); assumed 0.1%",
+  "DPYD c.2846A>T": "near-absent in Indians (PMID 40810747); assumed 0.2%",
+  "NUDT15 *3": "risk allele 7-11% in Indian cohorts (PMID 29470173)",
+  "UGT1A1 *28": "assumed 35%, the usual South Asian figure; no single Indian source verified",
+  "UGT1A1 *6": "assumed 2%; reported at low frequency in India",
+  "TPMT *3C": "2.5-2.9% carriers in Indian cohorts; assumed 1.4% allele",
+  "CYP2C19 *2": "assumed 35%, the usual South Asian figure",
+  "CYP2C19 *17": "assumed 15%"
+ },
+ "cases": [
+  {
+   "id": "p000-star",
+   "file": "p000-star-photo.jpg",
+   "layout": "star",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   }
+  },
+  {
+   "id": "p001-rsid",
+   "file": "p001-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*1"
+   },
+   "genes": {
+    "CYP2C19": "*2/*1"
+   }
+  },
+  {
+   "id": "p002-narrative",
+   "file": "p002-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   }
+  },
+  {
+   "id": "p003-checklist",
+   "file": "p003-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p004-star",
+   "file": "p004-star-photo.jpg",
+   "layout": "star",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1"
+   }
+  },
+  {
+   "id": "p005-rsid",
+   "file": "p005-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*3C/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*3C/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p006-narrative",
+   "file": "p006-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*2/*1"
+   },
+   "genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*2/*1"
+   }
+  },
+  {
+   "id": "p007-checklist",
+   "file": "p007-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p008-star",
+   "file": "p008-star-photo.jpg",
+   "layout": "star",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*1/*1",
+    "CYP2D6": "*4/*1"
+   },
+   "genes": {
+    "CYP2C19": "*1/*1",
+    "CYP2D6": "*4/*1"
+   }
+  },
+  {
+   "id": "p009-rsid",
+   "file": "p009-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p010-narrative",
+   "file": "p010-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*1/*1"
+   }
+  },
+  {
+   "id": "p011-checklist",
+   "file": "p011-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p012-star",
+   "file": "p012-star-photo.jpg",
+   "layout": "star",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p013-rsid",
+   "file": "p013-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p014-narrative",
+   "file": "p014-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*10/*1"
+   },
+   "genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*10/*1"
+   }
+  },
+  {
+   "id": "p015-checklist",
+   "file": "p015-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*1/*1"
+   }
+  },
+  {
+   "id": "p016-star",
+   "file": "p016-star-photo.jpg",
+   "layout": "star",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p017-rsid",
+   "file": "p017-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*1/*1"
+   },
+   "genes": {
+    "CYP2C19": "*1/*1"
+   }
+  },
+  {
+   "id": "p018-narrative",
+   "file": "p018-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p019-checklist",
+   "file": "p019-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*1/*1",
+    "CYP2D6": "*10/*1"
+   },
+   "genes": {
+    "CYP2C19": "*1/*1",
+    "CYP2D6": "*10/*1"
+   }
+  },
+  {
+   "id": "p020-star",
+   "file": "p020-star-photo.jpg",
+   "layout": "star",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p021-rsid",
+   "file": "p021-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   }
+  },
+  {
+   "id": "p022-narrative",
+   "file": "p022-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   }
+  },
+  {
+   "id": "p023-checklist",
+   "file": "p023-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p024-star",
+   "file": "p024-star-photo.jpg",
+   "layout": "star",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p025-rsid",
+   "file": "p025-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p026-narrative",
+   "file": "p026-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p027-checklist",
+   "file": "p027-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*17/*3",
+    "CYP2D6": "*2/*1"
+   },
+   "genes": {
+    "CYP2C19": "*17/*3",
+    "CYP2D6": "*2/*1"
+   }
+  },
+  {
+   "id": "p028-star",
+   "file": "p028-star-photo.jpg",
+   "layout": "star",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.2846A>T/Reference",
+    "UGT1A1": "*6/*1"
+   },
+   "genes": {
+    "DPYD": "c.2846A>T/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p029-rsid",
+   "file": "p029-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p030-narrative",
+   "file": "p030-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   }
+  },
+  {
+   "id": "p031-checklist",
+   "file": "p031-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p032-star",
+   "file": "p032-star-photo.jpg",
+   "layout": "star",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p033-rsid",
+   "file": "p033-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p034-narrative",
+   "file": "p034-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*1/*1",
+    "CYP2D6": "*10/*1"
+   },
+   "genes": {
+    "CYP2C19": "*1/*1",
+    "CYP2D6": "*10/*1"
+   }
+  },
+  {
+   "id": "p035-checklist",
+   "file": "p035-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p036-star",
+   "file": "p036-star-photo.jpg",
+   "layout": "star",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p037-rsid",
+   "file": "p037-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*28",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*28",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*1/*1"
+   }
+  },
+  {
+   "id": "p038-narrative",
+   "file": "p038-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*2/*2",
+    "CYP2D6": "*41/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*2/*2",
+    "CYP2D6": "*41/*1"
+   }
+  },
+  {
+   "id": "p039-checklist",
+   "file": "p039-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*1/*1"
+   }
+  },
+  {
+   "id": "p040-star",
+   "file": "p040-star-photo.jpg",
+   "layout": "star",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*17/*2",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*17/*2",
+    "CYP2D6": "*1/*1"
+   }
+  },
+  {
+   "id": "p041-rsid",
+   "file": "p041-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p042-narrative",
+   "file": "p042-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p043-checklist",
+   "file": "p043-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p044-star",
+   "file": "p044-star-photo.jpg",
+   "layout": "star",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p045-rsid",
+   "file": "p045-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*2/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*2/*1"
+   }
+  },
+  {
+   "id": "p046-narrative",
+   "file": "p046-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p047-checklist",
+   "file": "p047-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*6/*1"
+   },
+   "genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*6/*1"
+   }
+  },
+  {
+   "id": "p048-star",
+   "file": "p048-star-photo.jpg",
+   "layout": "star",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*1/*1"
+   }
+  },
+  {
+   "id": "p049-rsid",
+   "file": "p049-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p050-narrative",
+   "file": "p050-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*4/*1"
+   },
+   "genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*4/*1"
+   }
+  },
+  {
+   "id": "p051-checklist",
+   "file": "p051-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*2/*1"
+   },
+   "genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*2/*1"
+   }
+  },
+  {
+   "id": "p052-star",
+   "file": "p052-star-photo.jpg",
+   "layout": "star",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*1/*1",
+    "CYP2D6": "*10/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*1/*1",
+    "CYP2D6": "*10/*1"
+   }
+  },
+  {
+   "id": "p053-rsid",
+   "file": "p053-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p054-narrative",
+   "file": "p054-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p055-checklist",
+   "file": "p055-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p056-star",
+   "file": "p056-star-photo.jpg",
+   "layout": "star",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*3C/*1",
+    "NUDT15": "*3/*1",
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*10/*4"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*3C/*1",
+    "NUDT15": "*3/*1",
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*10/*4"
+   }
+  },
+  {
+   "id": "p057-rsid",
+   "file": "p057-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p058-narrative",
+   "file": "p058-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p059-checklist",
+   "file": "p059-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1",
+    "CYP2C19": "*17/*2",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1",
+    "CYP2C19": "*17/*2",
+    "CYP2D6": "*1/*1"
+   }
+  },
+  {
+   "id": "p060-star",
+   "file": "p060-star-photo.jpg",
+   "layout": "star",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p061-rsid",
+   "file": "p061-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*6/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p062-narrative",
+   "file": "p062-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*41/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*41/*1"
+   }
+  },
+  {
+   "id": "p063-checklist",
+   "file": "p063-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p064-star",
+   "file": "p064-star-photo.jpg",
+   "layout": "star",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1",
+    "CYP2C19": "*17/*2",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "c.1129-5923C>G, c.1236G>A (HapB3)/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1",
+    "CYP2C19": "*17/*2",
+    "CYP2D6": "*1/*1"
+   }
+  },
+  {
+   "id": "p065-rsid",
+   "file": "p065-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p066-narrative",
+   "file": "p066-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p067-checklist",
+   "file": "p067-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1"
+   }
+  },
+  {
+   "id": "p068-star",
+   "file": "p068-star-photo.jpg",
+   "layout": "star",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*1/*1"
+   }
+  },
+  {
+   "id": "p069-rsid",
+   "file": "p069-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p070-narrative",
+   "file": "p070-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*6/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p071-checklist",
+   "file": "p071-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p072-star",
+   "file": "p072-star-photo.jpg",
+   "layout": "star",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   }
+  },
+  {
+   "id": "p073-rsid",
+   "file": "p073-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*28"
+   },
+   "genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*28"
+   }
+  },
+  {
+   "id": "p074-narrative",
+   "file": "p074-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p075-checklist",
+   "file": "p075-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*10/*41"
+   },
+   "genes": {
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*10/*41"
+   }
+  },
+  {
+   "id": "p076-star",
+   "file": "p076-star-photo.jpg",
+   "layout": "star",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p077-rsid",
+   "file": "p077-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*28"
+   },
+   "genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*28"
+   }
+  },
+  {
+   "id": "p078-narrative",
+   "file": "p078-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p079-checklist",
+   "file": "p079-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p080-star",
+   "file": "p080-star-photo.jpg",
+   "layout": "star",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1"
+   }
+  },
+  {
+   "id": "p081-rsid",
+   "file": "p081-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p082-narrative",
+   "file": "p082-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p083-checklist",
+   "file": "p083-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p084-star",
+   "file": "p084-star-photo.jpg",
+   "layout": "star",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p085-rsid",
+   "file": "p085-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p086-narrative",
+   "file": "p086-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*17/*2",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*17/*2",
+    "CYP2D6": "*1/*1"
+   }
+  },
+  {
+   "id": "p087-checklist",
+   "file": "p087-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p088-star",
+   "file": "p088-star-photo.jpg",
+   "layout": "star",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*1/*1",
+    "CYP2D6": "*41/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*1/*1",
+    "CYP2D6": "*41/*1"
+   }
+  },
+  {
+   "id": "p089-rsid",
+   "file": "p089-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*2/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*2/*1"
+   }
+  },
+  {
+   "id": "p090-narrative",
+   "file": "p090-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1"
+   }
+  },
+  {
+   "id": "p091-checklist",
+   "file": "p091-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p092-star",
+   "file": "p092-star-photo.jpg",
+   "layout": "star",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*3/*1",
+    "CYP2D6": "*10/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*3/*1",
+    "CYP2D6": "*10/*1"
+   }
+  },
+  {
+   "id": "p093-rsid",
+   "file": "p093-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*3A/*1",
+    "NUDT15": "*3/*1",
+    "CYP2C19": "*2/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*3A/*1",
+    "NUDT15": "*3/*1",
+    "CYP2C19": "*2/*1"
+   }
+  },
+  {
+   "id": "p094-narrative",
+   "file": "p094-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*10/*41"
+   },
+   "genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*10/*41"
+   }
+  },
+  {
+   "id": "p095-checklist",
+   "file": "p095-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p096-star",
+   "file": "p096-star-photo.jpg",
+   "layout": "star",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*10/*1"
+   },
+   "genes": {
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*10/*1"
+   }
+  },
+  {
+   "id": "p097-rsid",
+   "file": "p097-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*2/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*2/*1"
+   }
+  },
+  {
+   "id": "p098-narrative",
+   "file": "p098-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*1/*1"
+   }
+  },
+  {
+   "id": "p099-checklist",
+   "file": "p099-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*17/*17",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "CYP2C19": "*17/*17",
+    "CYP2D6": "*1/*1"
+   }
+  },
+  {
+   "id": "p100-star",
+   "file": "p100-star-photo.jpg",
+   "layout": "star",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p101-rsid",
+   "file": "p101-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*1"
+   },
+   "genes": {
+    "CYP2C19": "*2/*1"
+   }
+  },
+  {
+   "id": "p102-narrative",
+   "file": "p102-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*2/*1"
+   },
+   "genes": {
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*2/*1"
+   }
+  },
+  {
+   "id": "p103-checklist",
+   "file": "p103-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   }
+  },
+  {
+   "id": "p104-star",
+   "file": "p104-star-photo.jpg",
+   "layout": "star",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p105-rsid",
+   "file": "p105-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p106-narrative",
+   "file": "p106-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p107-checklist",
+   "file": "p107-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*10/*41"
+   },
+   "genes": {
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*10/*41"
+   }
+  },
+  {
+   "id": "p108-star",
+   "file": "p108-star-photo.jpg",
+   "layout": "star",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p109-rsid",
+   "file": "p109-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*1"
+   },
+   "genes": {
+    "CYP2C19": "*2/*1"
+   }
+  },
+  {
+   "id": "p110-narrative",
+   "file": "p110-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*2/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*2/*1",
+    "CYP2D6": "*2/*1"
+   }
+  },
+  {
+   "id": "p111-checklist",
+   "file": "p111-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p112-star",
+   "file": "p112-star-photo.jpg",
+   "layout": "star",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1"
+   }
+  },
+  {
+   "id": "p113-rsid",
+   "file": "p113-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "c.85T>C (*9A)/Reference",
+    "UGT1A1": "*28/*28"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*28"
+   }
+  },
+  {
+   "id": "p114-narrative",
+   "file": "p114-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*3C/*1",
+    "NUDT15": "*1/*1"
+   },
+   "genes": {
+    "TPMT": "*3C/*1",
+    "NUDT15": "*1/*1"
+   }
+  },
+  {
+   "id": "p115-checklist",
+   "file": "p115-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "DPYD tier-1 + UGT1A1 TA repeat",
+   "tested": {
+    "DPYD": [
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p116-star",
+   "file": "p116-star-photo.jpg",
+   "layout": "star",
+   "panel": "Thiopurine panel",
+   "tested": {
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ]
+   },
+   "true_genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1"
+   },
+   "genes": {
+    "TPMT": "*1/*1",
+    "NUDT15": "*3/*1"
+   }
+  },
+  {
+   "id": "p117-rsid",
+   "file": "p117-rsid-photo.jpg",
+   "layout": "rsid",
+   "panel": "Extended DPYD + UGT1A1",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*28/*1"
+   }
+  },
+  {
+   "id": "p118-narrative",
+   "file": "p118-narrative-photo.jpg",
+   "layout": "narrative",
+   "panel": "Cardiology pharmacogenomics panel",
+   "tested": {
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "CYP2C19": "*2/*2",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "CYP2C19": "*2/*2",
+    "CYP2D6": "*1/*1"
+   }
+  },
+  {
+   "id": "p119-checklist",
+   "file": "p119-checklist-photo.jpg",
+   "layout": "checklist",
+   "panel": "Comprehensive oncology panel",
+   "tested": {
+    "DPYD": [
+     "c.1129-5923C>G, c.1236G>A (HapB3)",
+     "c.85T>C (*9A)",
+     "c.1905+1G>A (*2A)",
+     "c.1679T>G (*13)",
+     "c.2846A>T"
+    ],
+    "UGT1A1": [
+     "*28",
+     "*6"
+    ],
+    "TPMT": [
+     "*2",
+     "*3A",
+     "*3B",
+     "*3C"
+    ],
+    "NUDT15": [
+     "*3"
+    ],
+    "CYP2C19": [
+     "*2",
+     "*3",
+     "*17"
+    ],
+    "CYP2D6": [
+     "*2",
+     "*3",
+     "*4",
+     "*5",
+     "*6",
+     "*10",
+     "*41"
+    ]
+   },
+   "true_genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*1/*1"
+   },
+   "genes": {
+    "DPYD": "Reference/Reference",
+    "UGT1A1": "*1/*1",
+    "TPMT": "*1/*1",
+    "NUDT15": "*1/*1",
+    "CYP2C19": "*17/*1",
+    "CYP2D6": "*1/*1"
+   }
+  }
+ ]
+}

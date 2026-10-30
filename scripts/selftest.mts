@@ -43,7 +43,7 @@ assert.equal(deidentify(ex).patientRef, "");
 const rec = (id: string, dpyd: string, stated85: boolean): CohortRecord => ({
   meta: { id, label: "", cohort: "t", source: "report", createdAt: id },
   profile: prof([["DPYD", dpyd]]),
-  quality: { identifierRemoved: false, unread: [], warnings: [], coverage: [{ gene: "DPYD", variant: "c.85T>C (*9A)", stated: stated85, why: "" }, { gene: "DPYD", variant: "HapB3", stated: true, why: "" }] },
+  quality: { identifierRemoved: false, unread: [], warnings: [], coverage: [{ gene: "DPYD", variant: "c.85T>C (*9A)", stated: stated85, documented: true, why: "" }, { gene: "DPYD", variant: "HapB3", stated: true, documented: true, why: "" }] },
   review: null,
 });
 const stats = cohortStats([
@@ -55,6 +55,10 @@ const stats = cohortStats([
 ]);
 const s85 = stats.find((s) => s.variant === "c.85T>C (*9A)")!;
 assert.deepEqual([s85.carriers, s85.homozygous, s85.n, s85.notStated], [2, 1, 3, 2]);
+// the same records, pooled as if "not tested" meant "not a carrier", understate the frequency
+assert.equal(s85.freq, 2 / 3);
+assert.equal(s85.naive, 2 / 5);
+assert.deepEqual([s85.notTested, s85.undocumented], [2, 0]);
 const hap = stats.find((s) => s.variant === "HapB3")!;
 assert.deepEqual([hap.carriers, hap.n, hap.notStated], [1, 5, 0]);
 // HapB3's PharmCAT name contains a comma, so the CSV must quote it

@@ -9,7 +9,12 @@ import type { PgxProfile } from "./pharmcat";
 export type Quality = {
   identifierRemoved: boolean;
   unread: string[]; // genes printed on the report whose result could not be read
-  coverage: { gene: string; variant: string; stated: boolean; why: string }[];
+  /**
+   * Per India-relevant variant: whether the report names it as tested, and whether the report
+   * documents that gene's panel at all. A report that lists its panel and omits a variant tells us
+   * the variant was not assayed; a report that never lists a panel tells us nothing either way.
+   */
+  coverage: { gene: string; variant: string; stated: boolean; documented: boolean; why: string }[];
   warnings: string[];
 };
 
@@ -39,7 +44,14 @@ export function quality(extract: LabExtract | null, profile: PgxProfile): Qualit
     ...(extract.testedVariants ?? []).filter((t) => t.gene.toUpperCase() === gene).map((t) => t.variant),
   ].join(" \n ");
   const reported = new Set(extract.genes.map((g) => g.gene.toUpperCase()));
-  const coverage = INDIA_PANEL.filter((v) => reported.has(v.gene)).map((v) => ({ gene: v.gene, variant: v.variant, stated: v.re.test(geneText(v.gene)), why: v.why }));
+  // A gene's panel counts as documented when the report lists variants for it: an explicit tested list,
+  // or method text naming star alleles, rsIDs or HGVS changes for that gene.
+  const documents = (gene: string) =>
+    (extract.testedVariants ?? []).some((t) => t.gene.toUpperCase() === gene) ||
+    clauses.filter((c) => c.toUpperCase().includes(gene)).some((c) => /\*\d|rs\d{3}|c\.\d/.test(c));
+  const coverage = INDIA_PANEL.filter((v) => reported.has(v.gene)).map((v) => ({
+    gene: v.gene, variant: v.variant, stated: v.re.test(geneText(v.gene)), documented: documents(v.gene), why: v.why,
+  }));
   const unread = extract.genes.filter((g) => !g.diplotype && !g.phenotype && !g.activityScore).map((g) => g.gene);
   return { identifierRemoved: Boolean(extract.patientRef?.trim()), unread, coverage, warnings: extract.warnings };
 }

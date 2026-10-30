@@ -35,7 +35,7 @@ Meanwhile, labs across India already run these tests every day. The results go t
 3. **Standardise.** PharmCAT, CPIC's reference engine, normalises the calls to PharmVar allele names and CPIC phenotype terms. Only the calls are kept; no guideline or drug text is stored.
 4. **Check quality.** Deterministic rules flag which India-relevant variants (HapB3, c.85T>C, *2A, *13, c.2846A>T, NUDT15 *3, UGT1A1 *28 and *6, TPMT *3C, CYP2C19 *2 and *17) the panel did not name, record unreadable calls, and remove any patient or lab reference before storage.
 5. **Record.** Each result becomes a de-identified record with the original document beside the quotes, exportable as JSON, PharmCAT outside-call TSV or CSV. A curator verifies each call against the source, and the decision goes to an append-only audit log.
-6. **Cohort.** Records aggregate into carrier frequencies per variant with Wilson 95% intervals. A panel that never named a variant is left out of that variant's denominator instead of being counted as a non-carrier, the most common error when pooling targeted-panel results.
+6. **Cohort.** Records aggregate into carrier frequencies per variant with Wilson 95% intervals. A panel that never named a variant is left out of that variant's denominator instead of being counted as a non-carrier, and the page shows what the same records give under the other assumption, so the choice is visible rather than buried. Reports that do not document their panel at all are counted separately from panels that genuinely skipped a variant.
 7. **Literature.** Muse Spark web search finds published Indian frequency data for each variant in a record, with linked sources.
 
 Pathya makes no dose, drug or test recommendation and produces no patient-facing output. It is a research and data tool.
@@ -71,7 +71,8 @@ We left out Muse Image and SAM 3.1 on purpose: nothing here needs an image gener
 ## Does it hold up?
 
 - **Held-out extraction benchmark.** 36 synthetic Indian lab reports in four layouts Indian labs use (star-allele table, rsID-only table, narrative, variant checklist), each as a clean PDF, a phone photo and a harsh skewed, shadowed photo. Muse Spark 1.3 and open-weights Muse Spark Open each read all 177 gene calls exactly, invented no genes, and every quote was found on the page. A best-case OCR + rules baseline gets 98% on clean PDFs, 44% on phone photos and 0% on harsh photos. The development run caught two real pipeline bugs, fixed before the held-out set was generated. Method and limits: `docs/BENCHMARK.md`.
-- **Open dataset.** The 72 synthetic reports, their ground truth and the scoring harness are in the repository as IndiPGx-Read v0.1.
+- **Pooling benchmark, and what it caught.** IndiPGx-Pop v0.1: 120 simulated Indian people, each issued a report by one of five simulated labs that assay different parts of the panel, so the complete-panel answer is known. All 311 gene calls were read exactly. The cohort estimate for DPYD c.85T>C, the variant a quarter of Indians carry and the European tier-1 panel never tests, is 15.2% if untested panels are counted as non-carriers and 30.8% if they are left out, against a true 25.3%: the common way of pooling is wrong by 10 points, downward. Averaged over all 11 variants the naive estimate was actually closer (1.3 vs 4.1 points), which we report rather than hide; the coverage-aware estimate is unbiased but noisier at this sample size. The run also found a bug in our own rule: 59% of the exclusions were reports that never state which variants they tested, not panels that skipped them, so Pathya now separates "not in this panel" from "panel not documented" and shows both estimates. Method and limits: `docs/BENCHMARK.md`.
+- **Open dataset.** The 72 synthetic reading reports, the 120 simulated-population reports, their ground truth and both scoring harnesses are in the repository as IndiPGx-Read v0.1 and IndiPGx-Pop v0.1.
 - **End-to-end eval.** 5 cases through the deployed system (two VCFs, a lab PDF, the same report as a phone photo, and results read aloud): phenotypes, allele names and coverage are checked, and the eval fails if any guideline or drug text, or an identifier, is stored.
 - **Demo cohort, verified.** 24 synthetic people, one phone photo each, run through the live production pipeline into the public cohort. All 106 gene calls in those live records match the ground truth (`scripts/verify-cohort.mts`), and none stores an identifier or any guideline or drug text.
 - **Speed.** About 15–30 seconds from photo to record, most of it Muse Spark reading the image.
@@ -79,7 +80,7 @@ We left out Muse Image and SAM 3.1 on purpose: nothing here needs an image gener
 ## Challenges
 
 - **Staying a data tool.** Pharmacogenomics pulls towards advice. We drew a hard line: the product stores calls, quotes, coverage and statistics, never guideline text, doses or patient explanations, and the eval enforces it.
-- **Missing is not negative.** A targeted panel that never tested c.85T>C says nothing about it. Counting such reports as non-carriers would understate frequencies; Pathya keeps them out of the denominator and shows how many there were.
+- **Missing is not negative, and "missing" has two meanings.** A targeted panel that never tested c.85T>C says nothing about it, and counting such reports as non-carriers understates the frequency by 10 points in our simulation. But a report that simply never prints its panel is a different problem, and our first rule conflated the two: 59% of exclusions turned out to be undocumented reports, including NUDT15 panels that all do test *3. The fix was to record both facts and show both estimates.
 - **Real reports are photos.** Skewed, compressed WhatsApp images are the normal input, so the photo path is a first-class benchmark condition, not an afterthought.
 - **Two providers, one contract.** The open model does not enforce JSON schemas, so the same schema works as a constraint and as an instruction, with validation either way.
 
@@ -96,7 +97,7 @@ Anukriti AI, Kochi, Kerala. [Team member names and roles]
 
 ## Links
 
-- Live demo: https://pathya.anukritiai.com. The story, the demo cohort (https://pathya.anukritiai.com/cohort) and a finished sample record (https://pathya.anukritiai.com/sample) open without a code. Live runs, uploads and dictation need the judge access code: [give judges a code]
+- Live demo: https://pathya.anukritiai.com. The story, the demo cohort (https://pathya.anukritiai.com/cohort), the simulated-population cohort (https://pathya.anukritiai.com/cohort?c=india-sim) and a finished sample record (https://pathya.anukritiai.com/sample) open without a code. Live runs, uploads and dictation need the judge access code: [give judges a code]
 - Demo video: [URL]
 - Repository: [URL; must be public]
 - Benchmark and dataset: `docs/BENCHMARK.md`
