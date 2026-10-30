@@ -13,7 +13,7 @@ export const PRETEST_SAMPLES: { label: string; meds: string }[] = [
 export function PretestResult({ meds }: { meds: string }) {
   const r = pretest(meds);
   if (!r.tests.length) {
-    return <p className="rounded-xl border border-dashed p-4 text-sm text-muted">No drug on this list has a pharmacogenomic guideline. No gene test needed before cycle 1.</p>;
+    return <p className="rounded-xl border border-dashed p-4 text-sm text-muted">Nothing on this list matches Pathya&apos;s gene-drug table (oncology and supportive-care drugs, brands and regimen names such as FOLFOX or CAPOX). Check the spelling. A drug missing from the table is not proof that no test is needed.</p>;
   }
   return (
     <div aria-live="polite" className="space-y-3">

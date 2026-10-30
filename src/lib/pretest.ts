@@ -8,10 +8,10 @@ type Pair = { drug: string; aliases: string[]; gene: string; tier: Tier; source:
 
 // ponytail: hand-kept table of oncology + supportive-care pairs; regenerate from PharmCAT's guideline data if it grows.
 const PAIRS: Pair[] = [
-  { drug: "capecitabine", aliases: ["xeloda", "capecitabin", "capegard", "cape"], gene: "DPYD", tier: "before", source: "CPIC A · FDA label", why: "DPYD carriers are ~4% of patients and ~48% of fluoropyrimidine deaths; CPIC starts carriers at 50% or avoids the drug." },
-  { drug: "fluorouracil", aliases: ["5fu", "fluracil", "adrucil", "5fluorouracil"], gene: "DPYD", tier: "before", source: "CPIC A · FDA label", why: "Same DPD pathway as capecitabine; FDA added DPD-deficiency testing language in 2026." },
-  { drug: "tegafur", aliases: ["uftoral", "s1", "teysuno"], gene: "DPYD", tier: "before", source: "DPWG", why: "Prodrug of 5-FU, cleared by DPD." },
-  { drug: "irinotecan", aliases: ["campto", "cpt11", "irinotel", "onivyde", "folfiri", "folfirinox"], gene: "UGT1A1", tier: "before", source: "DPWG · FDA label", why: "UGT1A1 *28/*28 or *6 carriers clear SN-38 slowly: neutropenia and diarrhoea at standard dose." },
+  { drug: "capecitabine", aliases: ["xeloda", "capecitabin", "capegard", "cape", "capox", "capeox", "xelox", "capiri", "xeliri", "eox", "ecx", "xp"], gene: "DPYD", tier: "before", source: "CPIC A · FDA label", why: "DPYD carriers are ~4% of patients and ~48% of fluoropyrimidine deaths; CPIC starts carriers at 50% or avoids the drug." },
+  { drug: "fluorouracil", aliases: ["5fu", "fluracil", "adrucil", "5fluorouracil", "folfox", "mfolfox6", "folfiri", "folfirinox", "mfolfirinox", "folfoxiri", "flot", "dcf", "tpf", "ecf", "pf", "mayo", "degramont", "lv5fu2"], gene: "DPYD", tier: "before", source: "CPIC A · FDA label", why: "Same DPD pathway as capecitabine; FDA added DPD-deficiency testing language in 2026." },
+  { drug: "tegafur", aliases: ["uftoral", "s1", "teysuno", "sox", "uft"], gene: "DPYD", tier: "before", source: "DPWG", why: "Prodrug of 5-FU, cleared by DPD." },
+  { drug: "irinotecan", aliases: ["campto", "cpt11", "irinotel", "onivyde", "folfiri", "folfirinox", "mfolfirinox", "folfoxiri", "capiri", "xeliri", "irinox"], gene: "UGT1A1", tier: "before", source: "DPWG · FDA label", why: "UGT1A1 *28/*28 or *6 carriers clear SN-38 slowly: neutropenia and diarrhoea at standard dose." },
   { drug: "sacituzumab govitecan", aliases: ["trodelvy", "sacituzumab"], gene: "UGT1A1", tier: "before", source: "FDA label", why: "Same SN-38 payload as irinotecan." },
   { drug: "mercaptopurine", aliases: ["6mp", "purinethol", "purixan"], gene: "TPMT + NUDT15", tier: "before", source: "CPIC A", why: "Thiopurine myelosuppression; in Indians NUDT15 drives more of the risk than TPMT." },
   { drug: "thioguanine", aliases: ["6tg", "tioguanine"], gene: "TPMT + NUDT15", tier: "before", source: "CPIC A", why: "Thiopurine myelosuppression; NUDT15 matters more than TPMT in South Asians." },
@@ -36,7 +36,7 @@ export type PretestResult = {
   noGuideline: string[];
 };
 
-const words = (s: string) => s.toLowerCase().replace(/(\d)\s*-\s*(\w)/g, "$1$2").split(/[^a-z0-9]+/).filter(Boolean);
+const words = (s: string) => s.toLowerCase().replace(/\b(\d)[\s-]+([a-z]{2})\b/g, "$1$2").replace(/\b([a-z]{1,3})[\s-]+(\d{1,2})\b/g, "$1$2").split(/[^a-z0-9]+/).filter(Boolean);
 const squash = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
 
 /** Short aliases (cape, pan, s1, 6mp) must be a whole word; longer ones may appear anywhere in the line. */
