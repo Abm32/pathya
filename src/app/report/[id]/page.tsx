@@ -13,6 +13,20 @@ import { CountUp, SectionNav } from "@/app/fx";
 
 export const dynamic = "force-dynamic";
 
+/**
+ * PharmCAT's DPYD names carry the full HGVS of every variant on the haplotype, which is correct and
+ * unreadable. Restate it as copies of the variant a reader recognises, when that is shorter.
+ */
+function plainCopies(diplotype: string) {
+  const short = (a: string) => a.match(/HapB3/)?.[0] ?? a.match(/\(\*\d+\w?\)/)?.[0].slice(1, -1) ?? a.trim();
+  const alleles = diplotype.split("/").map(short);
+  if (alleles.join("/") === diplotype || alleles.some((a) => a.length > 14)) return "";
+  const variants = alleles.filter((a) => a !== "Reference" && a !== "*1");
+  if (!variants.length) return "";
+  const counts = [...new Set(variants)].map((v) => `${variants.filter((x) => x === v).length === 2 ? "two copies" : "one copy"} ${v}`);
+  return counts.join(", ");
+}
+
 const SOURCE: Record<string, string> = { report: "Lab report", dictation: "Dictated", vcf: "VCF" };
 
 function H2({ children, sub, id }: { children: React.ReactNode; sub?: React.ReactNode; id?: string }) {
@@ -129,7 +143,10 @@ export default async function RecordPage({ params }: { params: Promise<{ id: str
                     <tr key={g.gene} className="align-top">
                       <td className="num py-2.5 pr-3 font-semibold">{g.gene}</td>
                       <td className="py-2.5 pr-3 text-muted">{quoteFor(g.gene) ? <>&ldquo;{quoteFor(g.gene)}&rdquo;</> : "—"}</td>
-                      <td className="num py-2.5 pr-3 text-accent">{g.diplotype}</td>
+                      <td className="num py-2.5 pr-3 text-accent">
+                        {g.diplotype}
+                        {plainCopies(g.diplotype) && <span className="mt-1 block text-[11px] text-muted">{plainCopies(g.diplotype)}</span>}
+                      </td>
                       <td className="py-2.5">{g.phenotype}{g.activityScore ? <span className="text-muted"> · activity {g.activityScore}</span> : null}</td>
                     </tr>
                   ))}
