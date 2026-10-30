@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { readJson, caseDir } from "@/lib/store";
@@ -53,6 +54,8 @@ export default async function Report({ params }: { params: Promise<{ id: string 
   const extract = await readJson<LabExtract>(id, "extract.json");
   const confirmed = await readJson<{ clinician: string; at: string }>(id, "confirmation.json");
   const trace = await runTrace(id);
+  // Public sample cases are readable without the code; actions that call a model or write data are not.
+  const signedIn = !process.env.ACCESS_CODE || (await cookies()).get("access")?.value === process.env.ACCESS_CODE;
   const sourceKind = await fs.access(path.join(caseDir(id), "report.pdf")).then(() => "pdf" as const, () =>
     fs.access(path.join(caseDir(id), "report.img")).then(() => "img" as const, () => null));
   const called = profile.genes.filter((g) => g.called);
@@ -256,9 +259,21 @@ export default async function Report({ params }: { params: Promise<{ id: string 
             <h3 className="section-title">Limitations</h3>
             <ul className="mt-3 list-disc space-y-1.5 pl-5">{ai.limitations.map((l, i) => <li key={i}>{l}</li>)}</ul>
           </section>
-          <LatestCheck id={id} enabled={!!ai} />
           <div id="review" className="scroll-mt-32" />
-          <ConfirmPanel id={id} drugs={meds.filter((m) => m.risk !== "standard" && m.risk !== "unknown").map((m) => ({ drug: m.drug, risk: m.risk }))} confirmed={confirmed} />
+          {signedIn ? (
+            <>
+              <LatestCheck id={id} enabled={!!ai} />
+              <ConfirmPanel id={id} drugs={meds.filter((m) => m.risk !== "standard" && m.risk !== "unknown").map((m) => ({ drug: m.drug, risk: m.risk }))} confirmed={confirmed} />
+            </>
+          ) : (
+            <section className="card mt-10 p-6 print:hidden">
+              <h2 className="text-lg font-semibold tracking-tight">Clinician review</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted">
+                This is a read-only sample. In the pilot, the oncologist accepts, modifies or rejects each flagged drug here, and Muse Spark web search checks for label changes newer than the bundled guideline data. Both are written to the audit log.
+              </p>
+              <a href={`/login?next=/report/${id}`} className="btn btn-ghost btn-sm mt-4">Sign in with the pilot code</a>
+            </section>
+          )}
         </>
       )}
       <footer className="mt-12 border-t border-line pt-4 text-xs text-muted">

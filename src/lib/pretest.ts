@@ -32,9 +32,12 @@ const PAIRS: Pair[] = [
 ];
 
 export type PretestResult = {
-  tests: { gene: string; tier: Tier; drugs: { input: string; drug: string; source: string; why: string }[] }[];
+  tests: { gene: string; tier: Tier; drugs: { input: string; drug: string; source: string; why: string; viaModel?: boolean }[] }[];
   noGuideline: string[];
 };
+
+/** Lines the table could not match, which a model may name: input line -> generic drug names. */
+export type ModelMap = Record<string, string[]>;
 
 const words = (s: string) => s.toLowerCase().replace(/\b(\d)[\s-]+([a-z]{2})\b/g, "$1$2").replace(/\b([a-z]{1,3})[\s-]+(\d{1,2})\b/g, "$1$2").split(/[^a-z0-9]+/).filter(Boolean);
 const squash = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -45,15 +48,23 @@ function match(line: string): Pair[] {
   return PAIRS.filter((p) => [p.drug, ...p.aliases].some((a) => { const x = squash(a); return x.length >= 5 ? sq.includes(x) : w.includes(x); }));
 }
 
-export function pretest(regimen: string): PretestResult {
+/** Lines with no table match. These are the only ones worth asking a model about. */
+export const unmatched = (regimen: string) => regimen.split(/\n|,/).map((l) => l.trim()).filter((l) => l && !match(l).length);
+
+/**
+ * The table decides every test. `mapped` only renames a line the table missed (e.g. a new brand) to generic names,
+ * which then go through the same table; such hits carry viaModel so the UI can say who did the naming.
+ */
+export function pretest(regimen: string, mapped: ModelMap = {}): PretestResult {
   const byGene = new Map<string, PretestResult["tests"][number]>();
   const noGuideline: string[] = [];
   for (const line of regimen.split(/\n|,/).map((l) => l.trim()).filter(Boolean)) {
-    const hits = match(line);
+    let hits = match(line), viaModel = false;
+    if (!hits.length && mapped[line]?.length) { hits = mapped[line].flatMap(match); viaModel = hits.length > 0; }
     if (!hits.length) { noGuideline.push(line); continue; }
     for (const p of hits) {
       const t = byGene.get(p.gene) ?? { gene: p.gene, tier: p.tier, drugs: [] };
-      if (!t.drugs.some((d) => d.drug === p.drug)) t.drugs.push({ input: line, drug: p.drug, source: p.source, why: p.why });
+      if (!t.drugs.some((d) => d.drug === p.drug)) t.drugs.push({ input: line, drug: p.drug, source: p.source, why: p.why, ...(viaModel ? { viaModel } : {}) });
       byGene.set(p.gene, t);
     }
   }

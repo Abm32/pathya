@@ -1,6 +1,6 @@
 // Fast offline checks for the deterministic parts. No network, no Docker: npx tsx scripts/selftest.mts
 import assert from "node:assert/strict";
-import { pretest } from "../src/lib/pretest";
+import { pretest, unmatched } from "../src/lib/pretest";
 import { dpydFromText, normaliseDiplotype } from "../src/lib/pdf-extract";
 
 // Pre-test: CAPOX + supportive care as an Indian oncologist writes it
@@ -19,6 +19,13 @@ for (const reg of ["FOLFIRI", "mFOLFIRINOX", "XELIRI"]) assert.deepEqual(pretest
 assert.equal(pretest("6 MP 50 mg").tests[0].gene, "TPMT + NUDT15");
 assert.equal(pretest("CPT 11").tests[0].gene, "UGT1A1");
 assert.equal(pretest("Gemcitabine").tests.length, 0);
+// A model may only rename an unmatched line; the table still decides, and a mapping to a non-guideline drug adds nothing
+const m = pretest("Tab. Kapetrust 500 bd\nGemcitabine", { "Tab. Kapetrust 500 bd": ["capecitabine"], Gemcitabine: ["gemcitabine"] });
+assert.equal(m.tests[0].gene, "DPYD");
+assert.equal(m.tests[0].drugs[0].viaModel, true);
+assert.deepEqual(m.noGuideline, ["Gemcitabine"]);
+assert.equal(pretest("Xeloda", { Xeloda: ["warfarin"] }).tests[0].drugs[0].viaModel, undefined, "table matches win over the model");
+assert.deepEqual(unmatched("Xeloda\nFoo 10\nPan 40"), ["Foo 10"]);
 
 // DPYD names the model may write, and checklist wording (both bugs found by the benchmark)
 assert.equal(normaliseDiplotype("DPYD", "c.1236G>A (HapB3)/c.85T>C (*9A)"), "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)");

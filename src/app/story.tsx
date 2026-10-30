@@ -28,6 +28,12 @@ export const CHAPTERS = [
 /** Fixed chapter rail on wide screens, with scroll-spy. */
 export function StoryRail() {
   const [cur, setCur] = useState("");
+  const [past, setPast] = useState(false); // hidden over the hero
+  useEffect(() => {
+    const on = () => setPast(scrollY > innerHeight * 0.7);
+    on(); addEventListener("scroll", on, { passive: true });
+    return () => removeEventListener("scroll", on);
+  }, []);
   useEffect(() => {
     const io = new IntersectionObserver((ens) => {
       const vis = ens.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
@@ -38,7 +44,7 @@ export function StoryRail() {
   }, []);
   const at = CHAPTERS.findIndex((c) => c.id === cur);
   return (
-    <nav aria-label="Story chapters" data-show={at >= 0} className="rail print:hidden">
+    <nav aria-label="Story chapters" data-show={past && at >= 0} className="rail print:hidden">
       <ol>
         {CHAPTERS.map((c, i) => (
           <li key={c.id}>

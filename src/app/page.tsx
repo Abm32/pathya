@@ -186,7 +186,7 @@ export default function Home() {
           </div>
           {mode === "pretest" ? (
             <div className="space-y-4">
-              <p className="text-sm leading-relaxed text-muted">Write the planned regimen the way you would on the chart. Pathya lists the gene tests to order before cycle 1 and why. Instant and deterministic: no model call, nothing leaves the browser.</p>
+              <p className="text-sm leading-relaxed text-muted">Write the planned regimen the way you would on the chart. Pathya lists the gene tests to order before cycle 1 and why, from a fixed guideline table that runs instantly in your browser. Muse Spark is asked only to name drugs the table does not know; the table still decides the test.</p>
               <div className="flex flex-wrap items-center gap-2">
                 <span className="mr-1 text-xs text-muted">Try a regimen</span>
                 {PRETEST_SAMPLES.map((x) => (
