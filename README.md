@@ -46,29 +46,50 @@ Not used on purpose: Muse Image (no clinical value here), SAM 3.1 (no imaging ta
 - **Extraction benchmark (held out).** 36 synthetic Indian lab reports in four layouts (star table, rsID table, narrative, variant checklist), each as a clean PDF, a phone photo and a harsh skewed photo: Muse Spark 1.3 and Muse Spark Open each read 177/177 gene calls exactly, against 58/59, 26/59 and 0/59 for an OCR + rules baseline. Prescription mapping (brands, abbreviations, Malayalam-English dictation): 26/26 on both models in 3 of 3 runs, against 2 of 20 for name lookup. The development run caught two pipeline bugs, fixed before the held-out run. Method, limits and misses: [docs/BENCHMARK.md](docs/BENCHMARK.md).
 - **Self-test.** `npx tsx scripts/selftest.mts` checks the pre-test table and the DPYD normalisation offline in under a second.
 - **Deterministic eval.** `pnpm tsx scripts/eval.mts` runs four synthetic cases end to end and asserts phenotypes and risk calls (DPYD IM → capecitabine adjust; DPYD PM → 5-FU avoid; lab PDF with HapB3 + c.85T>C → called IM, India lens fires; the same report as a phone photo → identical calls).
-  Passes 3/3 on both paths: hosted Muse Spark 1.3 and open-weights Muse Spark Open on Baseten (`MUSE_PROVIDER=baseten`, 2026-10-27, no fallback triggered). 4/4 with the phone-photo case against the deployed EC2 instance (2026-10-27, `ACCESS_CODE=... pnpm tsx scripts/eval.mts https://<host>`). Same genotype calls, same risk ranking, same PMIDs; only the prose differs.
+  Passes 3/3 on both paths: hosted Muse Spark 1.3 and open-weights Muse Spark Open on Baseten (`MUSE_PROVIDER=baseten`, 2026-10-27, no fallback triggered). 4/4 with the phone-photo case against the deployed EC2 instance (2026-10-27, `ACCESS_CODE=... pnpm tsx scripts/eval.mts https://<host>`). Same genotype calls, same risk ranking, same PMIDs; only the prose differs. Re-run 4/4 on the deployed instance on 2026-10-30 after the pre-test and benchmark changes.
 - **Two inference paths, one wire format.** Hosted Muse Spark 1.3 (strict JSON schema, PDF input, web search) and open-weights Muse Spark Open on Baseten (schema in prompt, JSON extracted and validated). Either can be primary; the other is the fallback. Open weights give the data-residency answer every Indian hospital IT team asks first.
 - **Single container.** Node app on top of the official `pgkb/pharmcat` image; no docker-in-docker, no external PGx service.
-- **Access gate, rate-limited login, audit log, no PHI fields.** Cases are labelled, not named.
+- **Access gate, rate-limited login, audit log, no PHI fields.** Cases are labelled, not named. Anyone can read the story, use the pre-test check and open the pinned sample report (`PUBLIC_CASES`); anything that calls a model or writes data needs the code.
 
 ## Run it
 
 ```bash
 cp .env.example .env            # add MODEL_API_KEY (+ BASETEN_API_KEY for the open-weights path)
 docker pull pgkb/pharmcat       # dev mode runs PharmCAT via docker
-pnpm install && pnpm dev        # http://localhost:3000, click "Lab PDF (Indian panel)"
-pnpm tsx scripts/eval.mts http://localhost:3000
+pnpm install && pnpm dev        # http://localhost:3000
 ```
 
-Production: `docker build -t anukriti-pgx . && docker run -p 3000:3000 --env-file .env -v pgx-data:/data anukriti-pgx`.
+Then on the home page:
+- **Run it on a phone photo** reads the sample WhatsApp photo end to end (about 45 s).
+- **No test yet? Check a regimen** runs the pre-test check; it is instant and needs no API key.
+
+Checks:
+
+```bash
+npx tsx scripts/selftest.mts                                   # offline, <1 s: pre-test table, DPYD normalisation
+npx tsx scripts/eval.mts http://localhost:3000                 # 4 end-to-end cases (ACCESS_CODE=... for a gated host)
+npx tsx --env-file=.env scripts/bench.mts rules,muse,open      # extraction benchmark, see docs/BENCHMARK.md
+npx tsx --env-file=.env scripts/bench-meds.mts 3               # medication-mapping benchmark
+```
+
+Production: `docker compose up -d --build` with the env in `.env`. EC2 steps, the access gate and the public sample report are in [docs/DEPLOY.md](docs/DEPLOY.md).
 
 ## Fixtures
 
 - `fixtures/oncology-patient-A.vcf`: DPYD *2A het, TPMT *1/*3A, UGT1A1 *28/*28, CYP2C19 *2/*2, NUDT15 *1/*3.
 - `fixtures/oncology-patient-B.vcf`: DPYD *2A/*2A, TPMT *3A/*3A.
 - `fixtures/lab-report-demo.pdf`: synthetic Indian-panel lab report (HapB3 + c.85T>C heterozygous, UGT1A1 *1/*28, NUDT15 *1/*3, CYP2D6 *1/*4, CYP2C19 *2/*2). Not a real laboratory.
-- `fixtures/lab-report-photo.jpg`: the same report as a skewed, noisy phone photo (how reports actually arrive on WhatsApp). Muse Spark vision reads it to the same six calls as the PDF.
+- `fixtures/lab-report-photo.jpg`: the same report as a skewed, noisy phone photo (how reports actually arrive on WhatsApp). Muse Spark vision reads it to the same six calls as the PDF. A copy is served at `/sample-photo.jpg` for the hero.
+- `fixtures/bench/` and `fixtures/bench-heldout/`: 36 synthetic reports each (4 layouts × 3 renders) with `truth.json`, generated by `scripts/bench/gen.py` (seeds 20261030 and 7).
+
+All fixtures are synthetic. None is a real patient or laboratory.
 
 ## Limitations
 
-Decision support only; the treating clinician confirms. CYP2D6 and HLA need separate testing. Non-genetic factors (renal/hepatic function, interactions) are not assessed. Indian lab price/turnaround data in the evidence brief is unverified; clinician pilot feedback will be added before submission.
+- **Decision support only.** The treating clinician confirms every flagged drug.
+- **Gene coverage.** CYP2D6 copy number and HLA need separate testing.
+- **Out of scope.** Non-genetic factors (renal and hepatic function, drug interactions) are not assessed.
+- **Pre-test table.** It is hand-kept (`src/lib/pretest.ts`) and covers oncology and supportive-care pairs only.
+- **Prices.** Indian test prices and turnaround (₹7,000–17,000, 7–10 days) come from lab-marketplace listings and an oncologist commentary, October 2026, not from a survey.
+- **Benchmark.** The reports are synthetic and written by us; real lab formats will be harder (see docs/BENCHMARK.md).
+- **No clinician use yet.** Clinician pilot feedback is not yet in.

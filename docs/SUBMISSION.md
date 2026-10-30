@@ -75,8 +75,10 @@ We left out Muse Image and SAM 3.1 on purpose. Nothing in this workflow needs an
 - Next.js 16 on Node, one Docker container built on the official `pgkb/pharmcat` image (PharmCAT 3.4.0, Java, the preprocessor's Python and bcftools stack). No docker-in-docker and no external PGx service.
 - Lab-report path: Muse Spark extraction to PharmCAT "outside calls", so genotype logic stays in PharmCAT even when the input is a photo.
 - India lens as plain, cited rules, not prompts.
+- Pre-test check as a hand-kept CPIC / DPWG / FDA gene-drug table that runs in the browser: no model, no data sent, so it can be open to anyone.
 - Streaming analysis endpoint (NDJSON step events) driving the live run panel; the same endpoint returns plain JSON for scripts.
-- Access-code gate with rate-limited login, per-case audit log, case labels instead of patient names, no PHI fields.
+- Access-code gate with rate-limited login, per-case audit log, case labels instead of patient names, no PHI fields. The story, the pre-test check and one pinned sample report are public; runs, uploads, dictation and confirmations need the code.
+- A benchmark harness (`scripts/bench.mts`, `scripts/bench/gen.py`) that generates synthetic reports with ground truth and scores every reader with the app's own normalisation, and an offline self-test (`scripts/selftest.mts`).
 - Deployed on AWS EC2 in Mumbai (ap-south-1) behind Caddy with automatic TLS.
 
 ## Does it hold up?

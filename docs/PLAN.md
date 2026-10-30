@@ -5,7 +5,9 @@
 **Application promise:** AI assistant reasoning over pharmacogenomic data, explaining variants, flagging medication risk, starting with cancer treatment. Submission must visibly deliver exactly that.
 
 ## One-liner
-Upload a patient's genotype (VCF) + their medication list → CPIC-grounded toxicity risk report for the oncologist, plus a plain-language explanation for the patient in English and Malayalam. Deterministic genotype calling (PharmCAT), Muse Spark for reasoning/explanation with citations, Muse Voice Transcribe for dictated consults.
+Current (after the 2026-10-30 pivot): a pre-chemo gene safety check. At diagnosis, which gene test to order. When the result arrives, even as a WhatsApp photo, what it means for the first dose, cited, in the patient's language.
+
+Original: Upload a patient's genotype (VCF) + their medication list → CPIC-grounded toxicity risk report for the oncologist, plus a plain-language explanation for the patient in English and Malayalam. Deterministic genotype calling (PharmCAT), Muse Spark for reasoning/explanation with citations, Muse Voice Transcribe for dictated consults.
 
 ## Rubric → what we build
 | Criterion (weight) | How we score it |
@@ -26,7 +28,20 @@ Upload a patient's genotype (VCF) + their medication list → CPIC-grounded toxi
 - UI: `/` upload + meds; `/report/[id]` gene grid, drug risk table with CPIC badge + citations, patient tab (EN/ML), "Ask" chat grounded on the report.
 - Storage: filesystem JSON under DATA_DIR for hackathon (ponytail: swap for Postgres when multi-tenant).
 
-## Status (updated 2026-10-27 03:00 IST)
+## Status (updated 2026-10-30 IST)
+
+- **Pivot, 2026-10-30.** A mock judging pass (about 74/100) found that Pathya only helped patients who had already been tested, and in India the test is rarely ordered in time: ₹7,000–17,000, no government cover, 7–10 day turnaround. Pathya is now a pre-chemo gene safety check: the pre-test check (which test to order at diagnosis, deterministic, public) followed by the existing report reading. Business case and regulatory path added to SUBMISSION.md.
+- **Benchmark, 2026-10-30.** Held-out set: 177/177 gene calls on Muse Spark 1.3 and on Spark Open, against 47.5% for an OCR + rules baseline (0% on harsh photos). Medication mapping 26/26 vs 2/20. It caught and fixed two pipeline bugs. docs/BENCHMARK.md.
+- **Demo surface, 2026-10-30.** Six-chapter story with scroll effects. At-a-glance report. Public read-only demo: home, pre-test, `/sample`. Logo, brand gradient, social share image.
+- **Checks, 2026-10-30.** Eval 4/4 on production; `scripts/selftest.mts` passes; lint is clean repo-wide.
+- **NEXT, in priority order:**
+  1. Oncologist pilot: 3 anonymised past cases plus one quote (LAB-CALLS.md).
+  2. Demo video per DEMO.md (pre-test, then report).
+  3. Fill the SUBMISSION.md placeholders: team, video, repo, judge code.
+  4. Make the repo public or add judges.
+  5. Validate the lab per-report fee with one lab call.
+
+### Earlier status (2026-10-27 03:00 IST)
 
 - Baseten credits ($100, 2M TPM) for Muse Spark Open wired as second provider in `src/lib/meta.ts`: `structured()` tries `MUSE_PROVIDER` first, other on failure. Open model does not enforce json_schema, so schema goes in the prompt and JSON is extracted from text. No responses API there, so PDF extraction and web search stay on api.meta.ai. Smoke: `pnpm tsx --env-file=.env scripts/smoke-baseten.mts` (needs `BASETEN_API_KEY`). Smoke passed (chat, prompt-guided JSON, PNG image input). Eval 3/3 with `MUSE_PROVIDER=baseten`, 73 s total, no fallback. Pitch line: open weights = self-hostable inside the hospital.
 - DONE: Meta key verified from India (Spark chat/JSON/PDF/web_search; Voice ML+EN diarized). VCF path, lab-PDF path, India lens, Muse report EN+ML, voice consult + recorder, confirm gate + audit, latest-guidance web search, access code, Dockerfile on pgkb/pharmcat, README, EVIDENCE.md, eval 3/3.
