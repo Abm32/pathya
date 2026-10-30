@@ -33,6 +33,7 @@ Original: Upload a patient's genotype (VCF) + their medication list → CPIC-gro
 - **Pivot, 2026-10-30.** A mock judging pass (about 74/100) found that Pathya only helped patients who had already been tested, and in India the test is rarely ordered in time: ₹7,000–17,000, no government cover, 7–10 day turnaround. Pathya is now a pre-chemo gene safety check: the pre-test check (which test to order at diagnosis, deterministic, public) followed by the existing report reading. Business case and regulatory path added to SUBMISSION.md.
 - **Benchmark, 2026-10-30.** Held-out set: 177/177 gene calls on Muse Spark 1.3 and on Spark Open, against 47.5% for an OCR + rules baseline (0% on harsh photos). Medication mapping 26/26 vs 2/20. It caught and fixed two pipeline bugs. docs/BENCHMARK.md.
 - **Demo surface, 2026-10-30.** Six-chapter story with scroll effects. At-a-glance report. Public read-only demo: home, pre-test, `/sample`. Logo, brand gradient, social share image.
+- **Pre-test, round 2 (2026-10-30).** Regimen acronyms fixed (FOLFOX/CAPOX were a false all-clear). Muse Spark names drugs the table lacks; the table still decides. Printable test request with Malayalam patient text. Read-only report state for visitors without the code. Domain `pathya.anukritiai.com` pending DNS.
 - **Checks, 2026-10-30.** Eval 4/4 on production; `scripts/selftest.mts` passes; lint is clean repo-wide.
 - **NEXT, in priority order:**
   1. Oncologist pilot: 3 anonymised past cases plus one quote (LAB-CALLS.md).

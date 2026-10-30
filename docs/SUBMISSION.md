@@ -36,7 +36,7 @@ The result is a PDF of rsIDs and star alleles landing on the desk of an oncologi
 
 ## What it does
 
-0. **Before the test: what to order.** The oncologist types the regimen as written on the chart ("Xeloda 1000 mg/m² BD, Emeset 8, Pan 40, Fasturtec"). A deterministic table of CPIC, DPWG and FDA-label gene-drug pairs returns the tests to order before cycle one and why: DPYD for fluoropyrimidines, UGT1A1 for irinotecan, TPMT and NUDT15 for thiopurines, G6PD before rasburicase (about 8.5% of Indians are deficient), then CYP2D6 and CYP2C19 as useful but not urgent. It is instant, has no model cost, and sends no patient data anywhere.
+0. **Before the test: what to order.** The oncologist types the regimen as written on the chart ("Xeloda 1000 mg/m² BD, Emeset 8, Pan 40, Fasturtec"). A deterministic table of CPIC, DPWG and FDA-label gene-drug pairs returns the tests to order before cycle one and why: DPYD for fluoropyrimidines, UGT1A1 for irinotecan, TPMT and NUDT15 for thiopurines, G6PD before rasburicase (about 8.5% of Indians are deficient), then CYP2D6 and CYP2C19 as useful but not urgent. It is instant, has no model cost, and sends no patient data anywhere. For lines the table does not know (a misspelling, a brand it lacks), Muse Spark names the generic drug under a strict schema and returns nothing when unsure; the table then decides the test, and the screen labels which lines Muse Spark named. The result prints as a test request for the lab, with the patient explanation in English and Malayalam.
 1. **Ingest.** Upload the lab report as a PDF or a phone photo (how reports actually arrive, over WhatsApp), or a GRCh38 VCF.
 2. **Read.** Muse Spark extracts every gene call and quotes the line it came from, verbatim. Nothing is inferred beyond what is printed.
 3. **Call.** PharmCAT assigns diplotypes and phenotypes and attaches the matching CPIC, DPWG and FDA-label recommendations. No dose ever comes from the language model.
@@ -62,7 +62,7 @@ The screen shows the work as it happens: a live run panel streams each step from
 
 | Model | What it does in Pathya |
 |---|---|
-| `muse-spark-1.3` | Reads lab reports from PDF and phone-photo input under a strict JSON schema with verbatim quotes; maps and ranks medications under a strict schema; writes the clinician summary and the English and Malayalam patient text; web search with URL citations for post-guideline label changes |
+| `muse-spark-1.3` | Names unfamiliar drugs and brands in the pre-test check (generic names only; the guideline table decides the test); reads lab reports from PDF and phone-photo input under a strict JSON schema with verbatim quotes; maps and ranks medications under a strict schema; writes the clinician summary and the English and Malayalam patient text; web search with URL citations for post-guideline label changes |
 | `muse-voice-transcribe-1.0` | Consult dictation with diarization, English + Malayalam language bias, and keyword biasing to oncology drug names |
 | Muse Spark Open (`meta-models/muse-spark-open-1026`, open weights, served on Baseten) | Second inference path for the same mapping and explanation step. Automatic fallback when the hosted API fails, or primary with one environment variable. Open weights are the answer to the first question every Indian hospital IT team asks: can genomic data stay inside our building? |
 

@@ -21,7 +21,7 @@ Full evidence brief with sources: [docs/EVIDENCE.md](docs/EVIDENCE.md).
 
 ## What it does
 
-0. **Pre-test check** (no code, no model, nothing leaves the browser): type the regimen as written on the chart and get the gene tests to order before cycle 1, with the CPIC / DPWG / FDA reason for each, including G6PD before rasburicase. `src/lib/pretest.ts`.
+0. **Pre-test check**: type the regimen as written on the chart (brands, abbreviations, regimen names like FOLFOX or CAPOX) and get the gene tests to order before cycle 1, with the CPIC / DPWG / FDA reason for each, including G6PD before rasburicase. A fixed table decides, instantly, in the browser (`src/lib/pretest.ts`). Lines it does not know can be sent to Muse Spark, which only names the drug; the table then decides again. One click prints a test request for the lab with the patient explanation in English and Malayalam (`/request`).
 1. **Ingest** a lab PGx report (PDF or phone photo) or a genotype VCF (GRCh38).
 2. **Call** diplotypes and phenotypes deterministically with [PharmCAT](https://pharmcat.clinpgx.org) (CPIC's reference implementation), which also attaches the matching CPIC, DPWG and FDA-label recommendations.
 3. **Layer** an India lens: deterministic, cited rules for HapB3, c.85T>C, NUDT15-over-TPMT, and panel-coverage warnings.

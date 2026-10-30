@@ -29,6 +29,19 @@ Redeploy = rerun the rsync, then `docker compose up -d --build` (2-3 min, PharmC
 | `PUBLIC_CASES` | Comma-separated case ids readable without the code; `/sample` opens the first. |
 | `PHARMCAT_RUNNER=local`, `DATA_DIR=/data` | Set by `docker-compose.yml`. |
 
+### Custom domain: pathya.anukritiai.com
+
+1. DNS: an `A` record for `pathya` pointing to `16.4.131.103`.
+2. Once `dig +short pathya.anukritiai.com` returns that IP, run Caddy with both hosts so the sslip link keeps working:
+
+```bash
+docker rm -f caddy
+printf 'pathya.anukritiai.com, 16.4.131.103.sslip.io {\n  reverse_proxy localhost:3000\n}\n' > ~/Caddyfile
+docker run -d --name caddy --restart unless-stopped --network host -v caddy:/data -v ~/Caddyfile:/etc/caddy/Caddyfile caddy:2
+```
+
+3. Set `metadataBase` in `src/app/layout.tsx` to the new domain (share previews use it), redeploy, and update the links in README and SUBMISSION.
+
 ### Public sample report
 
 The home page links "open a finished report" to `/sample`. To pin a new sample after changing the sample regimen:
