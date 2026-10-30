@@ -13,8 +13,8 @@ const notoMalayalam = Noto_Sans_Malayalam({ variable: "--font-noto-malayalam", s
 export const metadata: Metadata = {
   metadataBase: new URL("https://pathya.anukritiai.com"),
   title: "Pathya",
-  description: "Pharmacogenomic result in, oncologist-ready toxicity report out, in the patient's language.",
-  openGraph: { title: "Pathya · Chemo toxicity, caught before cycle one", type: "website", siteName: "Pathya" },
+  description: "India's pharmacogenomic results are stuck in PDFs and WhatsApp photos. Pathya reads them with Meta's Muse models into verified, de-identified research records and cohort statistics. Research tool, not medical advice.",
+  openGraph: { title: "Pathya · India's gene data, out of WhatsApp photos", type: "website", siteName: "Pathya" },
   twitter: { card: "summary_large_image" },
 };
 
@@ -42,7 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </header>
         <div className="flex-1">{children}</div>
         <footer className="mt-16 border-t border-line px-4 py-6 text-center text-xs text-muted print:hidden">
-          Decision support for clinicians. Dose text is CPIC / DPWG / FDA-label wording via PharmCAT. Meta Global AI Developer Hackathon 2026.
+          Research tool, not medical advice. Pathya reads and standardises pharmacogenomic results; it makes no dose, drug or test recommendation. Synthetic data only. Meta Global AI Developer Hackathon 2026.
         </footer>
       </body>
     </html>

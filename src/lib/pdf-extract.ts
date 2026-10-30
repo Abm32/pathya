@@ -1,4 +1,4 @@
-import { meta, MUSE_MODEL } from "./meta";
+import { meta, MUSE_MODEL, structured } from "./meta";
 
 export type LabExtract = {
   labName: string;
@@ -6,12 +6,13 @@ export type LabExtract = {
   patientRef: string; // lab's own id if printed, else ""
   genes: { gene: string; diplotype: string; phenotype: string; activityScore: string; verbatim: string }[];
   methodNotes: string; // e.g. "targeted genotyping of 4 DPYD variants" — matters for coverage claims
+  testedVariants: { gene: string; variant: string }[]; // every variant the report says was assayed, detected or not
   warnings: string[];
 };
 
 export const EXTRACT_SCHEMA = {
   type: "object", additionalProperties: false,
-  required: ["labName", "reportDate", "patientRef", "genes", "methodNotes", "warnings"],
+  required: ["labName", "reportDate", "patientRef", "genes", "methodNotes", "testedVariants", "warnings"],
   properties: {
     labName: { type: "string" }, reportDate: { type: "string" }, patientRef: { type: "string" },
     genes: {
@@ -29,6 +30,11 @@ export const EXTRACT_SCHEMA = {
       },
     },
     methodNotes: { type: "string" },
+    testedVariants: {
+      type: "array",
+      description: "Every variant or allele the report states was tested, per gene, as printed (rsID, HGVS or star name), including ones reported as not detected. Read the 'variants tested' column, panel list or method text. [] if not stated.",
+      items: { type: "object", additionalProperties: false, required: ["gene", "variant"], properties: { gene: { type: "string" }, variant: { type: "string" } } },
+    },
     warnings: { type: "array", items: { type: "string" } },
   },
 };
@@ -51,6 +57,15 @@ export async function extractLabReport(file: Buffer, mime: string, filename: str
     text: { format: { type: "json_schema", name: "LabExtract", strict: true, schema: EXTRACT_SCHEMA } },
   });
   return JSON.parse(r.output_text) as LabExtract;
+}
+
+/** Same contract for results read aloud (Muse Voice transcript) or typed: text in, the same LabExtract out. */
+export async function extractFromText(text: string): Promise<LabExtract> {
+  return structured<LabExtract>({
+    name: "LabExtract", schema: EXTRACT_SCHEMA, reasoning: "low",
+    system: `${EXTRACT_SYSTEM} The input is a transcript of someone reading a pharmacogenomic lab report aloud, possibly in mixed Malayalam and English. "verbatim" is the exact transcript words for each call.`,
+    user: text.slice(0, 8000),
+  });
 }
 
 const DPYD_NAMES: Record<string, string> = {

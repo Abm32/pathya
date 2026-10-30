@@ -325,3 +325,8 @@ a:hover .logo-path { animation: logo-draw .9s cubic-bezier(.65,0,.35,1); }
 .photo-thumb { position: relative; flex: none; display: block; overflow: hidden; border-radius: 6px; border: 1px solid var(--line-strong); transform: rotate(-4deg); box-shadow: 0 10px 24px -10px rgba(0,0,0,0.9), 0 0 0 4px rgba(255,255,255,0.03); transition: transform 300ms var(--ease-out); }
 .photo-thumb:hover { transform: rotate(0deg) scale(1.08); }
 .photo-thumb img { display: block; width: 46px; height: 62px; object-fit: cover; object-position: top; }
+
+/* Cohort: carrier frequency with its 95% interval */
+.ci { position: relative; display: block; flex: 1; min-width: 120px; height: 10px; border-radius: 999px; background: rgba(255,255,255,0.06); }
+.ci > i { position: absolute; top: 3px; bottom: 3px; left: var(--lo); width: calc(var(--hi) - var(--lo)); min-width: 2px; border-radius: 999px; background: linear-gradient(90deg, rgba(46,230,200,0.35), rgba(154,166,255,0.35)); }
+.ci > b { position: absolute; top: 50%; left: var(--p); width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 999px; background: var(--brand); box-shadow: 0 0 10px rgba(46,230,200,0.8); }

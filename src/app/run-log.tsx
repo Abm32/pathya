@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export type StepEvent = {
   type: "step";
-  step: "upload" | "extract" | "pharmcat" | "lens" | "report";
+  step: "upload" | "extract" | "pharmcat" | "quality";
   status: "active" | "done" | "fail";
   ms?: number;
   at?: number; // client arrival time, for live timers
@@ -11,15 +11,13 @@ export type StepEvent = {
   genes?: { gene: string; call: string; verbatim: string }[];
   phenotypes?: { gene: string; diplotype: string; phenotype: string }[];
   notes?: { gene: string; title: string; level: string }[];
-  meds?: { drug: string; risk: string }[];
 };
 
 const META: Record<StepEvent["step"], { title: string; badge: string; kind: "meta" | "det" }> = {
   upload: { title: "Received", badge: "Pathya", kind: "det" },
   extract: { title: "Reading report", badge: "Muse Spark", kind: "meta" },
-  pharmcat: { title: "Phenotypes", badge: "PharmCAT", kind: "det" },
-  lens: { title: "India lens", badge: "rules · PMIDs", kind: "det" },
-  report: { title: "Risk + EN/ML report", badge: "Muse Spark", kind: "meta" },
+  pharmcat: { title: "Standardised", badge: "PharmCAT", kind: "det" },
+  quality: { title: "Quality checks", badge: "rules", kind: "det" },
 };
 
 /** Live pipeline trace: one row per real server event, results revealed as they land. */
@@ -74,19 +72,10 @@ export function RunLog({ steps, onDone }: { steps: StepEvent[]; onDone?: boolean
                 {s.notes.map((n, i) => <li key={i} className="reveal" style={{ animationDelay: `${i * 80}ms` }}><b>{n.gene}</b> {n.title}</li>)}
               </ul>
             )}
-            {s.meds && (
-              <div className="mt-2 flex flex-wrap gap-1.5 pl-5">
-                {s.meds.map((d, i) => (
-                  <span key={d.drug} className="reveal inline-flex items-center gap-1.5 text-xs" style={{ animationDelay: `${i * 70}ms` }}>
-                    <span className={`risk risk-${d.risk}`}>{d.risk}</span>{d.drug}
-                  </span>
-                ))}
-              </div>
-            )}
           </li>
         );
       })}
-      {onDone && <li className="reveal p-3.5 text-sm font-medium text-accent">Report ready. Opening…</li>}
+      {onDone && <li className="reveal p-3.5 text-sm font-medium text-accent">Record ready. Opening…</li>}
     </ol>
   );
 }

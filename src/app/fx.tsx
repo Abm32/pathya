@@ -61,18 +61,3 @@ export function SectionNav({ items }: { items: { id: string; label: string }[] }
     </nav>
   );
 }
-
-/** Two-language patient text: tabs on screen, both on paper. */
-export function LangTabs({ en, ml }: { en: string; ml: string }) {
-  const [t, setT] = useState<"ml" | "en">("ml");
-  return (
-    <div>
-      <div role="tablist" aria-label="Patient explanation language" className="tabs print:hidden">
-        <button role="tab" aria-selected={t === "ml"} onClick={() => setT("ml")} className="tab ml">മലയാളം</button>
-        <button role="tab" aria-selected={t === "en"} onClick={() => setT("en")} className="tab">English</button>
-      </div>
-      <div role="tabpanel" className={`ml mt-4 whitespace-pre-line text-[17px] leading-9 ${t === "ml" ? "reveal" : "hidden"} print:block`}>{ml}</div>
-      <div role="tabpanel" className={`mt-4 whitespace-pre-line text-[17px] leading-relaxed ${t === "en" ? "reveal" : "hidden"} print:mt-6 print:block`}>{en}</div>
-    </div>
-  );
-}

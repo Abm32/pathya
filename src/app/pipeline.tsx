@@ -2,14 +2,14 @@
 import { useEffect, useRef, useState } from "react";
 import type { StepEvent } from "./run-log";
 
-type Node = { key: StepEvent["step"] | "clinician"; title: string; sub: string; who: string; meta: boolean };
+type Node = { key: StepEvent["step"] | "record" | "curator"; title: string; sub: string; who: string; meta: boolean };
 const NODES: Node[] = [
-  { key: "upload", title: "Lab report in", sub: "PDF, phone photo or VCF", who: "Input", meta: false },
+  { key: "upload", title: "Report in", sub: "PDF, WhatsApp photo, voice or VCF", who: "Input", meta: false },
   { key: "extract", title: "Read every call", sub: "verbatim quotes, strict schema", who: "Muse Spark", meta: true },
-  { key: "pharmcat", title: "Call phenotypes", sub: "CPIC · DPWG · FDA label text", who: "PharmCAT", meta: false },
-  { key: "lens", title: "India lens", sub: "HapB3 · c.85T>C · NUDT15, cited", who: "Rules", meta: false },
-  { key: "report", title: "Rank risk, explain", sub: "clinician + Malayalam patient", who: "Muse Spark", meta: true },
-  { key: "clinician", title: "Oncologist confirms", sub: "audit-logged decision", who: "Human", meta: false },
+  { key: "pharmcat", title: "Standardise", sub: "PharmVar alleles, CPIC phenotype terms", who: "PharmCAT", meta: false },
+  { key: "quality", title: "Quality checks", sub: "India panel coverage, identifier removed", who: "Rules", meta: false },
+  { key: "record", title: "Research record", sub: "JSON · TSV · CSV, joins the cohort", who: "Output", meta: false },
+  { key: "curator", title: "Curator verifies", sub: "each call against the source", who: "Human", meta: false },
 ];
 
 /** Hero diagram. Idle: cycles to show the flow. Running: mirrors real server events. */
@@ -34,7 +34,7 @@ export function Pipeline({ steps }: { steps: StepEvent[] }) {
   const live = new Map<string, string>();
   for (const s of steps) { state.set(s.step, s.status); const t = liveText(s); if (t) live.set(s.step, t); }
   
-  if (running && steps.some((s) => s.step === "report" && s.status === "done")) state.set("clinician", "active");
+  if (running && steps.some((s) => s.step === "quality" && s.status === "done")) { state.set("record", "done"); state.set("curator", "active"); }
 
   return (
     <div className="card spot relative overflow-hidden p-5">
@@ -44,7 +44,7 @@ export function Pipeline({ steps }: { steps: StepEvent[] }) {
         <span className="eyebrow">{running ? "Live pipeline" : "Pipeline"}</span>
         {running
           ? <span className="num ml-auto text-sm text-accent">{(elapsed / 1000).toFixed(1)} s</span>
-          : <span className="num ml-auto hidden text-[11px] text-muted sm:inline">deterministic core · LLM at the edges</span>}
+          : <span className="num ml-auto hidden text-[11px] text-muted sm:inline">verifiable core · model reads only</span>}
       </div>
       <ol className="relative space-y-2.5">
         {NODES.map((n, i) => {
@@ -79,12 +79,8 @@ function liveText(s: StepEvent): string | undefined {
   if (s.step === "extract" && s.genes) return `${s.genes.length} gene calls read, each quoted verbatim`;
   if (s.step === "pharmcat" && s.phenotypes) {
     const flagged = s.phenotypes.filter((p) => !/normal/i.test(p.phenotype)).length;
-    return `${s.phenotypes.length} phenotypes called · ${flagged} non-normal`;
+    return `${s.phenotypes.length} genes standardised · ${flagged} non-reference`;
   }
-  if (s.step === "report" && s.meds) {
-    const act = s.meds.filter((m) => m.risk === "avoid" || m.risk === "adjust").length;
-    return `${s.meds.length} drugs ranked · ${act} need a dose change`;
-  }
-  if (s.step === "lens" && s.notes) return s.notes.length ? `${s.notes.length} India-specific ${s.notes.length === 1 ? "rule" : "rules"} fired` : "no India-specific rule applies";
+  if (s.step === "quality" && s.notes) return s.notes.length ? `${s.notes.length} India-relevant ${s.notes.length === 1 ? "variant" : "variants"} not stated as tested` : "panel covers the India-relevant variants";
   return s.detail;
 }

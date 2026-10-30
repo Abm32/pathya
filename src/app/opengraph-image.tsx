@@ -2,11 +2,11 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "Pathya: chemo toxicity, caught before cycle one. Pharmacogenomic lab report in, oncologist-ready report out.";
+export const alt = "Pathya: India's gene data, out of WhatsApp photos. Pharmacogenomic reports in, verified research records out.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const steps = ["Lab report / photo", "Muse Spark", "PharmCAT · CPIC", "India lens", "English + Malayalam"];
+const steps = ["Report / photo / voice", "Muse Spark", "PharmCAT", "Quality checks", "Cohort"];
 
 export default async function Image() {
   const semibold = await readFile(join(process.cwd(), "assets/Geist-SemiBold.ttf"));
@@ -17,12 +17,12 @@ export default async function Image() {
         <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
           <img src={icon} width={88} height={88} alt="" />
           <div style={{ fontSize: 52, fontWeight: 600, letterSpacing: -1.5 }}>Pathya</div>
-          <div style={{ marginLeft: "auto", fontSize: 20, color: "#2ee6c8", border: "1px solid rgba(46,230,200,0.4)", borderRadius: 999, padding: "8px 18px" }}>Oncology pharmacogenomics copilot</div>
+          <div style={{ marginLeft: "auto", fontSize: 20, color: "#2ee6c8", border: "1px solid rgba(46,230,200,0.4)", borderRadius: 999, padding: "8px 18px" }}>Pharmacogenomic research data</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", marginTop: 52 }}>
-          <div style={{ fontSize: 76, fontWeight: 600, letterSpacing: -2.5, lineHeight: 1.05 }}>Chemo toxicity,</div>
-          <div style={{ fontSize: 76, fontWeight: 600, letterSpacing: -2.5, lineHeight: 1.05, color: "#2ee6c8" }}>caught before cycle one.</div>
-          <div style={{ fontSize: 30, color: "#9aa8ad", marginTop: 24, fontWeight: 400 }}>PGx lab report in. Dose check out, in English and Malayalam.</div>
+          <div style={{ fontSize: 76, fontWeight: 600, letterSpacing: -2.5, lineHeight: 1.05 }}>India&apos;s gene data,</div>
+          <div style={{ fontSize: 76, fontWeight: 600, letterSpacing: -2.5, lineHeight: 1.05, color: "#2ee6c8" }}>out of WhatsApp photos.</div>
+          <div style={{ fontSize: 30, color: "#9aa8ad", marginTop: 24, fontWeight: 400 }}>Reports in. Verified, de-identified research records out.</div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: "auto" }}>
           {steps.map((s, i) => (
