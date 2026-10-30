@@ -1,4 +1,5 @@
 // pnpm tsx --env-file=.env scripts/smoke-meta.mts [audio.wav]
+/* eslint-disable @typescript-eslint/no-explicit-any -- smoke test pokes raw API responses */
 import { promises as fs } from "node:fs";
 import { meta, MUSE_MODEL, structured, transcribe } from "../src/lib/meta";
 

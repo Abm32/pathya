@@ -1,4 +1,5 @@
 // pnpm tsx --env-file=.env scripts/smoke-baseten.mts
+/* eslint-disable @typescript-eslint/no-explicit-any -- smoke test pokes raw API responses */
 // Exercises Muse Spark Open on Baseten: chat (reasoning_content), prompt-guided JSON, image input.
 import { promises as fs } from "node:fs";
 import { client, providerModel, structured } from "../src/lib/meta";

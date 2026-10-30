@@ -70,9 +70,9 @@ export function Chapter({ id, n, kicker, title, lede, children }: { id: string; 
 }
 
 const BEATS: { when: string; title: string; body: React.ReactNode; tone?: "bad" | "good" }[] = [
-  { when: "Day 0 · diagnosis", title: "Colon cancer, 54, Kochi", body: <>The plan is CAPOX: capecitabine with oxaliplatin. Standard, effective, started at full dose.</> },
-  { when: "Day 2 · the report", title: "A gene test arrives on WhatsApp", body: <>A photo of a lab page: <span className="num rounded-md border border-line bg-[rgba(255,255,255,0.04)] px-1.5 py-0.5 text-foreground">DPYD c.1236G&gt;A heterozygous (HapB3)</span>. It is correct. Nobody on the ward knows what to do with it.</> },
-  { when: "Day 3 · the gap", title: "Forty patients, no pharmacogenomics training", body: <>Three in four Indian prescribers say they cannot read these reports with confidence. There is no national guideline to fall back on.</> },
+  { when: "Day 0 · diagnosis", title: "Colon cancer, 54, Kochi", body: <>The plan is CAPOX: capecitabine with oxaliplatin, started at full dose. A DPYD test takes 7 to 10 days in India, so it is rarely ordered at all.</> },
+  { when: "Day 0 · the regimen goes in", title: "Order DPYD now, before cycle 1", body: <>Pathya reads the regimen as written (&ldquo;Xeloda 1000 mg/m² BD, Emeset 8, Pan 40&rdquo;) and lists the tests to order today, with the CPIC reason for each.</> },
+  { when: "Day 8 · the report", title: "The result arrives on WhatsApp", body: <>A photo of a lab page: <span className="num rounded-md border border-line bg-[rgba(255,255,255,0.04)] px-1.5 py-0.5 text-foreground">DPYD c.1236G&gt;A heterozygous (HapB3)</span>. It is correct. Three in four Indian prescribers say they cannot read these reports with confidence.</> },
   { when: "Without a check", title: "Full dose, half the clearance", body: <>DPYD carriers are about 4% of patients and about 48% of fluoropyrimidine deaths. Toxicity shows up in week two: mucositis, diarrhoea, neutropenia.</>, tone: "bad" },
   { when: "With Pathya, under a minute", title: "Start at 50%, then titrate", body: <>The photo is read, the call quoted line by line, CPIC&apos;s dose text attached with citations, the Indian evidence added, and the reason explained to her in Malayalam. The oncologist confirms.</>, tone: "good" },
 ];

@@ -77,7 +77,7 @@ export default async function Report({ params }: { params: Promise<{ id: string 
       <header className="rise pt-10">
         <Link href="/" className="text-sm text-muted hover:text-foreground print:hidden">← New case</Link>
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
-          <h1 className="display text-4xl sm:text-5xl">Case {c.label || id}</h1>
+          <h1 className="display text-4xl sm:text-5xl">{c.label.startsWith("Sample") ? c.label : `Case ${c.label || id}`}</h1>
           <span className="badge badge-det">{c.source === "vcf" ? "VCF" : "Lab report"}</span>
           {confirmed && <span className="badge badge-det">Clinician confirmed</span>}
           <span className="ml-auto"><PrintButton /></span>
@@ -124,8 +124,20 @@ export default async function Report({ params }: { params: Promise<{ id: string 
       {ai ? (
         <section className="card spot mt-8 overflow-hidden p-6 sm:p-8">
           <div aria-hidden className="absolute inset-y-0 left-0 w-1 bg-[image:var(--brand-v)] shadow-[0_0_24px_rgba(46,230,200,0.6)] print:bg-accent" />
-          <div className="flex items-center gap-2"><span className="eyebrow">Clinician summary</span><span className="badge badge-meta">Muse Spark</span></div>
-          <p className="mt-4 text-xl leading-relaxed sm:text-[22px]">{ai.clinicianSummary}</p>
+          <div className="flex items-center gap-2"><span className="eyebrow">At a glance</span><span className="badge badge-det">CPIC · DPWG · FDA</span></div>
+          <ul className="mt-4 divide-y divide-line">
+            {meds.map((m) => (
+              <li key={m.drug + m.matchedInput} className="grid grid-cols-[5.6rem_minmax(0,1fr)] items-baseline gap-x-4 gap-y-1 py-3 sm:grid-cols-[5.6rem_11rem_minmax(0,1fr)]">
+                <span className={`risk risk-${m.risk} justify-center`}>{m.risk}</span>
+                <span className="text-lg font-semibold tracking-tight">{m.drug}</span>
+                <span className="col-span-2 text-[15px] leading-snug text-foreground/85 sm:col-span-1">{m.headline}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-5 border-t border-line pt-4">
+            <div className="flex items-center gap-2"><span className="eyebrow">Clinician summary</span><span className="badge badge-meta">Muse Spark</span></div>
+            <p className="mt-2 text-[15px] leading-relaxed text-foreground/80">{ai.clinicianSummary}</p>
+          </div>
         </section>
       ) : (
         <p className="mt-8 rounded-xl border border-dashed p-4 text-sm text-muted">AI narrative unavailable (MODEL_API_KEY not set or the call failed). Deterministic PharmCAT results below.</p>

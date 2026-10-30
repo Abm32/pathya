@@ -7,17 +7,19 @@ import { RunLog, type StepEvent } from "./run-log";
 import { Pipeline } from "./pipeline";
 import { CountUp } from "./fx";
 import { Architecture, EnzymeSim, Population } from "./concepts";
-import { Chapter, Proof, StoryRail, Vignette } from "./story";
+import { Chapter, PROOF, Proof, StoryRail, Vignette } from "./story";
+import { PRETEST_SAMPLES, PretestResult } from "./pretest-panel";
 
 const SAMPLE_MEDS: Record<string, string> = {
   A: "Xeloda\nirinotecan\nondansetron\npantoprazole\nclopidogrel",
   B: "fluorouracil (5-FU)\nmercaptopurine\ntramadol",
-  lab: "capecitabine\nirinotecan\nazathioprine\nondansetron\ntamoxifen",
+  // CAPOX for colon cancer with standard supportive care: the case the demo report describes
+  lab: "Xeloda 1000 mg/m² BD\noxaliplatin\nEmeset 8\nDexona 8 mg\nPan 40",
 };
 
 export default function Home() {
   const r = useRouter();
-  const [mode, setMode] = useState<"report" | "vcf">("report");
+  const [mode, setMode] = useState<"report" | "vcf" | "pretest">("report");
   const [meds, setMeds] = useState(SAMPLE_MEDS.lab);
   const [label, setLabel] = useState("");
   const [transcript, setTranscript] = useState<string | null>(null);
@@ -59,6 +61,11 @@ export default function Home() {
     }
   }
 
+  const checkRegimen = () => {
+    setMode("pretest"); setMeds(PRETEST_SAMPLES[0].meds);
+    consoleRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const sample = (s: string, scroll = true) => {
     const fd = new FormData();
     fd.set("sample", s);
@@ -74,22 +81,30 @@ export default function Home() {
       <section className="grid min-h-[calc(100svh-3.5rem)] grid-cols-1 content-center items-center gap-10 pb-10 pt-14 md:pt-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
         <div className="rise">
           <div className="inline-flex items-center gap-2 rounded-full border border-line bg-[rgba(255,255,255,0.03)] px-3 py-1.5 text-xs text-muted">
-            <span className="live-dot" aria-hidden /> Live on AWS Mumbai · 4/4 eval on the deployed system
+            <span className="live-dot" aria-hidden /> Live on AWS Mumbai · {PROOF.calls}/{PROOF.calls} gene calls on held-out reports
           </div>
           <h1 className="display mt-6 text-[2.7rem] sm:text-6xl">
             Chemo toxicity,<br />caught <span className="glow-text">before<br />cycle one.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-            The lab report says <span className="num text-foreground">HapB3 heterozygous</span>. Pathya tells the oncologist what to prescribe at 9 a.m.,
-            from CPIC, DPWG and FDA-label text with citations, adds the Indian evidence CPIC misses, and explains it to the patient in Malayalam.
+            At diagnosis, Pathya tells the oncologist which gene test to order. When the result comes back, even as a WhatsApp photo
+            of <span className="num text-foreground">HapB3 heterozygous</span>, it attaches the CPIC dose text with citations, adds the Indian
+            evidence CPIC misses, and explains it to the patient in Malayalam.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <button type="button" disabled={busy} onClick={() => sample("photo", false)} className="btn btn-primary btn-lg">
               Run it on a phone photo <span aria-hidden>→</span>
             </button>
-            <button type="button" onClick={() => consoleRef.current?.scrollIntoView({ behavior: "smooth" })} className="btn btn-ghost btn-lg">Upload your report</button>
+            <button type="button" onClick={checkRegimen} className="btn btn-ghost btn-lg">No test yet? Check a regimen</button>
           </div>
-          <p className="mt-4 text-xs text-muted">Synthetic Indian-panel report, skewed and noisy like a WhatsApp photo. About 45 seconds end to end.</p>
+          <div className="mt-5 flex items-center gap-3">
+            <a href="/sample-photo.jpg" target="_blank" rel="noreferrer" className="photo-thumb" aria-label="Open the sample WhatsApp photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/sample-photo.jpg" alt="" width={46} height={62} />
+              {busy && <span className="scan" aria-hidden />}
+            </a>
+            <p className="text-xs leading-relaxed text-muted">This synthetic Indian-panel report, photographed skewed and noisy like a WhatsApp forward, is what the button reads. About 45 seconds end to end, or <a href="/sample" className="text-accent underline decoration-accent/30 underline-offset-2 hover:decoration-accent">open a finished report</a>.</p>
+          </div>
         </div>
         <div className="rise" style={{ animationDelay: "120ms" }}>
           <Pipeline steps={steps} />
@@ -135,7 +150,7 @@ export default function Home() {
       </Chapter>
 
       <Chapter id="story-system" n="04" kicker="The system" title={<>The model reads.<br /><span className="glow-text">The guideline decides.</span></>}
-        lede="Muse Spark reads the report and explains the result. Everything that sets a dose sits in a locked, deterministic core. The model can rank and explain the dose text. It cannot change it.">
+        lede="Muse Spark reads the report, Muse Voice takes the consult as it is dictated in Malayalam and English, and Muse Spark explains the result. Everything that sets a dose sits in a locked, deterministic core. The model can rank and explain the dose text. It cannot change it.">
         <div className="sr"><Architecture /></div>
       </Chapter>
 
@@ -149,13 +164,32 @@ export default function Home() {
         lede="Upload a report or pick a sample. Every step streams from the server as it finishes. No dose ever comes from the language model.">
       <div ref={consoleRef} className="sr grid scroll-mt-24 gap-6 lg:grid-cols-[minmax(0,1fr)_400px]">
         <form className="card spot space-y-5 p-6" onSubmit={(e) => { e.preventDefault(); submit(new FormData(e.currentTarget)); }}>
-          <div className="flex gap-2 text-sm">
-            {(["report", "vcf"] as const).map((m) => (
+          <div className="flex flex-wrap gap-2 text-sm">
+            {(["pretest", "report", "vcf"] as const).map((m) => (
               <button key={m} type="button" onClick={() => setMode(m)} aria-pressed={mode === m} className="chip">
-                {m === "report" ? "Lab report (PDF / photo)" : "Genotype VCF (GRCh38)"}
+                {m === "pretest" ? "No test yet" : m === "report" ? "Lab report (PDF / photo)" : "Genotype VCF"}
               </button>
             ))}
           </div>
+          {mode === "pretest" ? (
+            <div className="space-y-4">
+              <p className="text-sm leading-relaxed text-muted">Write the planned regimen the way you would on the chart. Pathya lists the gene tests to order before cycle 1 and why. Instant and deterministic: no model call, nothing leaves the browser.</p>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="mr-1 text-xs text-muted">Try a regimen</span>
+                {PRETEST_SAMPLES.map((x) => (
+                  <button key={x.label} type="button" onClick={() => setMeds(x.meds)} aria-pressed={meds === x.meds} className="btn btn-ghost btn-sm aria-pressed:border-accent aria-pressed:text-accent">{x.label}</button>
+                ))}
+              </div>
+              <label className="block">
+                <span className="text-sm font-medium">Planned regimen and supportive care</span>
+                <textarea value={meds} onChange={(e) => setMeds(e.target.value)} rows={5} className="field mt-1 font-mono" />
+              </label>
+              <PretestResult meds={meds} />
+              <p className="border-t border-line pt-4 text-sm text-muted">
+                Result back? <button type="button" onClick={() => setMode("report")} className="text-accent underline decoration-accent/30 underline-offset-2 hover:decoration-accent">Upload the lab report</button> with this same regimen.
+              </p>
+            </div>
+          ) : (<>
           {mode === "report" ? (
             <label className="block">
               <span className="text-sm font-medium">Lab PGx report</span>
@@ -200,6 +234,7 @@ export default function Home() {
             </div>
           </div>
           {err && <p role="alert" className="text-sm text-danger">{err}</p>}
+          </>)}
         </form>
 
         <aside className="space-y-4 text-sm lg:sticky lg:top-20 lg:self-start">
@@ -209,7 +244,17 @@ export default function Home() {
               <RunLog steps={steps} onDone={ready} />
             </div>
           )}
-          {steps.length === 0 && (
+          {steps.length === 0 && mode === "pretest" && (
+            <div className="card spot p-5">
+              <h3 className="section-title">Why test before cycle 1</h3>
+              <ul className="mt-4 space-y-3 text-sm text-muted">
+                <li><span className="font-medium text-foreground">The result comes too late.</span> Indian labs take 7 to 10 days, so a test ordered at the first infusion returns after the toxicity window. Order it at diagnosis.</li>
+                <li><span className="font-medium text-foreground">The risky genes differ here.</span> HapB3 rather than *2A for DPYD, NUDT15 rather than TPMT for thiopurines, and G6PD deficiency in about 8.5% of Indians before rasburicase.</li>
+                <li><span className="font-medium text-foreground">When it comes back,</span> upload the report or a photo of it. The same regimen is checked against the actual genotype.</li>
+              </ul>
+            </div>
+          )}
+          {steps.length === 0 && mode !== "pretest" && (
             <div className="card spot p-5">
               <h3 className="section-title">What happens when you press Analyse</h3>
               <ol className="mt-4 space-y-3 text-sm text-muted">

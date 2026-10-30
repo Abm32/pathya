@@ -1,6 +1,6 @@
 # Pathya (പഥ്യം)
 
-**Pharmacogenomic result in. Oncologist-ready toxicity report out. In the patient's language.**
+**A pre-chemo gene safety check for Indian oncology: which test to order at diagnosis, and what the result means for the first dose, in the patient's language.**
 
 *Pathya* is the Ayurvedic word for the regimen that suits a particular patient. Built by [Anukriti AI](https://anukritiai.com), Kochi, for the Meta Global AI Developer Hackathon 2026 (Startup track, "Build for Your World").
 
@@ -15,12 +15,13 @@ In India the gap is wider:
 - NUDT15 risk alleles are ~7–11% in Indians, more important than TPMT (~3–4%) for thiopurines ([PMID 29470173](https://pubmed.ncbi.nlm.nih.gov/29470173/)).
 - No ICMR/NCG guidance exists on DPYD or UGT1A1 testing. ~75% of prescribers say they lack confidence interpreting PGx reports ([PMC9696651](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9696651/)).
 
-Lab reports arrive as PDFs with rsIDs and star alleles. The oncologist has a clinic full of patients and no pharmacogenomics training. Interpretation is the bottleneck, not the assay.
+Two gaps follow. The test is rarely ordered in time: a DPYD panel costs ₹7,000–17,000, is not covered by government insurance, and takes 7–10 days, so ordered at the first infusion it returns too late. And when it does come back, as a PDF or a WhatsApp photo of rsIDs and star alleles, the oncologist has a clinic full of patients and no pharmacogenomics training.
 
 Full evidence brief with sources: [docs/EVIDENCE.md](docs/EVIDENCE.md).
 
 ## What it does
 
+0. **Pre-test check** (no code, no model, nothing leaves the browser): type the regimen as written on the chart and get the gene tests to order before cycle 1, with the CPIC / DPWG / FDA reason for each, including G6PD before rasburicase. `src/lib/pretest.ts`.
 1. **Ingest** a lab PGx report (PDF or phone photo) or a genotype VCF (GRCh38).
 2. **Call** diplotypes and phenotypes deterministically with [PharmCAT](https://pharmcat.clinpgx.org) (CPIC's reference implementation), which also attaches the matching CPIC, DPWG and FDA-label recommendations.
 3. **Layer** an India lens: deterministic, cited rules for HapB3, c.85T>C, NUDT15-over-TPMT, and panel-coverage warnings.
@@ -43,6 +44,7 @@ Not used on purpose: Muse Image (no clinical value here), SAM 3.1 (no imaging ta
 
 - **No dose comes from the LLM.** Every recommendation is PharmCAT's CPIC/DPWG/FDA text. Muse Spark ranks, maps and explains; it cannot invent a diplotype, dose or citation (schema-constrained, profile-only citations, verbatim quotes from the lab report).
 - **Extraction benchmark (held out).** 36 synthetic Indian lab reports in four layouts (star table, rsID table, narrative, variant checklist), each as a clean PDF, a phone photo and a harsh skewed photo: Muse Spark 1.3 and Muse Spark Open each read 177/177 gene calls exactly, against 58/59, 26/59 and 0/59 for an OCR + rules baseline. Prescription mapping (brands, abbreviations, Malayalam-English dictation): 26/26 on both models in 3 of 3 runs, against 2 of 20 for name lookup. The development run caught two pipeline bugs, fixed before the held-out run. Method, limits and misses: [docs/BENCHMARK.md](docs/BENCHMARK.md).
+- **Self-test.** `npx tsx scripts/selftest.mts` checks the pre-test table and the DPYD normalisation offline in under a second.
 - **Deterministic eval.** `pnpm tsx scripts/eval.mts` runs four synthetic cases end to end and asserts phenotypes and risk calls (DPYD IM → capecitabine adjust; DPYD PM → 5-FU avoid; lab PDF with HapB3 + c.85T>C → called IM, India lens fires; the same report as a phone photo → identical calls).
   Passes 3/3 on both paths: hosted Muse Spark 1.3 and open-weights Muse Spark Open on Baseten (`MUSE_PROVIDER=baseten`, 2026-10-27, no fallback triggered). 4/4 with the phone-photo case against the deployed EC2 instance (2026-10-27, `ACCESS_CODE=... pnpm tsx scripts/eval.mts https://<host>`). Same genotype calls, same risk ranking, same PMIDs; only the prose differs.
 - **Two inference paths, one wire format.** Hosted Muse Spark 1.3 (strict JSON schema, PDF input, web search) and open-weights Muse Spark Open on Baseten (schema in prompt, JSON extracted and validated). Either can be primary; the other is the fallback. Open weights give the data-residency answer every Indian hospital IT team asks first.

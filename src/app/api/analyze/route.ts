@@ -46,7 +46,8 @@ export async function POST(req: Request) {
 async function run(fd: FormData, emit: Emit): Promise<{ status: number; body: Record<string, unknown> }> {
   const sample = String(fd.get("sample") ?? "");
   const medsRaw = String(fd.get("meds") ?? "");
-  const label = String(fd.get("label") ?? "").slice(0, 80);
+  const SAMPLE_LABELS: Record<string, string> = { A: "Sample A · VCF", B: "Sample B · VCF", lab: "Sample · Indian panel PDF", photo: "Sample · WhatsApp photo" };
+  const label = String(fd.get("label") ?? "").slice(0, 80) || (SAMPLE_LABELS[String(fd.get("sample") ?? "")] ?? "");
   let vcf = fd.get("vcf");
   let report = fd.get("report");
   if (/^[AB]$/.test(sample)) vcf = new File([await fs.readFile(path.resolve(`fixtures/oncology-patient-${sample}.vcf`))], `oncology-patient-${sample}.vcf`);

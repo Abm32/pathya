@@ -318,3 +318,10 @@ a:hover .logo-path { animation: logo-draw .9s cubic-bezier(.65,0,.35,1); }
 @keyframes cue { 0% { transform: scaleY(0); opacity: 1; } 70% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
 
 @media print { .sr { opacity: 1 !important; transform: none !important; filter: none !important; } .read-progress, .rail { display: none !important; } }
+
+/* Pre-test result: urgent tests carry the warm accent */
+.pre-before { border-color: rgba(255,181,71,0.4); background: linear-gradient(120deg, rgba(255,181,71,0.07), transparent 60%); box-shadow: inset 3px 0 0 var(--warn); }
+/* Hero: the actual WhatsApp photo the primary button reads */
+.photo-thumb { position: relative; flex: none; display: block; overflow: hidden; border-radius: 6px; border: 1px solid var(--line-strong); transform: rotate(-4deg); box-shadow: 0 10px 24px -10px rgba(0,0,0,0.9), 0 0 0 4px rgba(255,255,255,0.03); transition: transform 300ms var(--ease-out); }
+.photo-thumb:hover { transform: rotate(0deg) scale(1.08); }
+.photo-thumb img { display: block; width: 46px; height: 62px; object-fit: cover; object-position: top; }

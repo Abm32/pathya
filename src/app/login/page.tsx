@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import Link from "next/link";
 import { Mark } from "../logo";
 
 function Form() {
@@ -24,7 +25,7 @@ function Form() {
       <div>
         <Mark size={44} />
         <h1 className="mt-4 text-xl font-semibold tracking-tight">Pilot access</h1>
-        <p className="mt-1 text-sm text-muted">Pathya is in a clinician pilot. Enter the code you were given.</p>
+        <p className="mt-1 text-sm text-muted">Pathya is in a clinician pilot. Enter the code you were given. Just looking? <a href="/sample" className="text-accent underline decoration-accent/30 underline-offset-2">Open the sample report</a> or <Link href="/" className="text-accent underline decoration-accent/30 underline-offset-2">check a regimen</Link>, no code needed.</p>
       </div>
       <label className="block">
         <span className="text-sm font-medium">Access code</span>

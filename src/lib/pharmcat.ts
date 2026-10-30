@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- PharmCAT's report JSON is untyped external data, parsed defensively below */
 import { spawn } from "node:child_process";
 import { promises as fs } from "node:fs";
 import path from "node:path";
@@ -112,7 +113,6 @@ export function plain(html?: string) {
     .replace(/\n{2,}/g, "\n").trim();
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function parseReport(report: any): PgxProfile {
   const genes: GeneCall[] = Object.values(report.genes ?? {}).map((g: any) => {
     const dip = (g.recommendationDiplotypes ?? g.sourceDiplotypes ?? [])[0];
