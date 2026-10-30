@@ -27,6 +27,7 @@ export default function Home() {
   const [steps, setSteps] = useState<StepEvent[]>([]);
   const [ready, setReady] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [locked, setLocked] = useState(false); // a run hit the access gate
   const logRef = useRef<HTMLDivElement>(null);
   const consoleRef = useRef<HTMLDivElement>(null);
 
@@ -38,6 +39,7 @@ export default function Home() {
     if (scroll) setTimeout(() => logRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
     try {
       const res = await fetch("/api/analyze?stream=1", { method: "POST", body: fd });
+      if (res.status === 401) { setLocked(true); setSteps([]); setBusy(false); return; }
       if (!res.ok || !res.body) { const j = await res.json().catch(() => ({})); throw new Error(j.detail ?? j.error ?? `HTTP ${res.status}`); }
       const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
       let buf = "";
@@ -57,6 +59,7 @@ export default function Home() {
       throw new Error("Connection closed before the report finished. Try again.");
     } catch (e) {
       setErr(e instanceof Error ? e.message : String(e));
+      setSteps([]); // never leave the pipeline looking frozen
       setBusy(false);
     }
   }
@@ -97,6 +100,16 @@ export default function Home() {
             </button>
             <button type="button" onClick={checkRegimen} className="btn btn-ghost btn-lg">No test yet? Check a regimen</button>
           </div>
+          {locked && (
+            <div role="alert" className="reveal mt-4 max-w-xl rounded-xl border border-[rgba(255,181,71,0.4)] bg-[rgba(255,181,71,0.07)] p-4 text-sm">
+              <p className="font-medium">Live runs need the pilot access code, because each one calls Muse Spark.</p>
+              <p className="mt-1 text-muted">
+                <a href="/sample" className="text-accent underline decoration-accent/30 underline-offset-2">Open this photo, already run</a>, try the{" "}
+                <button type="button" onClick={checkRegimen} className="text-accent underline decoration-accent/30 underline-offset-2">pre-test check</button> (no code), or{" "}
+                <a href="/login?next=/" className="text-accent underline decoration-accent/30 underline-offset-2">sign in</a>.
+              </p>
+            </div>
+          )}
           <div className="mt-5 flex items-center gap-3">
             <a href="/sample-photo.jpg" target="_blank" rel="noreferrer" className="photo-thumb" aria-label="Open the sample WhatsApp photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -234,6 +247,7 @@ export default function Home() {
             </div>
           </div>
           {err && <p role="alert" className="text-sm text-danger">{err}</p>}
+          {locked && <p className="text-sm text-warn">Live runs need the pilot access code. <a href="/login?next=/" className="underline underline-offset-2">Sign in</a>, or <a href="/sample" className="underline underline-offset-2">open the finished sample report</a>.</p>}
           </>)}
         </form>
 
