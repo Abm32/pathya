@@ -24,11 +24,11 @@ function Form() {
     >
       <div>
         <Mark size={44} />
-        <h1 className="mt-4 text-xl font-semibold tracking-tight">Pilot access</h1>
+        <h1 className="mt-4 text-xl font-semibold tracking-tight">Curator sign-in</h1>
         <p className="mt-1 text-sm text-muted">Reading records, running a report and dictating results need no code at all — just go to the <a href="/" className="text-accent underline decoration-accent/30 underline-offset-2">home page</a>. This sign-in is for curators, who verify records and write into the verified cohorts. <a href="/sample" className="text-accent underline decoration-accent/30 underline-offset-2">Open a sample record</a> or <Link href="/cohort" className="text-accent underline decoration-accent/30 underline-offset-2">the demo cohort</Link>.</p>
       </div>
       <label className="block">
-        <span className="text-sm font-medium">Access code</span>
+        <span className="text-sm font-medium">Curator code</span>
         <input value={code} onChange={(e) => setCode(e.target.value)} type="password" autoComplete="one-time-code" autoFocus required className="field mt-1 font-mono" />
       </label>
       <button disabled={busy} className="btn btn-primary w-full">{busy ? "Checking…" : "Enter"}</button>
