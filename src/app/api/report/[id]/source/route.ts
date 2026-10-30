@@ -8,7 +8,7 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
   const { id } = await ctx.params;
   let dir: string;
   try { dir = caseDir(id); } catch { return new Response("bad id", { status: 400 }); }
-  if (!(await canRead(id))) return new Response("This needs the pilot access code.", { status: 401 });
+  if (!(await canRead(id))) return new Response("This record is not public. Sign in as a curator at /login to open it.", { status: 401 });
   for (const [name, type] of [["report.pdf", "application/pdf"], ["report.img", ""]] as const) {
     const buf = await fs.readFile(path.join(dir, name)).catch(() => null);
     if (!buf) continue;

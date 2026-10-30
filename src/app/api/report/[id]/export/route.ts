@@ -7,7 +7,7 @@ import type { PgxProfile } from "@/lib/pharmcat";
 /** One record as JSON (full), PharmCAT outside-call TSV, or a one-row CSV. */
 export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }) {
   const { id } = await ctx.params;
-  if (!/^[a-f0-9]{12}$/.test(id) || !(await canRead(id))) return new Response("This needs the pilot access code.", { status: 401 });
+  if (!/^[a-f0-9]{12}$/.test(id) || !(await canRead(id))) return new Response("This record is not public. Sign in as a curator at /login to open it.", { status: 401 });
   const f = new URL(req.url).searchParams.get("f") ?? "json";
   const meta = await readJson<CaseMeta>(id, "case.json").catch(() => null);
   const profile = await readJson<PgxProfile>(id, "profile.json").catch(() => null);

@@ -6,7 +6,7 @@ import { cohortIsPublic, signedIn } from "@/lib/access";
 export async function GET(req: Request, ctx: { params: Promise<{ name: string }> }) {
   const { name } = await ctx.params;
   if (!/^[a-z0-9-]{1,40}$/.test(name)) return NextResponse.json({ error: "bad cohort name" }, { status: 400 });
-  if (!cohortIsPublic(name) && !(await signedIn())) return NextResponse.json({ error: "This needs the pilot access code." }, { status: 401 });
+  if (!cohortIsPublic(name) && !(await signedIn())) return NextResponse.json({ error: "This cohort is not public. Sign in as a curator at /login to open it." }, { status: 401 });
   const records = await loadCohort(name);
   if (new URL(req.url).searchParams.get("f") === "csv") {
     return new Response(cohortCsv(records), { headers: { "content-type": "text/csv", "content-disposition": `attachment; filename="pathya-cohort-${name}.csv"` } });
