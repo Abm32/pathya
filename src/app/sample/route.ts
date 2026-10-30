@@ -1,7 +1,5 @@
-import { NextResponse, type NextRequest } from "next/server";
-
-/** Stable link to the pinned public sample report (first id in PUBLIC_CASES). */
-export function GET(req: NextRequest) {
+/** Stable link to the pinned public sample report (first id in PUBLIC_CASES). Relative Location: behind Caddy, req.url carries the container's host. */
+export function GET() {
   const id = (process.env.PUBLIC_CASES ?? "").split(",")[0]?.trim();
-  return NextResponse.redirect(new URL(id ? `/report/${id}` : "/", req.url));
+  return new Response(null, { status: 307, headers: { Location: id ? `/report/${id}` : "/" } });
 }
