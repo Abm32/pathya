@@ -26,7 +26,8 @@ Redeploy = rerun the rsync, then `docker compose up -d --build` (2-3 min, PharmC
 | `MODEL_API_KEY` | Meta Model API (Muse Spark 1.3, Muse Voice) |
 | `BASETEN_API_KEY` | Muse Spark Open on Baseten (second path and fallback) |
 | `ACCESS_CODE` | Shared pilot code. Empty disables the gate. Send it separately from the link. |
-| `PUBLIC_CASES` | Comma-separated case ids readable without the code; `/sample` opens the first. |
+| `PUBLIC_CASES` | Comma-separated record ids readable without the code; `/sample` opens the first. |
+| `PUBLIC_COHORT` | Cohort whose statistics and records are public read-only (default `demo`, synthetic only). |
 | `PHARMCAT_RUNNER=local`, `DATA_DIR=/data` | Set by `docker-compose.yml`. |
 
 ### Custom domain: pathya.anukritiai.com (live since 2026-10-30)
@@ -42,19 +43,27 @@ docker run -d --name caddy --restart unless-stopped --network host -v caddy:/dat
 
 3. Set `metadataBase` in `src/app/layout.tsx` to the new domain (share previews use it), redeploy, and update the links in README and SUBMISSION.
 
+### Demo cohort
+
+Seed it through the real pipeline with one phone photo per synthetic person from the benchmark sets (24 records):
+
+```bash
+ACCESS_CODE=<code> npx tsx scripts/seed-cohort.mts https://<host>        # cohort "demo"
+```
+
 ### Public sample report
 
 The home page links "open a finished report" to `/sample`. To pin a new sample after changing the sample regimen:
 
 ```bash
-# log in with the code, run the photo sample with the CAPOX regimen, note the id
+# log in with the code, run the photo sample, note the id
 curl -s -c jar -H 'content-type: application/json' -d '{"code":"<ACCESS_CODE>"}' https://<host>/api/login
-curl -s -b jar -F sample=photo -F $'meds=Xeloda 1000 mg/m² BD\noxaliplatin\nEmeset 8\nDexona 8 mg\nPan 40' https://<host>/api/analyze
+curl -s -b jar -F sample=photo -F cohort=samples https://<host>/api/analyze
 # on the VM: set PUBLIC_CASES=<id> in ~/pathya/.env, then
 docker compose up -d
 ```
 
-Current pinned case: `8a5e3b904b9a` (2026-10-30).
+Current pinned case: `39c2d714da1b` (2026-10-30, research-record pipeline).
 
 ## Option B: Fly.io
 

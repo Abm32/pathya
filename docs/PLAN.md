@@ -28,7 +28,17 @@ Original: Upload a patient's genotype (VCF) + their medication list → CPIC-gro
 - UI: `/` upload + meds; `/report/[id]` gene grid, drug risk table with CPIC badge + citations, patient tab (EN/ML), "Ask" chat grounded on the report.
 - Storage: filesystem JSON under DATA_DIR for hackathon (ponytail: swap for Postgres when multi-tenant).
 
-## Status (updated 2026-10-30 IST)
+## Status (updated 2026-10-30 evening IST)
+
+- **Second pivot, 2026-10-30: research-data tool.** Reading the hackathon Discord, the organizers ruled that clinician-facing tools producing drug or dose recommendations are the "AI medical advice" anti-project, even with citations and clinician review, and that medical use cases are not wanted. Research and evaluation tools with no patient-facing output, and documentation work, are allowed. Pathya now turns PGx reports (PDF, WhatsApp photo, dictation, VCF) into verified, de-identified records and cohort statistics, and makes no recommendation of any kind. Removed: dose checks, pre-test check, test requests, medication mapping, patient text. Added: quality and coverage rules, de-identification, `/cohort` with Wilson intervals, curator review, literature search, dictated results, IndiPGx-Read dataset release. See memory note and docs/SUBMISSION.md.
+- **NEXT, in priority order:**
+  1. Post the eligibility question in Discord #questions (draft in chat) and keep the answer.
+  2. Make the repo public; fill SUBMISSION placeholders (team, video, repo, judge code).
+  3. Demo video per DEMO.md, opening with the disclosure line.
+  4. One researcher quote and one lab report template (LAB-CALLS.md).
+  5. Optional: X post for Most Viral; target the Best Open Weight Models award.
+
+### Status before the second pivot
 
 - **Pivot, 2026-10-30.** A mock judging pass (about 74/100) found that Pathya only helped patients who had already been tested, and in India the test is rarely ordered in time: ₹7,000–17,000, no government cover, 7–10 day turnaround. Pathya is now a pre-chemo gene safety check: the pre-test check (which test to order at diagnosis, deterministic, public) followed by the existing report reading. Business case and regulatory path added to SUBMISSION.md.
 - **Benchmark, 2026-10-30.** Held-out set: 177/177 gene calls on Muse Spark 1.3 and on Spark Open, against 47.5% for an OCR + rules baseline (0% on harsh photos). Medication mapping 26/26 vs 2/20. It caught and fixed two pipeline bugs. docs/BENCHMARK.md.

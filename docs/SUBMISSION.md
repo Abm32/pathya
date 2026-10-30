@@ -1,7 +1,7 @@
 # Submission text: Pathya
 
 Meta Global AI Developer Hackathon 2026 · Startup track · Build for Your World
-Fill the bracketed fields before submitting. Do not submit with a `[PILOT]` placeholder still in it: either fill it with a real quote or delete the sentence.
+Fill the bracketed fields before submitting. The video must open with one line on what existed before the event (nothing: the repo was created during the event) and must say "research tool, not medical advice".
 
 ---
 
@@ -11,98 +11,84 @@ Pathya (പഥ്യം)
 
 ## Tagline (one line)
 
-A pre-chemo gene safety check for Indian oncology: which test to order at diagnosis, and what the result means for the first dose, in the patient's own language.
+India's pharmacogenomic results are stuck in PDFs and WhatsApp photos. Pathya turns them into verified, de-identified research data.
 
 ## Short description (≈50 words)
 
-At diagnosis, Pathya reads the planned regimen and says which gene tests to order before cycle one. When the result arrives, as a PDF or a WhatsApp photo, Muse Spark reads it, PharmCAT calls the genotype deterministically, and the oncologist gets CPIC dose text, Indian evidence and a Malayalam patient explanation. Muse Voice takes the dictated consult.
+Pathya reads Indian pharmacogenomic lab reports (PDFs, phone photos, results read aloud) with Muse Spark and Muse Voice, quotes every gene call from the page, standardises it with PharmCAT, removes identifiers, checks which India-relevant variants the panel tested, and adds the record to a cohort with confidence intervals. Research tool, not medical advice.
 
 ## The problem
 
-Fluoropyrimidines (5-FU, capecitabine) are the backbone of colorectal, gastric and breast cancer treatment, and they kill 0.1 to 1% of the patients who take them. Carriers of DPYD decreased-function variants are about 4% of patients but about 48% of those deaths (Sharma 2021). A cheap gene test prevents most of it. The FDA added DPD-deficiency language to the capecitabine label in October 2025 and to 5-FU in February 2026.
+India's evidence on the gene variants that change how people handle common drugs is thin, and the variants that matter here differ from Europe's:
 
-In India the patient falls through two gaps.
+- The most common Indian decreased-function DPYD variant is HapB3, not the *2A that European-derived panels are built around (PMID 40810747).
+- DPYD c.85T>C is carried by about 25% of Indians. CPIC classes it as normal function, while South Indian prospective cohorts report a toxicity association (PMC11300675). It is an open research question.
+- NUDT15 risk alleles are more common in Indians than TPMT's (PMID 29470173).
+- India's DPYD frequency data rests on two studies of about 2,000 and 1,612 people (PMID 33105068, PMID 40810747), and there is no ICMR guideline on DPYD testing.
 
-**The test is not ordered in time.** A DPYD panel costs ₹7,000 to ₹17,000 on Indian lab marketplaces, government insurance does not cover it, and the result takes 7 to 10 days in tier-one cities (oncologist commentary on OncoDaily; Tata 1mg and Redcliffe listings, October 2026). Ordered at the first infusion, it comes back after the toxicity window. Routine DPYD genotyping is not common practice in India.
-
-**The result is not read.** Interpretation is the second bottleneck:
-
-- The dominant Indian risk variant is HapB3, not the *2A that European-derived panels are built around (PMID 40810747).
-- DPYD c.85T>C runs at about 25% in Indians. CPIC calls it normal function, yet it is the only variant with replicated toxicity association in South Indian prospective cohorts (PMC11300675).
-- NUDT15 matters more than TPMT for thiopurines in Indians (PMID 29470173).
-- There is no ICMR or national guidance on DPYD testing, and about 75% of prescribers say they are not confident reading a PGx report (PMC9696651).
-
-The result is a PDF of rsIDs and star alleles landing on the desk of an oncologist with 40 patients that day and no pharmacogenomics training.
+Meanwhile, labs across India already run these tests every day. The results go to hospitals as PDFs and WhatsApp photos, in a dozen layouts, and stay there. None of them reach a registry, so the evidence never grows.
 
 ## What it does
 
-0. **Before the test: what to order.** The oncologist types the regimen as written on the chart ("Xeloda 1000 mg/m² BD, Emeset 8, Pan 40, Fasturtec"). A deterministic table of CPIC, DPWG and FDA-label gene-drug pairs returns the tests to order before cycle one and why: DPYD for fluoropyrimidines, UGT1A1 for irinotecan, TPMT and NUDT15 for thiopurines, G6PD before rasburicase (about 8.5% of Indians are deficient), then CYP2D6 and CYP2C19 as useful but not urgent. It is instant, has no model cost, and sends no patient data anywhere. For lines the table does not know (a misspelling, a brand it lacks), Muse Spark names the generic drug under a strict schema and returns nothing when unsure; the table then decides the test, and the screen labels which lines Muse Spark named. The result prints as a test request for the lab, with the patient explanation in English and Malayalam.
-1. **Ingest.** Upload the lab report as a PDF or a phone photo (how reports actually arrive, over WhatsApp), or a GRCh38 VCF.
-2. **Read.** Muse Spark extracts every gene call and quotes the line it came from, verbatim. Nothing is inferred beyond what is printed.
-3. **Call.** PharmCAT assigns diplotypes and phenotypes and attaches the matching CPIC, DPWG and FDA-label recommendations. No dose ever comes from the language model.
-4. **India lens.** Deterministic rules, each with its PMID, flag what CPIC misses for this population: HapB3, c.85T>C, NUDT15 over TPMT, and targeted-panel coverage gaps.
-5. **Reason and explain.** Muse Spark maps the medication list (brand names, abbreviations, Malayalam-English dictation) to guideline drugs, ranks each as avoid / adjust / caution / standard / unknown, writes the clinician summary with citations taken only from the guideline profile, and writes the patient explanation in English and Malayalam.
-6. **Dictate.** The oncologist records the consult. Muse Voice Transcribe (diarized, code-switched Malayalam and English, keyword-biased to oncology drug names) produces the transcript, Muse Spark extracts current and planned medications, and the check re-runs.
-7. **Check what is new.** One click runs Muse Spark web search against drug labels and guidelines newer than the bundled CPIC data, with linked citations.
-8. **Confirm.** Nothing is advice until the clinician accepts, modifies or rejects each flagged drug. Every upload, model call, output and decision goes to an append-only audit log.
+1. **Ingest.** A lab report as a PDF or a phone photo (how results actually travel, over WhatsApp), results read aloud, or a GRCh38 VCF.
+2. **Read.** Muse Spark extracts every gene call under a strict JSON schema and quotes the line it came from. It also records which variants the report says were tested. Results read aloud go through Muse Voice Transcribe (English and Malayalam, keyword-biased to gene and variant names), and Muse Spark reads the transcript into the same record.
+3. **Standardise.** PharmCAT, CPIC's reference engine, normalises the calls to PharmVar allele names and CPIC phenotype terms. Only the calls are kept; no guideline or drug text is stored.
+4. **Check quality.** Deterministic rules flag which India-relevant variants (HapB3, c.85T>C, *2A, *13, c.2846A>T, NUDT15 *3, UGT1A1 *28 and *6, TPMT *3C, CYP2C19 *2 and *17) the panel did not name, record unreadable calls, and remove any patient or lab reference before storage.
+5. **Record.** Each result becomes a de-identified record with the original document beside the quotes, exportable as JSON, PharmCAT outside-call TSV or CSV. A curator verifies each call against the source, and the decision goes to an append-only audit log.
+6. **Cohort.** Records aggregate into carrier frequencies per variant with Wilson 95% intervals. A panel that never named a variant is left out of that variant's denominator instead of being counted as a non-carrier, the most common error when pooling targeted-panel results.
+7. **Literature.** Muse Spark web search finds published Indian frequency data for each variant in a record, with linked sources.
 
-The screen shows the work as it happens: a live run panel streams each step from the server as it completes (Muse Spark's quoted calls, PharmCAT's phenotypes, the India rules that fired, the risk for each drug), and the finished report carries a run trace with timings plus the original document beside the quotes.
+Pathya makes no dose, drug or test recommendation and produces no patient-facing output. It is a research and data tool.
 
-## Who pays, and how it reaches patients
+## Who uses it, and who pays
 
-- **Size.** India expects about 15.7 lakh new cancer cases in 2025 (ICMR-NCRP). Fluoropyrimidines are standard for colorectal, gastric, breast and head-and-neck cancers, so a large share of patients starting chemotherapy should be checked before cycle one.
-- **The free front door.** The pre-test check costs nothing to run. Every regimen checked is a test the oncologist now knows to order.
-- **Who pays: the lab.** The labs that sell DPYD, UGT1A1 and NUDT15 panels at ₹7,000 to ₹17,000 also have to deliver an interpretation that busy oncologists will act on. Pathya is that interpretation layer: a per-report fee (indicative ₹300 to ₹500) on a test that already sells for 15 to 50 times that, with more tests ordered because the pre-test check asks for them.
-- **Who pays: the hospital.** For oncology day-care units and hospital pharmacies, a per-site subscription covers the dose check at the point of prescribing, plus the audit trail that quality accreditation teams want.
-- **Data stays inside.** The same pipeline runs on Muse Spark Open (open weights), so a hospital can keep genomic data inside its own network.
-- **Regulatory path.** Pathya does not diagnose or set doses. It shows guideline text with citations and requires a clinician to accept, modify or reject every flagged drug, with an audit log. That places it as clinical decision support. We will confirm its classification under CDSCO's Medical Device Rules for software before any paid deployment.
-- **First customers.** Kochi oncology day-care units for the clinician pilot, then one Indian PGx lab as the first interpretation partner.
+- **Users.** Pharmacogenomics research groups, hospital research units and biobanks that want to pool the results already being produced; labs that want their reports to be machine-readable.
+- **First customer.** A research group or hospital research unit in Kerala pooling de-identified DPYD and NUDT15 results into a registry, under its own ethics approval.
+- **Who pays.** Research groups and biobanks pay per curated record or per cohort; labs pay to have their own report format read reliably and exported in standard form.
+- **Data stays inside.** The reader runs on Muse Spark Open, open weights, with identical results on our benchmark. A biobank can keep genomic data in its own network.
+- **Why now.** Fluoropyrimidine DPYD testing entered FDA labels in 2025–2026 and NCCN colon guidance in 2025, so more Indian reports are being issued every month, and each one is a data point.
 
 ## How we used Meta's models
 
 | Model | What it does in Pathya |
 |---|---|
-| `muse-spark-1.3` | Names unfamiliar drugs and brands in the pre-test check (generic names only; the guideline table decides the test); reads lab reports from PDF and phone-photo input under a strict JSON schema with verbatim quotes; maps and ranks medications under a strict schema; writes the clinician summary and the English and Malayalam patient text; web search with URL citations for post-guideline label changes |
-| `muse-voice-transcribe-1.0` | Consult dictation with diarization, English + Malayalam language bias, and keyword biasing to oncology drug names |
-| Muse Spark Open (`meta-models/muse-spark-open-1026`, open weights, served on Baseten) | Second inference path for the same mapping and explanation step. Automatic fallback when the hosted API fails, or primary with one environment variable. Open weights are the answer to the first question every Indian hospital IT team asks: can genomic data stay inside our building? |
+| `muse-spark-1.3` | Reads lab reports from PDF and phone-photo input under a strict JSON schema, quoting each call and listing the variants tested; reads dictated transcripts into the same schema; web search with linked sources for published Indian allele frequencies |
+| `muse-voice-transcribe-1.0` | Transcribes results read aloud, English and Malayalam, keyword-biased to gene and variant names |
+| Muse Spark Open (`meta-models/muse-spark-open-1026`, open weights, on Baseten) | Same reader, same schema (in the prompt, validated). Read all 177 gene calls on the held-out benchmark exactly like the hosted model, and is the automatic fallback. Open weights are what lets a biobank keep genomic data in-house. |
 
-Both paths speak the same OpenAI-compatible wire format. The hosted model enforces the JSON schema; for the open model the schema goes in the prompt and the JSON is extracted and validated.
-
-We left out Muse Image and SAM 3.1 on purpose. Nothing in this workflow needs an image generated or segmented, and adding them would be decoration.
+We left out Muse Image and SAM 3.1 on purpose: nothing here needs an image generated or segmented.
 
 ## How we built it
 
-- Next.js 16 on Node, one Docker container built on the official `pgkb/pharmcat` image (PharmCAT 3.4.0, Java, the preprocessor's Python and bcftools stack). No docker-in-docker and no external PGx service.
-- Lab-report path: Muse Spark extraction to PharmCAT "outside calls", so genotype logic stays in PharmCAT even when the input is a photo.
-- India lens as plain, cited rules, not prompts.
-- Pre-test check as a hand-kept CPIC / DPWG / FDA gene-drug table that runs in the browser: no model, no data sent, so it can be open to anyone.
-- Streaming analysis endpoint (NDJSON step events) driving the live run panel; the same endpoint returns plain JSON for scripts.
-- Access-code gate with rate-limited login, per-case audit log, case labels instead of patient names, no PHI fields. The story, the pre-test check and one pinned sample report are public; runs, uploads, dictation and confirmations need the code.
-- A benchmark harness (`scripts/bench.mts`, `scripts/bench/gen.py`) that generates synthetic reports with ground truth and scores every reader with the app's own normalisation, and an offline self-test (`scripts/selftest.mts`).
-- Deployed on AWS EC2 in Mumbai (ap-south-1) behind Caddy with automatic TLS.
+- Next.js 16 on Node, one Docker container on the official `pgkb/pharmcat` image (PharmCAT 3.4.0, Java, the preprocessor's Python and bcftools stack).
+- Reports and dictation go through Muse Spark extraction to PharmCAT "outside calls", so naming stays in PharmCAT even when the input is a photo.
+- Quality rules and cohort statistics (Wilson intervals, coverage-aware denominators) are plain, tested code.
+- Streaming endpoint (NDJSON step events) drives the live pipeline view.
+- Access-code gate with rate-limited login; the demo cohort and its records are public read-only; anything that calls a model or writes data needs the code. Per-record audit log; no identifiers stored.
+- A benchmark harness (`scripts/bench.mts`, `scripts/bench/gen.py`) that generates synthetic reports with ground truth and scores every reader with the app's own normalisation; an offline self-test; a 5-case end-to-end eval.
+- Deployed on AWS EC2 in Mumbai behind Caddy with automatic TLS.
 
 ## Does it hold up?
 
-- **Held-out extraction benchmark.** 36 synthetic Indian lab reports in the four layouts Indian labs use (star-allele table, rsID-only table, narrative, variant checklist), each as a clean PDF, a phone photo and a harsh skewed, shadowed photo. Muse Spark 1.3 and open-weights Muse Spark Open each read all 177 gene calls exactly, with zero invented genes and every quote found on the page. A best-case OCR + rules baseline gets 98% on clean PDFs, 44% on phone photos and 0% on harsh photos. Prescriptions as oncologists write them (Xeloda, 5FU, Campto, Emeset, Pan 40, "Xeloda tablet randu neram"): 26/26 on both models in every run, against 2 of 20 for name lookup. The development run caught two real pipeline bugs (rsID-only TPMT/NUDT15, a DPYD allele-name variant), fixed before the held-out set was generated. Full method and limits: `docs/BENCHMARK.md`.
-- **Deterministic end-to-end eval.** `scripts/eval.mts` runs four synthetic cases through the deployed system and asserts phenotypes and risk calls: DPYD intermediate metabolizer leads to capecitabine "adjust"; DPYD poor metabolizer leads to 5-FU "avoid"; the Indian-panel lab PDF (HapB3 + c.85T>C) is called intermediate and the India lens fires; the same report photographed on a phone gives identical calls.
-- **Results.** 4/4 against the live deployment. 3/3 on hosted Muse Spark 1.3 and 3/3 on open-weights Muse Spark Open with no fallback triggered: same genotype calls, same risk ranking, same PMIDs, different prose.
-- **Speed.** About 45 to 60 seconds from upload to finished bilingual report, most of it the two Muse Spark calls.
-- **Clinician pilot.** [PILOT: "Two Kochi oncologists ran N anonymised past cases; mean score X/5 on 'would this have changed what I did'." plus one quote with permission. Delete this bullet if the pilot is not done.]
+- **Held-out extraction benchmark.** 36 synthetic Indian lab reports in four layouts Indian labs use (star-allele table, rsID-only table, narrative, variant checklist), each as a clean PDF, a phone photo and a harsh skewed, shadowed photo. Muse Spark 1.3 and open-weights Muse Spark Open each read all 177 gene calls exactly, invented no genes, and every quote was found on the page. A best-case OCR + rules baseline gets 98% on clean PDFs, 44% on phone photos and 0% on harsh photos. The development run caught two real pipeline bugs, fixed before the held-out set was generated. Method and limits: `docs/BENCHMARK.md`.
+- **Open dataset.** The 72 synthetic reports, their ground truth and the scoring harness are in the repository as IndiPGx-Read v0.1.
+- **End-to-end eval.** 5 cases through the deployed system (two VCFs, a lab PDF, the same report as a phone photo, and results read aloud): phenotypes, allele names and coverage are checked, and the eval fails if any guideline or drug text, or an identifier, is stored.
+- **Demo cohort, verified.** 24 synthetic people, one phone photo each, run through the live production pipeline into the public cohort. All 106 gene calls in those live records match the ground truth (`scripts/verify-cohort.mts`), and none stores an identifier or any guideline or drug text.
+- **Speed.** About 15–30 seconds from photo to record, most of it Muse Spark reading the image.
 
 ## Challenges
 
-- **CPIC is not enough for India.** The guideline-correct answer for c.85T>C is "normal function", and the local evidence disagrees. We kept CPIC's text untouched and put the population evidence beside it as a separate, cited, rule-based layer, so the clinician sees both and the model never overrides a guideline.
-- **Keeping the LLM away from doses.** Muse Spark only reads, maps, ranks and explains. Doses are PharmCAT's guideline text, citations must come from the guideline profile, and lab calls must be quoted verbatim from the source.
-- **Real lab reports are photos.** Reports arrive as skewed, noisy WhatsApp images. We made the photo path a first-class test case rather than an afterthought.
-- **Two providers, one contract.** The open model does not enforce JSON schemas, so the same schema had to work both as a constraint and as an instruction, with validation either way.
+- **Staying a data tool.** Pharmacogenomics pulls towards advice. We drew a hard line: the product stores calls, quotes, coverage and statistics, never guideline text, doses or patient explanations, and the eval enforces it.
+- **Missing is not negative.** A targeted panel that never tested c.85T>C says nothing about it. Counting such reports as non-carriers would understate frequencies; Pathya keeps them out of the denominator and shows how many there were.
+- **Real reports are photos.** Skewed, compressed WhatsApp images are the normal input, so the photo path is a first-class benchmark condition, not an afterthought.
+- **Two providers, one contract.** The open model does not enforce JSON schemas, so the same schema works as a constraint and as an instruction, with validation either way.
 
 ## What's next
 
-- Pilot with Kochi oncology day-care units and the hospital pharmacy that dispenses capecitabine; measure how often the pre-test check leads to a test ordered before cycle one.
-- First lab partnership: Pathya's interpretation shipped with the lab's own report.
-- Self-hosted Muse Spark Open inside a hospital network, so no genomic data leaves the premises.
-- Direct report intake from Indian labs, and EMR / HL7 delivery instead of print.
-- More population rules (UGT1A1 *6, CYP2C19 for supportive-care drugs) as Indian evidence matures, each reviewed by a clinical pharmacologist.
+- De-identified real report formats from a partner lab, under its consent and ethics approval, to measure accuracy on formats we did not write.
+- A self-hosted Muse Spark Open deployment inside a hospital or biobank network.
+- FHIR Genomics export alongside JSON, TSV and CSV.
+- More genes and Indian-relevant variants as the cohort grows, each with its source.
 
 ## Built by
 
@@ -110,11 +96,11 @@ Anukriti AI, Kochi, Kerala. [Team member names and roles]
 
 ## Links
 
-- Live demo: https://pathya.anukritiai.com. The story, the pre-test check and a finished sample report (https://pathya.anukritiai.com/sample) open without a code. Live runs, uploads and dictation need the judge access code: [give judges a code]
+- Live demo: https://pathya.anukritiai.com. The story, the demo cohort (https://pathya.anukritiai.com/cohort) and a finished sample record (https://pathya.anukritiai.com/sample) open without a code. Live runs, uploads and dictation need the judge access code: [give judges a code]
 - Demo video: [URL]
-- Repository: [URL; make public or add judges as collaborators]
-- Evidence brief with every source: `docs/EVIDENCE.md` in the repository
+- Repository: [URL; must be public]
+- Benchmark and dataset: `docs/BENCHMARK.md`
 
 ## Disclaimer
 
-Pathya is clinical decision support for qualified clinicians. It is not medical advice. All fixtures are synthetic; no real patient data was used.
+Pathya is a research and data tool. It is not medical advice and makes no dose, drug or test recommendation. All reports used are synthetic; no real patient data was used.

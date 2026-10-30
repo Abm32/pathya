@@ -1,8 +1,8 @@
-# Lab verification calls (do before Nov 3)
+# Lab and research outreach (do before Nov 3)
 
-Goal: replace the UNVERIFIED items in EVIDENCE.md §3 with first-hand numbers, and collect one real (anonymised) report PDF per lab to test ingestion.
+Goal after the 2026-10-30 pivot: Pathya is a research-data tool, not clinical advice. We want (1) **report formats** (blank or synthetic templates of how each lab prints PGx results) to test the reader on layouts we did not write, and (2) **one research group** that would use pooled, de-identified records. Do not collect real patient reports for the demo: Meta's credit terms say API content may be used to improve Meta models, and the organizers recommend simulated data.
 
-## Labs to call
+## Labs: ask for a blank or synthetic report template
 | Lab | Why | Contact route |
 |---|---|---|
 | MedGenome (Bengaluru, Kochi collection) | Largest Indian clinical genomics lab | website enquiry form / sales line |
@@ -10,30 +10,23 @@ Goal: replace the UNVERIFIED items in EVIDENCE.md §3 with first-hand numbers, a
 | Neuberg Diagnostics (Kochi/Chennai) | Pan-India network, Kerala presence | local Kochi centre |
 | 4baseCare | Oncology-focused NGS | sales |
 | Lilac Insights | PGx panels | sales |
-| DNA Labs India | Lists UGT1A1 TA-repeat at ₹7,500 / 7 days online | phone |
-| Regional Cancer Centre Thiruvananthapuram (lab) | Government oncology reference | pathology dept |
-| Amrita / Aster Medcity / Lakeshore / Rajagiri (Kochi hospital labs) | Where the pilot oncologists practise | oncology day-care pharmacist |
+| DNA Labs India | Lists UGT1A1 TA-repeat online | phone |
 
 ## Script (5 minutes)
-1. "Do you offer DPYD genotyping before 5-FU/capecitabine? Which variants exactly?" (listen for: *2A, *13, c.2846A>T, HapB3/c.1236G>A, c.85T>C, or full-gene sequencing)
+1. "Which variants does your DPYD panel test exactly?" (listen for *2A, *13, c.2846A>T, HapB3 / c.1236G>A, c.85T>C, or full-gene sequencing)
 2. "UGT1A1 *28 and *6? TPMT and NUDT15 together?"
-3. "Price to patient, in INR, and turnaround in working days?"
-4. "What does the report look like: star alleles, rsIDs, phenotype, dose recommendation? Can you email a sample/anonymised PDF?"
-5. "Who orders it most: medical oncologists, clinical pharmacologists, hospital pharmacy?"
-6. "How are results delivered: PDF by email/WhatsApp, portal, HL7/EMR?"
+3. "How is the report laid out: star alleles, rsIDs, a variant checklist, narrative?"
+4. "Could you share a blank template or a synthetic example report? We are building a reader that turns PGx reports into standard research data."
+5. "Would pooled, de-identified frequency data from reports be useful to you or to a research group you work with?"
 
 ## Record here
-| Lab | DPYD variants | UGT1A1 | TPMT/NUDT15 | Price ₹ | TAT days | Report format | Sample PDF received |
-|---|---|---|---|---|---|---|---|
-| | | | | | | | |
+| Lab | DPYD variants | UGT1A1 | TPMT/NUDT15 | Report layout | Template received |
+|---|---|---|---|---|---|
+| | | | | | |
 
-## Oncologist pilot (2 clinicians, 5 cases each)
-Ask: run 5 anonymised past patients (they already know the outcomes), score each report 1–5 on "would this have changed what I did", collect one sentence quote on the Malayalam patient text. Record permission to use the quote in the demo video.
+## Research groups: one user quote
+Ask a pharmacogenomics or clinical-pharmacology researcher (Kerala or South India) to look at the demo cohort and one record and answer: "Would pooled records like this be usable in your research, and what would you need first?" Record permission to quote them in the video.
 
-### Outreach message (WhatsApp/email, oncologist)
+### Outreach message (email or WhatsApp, researcher)
 
-> Dr ___, Abhimanyu from Anukriti AI (Kochi). We built Pathya: upload a DPYD/UGT1A1/TPMT-NUDT15 lab report (PDF or phone photo), get a CPIC/DPWG-grounded toxicity check for capecitabine, 5-FU, irinotecan, thiopurines, tamoxifen, plus a patient explanation in Malayalam. Genotype calling is PharmCAT (CPIC's engine); the model only maps, ranks and explains, and every PMID is from the guideline profile. Could you run 4-5 anonymised past cases (no names, no IDs) and score each 1-5 on "would this have changed what I did"? 20 minutes, link + access code, we are on a call while you do it. One sentence from you on the Malayalam text would go in our 3-minute hackathon video (deadline 4 Nov), only with your permission. Demo: https://pathya.anukritiai.com
-
-### Discord DM (Jason / Qingyuan Zhang, clinical data analytics)
-
-> Hi Jason, Abhimanyu here (Pathya, oncology pharmacogenomics decision support, Startup track). You are the only person in the intros with clinical data background. Would you spend 10 minutes on our report page and tell me what a clinical data reviewer would reject? Deterministic PharmCAT calls, CPIC/DPWG text verbatim, LLM only ranks and explains. Happy to return the favour on your trial-workflow platform.
+> Dr ___, Abhimanyu from Anukriti AI (Kochi). India's DPYD and NUDT15 frequency data rests on a few small studies, while labs issue PGx reports every day that never reach a dataset. We built Pathya, a research tool (not clinical advice): it reads PGx lab reports, including WhatsApp photos, with Meta's Muse models, quotes every call, standardises it with PharmCAT, removes identifiers, flags panel coverage gaps, and pools records into carrier frequencies with confidence intervals. Could you spend 10 minutes on the demo cohort (synthetic data, no login): https://pathya.anukritiai.com/cohort and tell us what a researcher would need before using pooled records? One sentence from you would go in our hackathon video (deadline 4 Nov), only with your permission.

@@ -1,11 +1,8 @@
-# Benchmark: reading Indian PGx lab reports and prescriptions
+# Benchmark and dataset: IndiPGx-Read v0.1
 
-Two questions decide whether Pathya is safe to put in front of an oncologist:
+Can Meta's models read Indian pharmacogenomic lab reports, including bad phone photos, accurately enough to build research data from them? This is the evaluation behind Pathya's reader, and the dataset is released with it.
 
-1. Does it read the lab report correctly, including from a bad phone photo?
-2. Does it map prescriptions as they are actually written (brands, abbreviations, dictation) to the right guideline drug?
-
-Everything here is reproducible from the repository. All documents are synthetic.
+**IndiPGx-Read v0.1**: 72 synthetic Indian PGx lab reports (36 development, 36 held out; 12 genotype profiles × 3 renders per set) with ground truth in `truth.json`, plus the scoring harness. Everything is reproducible from the repository and synthetic: no real patient or laboratory.
 
 ## 1. Lab-report extraction
 
@@ -30,7 +27,11 @@ The two pipeline fixes below were made on a development set (seed 20261030). Thi
 | **Muse Spark Open** | **59/59** | **59/59** | **59/59** | **36/36** | **36/36** | 0 | 100% |
 | OCR + rules | 58/59 | 26/59 | 0/59 | 19/36 | 13/36 | 0 | n/a |
 
-The median time per report was 23 s for Muse Spark 1.3 and 17 s for Spark Open. The OCR baseline took 3 s.
+The median time per report was 16 s for Muse Spark 1.3 and 15 s for Spark Open. The OCR baseline took 3 s. These figures are from a rerun on 2026-10-30 after the extraction schema gained `testedVariants` (the list of variants a report says it tested); gene-call results were unchanged at 177/177 for both models.
+
+### Live cohort check
+
+The public demo cohort is built by running one phone photo per synthetic person (24 people from both sets) through the production pipeline. `scripts/verify-cohort.mts` compares every live record with the ground truth: **106/106 gene calls match**, and no record stores a patient identifier or any guideline or drug text.
 
 ### What the development run caught
 
@@ -46,25 +47,9 @@ After the fixes the development set scored 141/141 on both models, and the held-
 
 ### Limits
 
-- The layouts are four families written by us. Real Indian lab reports vary more (logos, multi-page reports, handwritten notes, regional language headers). The next test is anonymised real reports in the clinician pilot.
+- The layouts are four families written by us. Real Indian lab reports vary more (logos, multi-page reports, handwritten notes, regional language headers). The next test is de-identified real report formats from a partner lab, under its consent and ethics approval.
 - Synthetic photos approximate phone capture. They do not reproduce glare, fingers or folds.
 - 36 reports is small. The point is the gap to the baseline and the failure modes, not a third significant figure.
-
-## 2. Medication mapping
-
-- **Setup:** `scripts/bench-meds.mts` runs the production report call (`generateReport`) on a real PharmCAT profile (CYP2C19 *2/*2, CYP2D6 *1/*4, DPYD HapB3/c.85T>C, NUDT15 *1/*3, UGT1A1 *1/*28) with 26 medication inputs as Indian oncologists write them:
-  - Indian and global brands: Xeloda, Campto, Imuran, Purinethol, Nolvadex, Emeset, Zofran, Clopilet, Plavix, Pan 40, Nexpro, Ultracet, Contramal;
-  - abbreviations: 5FU, CPT-11, 6MP;
-  - a typo: capecitabin;
-  - Malayalam-English dictation: "Xeloda tablet randu neram";
-  - six drugs with no gene guideline, which must stay unmapped: Dolo 650, Dexona, oxaliplatin, leucovorin, Glycomet, Emend.
-- **Score:** the input maps to the expected guideline drug, or lands in `unmappedMedications` when no guideline applies. 3 runs per model, each model pinned with no fallback.
-
-| | Correct (3 runs) |
-|---|---|
-| **Muse Spark 1.3** | **26, 26, 26 of 26** |
-| **Muse Spark Open** | **26, 26, 26 of 26** |
-| Generic-name lookup | 8 of 26 (2 of the 20 names that map to a guideline; the other 6 are the no-guideline drugs) |
 
 ## Reproduce
 
@@ -73,7 +58,6 @@ python3 scripts/bench/gen.py                              # development set -> f
 python3 scripts/bench/gen.py 7 fixtures/bench-heldout     # held-out set
 npx tsx --env-file=.env scripts/bench.mts rules,muse,open
 BENCH_DIR=fixtures/bench-heldout npx tsx --env-file=.env scripts/bench.mts rules,muse,open
-npx tsx --env-file=.env scripts/bench-meds.mts 3
 ```
 
-Raw results: `docs/bench-results.json` (development set and medications) and `docs/bench-results-heldout.json` (held-out set). Each includes every miss.
+Raw results: `docs/bench-results.json` (development set) and `docs/bench-results-heldout.json` (held-out set). Each includes every miss. `docs/bench-results.json` also holds a medication-mapping run from before the pivot; that feature and its harness were removed.

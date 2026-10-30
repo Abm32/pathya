@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-29T19:22:36.068Z",
+ "generatedAt": "2026-10-30T06:40:52.738Z",
  "cases": 36,
  "readers": {
   "rules": {
@@ -666,7 +666,7 @@
     "extraGenes": 0,
     "quotesGrounded": "100.0%",
     "errors": 0,
-    "medianSec": 23.2
+    "medianSec": 16
    },
    "byRender": {
     "pdf": {
@@ -678,7 +678,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 13.6
+     "medianSec": 23.5
     },
     "photo": {
      "geneCalls": "100.0%",
@@ -689,7 +689,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 25.7
+     "medianSec": 14.2
     },
     "harsh": {
      "geneCalls": "100.0%",
@@ -700,7 +700,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 24.2
+     "medianSec": 13.4
     }
    },
    "byLayout": {
@@ -713,7 +713,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 23.9
+     "medianSec": 19.9
     },
     "rsid": {
      "geneCalls": "100.0%",
@@ -724,7 +724,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 24
+     "medianSec": 19.4
     },
     "narrative": {
      "geneCalls": "100.0%",
@@ -735,7 +735,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 16.3
+     "medianSec": 17.3
     },
     "checklist": {
      "geneCalls": "100.0%",
@@ -746,7 +746,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 21.5
+     "medianSec": 13.5
     }
    },
    "misses": []
@@ -761,7 +761,7 @@
     "extraGenes": 0,
     "quotesGrounded": "100.0%",
     "errors": 0,
-    "medianSec": 16.7
+    "medianSec": 14.8
    },
    "byRender": {
     "pdf": {
@@ -773,7 +773,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 16.7
+     "medianSec": 16.5
     },
     "photo": {
      "geneCalls": "100.0%",
@@ -784,7 +784,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 16.8
+     "medianSec": 15.8
     },
     "harsh": {
      "geneCalls": "100.0%",
@@ -795,7 +795,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 15.9
+     "medianSec": 13.4
     }
    },
    "byLayout": {
@@ -808,7 +808,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 16.7
+     "medianSec": 17.7
     },
     "rsid": {
      "geneCalls": "100.0%",
@@ -819,7 +819,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 21.9
+     "medianSec": 19.4
     },
     "narrative": {
      "geneCalls": "100.0%",
@@ -841,7 +841,7 @@
      "extraGenes": 0,
      "quotesGrounded": "100.0%",
      "errors": 0,
-     "medianSec": 14
+     "medianSec": 14.5
     }
    },
    "misses": []
