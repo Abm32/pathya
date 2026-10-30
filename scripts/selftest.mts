@@ -4,6 +4,7 @@ import { dpydFromText, normaliseDiplotype, type LabExtract } from "../src/lib/pd
 import { deidentify, quality } from "../src/lib/quality";
 import { cohortCsv, cohortStats, wilson, type CohortRecord } from "../src/lib/cohort";
 import type { PgxProfile } from "../src/lib/pharmcat";
+import { overBudget } from "../src/lib/limit";
 
 // DPYD names the model may write, and checklist wording (bugs found by the benchmark)
 assert.equal(normaliseDiplotype("DPYD", "c.1236G>A (HapB3)/c.85T>C (*9A)"), "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)");
@@ -64,4 +65,12 @@ assert.deepEqual([hap.carriers, hap.n, hap.notStated], [1, 5, 0]);
 // HapB3's PharmCAT name contains a comma, so the CSV must quote it
 assert.match(cohortCsv([rec("e", "c.1129-5923C>G, c.1236G>A (HapB3)/Reference", true)]), /^e,report,e,"c\.1129-5923C>G, c\.1236G>A \(HapB3\)\/Reference",/m);
 
+
+// Per-IP budget: the only thing between an open demo and an empty credit balance.
+const fake = (ip: string) => new Request("https://x/api/analyze", { headers: { "x-forwarded-for": ip } });
+assert.equal(overBudget(fake("1.1.1.1"), "t", 2), false);
+assert.equal(overBudget(fake("1.1.1.1"), "t", 2), false);
+assert.equal(overBudget(fake("1.1.1.1"), "t", 2), true, "third call in the window is over budget");
+assert.equal(overBudget(fake("2.2.2.2"), "t", 2), false, "a different visitor has its own budget");
+assert.equal(overBudget(fake("1.1.1.1"), "t", 2, 0), false, "budget resets once the window has passed");
 console.log("selftest ok");

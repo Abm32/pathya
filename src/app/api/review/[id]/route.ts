@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
 import { audit, readJson, writeJson } from "@/lib/store";
+import { signedIn } from "@/lib/access";
 
 const STATUS = new Set(["verified", "corrected", "unreadable"]);
 
 /** Curator review: a person checks each extracted call against the source document. Data quality, not clinical sign-off. */
 export async function POST(req: Request, ctx: { params: Promise<{ id: string }> }) {
   const { id } = await ctx.params;
+  // A curator review asserts that a human checked each call against the source, so it needs the credential.
+  if (!(await signedIn())) return NextResponse.json({ error: "Curator review needs the curator code. Sign in at /login." }, { status: 401 });
   const body = (await req.json().catch(() => ({}))) as { curator?: string; decisions?: Record<string, string>; corrections?: Record<string, string>; note?: string };
   const curator = String(body.curator ?? "").slice(0, 60);
   if (!curator) return NextResponse.json({ error: "curator initials required" }, { status: 400 });

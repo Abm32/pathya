@@ -113,7 +113,7 @@ Anukriti AI, Kochi, Kerala. [Team member names and roles]
 
 ## Links
 
-- Live demo: https://pathya.anukritiai.com. Open without a code: the story, the demo cohort (https://pathya.anukritiai.com/cohort), the simulated-population cohort (https://pathya.anukritiai.com/cohort?c=india-sim), a finished sample record (https://pathya.anukritiai.com/sample), a targeted-panel record showing which India-relevant variants the lab could not see (https://pathya.anukritiai.com/report/ec1531ccb77c), and the same report read by the open-weights model (https://pathya.anukritiai.com/report/73ee62927c10). Live runs, uploads and dictation need the judge access code: [give judges a code]
+- Live demo: https://pathya.anukritiai.com. Open without a code: the story, the demo cohort (https://pathya.anukritiai.com/cohort), the simulated-population cohort (https://pathya.anukritiai.com/cohort?c=india-sim), a finished sample record (https://pathya.anukritiai.com/sample), a targeted-panel record showing which India-relevant variants the lab could not see (https://pathya.anukritiai.com/report/ec1531ccb77c), and the same report read by the open-weights model (https://pathya.anukritiai.com/report/73ee62927c10). No code, account or sign-up is needed for any of it, including live runs and dictation.
 - Demo video: [URL]
 - Repository: [URL; must be public]
 - Benchmark and dataset: `docs/BENCHMARK.md`

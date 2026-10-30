@@ -25,9 +25,9 @@ Redeploy = rerun the rsync, then `docker compose up -d --build` (2-3 min, PharmC
 |---|---|
 | `MODEL_API_KEY` | Meta Model API (Muse Spark 1.3, Muse Voice) |
 | `BASETEN_API_KEY` | Muse Spark Open on Baseten (second path and fallback) |
-| `ACCESS_CODE` | Shared pilot code. Empty disables the gate. Send it separately from the link. |
+| `ACCESS_CODE` | Curator credential, not an entry gate: the site is open to everyone. It allows curator review and writes into a verified cohort. Empty makes everyone a curator. |
 | `PUBLIC_CASES` | Comma-separated record ids readable without the code; `/sample` opens the first. |
-| `PUBLIC_COHORT` | Cohort whose statistics and records are public read-only (default `demo`, synthetic only). |
+| `PUBLIC_COHORT` | Cohorts whose statistics and records are public (default `demo`, synthetic only). Must include `visitors`, where runs by people without the curator code are filed. |
 | `PHARMCAT_RUNNER=local`, `DATA_DIR=/data` | Set by `docker-compose.yml`. |
 
 ### Custom domain: pathya.anukritiai.com (live since 2026-10-30)

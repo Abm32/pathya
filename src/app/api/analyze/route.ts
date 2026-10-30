@@ -5,6 +5,8 @@ import { runPharmcat, loadProfile } from "@/lib/pharmcat";
 import { newId, caseDir, writeJson, audit } from "@/lib/store";
 import { extractFromText, extractLabReport, toOutsideCalls, type LabExtract } from "@/lib/pdf-extract";
 import type { Provider } from "@/lib/meta";
+import { signedIn, writableCohort } from "@/lib/access";
+import { overBudget, BUSY } from "@/lib/limit";
 import { deidentify, quality } from "@/lib/quality";
 
 export const runtime = "nodejs";
@@ -25,7 +27,10 @@ const IMG = new Set(["image/png", "image/jpeg", "image/webp"]);
 type Emit = (e: Record<string, unknown>) => void;
 
 export async function POST(req: Request) {
-  const fd = await req.formData();
+  if (!(await signedIn()) && overBudget(req, "analyze", 8)) return NextResponse.json(BUSY, { status: 429 });
+  // The endpoint is public, so a malformed body is a 400, not a stack trace.
+  const fd = await req.formData().catch(() => null);
+  if (!fd) return NextResponse.json({ error: "Send a multipart form with a report, vcf, transcript or sample field." }, { status: 400 });
   const stream = new URL(req.url).searchParams.get("stream") === "1";
   if (!stream) {
     const r = await run(fd, () => {});
@@ -48,7 +53,8 @@ const SAMPLE_LABELS: Record<string, string> = { A: "Sample A · VCF", B: "Sample
 async function run(fd: FormData, emit: Emit): Promise<{ status: number; body: Record<string, unknown> }> {
   const sample = String(fd.get("sample") ?? "");
   const label = String(fd.get("label") ?? "").slice(0, 80) || (SAMPLE_LABELS[sample] ?? "");
-  const cohort = String(fd.get("cohort") ?? "").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 40);
+  // Visitors may run anything; what they may not do is write into a cohort whose numbers a script verifies.
+  const cohort = await writableCohort(String(fd.get("cohort") ?? "").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 40));
   const transcript = String(fd.get("transcript") ?? "").trim().slice(0, 8000);
   // Open weights on demand: lets a judge run the same report through Muse Spark Open end to end.
   const provider: Provider | undefined = fd.get("provider") === "baseten" ? "baseten" : undefined;

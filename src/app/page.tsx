@@ -15,25 +15,23 @@ export default function Home() {
   const r = useRouter();
   const [mode, setMode] = useState<Mode>("report");
   const [label, setLabel] = useState("");
-  const [cohort, setCohort] = useState("pilot");
+  const [cohort, setCohort] = useState("visitors");
   const [transcript, setTranscript] = useState("");
   const [busy, setBusy] = useState(false);
   const [steps, setSteps] = useState<StepEvent[]>([]);
   const [ready, setReady] = useState(false);
   const [err, setErr] = useState<string | null>(null);
-  const [locked, setLocked] = useState(false); // a run hit the access gate
   const logRef = useRef<HTMLDivElement>(null);
   const consoleRef = useRef<HTMLDivElement>(null);
 
   async function submit(fd: FormData, scroll = true) {
-    setErr(null); setReady(false); setBusy(true); setLocked(false);
+    setErr(null); setReady(false); setBusy(true);
     setSteps([{ type: "step", step: "upload", status: "active", detail: "Uploading", at: Date.now() }]);
     if (!fd.get("label")) fd.set("label", label);
     if (!fd.get("cohort")) fd.set("cohort", cohort);
     if (scroll) setTimeout(() => logRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
     try {
       const res = await fetch("/api/analyze?stream=1", { method: "POST", body: fd });
-      if (res.status === 401) { setLocked(true); setSteps([]); setBusy(false); return; }
       if (!res.ok || !res.body) { const j = await res.json().catch(() => ({})); throw new Error(j.detail ?? j.error ?? `HTTP ${res.status}`); }
       const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
       let buf = "";
@@ -95,16 +93,6 @@ export default function Home() {
             </button>{" "}
             — Muse Spark Open, the path a hospital would self-host.
           </p>
-          {locked && (
-            <div role="alert" className="reveal mt-4 max-w-xl rounded-xl border border-[rgba(255,181,71,0.4)] bg-[rgba(255,181,71,0.07)] p-4 text-sm">
-              <p className="font-medium">Live runs need the pilot access code, because each one calls Muse Spark.</p>
-              <p className="mt-1 text-muted">
-                <a href="/sample" className="text-accent underline decoration-accent/30 underline-offset-2">Open this photo, already read</a>, explore the{" "}
-                <a href="/cohort" className="text-accent underline decoration-accent/30 underline-offset-2">cohort</a> (no code), or{" "}
-                <a href="/login?next=/" className="text-accent underline decoration-accent/30 underline-offset-2">sign in</a>.
-              </p>
-            </div>
-          )}
           <div className="mt-5 flex items-center gap-3">
             <a href="/sample-photo.jpg" target="_blank" rel="noreferrer" className="photo-thumb" aria-label="Open the sample WhatsApp photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -209,7 +197,7 @@ export default function Home() {
               <input value={cohort} onChange={(e) => setCohort(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))} autoComplete="off" className="field num mt-1" />
             </label>
           </div>
-          <p className="text-xs leading-relaxed text-muted">Use synthetic or de-identified reports only. Content sent to the Meta API may be used to improve Meta models.</p>
+          <p className="text-xs leading-relaxed text-muted">This demo is open to everyone and the records it makes are readable by anyone with the link, so use synthetic or de-identified reports only. Content sent to the Meta API may be used to improve Meta models.</p>
           <div className="space-y-3 border-t border-line pt-4">
             <button disabled={busy} aria-busy={busy} className="btn btn-primary w-full sm:w-auto sm:min-w-40">{busy ? "Reading…" : "Build record"}</button>
             <div className="flex flex-wrap items-center gap-2">
@@ -220,7 +208,6 @@ export default function Home() {
             </div>
           </div>
           {err && <p role="alert" className="text-sm text-danger">{err}</p>}
-          {locked && <p className="text-sm text-warn">Live runs need the pilot access code. <a href="/login?next=/" className="underline underline-offset-2">Sign in</a>, or <a href="/sample" className="underline underline-offset-2">open the finished sample record</a>.</p>}
         </form>
 
         <aside className="space-y-4 text-sm lg:sticky lg:top-20 lg:self-start">

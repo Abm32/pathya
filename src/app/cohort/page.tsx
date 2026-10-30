@@ -15,7 +15,7 @@ export default async function Cohort({ searchParams }: { searchParams: Promise<{
     return (
       <main className="mx-auto max-w-3xl px-4 py-20 text-center">
         <h1 className="display text-3xl">This cohort is private</h1>
-        <p className="mt-3 text-muted">Sign in with the pilot code to see it, or open the public <Link href="/cohort" className="text-accent underline underline-offset-2">{pub} cohort</Link>.</p>
+        <p className="mt-3 text-muted">Sign in as a curator to see it, or open the public <Link href="/cohort" className="text-accent underline underline-offset-2">{pub} cohort</Link>.</p>
       </main>
     );
   }

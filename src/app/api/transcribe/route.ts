@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { transcribe } from "@/lib/meta";
+import { signedIn } from "@/lib/access";
+import { overBudget, BUSY } from "@/lib/limit";
 
 export const runtime = "nodejs";
 export const maxDuration = 120;
@@ -9,6 +11,7 @@ const KEYWORDS = ["DPYD", "HapB3", "UGT1A1", "NUDT15", "TPMT", "CYP2C19", "CYP2D
 
 /** POST multipart audio (wav): Muse Voice transcript of results read aloud (Malayalam and English). The analyze route turns it into a record. */
 export async function POST(req: Request) {
+  if (!(await signedIn()) && overBudget(req, "transcribe", 12)) return NextResponse.json(BUSY, { status: 429 });
   const fd = await req.formData();
   const audio = fd.get("audio");
   if (!(audio instanceof Blob)) return NextResponse.json({ error: "audio required" }, { status: 400 });

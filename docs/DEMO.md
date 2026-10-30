@@ -20,8 +20,8 @@ Required by the rules: the video opens with one line on what existed before the 
 
 Recording notes:
 - Capture at 1440p, zoom to 125%. Pre-run one record so the wait can be cut, but show the real timer once (about 30 s).
-- Sign in before recording: live runs need the code, and the sign-in screen is not worth four seconds.
 - Subtitles for the Malayalam segment.
-- Keep the access code off screen. Public without a code: `/cohort`, `/cohort?c=india-sim`, `/sample` (6 genes, 6 coverage gaps), `/report/ec1531ccb77c` (targeted panel) and `/report/73ee62927c10` (read on open weights).
+- Everything in the video is reachable without a code; say so once, because a judge will try it. Pre-run records: `/sample` (6 genes, 6 coverage gaps), `/report/ec1531ccb77c` (targeted panel), `/report/73ee62927c10` (read on open weights).
+- Sign in as a curator only for the review scene at 1:45; keep the code off screen.
 - Never show a drug, dose or patient advice. The product has none, and the video must not imply otherwise.
 - Say "research tool, not medical advice" out loud once, in the first fifteen seconds.

@@ -202,10 +202,11 @@ export default async function RecordPage({ params }: { params: Promise<{ id: str
         <section className="card mt-10 p-6 print:hidden">
           <h2 className="text-lg font-semibold tracking-tight">Curator review</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            This is a read-only sample. In the pilot, a curator checks each call against the source document before the record counts in a cohort,
-            and Muse Spark web search finds published Indian frequency data for each variant. Both are written to the audit log.
+            A curator checks each call against the source document before the record counts in a cohort, and Muse Spark web search finds
+            published Indian frequency data for each variant. Both are written to the audit log. Reviewing is the one action that needs a
+            curator code, because it is a claim that a person checked the page.
           </p>
-          <a href={`/login?next=/report/${id}`} className="btn btn-ghost btn-sm mt-4">Sign in with the pilot code</a>
+          <a href={`/login?next=/report/${id}`} className="btn btn-ghost btn-sm mt-4">Sign in as a curator</a>
         </section>
       )}
       <footer className="mt-12 border-t border-line pt-4 text-xs text-muted">

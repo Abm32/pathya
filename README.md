@@ -2,7 +2,7 @@
 
 **India's pharmacogenomic results are stuck in PDFs and WhatsApp photos. Pathya turns them into verified, de-identified research data.**
 
-**Live: https://pathya.anukritiai.com** (the story, the [demo cohort](https://pathya.anukritiai.com/cohort) and a [sample record](https://pathya.anukritiai.com/sample) open without a code).
+**Live: https://pathya.anukritiai.com — no sign-up, no code.** Read a WhatsApp photo, dictate results, browse the [demo cohort](https://pathya.anukritiai.com/cohort), the [simulated-population cohort](https://pathya.anukritiai.com/cohort?c=india-sim) or a [sample record](https://pathya.anukritiai.com/sample). Live runs carry a small per-visitor hourly budget because each one spends model credits.
 
 > **Research tool, not medical advice.** Pathya reads and standardises pharmacogenomic results and aggregates them into cohort statistics. It makes no dose, drug or test recommendation and has no patient-facing output. All data in this repository is synthetic.
 
@@ -68,7 +68,7 @@ Third-party, and labelled as such wherever it appears: [PharmCAT 3.4](https://ph
 - **Live cohort check.** `npx tsx scripts/verify-cohort.mts <url>`: all 106 gene calls in the 24 public demo records match the benchmark ground truth, with no identifiers or drug text stored.
 - **Two inference paths, one wire format.** Hosted Muse Spark 1.3 (strict JSON schema, PDF input, web search) and open-weights Muse Spark Open on Baseten (schema in prompt, JSON extracted and validated).
 - **Single container.** Node app on the official `pgkb/pharmcat` image.
-- **Access.** The demo cohort and its records are public read-only (`src/lib/access.ts`); anything that calls a model or writes data needs the code. Records are labelled, never named.
+- **Access.** Open to everyone: reading, running a report and dictating need no account. The endpoints that spend model credits carry a per-IP hourly budget (`src/lib/limit.ts`), and a visitor's run is filed in the `visitors` cohort so it cannot disturb statistics a script verifies. The one credentialled action is curator review, because that asserts a human checked the page (`src/lib/access.ts`). Records are labelled, never named.
 
 ## Run it
 

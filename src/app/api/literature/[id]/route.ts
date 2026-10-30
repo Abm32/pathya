@@ -2,13 +2,16 @@ import { NextResponse } from "next/server";
 import { meta, MUSE_MODEL } from "@/lib/meta";
 import { audit, readJson, writeJson } from "@/lib/store";
 import type { PgxProfile } from "@/lib/pharmcat";
+import { signedIn } from "@/lib/access";
+import { overBudget, BUSY } from "@/lib/limit";
 
 type Cite = { url: string; title: string };
 export type Literature = { allele: string; summary: string; citations: Cite[] }[];
 
 /** For each non-reference allele in the record, Muse Spark web search finds published frequency data in Indian populations. Cached per record. */
-export async function POST(_req: Request, ctx: { params: Promise<{ id: string }> }) {
+export async function POST(req: Request, ctx: { params: Promise<{ id: string }> }) {
   const { id } = await ctx.params;
+  if (!(await signedIn()) && overBudget(req, "literature", 12)) return NextResponse.json(BUSY, { status: 429 });
   const cached = await readJson<Literature>(id, "literature.json").catch(() => null);
   if (cached) return NextResponse.json({ literature: cached, cached: true });
   const profile = await readJson<PgxProfile>(id, "profile.json").catch(() => null);
