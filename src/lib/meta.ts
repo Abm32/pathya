@@ -79,14 +79,19 @@ async function structuredOn<T>(p: Provider, opts: StructuredOpts): Promise<T> {
 
 /** Strict JSON-schema structured output. Primary provider first, other one on failure. */
 export async function structured<T>(opts: StructuredOpts): Promise<T> {
+  return (await structuredWith<T>(opts)).value;
+}
+
+/** Same, but says which provider actually answered, so a record can state the model that read it. */
+export async function structuredWith<T>(opts: StructuredOpts): Promise<{ value: T; provider: Provider }> {
   const first = opts.provider ?? PRIMARY;
   const second: Provider = first === "meta" ? "baseten" : "meta";
   try {
-    return await structuredOn<T>(first, opts);
+    return { value: await structuredOn<T>(first, opts), provider: first };
   } catch (e) {
     if (opts.provider || !hasProvider(second)) throw e;
     console.warn(`[muse] ${first} failed (${String(e).slice(0, 120)}), falling back to ${second}`);
-    return structuredOn<T>(second, opts);
+    return { value: await structuredOn<T>(second, opts), provider: second };
   }
 }
 

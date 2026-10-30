@@ -1,4 +1,9 @@
-import { meta, MUSE_MODEL, structured } from "./meta";
+import { promises as fs } from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+import { meta, MUSE_MODEL, structured, structuredWith, hasProvider, providerModel, type Provider } from "./meta";
 
 export type LabExtract = {
   labName: string;
@@ -8,6 +13,7 @@ export type LabExtract = {
   methodNotes: string; // e.g. "targeted genotyping of 4 DPYD variants" — matters for coverage claims
   testedVariants: { gene: string; variant: string }[]; // every variant the report says was assayed, detected or not
   warnings: string[];
+  readBy?: string; // which Meta model read it; set after extraction, not part of the model's schema
 };
 
 export const EXTRACT_SCHEMA = {
@@ -41,8 +47,8 @@ export const EXTRACT_SCHEMA = {
 
 export const EXTRACT_SYSTEM = "You are a pharmacogenomics lab-report reader. Extract ONLY what is printed. If a gene is reported as 'not detected' or 'wild type' for a targeted panel, record diplotype *1/*1 and put the panel coverage in methodNotes and a warning that untested variants cannot be excluded. If the report gives genotypes by rsID only, convert using the mapping in the schema and quote the rsID text in verbatim. Never invent a gene that is not on the report.";
 
-/** Read a lab PGx report (PDF or image) with Muse Spark and extract gene calls. Nothing is inferred beyond what is printed. */
-export async function extractLabReport(file: Buffer, mime: string, filename: string): Promise<LabExtract> {
+/** Hosted path: Muse Spark on api.meta.ai, which takes a PDF natively and enforces the schema. */
+async function readOnSpark(file: Buffer, mime: string, filename: string): Promise<LabExtract> {
   const part =
     mime === "application/pdf"
       ? ({ type: "input_file" as const, filename, file_data: `data:application/pdf;base64,${file.toString("base64")}` } as const)
@@ -56,16 +62,65 @@ export async function extractLabReport(file: Buffer, mime: string, filename: str
     ],
     text: { format: { type: "json_schema", name: "LabExtract", strict: true, schema: EXTRACT_SCHEMA } },
   });
-  return JSON.parse(r.output_text) as LabExtract;
+  return { ...(JSON.parse(r.output_text) as LabExtract), readBy: MUSE_MODEL };
+}
+
+const run = promisify(execFile);
+
+/**
+ * Render page 1 of a PDF to PNG. The open-weights path has no responses API and so cannot take a PDF
+ * directly; a page image is the same report in a form it can read.
+ */
+async function firstPageAsPng(pdf: Buffer): Promise<Buffer> {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "pathya-"));
+  try {
+    const src = path.join(dir, "in.pdf");
+    await fs.writeFile(src, pdf);
+    await run("pdftoppm", ["-png", "-r", "150", "-f", "1", "-l", "1", "-singlefile", src, path.join(dir, "page")]);
+    return await fs.readFile(path.join(dir, "page.png"));
+  } finally {
+    await fs.rm(dir, { recursive: true, force: true });
+  }
+}
+
+/** Open-weights path: Muse Spark Open, chat completions with the page as an image and the schema in the prompt. */
+async function readOnSparkOpen(file: Buffer, mime: string): Promise<LabExtract> {
+  const img = mime === "application/pdf" ? await firstPageAsPng(file) : file;
+  const type = mime === "application/pdf" ? "image/png" : mime;
+  const out = await structured<LabExtract>({
+    name: "LabExtract", schema: EXTRACT_SCHEMA, system: EXTRACT_SYSTEM, provider: "baseten",
+    user: [
+      { type: "text", text: "Extract the pharmacogenomic results from this report." },
+      { type: "image_url", image_url: { url: `data:${type};base64,${img.toString("base64")}` } },
+    ],
+  });
+  return { ...out, readBy: providerModel("baseten") };
+}
+
+/**
+ * Read a lab PGx report (PDF or image) and extract gene calls. Nothing is inferred beyond what is printed.
+ * Hosted Muse Spark first; if api.meta.ai is unreachable or refuses, the same report is read by the
+ * open-weights model on Baseten, so one provider being down does not take the pipeline with it.
+ */
+export async function extractLabReport(file: Buffer, mime: string, filename: string, provider?: Provider): Promise<LabExtract> {
+  if (provider === "baseten") return readOnSparkOpen(file, mime);
+  try {
+    return await readOnSpark(file, mime, filename);
+  } catch (e) {
+    if (!hasProvider("baseten")) throw e;
+    console.warn(`[muse] spark failed (${String(e).slice(0, 120)}), reading on open weights`);
+    return readOnSparkOpen(file, mime);
+  }
 }
 
 /** Same contract for results read aloud (Muse Voice transcript) or typed: text in, the same LabExtract out. */
-export async function extractFromText(text: string): Promise<LabExtract> {
-  return structured<LabExtract>({
-    name: "LabExtract", schema: EXTRACT_SCHEMA, reasoning: "low",
+export async function extractFromText(text: string, provider?: Provider): Promise<LabExtract> {
+  const { value, provider: readBy } = await structuredWith<LabExtract>({
+    name: "LabExtract", schema: EXTRACT_SCHEMA, reasoning: "low", provider,
     system: `${EXTRACT_SYSTEM} The input is a transcript of someone reading a pharmacogenomic lab report aloud, possibly in mixed Malayalam and English. "verbatim" is the exact transcript words for each call.`,
     user: text.slice(0, 8000),
   });
+  return { ...value, readBy: providerModel(readBy) };
 }
 
 const DPYD_NAMES: Record<string, string> = {

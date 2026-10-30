@@ -35,16 +35,36 @@ Labs already run these tests. The results travel to hospitals as PDFs and WhatsA
 |---|---|
 | `muse-spark-1.3` | Report reading (PDF and image input, strict JSON schema), dictated-transcript reading, web search for published frequencies |
 | `muse-voice-transcribe-1.0` | Results read aloud: `languageBias` English + Malayalam, `keywords` biased to gene and variant names |
-| `meta-models/muse-spark-open-1026` (Muse Spark Open, open weights, via Baseten) | Same reader and schema; automatic fallback, or primary with `MUSE_PROVIDER=baseten`. 177/177 on the held-out benchmark. Open weights let a biobank keep genomic data in-house |
+| `meta-models/muse-spark-open-1026` (Muse Spark Open, **open weights**) | The same reader, on a second inference path. Served through [Baseten](https://baseten.co); runs equally on your own GPU, which is the point. 177/177 on the held-out benchmark |
 
 Not used on purpose: Muse Image and SAM 3.1 (no image to generate or segment).
+
+**Where the open-weights model runs.** `meta-models/muse-spark-open-1026` is served through Baseten's inference API (`BASETEN_BASE_URL`), called with the same OpenAI wire format as the hosted path, from the same container on AWS Mumbai. Nothing about the call is Baseten-specific: point `BASETEN_BASE_URL` at a vLLM server on your own hardware and the pipeline is unchanged. Three ways it does real work, not demo work:
+
+- **On demand.** "Read the same photo on open weights" on the home page, or `provider=baseten` on `POST /api/analyze`. The record then says `read by meta-models/muse-spark-open-1026`, and the calls section is badged Muse Spark Open.
+- **As the failover for every ingest path.** If api.meta.ai refuses or times out, the report is re-read on open weights. A PDF is rendered to a page image first (`pdftoppm`), because the open path has no responses API and cannot take a PDF natively.
+- **As the whole pipeline.** `MUSE_PROVIDER=baseten` makes it primary; the end-to-end eval passes with no hosted call at all.
+
+Why it matters here: Meta's credit terms allow API content to be used to improve Meta models. A biobank holding real genomic data cannot accept that, so the self-hostable path is the only version of Pathya that could ever touch a real patient's report.
+
+## What we built during the event
+
+The repository was created on 26 October 2026 and every commit is from the event window. Pathya is not a wrapper around one model call; what follows is ours, written here:
+
+- The whole application: ingestion for four input kinds, the extraction schema and prompts, the streaming pipeline, the record and cohort pages, access control, the audit log.
+- `src/lib/quality.ts` — the India-relevant variant panel, the three-state coverage model (tested / not in this panel / panel not documented) and de-identification.
+- `src/lib/cohort.ts` — carrier frequencies, Wilson intervals, and both denominator conventions side by side.
+- `scripts/bench/gen.py` — the synthetic report generator, both benchmark datasets and their ground truth, and the harnesses that score them.
+- `src/lib/pdf-extract.ts` — DPYD normalisation from rsID, HGVS and star names, and the two-provider reader.
+
+Third-party, and labelled as such wherever it appears: [PharmCAT 3.4](https://pharmcat.clinpgx.org) (CPIC's reference engine) does allele standardisation and phenotype naming; Meta's Muse models do the reading and transcription; Next.js, Tailwind and the OpenAI SDK are dependencies. The judgement calls about coverage, denominators and what a research record may contain are the parts we wrote.
 
 ## Why it holds up
 
 - **The model only reads.** It extracts and quotes; PharmCAT names; tested rules check; statistics are plain code. No advice is generated anywhere, and the eval fails if guideline or drug text, or an identifier, is stored.
 - **Extraction benchmark (held out).** 36 synthetic Indian lab reports in four layouts (star table, rsID table, narrative, variant checklist), each as a clean PDF, a phone photo and a harsh skewed photo: Muse Spark 1.3 and Muse Spark Open each read 177/177 gene calls exactly, against 58/59, 26/59 and 0/59 for an OCR + rules baseline. The development run caught two pipeline bugs, fixed before the held-out run. The reports, truth and harness are released as IndiPGx-Read v0.1. Method, limits and misses: [docs/BENCHMARK.md](docs/BENCHMARK.md).
 - **Self-test.** `npx tsx scripts/selftest.mts` checks DPYD normalisation, coverage rules, de-identification, Wilson intervals and cohort counting offline.
-- **End-to-end eval.** `npx tsx scripts/eval.mts <url>` runs 5 cases (two VCFs, a lab PDF, the same report as a phone photo, results read aloud) through a live server: 5/5 on production, 2026-10-30.
+- **End-to-end eval.** `npx tsx scripts/eval.mts <url>` runs 6 cases (two VCFs, a lab PDF, the same report as a phone photo, that photo again forced onto the open-weights model, and results read aloud) through a live server: 6/6 on production, 2026-10-31.
 - **Live cohort check.** `npx tsx scripts/verify-cohort.mts <url>`: all 106 gene calls in the 24 public demo records match the benchmark ground truth, with no identifiers or drug text stored.
 - **Two inference paths, one wire format.** Hosted Muse Spark 1.3 (strict JSON schema, PDF input, web search) and open-weights Muse Spark Open on Baseten (schema in prompt, JSON extracted and validated).
 - **Single container.** Node app on the official `pgkb/pharmcat` image.

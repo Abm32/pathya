@@ -1,7 +1,7 @@
 # PharmCAT image (java + python + preprocessor + reference data) with Node 22 on top. Single container, no docker-in-docker.
 FROM pgkb/pharmcat:latest AS base
 USER root
-RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates \
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates poppler-utils \
  && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && apt-get install -y nodejs \
  && npm i -g pnpm@9 && rm -rf /var/lib/apt/lists/*
 

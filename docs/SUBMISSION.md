@@ -40,6 +40,20 @@ Meanwhile, labs across India already run these tests every day. The results go t
 
 Pathya makes no dose, drug or test recommendation and produces no patient-facing output. It is a research and data tool.
 
+## Why this is not the medical-advice anti-project
+
+The rules say to avoid "any project using AI to generate and give medical advice e.g. AI Mental Health Advisor, skin blemish detector". Pathya generates no advice and gives none:
+
+- It produces no dose, no drug choice, no test recommendation, and no patient-facing text. There is no clinician-facing recommendation either.
+- The model's only job is to read what is already printed on a report and quote it. Allele naming is done by PharmCAT, CPIC's reference engine; the statistics are plain arithmetic.
+- PharmCAT's own guideline and drug annotations are discarded before storage, and the end-to-end eval fails if any guideline text, drug text or identifier is found in a stored record.
+- The output is a de-identified research record and a cohort frequency table — the input to a study, not an instruction to anyone.
+- Every page, the README and the video carry "research tool, not medical advice".
+
+It is also not a "simple image analyzer". Reading the photo is one step of six: the model read is standardised by PharmCAT, checked against a hand-built India-relevant variant panel with three-state coverage, de-identified, curator-verified, and pooled with confidence intervals under two denominator conventions. The project's contribution is in what happens to the call after it is read.
+
+An eligibility question was posted in the hackathon Discord #questions on 30 October; at the time of writing the organizers have not answered in the thread.
+
 ## Who uses it, and who pays
 
 - **Users.** Pharmacogenomics research groups, hospital research units and biobanks that want to pool the results already being produced; labs that want their reports to be machine-readable.
@@ -54,7 +68,9 @@ Pathya makes no dose, drug or test recommendation and produces no patient-facing
 |---|---|
 | `muse-spark-1.3` | Reads lab reports from PDF and phone-photo input under a strict JSON schema, quoting each call and listing the variants tested; reads dictated transcripts into the same schema; web search with linked sources for published Indian allele frequencies |
 | `muse-voice-transcribe-1.0` | Transcribes results read aloud, English and Malayalam, keyword-biased to gene and variant names |
-| Muse Spark Open (`meta-models/muse-spark-open-1026`, open weights, on Baseten) | Same reader, same schema (in the prompt, validated). Read all 177 gene calls on the held-out benchmark exactly like the hosted model, and is the automatic fallback. Open weights are what lets a biobank keep genomic data in-house. |
+| Muse Spark Open (`meta-models/muse-spark-open-1026`, open weights, served on Baseten) | The same reader on a second inference path. Read all 177 held-out gene calls exactly, like the hosted model. It is selectable from the home page ("read the same photo on open weights"), it is the automatic failover for every ingest path, and with `MUSE_PROVIDER=baseten` it runs the whole pipeline with no hosted call. A PDF is rendered to a page image first, because the open path has no responses API. Open weights are what lets a biobank keep genomic data in-house. |
+
+**Open-weights bonus prize.** We would like this considered for *Best Build on Meta Open Weight Models*. Muse Spark Open does real work in the deployed product, not a demo aside: it is one click from the home page, it is the failover for every path, and it can run the entire pipeline on its own. It is served through Baseten, an inference partner listed in the participant guide, with the same OpenAI wire format we would use against a vLLM server on a hospital's own GPU.
 
 We left out Muse Image and SAM 3.1 on purpose: nothing here needs an image generated or segmented.
 
@@ -73,7 +89,7 @@ We left out Muse Image and SAM 3.1 on purpose: nothing here needs an image gener
 - **Held-out extraction benchmark.** 36 synthetic Indian lab reports in four layouts Indian labs use (star-allele table, rsID-only table, narrative, variant checklist), each as a clean PDF, a phone photo and a harsh skewed, shadowed photo. Muse Spark 1.3 and open-weights Muse Spark Open each read all 177 gene calls exactly, invented no genes, and every quote was found on the page. A best-case OCR + rules baseline gets 98% on clean PDFs, 44% on phone photos and 0% on harsh photos. The development run caught two real pipeline bugs, fixed before the held-out set was generated. Method and limits: `docs/BENCHMARK.md`.
 - **Pooling benchmark, and what it caught.** IndiPGx-Pop v0.1: 120 simulated Indian people, each issued a report by one of five simulated labs that assay different parts of the panel, so the complete-panel answer is known. All 311 gene calls were read exactly. The cohort estimate for DPYD c.85T>C, the variant a quarter of Indians carry and the European tier-1 panel never tests, is 15.2% if untested panels are counted as non-carriers and 30.8% if they are left out, against a true 25.3%: the common way of pooling is wrong by 10 points, downward. Averaged over all 11 variants the naive estimate was actually closer (1.3 vs 4.1 points), which we report rather than hide; the coverage-aware estimate is unbiased but noisier at this sample size. The run also found a bug in our own rule: 59% of the exclusions were reports that never state which variants they tested, not panels that skipped them, so Pathya now separates "not in this panel" from "panel not documented" and shows both estimates. Method and limits: `docs/BENCHMARK.md`.
 - **Open dataset.** The 72 synthetic reading reports, the 120 simulated-population reports, their ground truth and both scoring harnesses are in the repository as IndiPGx-Read v0.1 and IndiPGx-Pop v0.1.
-- **End-to-end eval.** 5 cases through the deployed system (two VCFs, a lab PDF, the same report as a phone photo, and results read aloud): phenotypes, allele names and coverage are checked, and the eval fails if any guideline or drug text, or an identifier, is stored.
+- **End-to-end eval.** 6 cases through the deployed system (two VCFs, a lab PDF, the same report as a phone photo, that photo again forced onto open weights, and results read aloud): phenotypes, allele names and coverage are checked, and the eval fails if any guideline or drug text, or an identifier, is stored.
 - **Demo cohort, verified.** 24 synthetic people, one phone photo each, run through the live production pipeline into the public cohort. All 106 gene calls in those live records match the ground truth (`scripts/verify-cohort.mts`), and none stores an identifier or any guideline or drug text.
 - **Speed.** About 15–30 seconds from photo to record, most of it Muse Spark reading the image.
 
@@ -97,7 +113,7 @@ Anukriti AI, Kochi, Kerala. [Team member names and roles]
 
 ## Links
 
-- Live demo: https://pathya.anukritiai.com. The story, the demo cohort (https://pathya.anukritiai.com/cohort), the simulated-population cohort (https://pathya.anukritiai.com/cohort?c=india-sim) and a finished sample record (https://pathya.anukritiai.com/sample) open without a code. Live runs, uploads and dictation need the judge access code: [give judges a code]
+- Live demo: https://pathya.anukritiai.com. Open without a code: the story, the demo cohort (https://pathya.anukritiai.com/cohort), the simulated-population cohort (https://pathya.anukritiai.com/cohort?c=india-sim), a finished sample record (https://pathya.anukritiai.com/sample), a targeted-panel record showing which India-relevant variants the lab could not see (https://pathya.anukritiai.com/report/ec1531ccb77c), and the same report read by the open-weights model (https://pathya.anukritiai.com/report/73ee62927c10). Live runs, uploads and dictation need the judge access code: [give judges a code]
 - Demo video: [URL]
 - Repository: [URL; must be public]
 - Benchmark and dataset: `docs/BENCHMARK.md`

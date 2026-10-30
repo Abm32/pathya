@@ -4,6 +4,7 @@ import path from "node:path";
 import { runPharmcat, loadProfile } from "@/lib/pharmcat";
 import { newId, caseDir, writeJson, audit } from "@/lib/store";
 import { extractFromText, extractLabReport, toOutsideCalls, type LabExtract } from "@/lib/pdf-extract";
+import type { Provider } from "@/lib/meta";
 import { deidentify, quality } from "@/lib/quality";
 
 export const runtime = "nodejs";
@@ -49,6 +50,8 @@ async function run(fd: FormData, emit: Emit): Promise<{ status: number; body: Re
   const label = String(fd.get("label") ?? "").slice(0, 80) || (SAMPLE_LABELS[sample] ?? "");
   const cohort = String(fd.get("cohort") ?? "").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 40);
   const transcript = String(fd.get("transcript") ?? "").trim().slice(0, 8000);
+  // Open weights on demand: lets a judge run the same report through Muse Spark Open end to end.
+  const provider: Provider | undefined = fd.get("provider") === "baseten" ? "baseten" : undefined;
   let vcf = fd.get("vcf");
   let report = fd.get("report");
   if (/^[AB]$/.test(sample)) vcf = new File([await fs.readFile(path.resolve(`fixtures/oncology-patient-${sample}.vcf`))], `oncology-patient-${sample}.vcf`);
@@ -84,14 +87,14 @@ async function run(fd: FormData, emit: Emit): Promise<{ status: number; body: Re
       if (file) {
         const buf = Buffer.from(await file.arrayBuffer());
         await fs.writeFile(path.join(dir, "report" + (file.type === "application/pdf" ? ".pdf" : ".img")), buf);
-        emit({ type: "step", step: "extract", status: "active", detail: `Muse Spark is reading the ${file.type === "application/pdf" ? "PDF" : "photo"}` });
-        extract = await extractLabReport(buf, file.type, file.name);
+        emit({ type: "step", step: "extract", status: "active", detail: `${provider === "baseten" ? "Muse Spark Open" : "Muse Spark"} is reading the ${file.type === "application/pdf" ? "PDF" : "photo"}` });
+        extract = await extractLabReport(buf, file.type, file.name, provider);
       } else {
         await fs.writeFile(path.join(dir, "transcript.txt"), transcript);
         emit({ type: "step", step: "extract", status: "active", detail: "Muse Spark is reading the dictated results" });
-        extract = await extractFromText(transcript);
+        extract = await extractFromText(transcript, provider);
       }
-      await audit(id, "muse.extract.ok", { genes: extract.genes.length, lab: extract.labName });
+      await audit(id, "muse.extract.ok", { genes: extract.genes.length, lab: extract.labName, model: extract.readBy });
       emit({ type: "step", step: "extract", status: "done", ms: lap(), detail: extract.labName || "Results read", genes: extract.genes.map((g) => ({ gene: g.gene, call: g.diplotype || g.phenotype, verbatim: g.verbatim })) });
       const tsv = toOutsideCalls(extract);
       if (!tsv.trim()) throw new Error("No gene results could be read");

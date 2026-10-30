@@ -123,7 +123,7 @@ function Bars({ label, bars }: { label: string; bars: Bar[] }) {
 export const PROOF = {
   reports: 36, calls: 177,
   // scripts/verify-pop.mts against the live india-sim cohort; numbers in docs/pooling-results.json
-  pop: { people: 120, calls: 311, undocumented: 59, truth: 25.3, naive: 15.2, aware: 30.8 },
+  pop: { people: 120, calls: 311, undocumented: 59, truth: 25.3, naive: 15.2, aware: 30.8, maeAware: 4.1, maeNaive: 1.3 },
   render: [
     { label: "Clean PDF", muse: 100, open: 100, rules: 98 },
     { label: "Phone photo", muse: 100, open: 100, rules: 44 },
@@ -161,12 +161,16 @@ export function Proof() {
         </div>
         <div className="sr card spot p-6 text-sm leading-relaxed text-muted">
           <p><span className="font-medium text-foreground">Reading is not the hard part; pooling is.</span> We simulated {PROOF.pop.people} Indian people at published allele
-            frequencies and issued each a report from a lab that tests only part of the panel. Every one of the {PROOF.pop.calls} gene calls came back exactly as printed, but the
-            cohort estimate for DPYD c.85T&gt;C depends entirely on how a panel that never tested it is counted: {PROOF.pop.naive}% if counted absent, {PROOF.pop.aware}% if left out,
-            against a true {PROOF.pop.truth}%.</p>
+            frequencies and issued each one a report from a lab that tests only part of the panel. Every one of the {PROOF.pop.calls} gene calls came back exactly as printed — and the
+            cohort number was still wrong. Count a panel that never tested DPYD c.85T&gt;C as a non-carrier, which is what pooling reports normally does, and the variant lands at{" "}
+            {PROOF.pop.naive}%. It is really carried by {PROOF.pop.truth}%. Ten points, downward, on the variant a quarter of Indians carry: the direction that keeps a variant out of a
+            guideline. Leaving those panels out of the denominator instead gives {PROOF.pop.aware}%, high but honest about what was not measured.</p>
+          <p className="mt-3"><span className="font-medium text-foreground">The honest caveat.</span> Averaged over all eleven variants, leaving panels out was the worse estimator
+            ({PROOF.pop.maeAware} points of mean error against {PROOF.pop.maeNaive}): dropping records is unbiased but noisy at this sample size. It wins where it matters, on the
+            variants a panel genuinely cannot see, and both columns are on the cohort page so the choice is visible rather than buried.</p>
           <p className="mt-3"><span className="font-medium text-foreground">And the rule had a hole.</span> {PROOF.pop.undocumented}% of the exclusions turned out to be reports that
-            never say which variants they tested, not panels that genuinely skipped them. Pathya now separates the two and shows both estimates, because only one of them is a
-            question about the lab and the other is a question about the report.</p>
+            never say which variants they tested, not panels that genuinely skipped them. Pathya now separates the two, because one is a question about the lab and the other is a
+            question about the report.</p>
         </div>
         <div className="sr card spot p-6 text-sm leading-relaxed text-muted">
           <p><span className="font-medium text-foreground">Held out.</span> New genotypes and new photos, generated with a seed the pipeline was never tuned on, in four layouts Indian labs use: star table, rsID table, narrative, variant checklist. The OCR baseline was written knowing every layout, so this is its best case. Real lab formats will be harder; de-identified reports from a partner lab are the next test.</p>

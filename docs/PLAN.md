@@ -1,86 +1,57 @@
 # Pathya — Meta Global AI Developer Hackathon plan
 
-**Deadline:** Nov 4 2026, 9:00 PM ET (= Nov 5, 07:30 IST). Submit via Cerebral Valley portal: working demo + demo video.
-**Track:** Startup (as applied). **Theme:** Build for Your World (oncology pharmacogenomics, Kochi).
-**Application promise:** AI assistant reasoning over pharmacogenomic data, explaining variants, flagging medication risk, starting with cancer treatment. Submission must visibly deliver exactly that.
+**Deadline:** Nov 4 2026, 9:00 PM ET (= Nov 5, 07:30 IST). Submit via the Cerebral Valley portal: public repo, three-minute demo video, live product.
+**Track:** Startup. **Theme:** Build for Your World.
+**What it is:** a research-data tool. Pharmacogenomic lab reports (PDF, WhatsApp photo, dictation, VCF) become verified, de-identified records and cohort carrier frequencies. It makes no dose, drug or test recommendation and has no patient-facing output.
 
-## One-liner
-Current (after the 2026-10-30 pivot): a pre-chemo gene safety check. At diagnosis, which gene test to order. When the result arrives, even as a WhatsApp photo, what it means for the first dose, cited, in the patient's language.
+## Judging rubric → what we build
 
-Original: Upload a patient's genotype (VCF) + their medication list → CPIC-grounded toxicity risk report for the oncologist, plus a plain-language explanation for the patient in English and Malayalam. Deterministic genotype calling (PharmCAT), Muse Spark for reasoning/explanation with citations, Muse Voice Transcribe for dictated consults.
+Weights are from the Official Rules (participant guide, section 8).
 
-## Rubric → what we build
-| Criterion (weight) | How we score it |
+| Criterion | What we put in front of it |
 |---|---|
-| Impact 30% | DPYD/TPMT/UGT1A1/NUDT15 toxicity is fatal and preventable. Real oncologist pilot (2 clinicians, 5 anonymised cases) quoted in video. India has near-zero pre-treatment PGx testing; cost of test is falling, interpretation is the bottleneck. |
-| Meta tooling 25% | `muse-spark-1.3`: PDF/report ingestion, structured output, tool calling (CPIC API, PubMed), web_search grounding with url_citation. `muse-voice-transcribe-1.0`: dictated consult → med list (diarized). Show both in demo, name them on screen. |
-| Demo 25% | 3-minute video: upload VCF → gene cards light up → drug list flags "AVOID capecitabine (DPYD PM, CPIC Strong)" with citation → patient explanation in Malayalam → dictate consult, meds auto-extracted and re-checked. Deployed URL judges can click. |
-| Technical depth 20% | PharmCAT pipeline in-process (docker/jar), normalised PGx model, agentic retrieval loop with CPIC PostgREST tools, strict JSON schemas, eval suite on known CPIC cases (synthetic VCFs with DPYD *2A, TPMT *3A, CYP2C19 *2, UGT1A1 *28, NUDT15 *3). Audit log per analysis. |
-| Startup lens: "holds up in production" | Deployed, auth, rate limits, PHI not sent to third parties except Meta API, clinician-confirm gate, tests, error states, observability. |
+| **Impact 30%** | India's DPYD evidence rests on two studies of ~3,600 people, and the variants that matter here (HapB3, c.85T>C) are not the ones European panels are built around. Labs already run these tests daily; the results stay in PDFs. Pathya turns reports that already exist into countable data. |
+| **Use of Meta AI tooling 25%** | `muse-spark-1.3` through the responses API: PDF and photo as native model input, strict JSON schema, `web_search` with citations. `muse-voice-transcribe-1.0` for results read aloud, code-switched Malayalam and English, keyword-biased to gene names. `muse-spark-open-1026` on Baseten doing real work, not sitting as a dead fallback. |
+| **Demo 25%** | Three minutes, hard limit. The live product, not slides. Script in [DEMO.md](DEMO.md). Opens with the "built during the event" disclosure. |
+| **Technical depth 20%** | PharmCAT 3.4 in-process, two reproducible benchmarks with released ground truth, deterministic quality and coverage rules, de-identification checked by eval, Wilson intervals, append-only audit log, single container on AWS. |
 
-## Architecture (minimal)
-- Next.js 16 app (this repo). Node runtime routes.
-- `src/lib/pharmcat.ts`: run PharmCAT (`docker run pgkb/pharmcat pharmcat_pipeline` or `java -jar`), parse `*.report.json` → `PgxProfile { genes[], drugs[] }`.
-- `src/lib/meta.ts`: OpenAI SDK client, baseURL api.meta.ai/v1. Helpers: `structured()`, `withTools()`, `transcribe()`.
-- `src/lib/cpic.ts`: fetch wrappers over api.cpicpgx.org/v1 (pair_view, recommendation_view, test_alert_view) exposed as tools.
-- `src/app/api/analyze`: POST vcf + meds → profile (PharmCAT) → Spark structured report (clinician + patient) → persist JSON under DATA_DIR → return id.
-- `src/app/api/transcribe`: POST audio → Muse Voice → Spark extracts meds (structured) → returns med list.
-- UI: `/` upload + meds; `/report/[id]` gene grid, drug risk table with CPIC badge + citations, patient tab (EN/ML), "Ask" chat grounded on the report.
-- Storage: filesystem JSON under DATA_DIR for hackathon (ponytail: swap for Postgres when multi-tenant).
+Bonus prize in reach: **Best Build on Meta Open Weight Models ($10K)** — Muse Spark Open served through Baseten, a listed inference partner. It has to be doing visible work for this to be credible.
 
-## Status (updated 2026-10-30 evening IST)
+## Architecture
 
-- **Second pivot, 2026-10-30: research-data tool.** Reading the hackathon Discord, the organizers ruled that clinician-facing tools producing drug or dose recommendations are the "AI medical advice" anti-project, even with citations and clinician review, and that medical use cases are not wanted. Research and evaluation tools with no patient-facing output, and documentation work, are allowed. Pathya now turns PGx reports (PDF, WhatsApp photo, dictation, VCF) into verified, de-identified records and cohort statistics, and makes no recommendation of any kind. Removed: dose checks, pre-test check, test requests, medication mapping, patient text. Added: quality and coverage rules, de-identification, `/cohort` with Wilson intervals, curator review, literature search, dictated results, IndiPGx-Read dataset release. See memory note and docs/SUBMISSION.md.
-- **NEXT, in priority order:**
-  1. Post the eligibility question in Discord #questions (draft in chat) and keep the answer.
-  2. Make the repo public; fill SUBMISSION placeholders (team, video, repo, judge code).
-  3. Demo video per DEMO.md, opening with the disclosure line.
-  4. One researcher quote and one lab report template (LAB-CALLS.md).
-  5. Optional: X post for Most Viral; target the Best Open Weight Models award.
+- Next.js 16 app, Node runtime routes, single container on the official `pgkb/pharmcat` image.
+- `src/lib/meta.ts` — the only place Meta models are called. OpenAI SDK against `api.meta.ai/v1`; `structured()` picks a provider and falls through to the other.
+- `src/lib/pdf-extract.ts` — report in (PDF, image, transcript), `LabExtract` out, every call quoted.
+- `src/lib/pharmcat.ts` — PharmCAT run and `*.report.json` parsed to `PgxProfile`.
+- `src/lib/quality.ts` — coverage against the India panel, three-state (tested / not in panel / panel not documented), de-identification.
+- `src/lib/cohort.ts` — carrier frequencies, Wilson intervals, both denominator conventions.
+- `src/app/api/analyze` — the whole pipeline, NDJSON step events with `?stream=1`.
+- Storage: filesystem JSON under `DATA_DIR`. <!-- ponytail: swap for Postgres when multi-tenant -->
 
-### Status before the second pivot
+## History: two pivots
 
-- **Pivot, 2026-10-30.** A mock judging pass (about 74/100) found that Pathya only helped patients who had already been tested, and in India the test is rarely ordered in time: ₹7,000–17,000, no government cover, 7–10 day turnaround. Pathya is now a pre-chemo gene safety check: the pre-test check (which test to order at diagnosis, deterministic, public) followed by the existing report reading. Business case and regulatory path added to SUBMISSION.md.
-- **Benchmark, 2026-10-30.** Held-out set: 177/177 gene calls on Muse Spark 1.3 and on Spark Open, against 47.5% for an OCR + rules baseline (0% on harsh photos). Medication mapping 26/26 vs 2/20. It caught and fixed two pipeline bugs. docs/BENCHMARK.md.
-- **Demo surface, 2026-10-30.** Six-chapter story with scroll effects. At-a-glance report. Public read-only demo: home, pre-test, `/sample`. Logo, brand gradient, social share image.
-- **Pre-test, round 2 (2026-10-30).** Regimen acronyms fixed (FOLFOX/CAPOX were a false all-clear). Muse Spark names drugs the table lacks; the table still decides. Printable test request with Malayalam patient text. Read-only report state for visitors without the code. Domain https://pathya.anukritiai.com live (sslip address still served).
-- **Checks, 2026-10-30.** Eval 4/4 on production; `scripts/selftest.mts` passes; lint is clean repo-wide.
-- **NEXT, in priority order:**
-  1. Oncologist pilot: 3 anonymised past cases plus one quote (LAB-CALLS.md).
-  2. Demo video per DEMO.md (pre-test, then report).
-  3. Fill the SUBMISSION.md placeholders: team, video, repo, judge code.
-  4. Make the repo public or add judges.
-  5. Validate the lab per-report fee with one lab call.
+Kept because the rules ask judges to see what was built during the event, and because the second pivot is the reason the project is shaped the way it is.
 
-### Earlier status (2026-10-27 03:00 IST)
+- **Oct 26–29, original build.** Genotype plus medication list in, CPIC-grounded toxicity report for the oncologist out, with a patient explanation in Malayalam. PharmCAT for calling, Muse Spark for the write-up, Muse Voice for dictated consults.
+- **Oct 30, first pivot.** A mock judging pass found the tool only helped patients already tested, and in India the test is rarely ordered in time (₹7,000–17,000, no government cover, 7–10 day turnaround). Added a pre-test check.
+- **Oct 30, second pivot — the one that matters.** The anti-project list bans "any project using AI to generate and give medical advice". Any reading of that covers a tool that tells a clinician what to do about a dose, citations and confirm gate notwithstanding. Pathya stopped producing recommendations entirely and became a research-data tool: read, standardise, check coverage, de-identify, count. Removed: dose checks, pre-test check, test requests, medication mapping, all patient-facing text. Added: quality and coverage rules, de-identification, `/cohort` with Wilson intervals, curator review, literature search, dictated results, and the two released benchmark datasets.
+- **Oct 31.** Eligibility question posted in Discord #questions on Oct 30; no organizer ruling yet, only a bot reply saying the organizers will answer in the thread. We are proceeding on our own reading of the anti-project wording, which the published list supports.
 
-- Baseten credits ($100, 2M TPM) for Muse Spark Open wired as second provider in `src/lib/meta.ts`: `structured()` tries `MUSE_PROVIDER` first, other on failure. Open model does not enforce json_schema, so schema goes in the prompt and JSON is extracted from text. No responses API there, so PDF extraction and web search stay on api.meta.ai. Smoke: `pnpm tsx --env-file=.env scripts/smoke-baseten.mts` (needs `BASETEN_API_KEY`). Smoke passed (chat, prompt-guided JSON, PNG image input). Eval 3/3 with `MUSE_PROVIDER=baseten`, 73 s total, no fallback. Pitch line: open weights = self-hostable inside the hospital.
-- DONE: Meta key verified from India (Spark chat/JSON/PDF/web_search; Voice ML+EN diarized). VCF path, lab-PDF path, India lens, Muse report EN+ML, voice consult + recorder, confirm gate + audit, latest-guidance web search, access code, Dockerfile on pgkb/pharmcat, README, EVIDENCE.md, eval 3/3.
-- Deployed 2026-10-27: https://16.4.131.103.sslip.io (EC2, docs/DEPLOY.md). Login, PDF, phone photo, voice, mic all verified on prod. Phone-photo fixture added as 4th eval case and home-page sample.
-- NEXT, in priority order: (1) oncologist pilot booked and run (LAB-CALLS.md, the Impact differentiator); (2) lab calls; (3) demo video per DEMO.md with the phone photo as the input; (4) submission text; (5) report-page polish pass.
+## Status, 2026-10-31
 
-## Field scan (Discord intros, 2026-10-27)
+Built and verified: both ingestion paths, cohort statistics, curator review, two benchmarks (IndiPGx-Read v0.1 reading, IndiPGx-Pop v0.1 pooling), selftest, production eval 5/5, live at https://pathya.anukritiai.com.
 
-Read ~70 builder intros. No oncologist, clinician, pharmacist, or PGx/genomics project in the channel. Nearest: Jason/Qingyuan Zhang (NJ, clinical-trial data platform), VerbaGPT (US insurance ranking), Aritra (SafeCity Lens: evidence score + human approval for police/fire/hospital). Pathya is alone in clinical decision support.
+**Blocking, in order:**
 
-Patterns that change what we emphasise:
-- Multi-model stacking is the norm: SAM 3.1 + Spark + Voice + Glimmer in several India "Build for Your World" entries (Smeet Mehta FieldWitness crop-damage claims, Sumer, devDonald crop copilot). Tooling score risk. Answer: phone photo through Spark vision on screen (not just PDF); say on camera why SAM/Image are not used; open-weights Spark Open as the self-host path.
-- "Human approves before action" is table stakes (Ankita, Sho, Aritra). Confirm gate alone does not differentiate. Lead with PharmCAT determinism, cited India lens, code-switched Malayalam voice, open weights for data residency.
-- Every credible pitch names a real user (brother's dealership, drinks distributor, farmers). Our equivalent is the two-oncologist pilot with quotes. Without it Pathya is one more demo.
-- Nearly everyone is Indie. Startup track looks thin; production proof (deployed URL, eval, one container, audit log) is the edge over Indie polish.
-
-## Day plan (IST)
-- Oct 27: Meta key + smoke test all 3 endpoints. PharmCAT lib + parser + synthetic risky VCF fixtures. `/api/analyze` returns deterministic profile. Commit.
-- Oct 28: Spark report generation (strict schema), CPIC tools, citations. Report page UI.
-- Oct 29: Patient explanation EN+ML, PDF report ingestion path (lab PGx PDF → Spark extracts diplotypes → outside-calls TSV → PharmCAT), ask-chat.
-- Oct 30: Voice consult: record → transcribe → meds → re-check. Audit log, auth (simple), rate limiting.
-- Oct 31: Eval suite (known CPIC cases), error states, polish UI, deploy (Vercel + PharmCAT jar; or Fly/Modal for docker). Decide on hosting PharmCAT (jar on Node runtime needs java → use Modal credits or small VM).
-- Nov 1–2: Clinician pilot runs, collect quotes, fix findings.
-- Nov 3: Demo video, README, landing copy, submission draft.
-- Nov 4: Submit by 9 PM ET. Buffer.
+1. **Make the repo public.** Required by the rules; nothing else counts until it is done.
+2. **Record the demo video.** 25% of the score, currently zero. Script and capture are ready.
+3. Fill the SUBMISSION.md placeholders: team members, video URL, repo URL, judge access code.
+4. One researcher quote or one real lab report template ([LAB-CALLS.md](LAB-CALLS.md)) — the weakest point in Impact.
+5. Optional: X post for Most Viral; flag the open-weights bonus prize on the submission.
 
 ## Risks
-- Meta API access from India for Spark/Voice unknown until key tested. Fallback: none acceptable (tooling 25%). Test day 1.
-- PharmCAT needs Java; Vercel functions can't run it. Host PharmCAT as tiny service (Modal credits) or run whole app on a VM. Decide Oct 31.
-- Medical liability optics: every recommendation carries CPIC citation + classification; clinician-confirm gate; "decision support, not advice" banner.
-- CYP2D6/HLA need outside calls (not callable from VCF by PharmCAT). Accept via manual/PDF-extracted outside calls.
+
+- **Eligibility.** No organizer ruling yet. Mitigation: the product generates no advice of any kind, the disclaimer is on every page and in the video, and the submission quotes the anti-project wording and says why it does not apply.
+- **"Simple image analyzer."** A judge skimming could file a photo-reading tool under that anti-project. Mitigation: the model read is one step of six, and the demo shows PharmCAT standardisation, the coverage rules and the cohort, not just a photo going in.
+- **Single point of failure on api.meta.ai.** The hosted responses API is the only path that accepts a PDF natively. Mitigation: Spark Open on Baseten covers photo and text reading; see `src/lib/meta.ts`.
+- **All data synthetic.** Permitted explicitly ("synthetic demo inputs with real model inference are fine"), but it caps how far the Impact claim can be pushed. Mitigation: label it everywhere, release the generators and the ground truth.

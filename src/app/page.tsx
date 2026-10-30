@@ -58,10 +58,11 @@ export default function Home() {
     }
   }
 
-  const sample = (s: string, scroll = true) => {
+  const sample = (s: string, scroll = true, provider?: string) => {
     const fd = new FormData();
     fd.set("sample", s);
     fd.set("cohort", "samples"); // keeps the demo cohort's statistics clean
+    if (provider) fd.set("provider", provider);
     submit(fd, scroll);
   };
 
@@ -87,6 +88,13 @@ export default function Home() {
             </button>
             <a href="/cohort" className="btn btn-ghost btn-lg">Open the research cohort</a>
           </div>
+          <p className="mt-3 text-sm text-muted">
+            or{" "}
+            <button type="button" disabled={busy} onClick={() => sample("photo", false, "baseten")} className="text-accent underline decoration-accent/30 underline-offset-2 disabled:opacity-50">
+              read the same photo on open weights
+            </button>{" "}
+            — Muse Spark Open, the path a hospital would self-host.
+          </p>
           {locked && (
             <div role="alert" className="reveal mt-4 max-w-xl rounded-xl border border-[rgba(255,181,71,0.4)] bg-[rgba(255,181,71,0.07)] p-4 text-sm">
               <p className="font-medium">Live runs need the pilot access code, because each one calls Muse Spark.</p>

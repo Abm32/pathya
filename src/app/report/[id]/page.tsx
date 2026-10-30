@@ -81,7 +81,7 @@ export default async function RecordPage({ params }: { params: Promise<{ id: str
           {review && <span className="badge badge-det">Curator verified</span>}
           <span className="ml-auto"><PrintButton /></span>
         </div>
-        <p className="num mt-3 text-xs text-muted">{new Date(c.createdAt).toLocaleString()} · PharmCAT {profile.pharmcatVersion} · Research record, not medical advice</p>
+        <p className="num mt-3 text-xs text-muted">{new Date(c.createdAt).toLocaleString()} · {extract?.readBy ? `read by ${extract.readBy} · ` : ""}PharmCAT {profile.pharmcatVersion} · Research record, not medical advice</p>
       </header>
 
       <section aria-label="Record overview" className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-5">
@@ -119,7 +119,7 @@ export default async function RecordPage({ params }: { params: Promise<{ id: str
       <div className="mt-8"><SectionNav items={nav} /></div>
 
       <section className="mt-10">
-        <H2 id="calls" sub={extract ? <><span className="badge badge-meta">Muse Spark</span> each call quoted from the source, then standardised by PharmCAT</> : "called by PharmCAT from the VCF"}>Calls</H2>
+        <H2 id="calls" sub={extract ? <><span className="badge badge-meta">{extract.readBy?.includes("open") ? "Muse Spark Open" : "Muse Spark"}</span> each call quoted from the source, then standardised by PharmCAT</> : "called by PharmCAT from the VCF"}>Calls</H2>
         <div className="card spot mt-5 p-5 text-sm">
           {extract && (
             <p className="text-xs text-muted">
