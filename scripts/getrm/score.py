@@ -24,6 +24,8 @@ DPYD = {"*1": "Reference", "*2": "c.1905+1G>A", "*2A": "c.1905+1G>A", "*4": "c.1
 # CPIC function per SLCO1B1 allele; a diplotype is Decreased if either allele is, Increased only if both are.
 SLCO_FN = {"*1": "Normal", "*1A": "Normal", "*1B": "Normal", "*37": "Normal",
            "*5": "Decreased", "*15": "Decreased", "*17": "Decreased", "*14": "Increased", "*20": "Increased"}
+# A diplotype of two decreased-function alleles is Poor Function, not Decreased.
+SLCO_DIP = {("Decreased", "Decreased"): "Poor"}
 
 
 def dpyd(a):
@@ -37,6 +39,8 @@ def dpyd(a):
 
 def truth_alleles(gene, s):
     s = s.strip()
+    # "no variant detected" on one chromosome is the reference allele written out.
+    s = re.sub(r"\b(no variants? detected|none detected|negative)\b", "*1", s, flags=re.I).strip()
     if gene == "VKORC1" and re.fullmatch(r"[GA]{2}", s):
         return sorted({"G": "C", "A": "T"}[c] for c in s)   # rs9923231 is reported on the minus strand
     if "/" not in s:
@@ -72,13 +76,13 @@ def slco1b1(rep, tv):
     alleles = [a.strip() for a in tv.split("/")]
     if any(a not in SLCO_FN for a in alleles):
         return ("unscored", f"legacy name {tv} has no PharmVar equivalent")
-    fns = [SLCO_FN[a] for a in alleles]
-    want = "Decreased" if "Decreased" in fns else "Increased" if fns.count("Increased") == 2 else "Normal"
+    fns = sorted(SLCO_FN[a] for a in alleles)
+    want = SLCO_DIP.get(tuple(fns)) or ("Decreased" if "Decreased" in fns else "Increased" if fns.count("Increased") == 2 else "Normal")
     d = (((rep.get("genes") or {}).get("SLCO1B1") or {}).get("recommendationDiplotypes") or [{}])[0]
     pheno = (d.get("phenotypes") or ["No Result"])[0]
     got = pheno.replace(" Function", "")
     detail = f"{(d.get('allele1') or {}).get('name')}/{(d.get('allele2') or {}).get('name')} = {pheno}, expected {want}"
-    if got in ("Indeterminate", "No Result"):
+    if got in ("Indeterminate", "No Result", "n/a"):
         return ("unscored", detail)
     return ("match" if got == want else "MISMATCH", detail)
 
@@ -97,7 +101,10 @@ def pharmcat(sample):
 
 if __name__ == "__main__":
     truth = json.load(open(f"{ROOT}/fixtures/getrm/truth.json"))
-    samples = sys.argv[1:] or json.load(open(f"{ROOT}/fixtures/getrm/selected.json"))
+    if "--all" in sys.argv:
+        samples = sorted(truth)
+    else:
+        samples = sys.argv[1:] or json.load(open(f"{ROOT}/fixtures/getrm/selected.json"))
     rows, tally = [], collections.defaultdict(lambda: [0, 0, 0])
     for s in samples:
         rep = pharmcat(s)
@@ -107,15 +114,19 @@ if __name__ == "__main__":
                 continue
             if gene == "SLCO1B1":
                 res, detail = slco1b1(rep, tv)
-            elif "undefined" in tv or "no variants" in tv.lower() or re.search(r"c\.\d+[A-Z]>[A-Z] het", tv):
+            elif "undefined" in tv or re.search(r"c\.\d+[A-Z]>[A-Z] het", tv):
                 res, detail = "unscored", "the consensus table reports variants, not a diplotype"
+            elif re.search(r"deletion|duplication|hemizygous|exon \d+", tv, re.I):
+                res, detail = "unscored", "structural variant: copy number is outside what this panel can call"
             else:
-                exp, got = truth_alleles(gene, tv), called_alleles(rep, gene)
-                if exp is None or not got:
+                # Some consensus entries give two possible diplotypes ("*8/*33 or *1/*46"); either is a match.
+                options = [truth_alleles(gene, part) for part in re.split(r"\s+or\s+", tv)]
+                got = called_alleles(rep, gene)
+                if any(o is None for o in options) or not got:
                     res, detail = "unscored", str(got)
                 else:
-                    want = {a for a in exp if a != "Reference"}
-                    ok = any(want <= set(c) for c in got) if gene == "DPYD" else any(c == exp for c in got)
+                    ok = any(({a for a in exp if a != "Reference"} <= set(c)) if gene == "DPYD" else c == exp
+                             for exp in options for c in got)
                     res, detail = ("match" if ok else "MISMATCH"), " | ".join("/".join(c) for c in got)
             tally[gene][{"match": 0, "MISMATCH": 1, "unscored": 2}[res]] += 1
             rows.append({"sample": s, "gene": gene, "getrm": tv, "pharmcat": detail, "result": res})

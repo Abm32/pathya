@@ -54,33 +54,44 @@ def truth_table():
 def write_vcfs(samples):
     """One VCF per sample holding every panel site in the PharmCAT gene regions, genotypes as released."""
     os.makedirs(f"{OUT}/vcf", exist_ok=True)
-    rows = {s: [] for s in samples}
+    # REGIONS is already in VCF sort order (chromosome ascending, and CYP2C19 before CYP2C9 on chr10),
+    # so each sample's records can be streamed straight to disk. Holding 200 samples x 27k sites in
+    # memory first is what this avoids.
+    bodies = {s: open(f"{OUT}/vcf/{s}.body", "w") for s in samples}
     contigs = {}
-    for gene, (c, start, end) in REGIONS.items():
-        vf = pysam.VariantFile(PANEL.format(c=c))
-        contigs[f"chr{c}"] = vf.header.contigs[f"chr{c}"].length
-        n = 0
-        for rec in vf.fetch(f"chr{c}", start, end):
-            if any(a is None or a.startswith("<") for a in rec.alts or []):
-                continue  # symbolic structural alleles: PharmCAT reads none of them
-            for s in samples:
-                gt = rec.samples[s]["GT"]
-                if gt is None or any(g is None for g in gt):
-                    continue
-                sep = "|" if rec.samples[s].phased else "/"
-                rows[s].append((rec.pos, f"chr{c}\t{rec.pos}\t{rec.id or '.'}\t{rec.ref}\t{','.join(rec.alts)}\t.\tPASS\t.\tGT\t{sep.join(str(g) for g in gt)}"))
-            n += 1
-        vf.close()
-        print(f"{gene}: {n} sites", flush=True)
+    try:
+        for gene, (c, start, end) in REGIONS.items():
+            vf = pysam.VariantFile(PANEL.format(c=c))
+            contigs[f"chr{c}"] = vf.header.contigs[f"chr{c}"].length
+            n = 0
+            for rec in vf.fetch(f"chr{c}", start, end):
+                if any(a is None or a.startswith("<") for a in rec.alts or []):
+                    continue  # symbolic structural alleles: PharmCAT reads none of them
+                prefix = f"chr{c}\t{rec.pos}\t{rec.id or '.'}\t{rec.ref}\t{','.join(rec.alts)}\t.\tPASS\t.\tGT\t"
+                for s in samples:
+                    gt = rec.samples[s]["GT"]
+                    if gt is None or any(g is None for g in gt):
+                        continue
+                    sep = "|" if rec.samples[s].phased else "/"
+                    bodies[s].write(prefix + sep.join(str(g) for g in gt) + "\n")
+                n += 1
+            vf.close()
+            print(f"{gene}: {n} sites", flush=True)
+    finally:
+        for f in bodies.values():
+            f.close()
     header = ('##fileformat=VCFv4.2\n##FILTER=<ID=PASS,Description="All filters passed">\n'
               + "".join(f"##contig=<ID={k},length={v},assembly=GRCh38>\n" for k, v in sorted(contigs.items(), key=lambda kv: int(kv[0][3:])))
               + '##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">\n')
     for s in samples:
-        rows[s].sort(key=lambda r: r[0])
+        body = f"{OUT}/vcf/{s}.body"
         with open(f"{OUT}/vcf/{s}.vcf", "w") as f:
             f.write(header + f"#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t{s}\n")
-            f.write("\n".join(r[1] for r in rows[s]) + "\n")
-        print(f"{s}: {len(rows[s])} sites", flush=True)
+            with open(body) as b:
+                for line in b:
+                    f.write(line)
+        os.remove(body)
+    print(f"wrote {len(samples)} VCFs to {OUT}/vcf", flush=True)
 
 
 if __name__ == "__main__":
