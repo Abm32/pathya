@@ -11,6 +11,12 @@ assert.equal(normaliseDiplotype("DPYD", "c.1236G>A (HapB3)/c.85T>C (*9A)"), "c.1
 assert.equal(normaliseDiplotype("DPYD", "*1/*2A"), "Reference/c.1905+1G>A (*2A)");
 // Names real reports and the GeT-RM consensus tables actually print, which PharmCAT does not accept as written.
 assert.equal(normaliseDiplotype("DPYD", "*1/*9"), "Reference/c.85T>C (*9A)");
+assert.equal(normaliseDiplotype("DPYD", "c.1601G>A/c.2846A>T"), "c.1601G>A (*4)/c.2846A>T");   // HGVS without the star number
+// A chromosome carrying several variants is the lowest-function one it carries.
+assert.equal(normaliseDiplotype("DPYD", "c.85T>C, c.868A>G, c.1218G>A/c.85T>C"), "c.868A>G/c.85T>C (*9A)");
+assert.equal(normaliseDiplotype("DPYD", "c.1601G>A/c.1627A>G, c.1896T>C"), "c.1601G>A (*4)/c.1627A>G (*5)");
+assert.equal(normaliseDiplotype("SLCO1B1", "*1/(*15)"), "*1/*15");
+assert.equal(normaliseDiplotype("DPYD", "*1/(*4)"), "Reference/c.1601G>A (*4)");
 assert.equal(normaliseDiplotype("UGT1A1", "(*28 + *60)/*60"), "*28/*1");
 assert.equal(normaliseDiplotype("UGT1A1", "*60/*28"), "*1/*28");
 assert.equal(normaliseDiplotype("SLCO1B1", "*1A/*1B"), "*1/*37");

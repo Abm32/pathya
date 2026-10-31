@@ -15,8 +15,8 @@ Reproduce:
 ```bash
 python3 scripts/getrm/fetch.py --all   # truth table + 208 per-sample VCFs, from the two sources above
 python3 scripts/getrm/score.py --all   # PharmCAT, then score against the consensus
-npx tsx --env-file=.env scripts/getrm-read.mts 8            # the reading path, hosted Muse Spark
-npx tsx --env-file=.env scripts/getrm-read.mts 8 baseten    # the same, on open weights
+npx tsx --env-file=.env scripts/getrm-read.mts all          # the reading path, hosted Muse Spark
+npx tsx --env-file=.env scripts/getrm-read.mts all baseten  # the same, on open weights
 ```
 
 ## 1. Sequence → gene calls: 622 of 646 (96.3%)
@@ -84,29 +84,38 @@ TA6/TA7, which is `*1/*28` heterozygous. Here the sequence supports PharmCAT.
   loose variant text where the table gives no diplotype, and SLCO1B1 legacy names with no PharmVar
   equivalent such as `*21`.
 
-## 2. Dictated report → gene calls: 48 of 50 phenotypes agree with the sequence
+## 2. Dictated report → gene calls: 544 of 580 phenotypes agree with the sequence
 
 Each sample's real consensus genotypes are read aloud the way a laboratory would read them, put
 through Muse Spark and the app's normalisation, and run through PharmCAT. The result is compared
-with that same person's calls from their 30x sequence.
+with that same person's calls from their 30x sequence, for all 208 samples.
 
-| reader | phenotype agreement |
-|---|---|
-| `muse-spark-1.3` (hosted) | 48/50 |
-| `meta-models/muse-spark-open-1026` (open weights, Baseten) | 48/50, allele for allele identical |
+| reader | phenotype agreement | calls differing from the other reader |
+|---|---|---|
+| `muse-spark-1.3` (hosted) | 544/580 (93.8%) | 6 of 580 |
+| `meta-models/muse-spark-open-1026` (open weights, Baseten) | 543/580 (93.6%) | 6 of 580 |
 
-The two disagreements:
+Open weights are within one call of the hosted model over 580 comparisons. That is the claim the
+open-weights story rests on, and this is the evidence for it.
 
-- `NA12813 SLCO1B1` — the report says `*1/*21`, a legacy name with no PharmVar equivalent. The app
-  passes it through unchanged and PharmCAT leaves the gene uncalled. Guessing an equivalent would be
-  worse than an uncalled gene.
-- `NA18484 SLCO1B1` — the report is right about what the laboratory tested; the sequence carries
-  `*41`, which it did not test. Same coverage gap as above.
+Where the two sides disagree, the reading is usually not what is wrong:
 
-## 3. Two defects this found, both now fixed
+- **17** are gene calls where the sequence already disagreed with the consensus in section 1, for the
+  reasons catalogued there. The report agrees with the consensus; the sequence does not.
+- **15** are calls the consensus table leaves unscorable (structural variants, loose variant text).
+- **4** are reader-side, and three of those four are the same coverage gap again: the consensus text
+  says `*1/*1` or `*1/*9`, the reader reads exactly that, and the sequence carries a decreased-function
+  variant the laboratory never typed (`c.2846A>T`, `c.557A>G`).
 
-Real reports write allele names that PharmCAT does not accept, and the failure was silent — the gene
-came back uncalled rather than wrong, which is harder to notice.
+That leaves **one** genuine limitation of the reading path, identical on both models: HG02772's
+consensus entry lists five variants on one chromosome (`c.85T>C, c.868A>G, c.1218G>A, c.1358C>G,
+c.3067C>A`) and the model collapses it to Reference. A chromosome described by a list of variants is
+the hardest thing in this input format, and one in 208 is where it currently stands.
+
+## 3. Five defects this found, all now fixed
+
+Real reports write allele names that PharmCAT does not accept, and every one of these failed
+silently — the gene came back uncalled or Indeterminate rather than wrong, which is harder to notice.
 
 - **DPYD `*9` and `*2`.** `src/lib/pdf-extract.ts` mapped `*9A` and `*2A` to their HGVS names but not
   the bare `*9` / `*2` that GeT-RM and Indian laboratory reports actually print. `*9` is
@@ -114,9 +123,18 @@ came back uncalled rather than wrong, which is harder to notice.
 - **UGT1A1 `*60` and legacy SLCO1B1 names.** A report that says `(*28 + *60)/*60` or `*1A/*1B` was
   handed to PharmCAT verbatim and came back with no phenotype. `*60` and `*80` are linkage markers
   PharmCAT folds into its own haplotypes; they are now dropped, and `*1A`/`*1B`/`*17` are mapped to
-  `*1`/`*37`/`*15`. Fixing this took the reading path from 38/50 to 48/50.
+  `*1`/`*37`/`*15`.
+- **DPYD HGVS without the star number.** PharmCAT's DPYD allele names carry it (`c.1601G>A (*4)`);
+  reports and consensus tables print the HGVS alone. The names are now indexed by their bare HGVS too.
+- **A DPYD chromosome carrying several variants.** `c.85T>C, c.868A>G, c.1218G>A` was passed through
+  as a comma string and left the gene Indeterminate. It now resolves to the lowest-function variant
+  the chromosome carries, because dropping the decreased-function allele is the dangerous direction
+  to err in.
+- **Parenthesised alleles.** A lab writes `(*4)` or `(*15)` to mark an allele inferred rather than
+  directly typed. The brackets were being sent to PharmCAT as part of the name.
 
-Both are covered by assertions in `scripts/selftest.mts`.
+Every one is covered by an assertion in `scripts/selftest.mts`. Together they took the reading path
+from 38/50 on the first small run to 544/580 over all 208 samples.
 
 ## What this does not show
 
@@ -125,8 +143,8 @@ Both are covered by assertions in `scripts/selftest.mts`.
 - **The sequence is not complete at every position PharmCAT wants.** Per sample roughly 76 CYP2C9,
   52 DPYD, 36 TPMT, 19 CYP2C19 and 15 each of SLCO1B1 and NUDT15 positions arrive missing rather than
   reference, which is where half the mismatches come from. Concordance is measured in spite of that.
-- **The reading path is checked on 8 samples, not 208.** It costs a model call per sample; the
-  sequence benchmark costs none.
+- **The spoken report is generated from the consensus genotypes, not transcribed from a recording.**
+  It tests reading and normalisation, not speech.
 - **No photograph of a real report was read.** The reading path is tested here on the real genotypes,
   not on a real laboratory's layout. That gap is tracked in [LAB-CALLS.md](LAB-CALLS.md).
 - **No patient data of any kind.** Coriell reference materials are consented, published cell lines.

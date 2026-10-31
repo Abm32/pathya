@@ -147,16 +147,32 @@ function ugt1a1Allele(p: string) {
   return parts.join("+") || "*1";
 }
 
+/**
+ * PharmCAT's DPYD allele names carry the star number, "c.1601G>A (*4)". Reports and consensus tables
+ * routinely print the HGVS name alone, so index the names by their bare HGVS prefix too.
+ */
+const DPYD_BY_HGVS: Record<string, string> = Object.fromEntries(
+  Object.values(DPYD_NAMES).map((name) => [name.replace(/\s*\(.*\)$/, "").toLowerCase().replace(/\s+/g, ""), name]),
+);
+
 /** Normalise a diplotype to PharmCAT allele names (DPYD uses HGVS names; other genes keep star alleles). */
 export function normaliseDiplotype(gene: string, dip: string) {
   const parts = dip.split("/").map((p) => p.trim()).filter(Boolean);
   if (parts.length !== 2) return dip.trim();
   const g = gene.toUpperCase();
   if (g === "UGT1A1") return parts.map(ugt1a1Allele).join("/");
-  if (g === "SLCO1B1") return parts.map((p) => SLCO1B1_LEGACY[p.toLowerCase()] ?? p).join("/");
+  // Parentheses around an allele are a lab's way of marking it inferred rather than directly typed.
+  if (g === "SLCO1B1") return parts.map((p) => p.replace(/[()]/g, "").trim()).map((p) => SLCO1B1_LEGACY[p.toLowerCase()] ?? p).join("/");
   if (g !== "DPYD") return parts.join("/");
   // exact alias first; otherwise any known DPYD variant named inside the text, e.g. "c.1236G>A (HapB3)"
-  return parts.map((p) => DPYD_NAMES[p.toLowerCase().replace(/\s+/g, "")] ?? DPYD_TOKENS.find(([re]) => re.test(p))?.[1] ?? p).join("/");
+  return parts
+    .map((p) => {
+      const key = p.toLowerCase().replace(/\s+/g, "");
+      // "(*4)" is a lab marking the allele inferred; the parentheses are not part of the name.
+      const bare = key.replace(/^\((.*)\)$/, "$1");
+      return DPYD_NAMES[key] ?? DPYD_NAMES[bare] ?? DPYD_BY_HGVS[key] ?? DPYD_BY_HGVS[bare] ?? DPYD_TOKENS.find(([re]) => re.test(p))?.[1] ?? p;
+    })
+    .join("/");
 }
 
 /** PharmCAT outside-call TSV: gene \t diplotype \t phenotype \t activity score */
@@ -165,7 +181,12 @@ const DPYD_TOKENS: [RegExp, string][] = [
   [/c\.1679T>G|\*13|rs55886062/i, "c.1679T>G (*13)"],
   [/c\.2846A>T|rs67376798|D949V/i, "c.2846A>T"],
   [/HapB3|c\.1236G>A|rs56038477|rs75017182|c\.1129-5923C>G/i, "c.1129-5923C>G, c.1236G>A (HapB3)"],
+  // Decreased function, and they outrank the normal-function names below: a chromosome carrying several
+  // variants is the lowest-function one it carries, and dropping that is the dangerous direction to err in.
+  [/c\.557A>G/i, "c.557A>G"],
+  [/c\.868A>G/i, "c.868A>G"],
   [/c\.85T>C|\*9A|rs1801265|C29R/i, "c.85T>C (*9A)"],
+  [/c\.1627A>G|\*5\b|rs1801159/i, "c.1627A>G (*5)"],
 ];
 
 /** Compose a DPYD diplotype from free text like "c.1236G>A heterozygous; c.85T>C heterozygous; others not detected". */
