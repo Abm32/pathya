@@ -13,7 +13,7 @@ export function ipOf(req: Request) {
 export function overBudget(req: Request, bucket: string, max: number, windowMs = 60 * 60_000) {
   const key = `${bucket}:${ipOf(req)}`;
   const h = hits.get(key) ?? { n: 0, t: Date.now() };
-  if (Date.now() - h.t > windowMs) { h.n = 0; h.t = Date.now(); }
+  if (Date.now() - h.t >= windowMs) { h.n = 0; h.t = Date.now(); }
   h.n++;
   hits.set(key, h);
   return h.n > max;

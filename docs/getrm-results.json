@@ -1,0 +1,1198 @@
+{
+ "samples": 24,
+ "match": 161,
+ "mismatch": 3,
+ "unscored": 6,
+ "calls": [
+  {
+   "sample": "NA18564",
+   "gene": "DPYD",
+   "getrm": "*1/*9",
+   "pharmcat": "Reference/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18564",
+   "gene": "CYP2C19",
+   "getrm": "*2/*3",
+   "pharmcat": "*2/*3",
+   "result": "match"
+  },
+  {
+   "sample": "NA18564",
+   "gene": "CYP2C9",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18564",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18564",
+   "gene": "NUDT15",
+   "getrm": "*1/*3",
+   "pharmcat": "*1/*3",
+   "result": "match"
+  },
+  {
+   "sample": "NA18564",
+   "gene": "UGT1A1",
+   "getrm": "*1/*60",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18564",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*37 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "NA18564",
+   "gene": "VKORC1",
+   "getrm": "AA",
+   "pharmcat": "T/T",
+   "result": "match"
+  },
+  {
+   "sample": "NA18992",
+   "gene": "DPYD",
+   "getrm": "*1/*1",
+   "pharmcat": "Reference/c.1896T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18992",
+   "gene": "CYP2C19",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18992",
+   "gene": "CYP2C9",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18992",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18992",
+   "gene": "NUDT15",
+   "getrm": "*1/*3",
+   "pharmcat": "*1/*3",
+   "result": "match"
+  },
+  {
+   "sample": "NA18992",
+   "gene": "UGT1A1",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18992",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*17",
+   "pharmcat": "*1/*15 = Decreased Function, expected Decreased",
+   "result": "match"
+  },
+  {
+   "sample": "NA18992",
+   "gene": "VKORC1",
+   "getrm": "AA",
+   "pharmcat": "T/T",
+   "result": "match"
+  },
+  {
+   "sample": "NA18855",
+   "gene": "DPYD",
+   "getrm": "*9/*9",
+   "pharmcat": "c.85T>C/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18855",
+   "gene": "CYP2C19",
+   "getrm": "*1/*2",
+   "pharmcat": "*1/*2",
+   "result": "match"
+  },
+  {
+   "sample": "NA18855",
+   "gene": "CYP2C9",
+   "getrm": "*1/*9",
+   "pharmcat": "*1/*9",
+   "result": "match"
+  },
+  {
+   "sample": "NA18855",
+   "gene": "TPMT",
+   "getrm": "*1/*3C",
+   "pharmcat": "*1/*3C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18855",
+   "gene": "UGT1A1",
+   "getrm": "(*28 + *60)/(*28 + *60)",
+   "pharmcat": "*28/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA18855",
+   "gene": "SLCO1B1",
+   "getrm": "*1B/*1B",
+   "pharmcat": "*37/*37 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "NA18855",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA10831",
+   "gene": "DPYD",
+   "getrm": "*1/*9",
+   "pharmcat": "c.1627A>G/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA10831",
+   "gene": "CYP2C19",
+   "getrm": "*1/*17",
+   "pharmcat": "*1/*17",
+   "result": "match"
+  },
+  {
+   "sample": "NA10831",
+   "gene": "CYP2C9",
+   "getrm": "*1/*2",
+   "pharmcat": "*1/*2 | *1/*92",
+   "result": "match"
+  },
+  {
+   "sample": "NA10831",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA10831",
+   "gene": "UGT1A1",
+   "getrm": "(*28 + *60)/(*28 + *60)",
+   "pharmcat": "*28/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA10831",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*14",
+   "pharmcat": "*1/*14 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "NA10831",
+   "gene": "VKORC1",
+   "getrm": "AA",
+   "pharmcat": "T/T",
+   "result": "match"
+  },
+  {
+   "sample": "NA12813",
+   "gene": "DPYD",
+   "getrm": "*1/(*4)",
+   "pharmcat": "Reference/c.1601G>A",
+   "result": "match"
+  },
+  {
+   "sample": "NA12813",
+   "gene": "CYP2C19",
+   "getrm": "*1/*17",
+   "pharmcat": "*1/*17",
+   "result": "match"
+  },
+  {
+   "sample": "NA12813",
+   "gene": "CYP2C9",
+   "getrm": "*1/*3",
+   "pharmcat": "*1/*3 | *1/*18 | *1/*68",
+   "result": "match"
+  },
+  {
+   "sample": "NA12813",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA12813",
+   "gene": "UGT1A1",
+   "getrm": "(*28 + *60)/(*28 + *60)",
+   "pharmcat": "*28/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA12813",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*21",
+   "pharmcat": "legacy name *1/*21 has no PharmVar equivalent",
+   "result": "unscored"
+  },
+  {
+   "sample": "NA12813",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA12878",
+   "gene": "DPYD",
+   "getrm": "*1/(*4)",
+   "pharmcat": "c.1601G>A/c.1627A>G",
+   "result": "match"
+  },
+  {
+   "sample": "NA12878",
+   "gene": "CYP2C19",
+   "getrm": "*1/*2",
+   "pharmcat": "*1/*2",
+   "result": "match"
+  },
+  {
+   "sample": "NA12878",
+   "gene": "CYP2C9",
+   "getrm": "*1/*2",
+   "pharmcat": "*1/*2 | *1/*92",
+   "result": "match"
+  },
+  {
+   "sample": "NA12878",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA12878",
+   "gene": "UGT1A1",
+   "getrm": "*60/*28",
+   "pharmcat": "*1/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA12878",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*15",
+   "pharmcat": "*1/*15 = Decreased Function, expected Decreased",
+   "result": "match"
+  },
+  {
+   "sample": "NA12878",
+   "gene": "VKORC1",
+   "getrm": "GA",
+   "pharmcat": "C/T",
+   "result": "match"
+  },
+  {
+   "sample": "NA18484",
+   "gene": "DPYD",
+   "getrm": "*1/*9",
+   "pharmcat": "Reference/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18484",
+   "gene": "CYP2C19",
+   "getrm": "*1/*2",
+   "pharmcat": "*1/*2",
+   "result": "match"
+  },
+  {
+   "sample": "NA18484",
+   "gene": "CYP2C9",
+   "getrm": "*1/*9",
+   "pharmcat": "*1/*9",
+   "result": "match"
+  },
+  {
+   "sample": "NA18484",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18484",
+   "gene": "UGT1A1",
+   "getrm": "(*28 + *60)/*60",
+   "pharmcat": "*1/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA18484",
+   "gene": "SLCO1B1",
+   "getrm": "*1A/*1B",
+   "pharmcat": "*37/*41 = Decreased Function, expected Normal",
+   "result": "MISMATCH"
+  },
+  {
+   "sample": "NA18484",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18519",
+   "gene": "DPYD",
+   "getrm": "*9/*9",
+   "pharmcat": "c.85T>C/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18519",
+   "gene": "CYP2C19",
+   "getrm": "*1/*17",
+   "pharmcat": "*1/*17",
+   "result": "match"
+  },
+  {
+   "sample": "NA18519",
+   "gene": "CYP2C9",
+   "getrm": "*1/*5",
+   "pharmcat": "*1/*5 | *1/*36",
+   "result": "match"
+  },
+  {
+   "sample": "NA18519",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18519",
+   "gene": "UGT1A1",
+   "getrm": "*60/(*28 + *60)",
+   "pharmcat": "*1/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA18519",
+   "gene": "SLCO1B1",
+   "getrm": "*1B/*1B",
+   "pharmcat": "*37/*37 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "NA18519",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "HG00276",
+   "gene": "DPYD",
+   "getrm": "*1/*1",
+   "pharmcat": "Reference/Reference",
+   "result": "match"
+  },
+  {
+   "sample": "HG00276",
+   "gene": "CYP2C19",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "HG00276",
+   "gene": "CYP2C9",
+   "getrm": "*1/*2",
+   "pharmcat": "*1/*2 | *1/*92",
+   "result": "match"
+  },
+  {
+   "sample": "HG00276",
+   "gene": "TPMT",
+   "getrm": "*1/*16",
+   "pharmcat": "*1/*16",
+   "result": "match"
+  },
+  {
+   "sample": "HG00276",
+   "gene": "UGT1A1",
+   "getrm": "*60/*28",
+   "pharmcat": "*1/*28",
+   "result": "match"
+  },
+  {
+   "sample": "HG00276",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*15",
+   "pharmcat": "*1/*15 = Decreased Function, expected Decreased",
+   "result": "match"
+  },
+  {
+   "sample": "HG00276",
+   "gene": "VKORC1",
+   "getrm": "GA",
+   "pharmcat": "C/T",
+   "result": "match"
+  },
+  {
+   "sample": "HG01190",
+   "gene": "DPYD",
+   "getrm": "*1/*9",
+   "pharmcat": "Reference/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "HG01190",
+   "gene": "CYP2C19",
+   "getrm": "*1/*2",
+   "pharmcat": "*1/*2",
+   "result": "match"
+  },
+  {
+   "sample": "HG01190",
+   "gene": "CYP2C9",
+   "getrm": "*1/*61",
+   "pharmcat": "*1/*61",
+   "result": "match"
+  },
+  {
+   "sample": "HG01190",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "HG01190",
+   "gene": "UGT1A1",
+   "getrm": "(*37)/*60",
+   "pharmcat": "*1/*37",
+   "result": "match"
+  },
+  {
+   "sample": "HG01190",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "HG01190",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA07357",
+   "gene": "DPYD",
+   "getrm": "*1/*9",
+   "pharmcat": "c.1627A>G/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA07357",
+   "gene": "CYP2C19",
+   "getrm": "*2/*17",
+   "pharmcat": "*17/*2",
+   "result": "match"
+  },
+  {
+   "sample": "NA07357",
+   "gene": "CYP2C9",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA07357",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA07357",
+   "gene": "UGT1A1",
+   "getrm": "*60/(*28 + *60)",
+   "pharmcat": "*1/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA07357",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*15",
+   "pharmcat": "*1/*15 = Decreased Function, expected Decreased",
+   "result": "match"
+  },
+  {
+   "sample": "NA07357",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18518",
+   "gene": "DPYD",
+   "getrm": "*1/*9",
+   "pharmcat": "c.1627A>G/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18518",
+   "gene": "CYP2C19",
+   "getrm": "*2/*17",
+   "pharmcat": "*17/*2",
+   "result": "match"
+  },
+  {
+   "sample": "NA18518",
+   "gene": "CYP2C9",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18518",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18518",
+   "gene": "UGT1A1",
+   "getrm": "*60/*60",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18518",
+   "gene": "SLCO1B1",
+   "getrm": "*1A/*1B",
+   "pharmcat": "*1/*37 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "NA18518",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18868",
+   "gene": "DPYD",
+   "getrm": "*1/*9",
+   "pharmcat": "Reference/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18868",
+   "gene": "CYP2C19",
+   "getrm": "*1/*2",
+   "pharmcat": "*1/*2",
+   "result": "match"
+  },
+  {
+   "sample": "NA18868",
+   "gene": "CYP2C9",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18868",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18868",
+   "gene": "UGT1A1",
+   "getrm": "(*28 + *60)/(*28 + *60)",
+   "pharmcat": "*28/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA18868",
+   "gene": "SLCO1B1",
+   "getrm": "*1B/*1B",
+   "pharmcat": "*37/*44 = Indeterminate, expected Normal",
+   "result": "unscored"
+  },
+  {
+   "sample": "NA18868",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18966",
+   "gene": "DPYD",
+   "getrm": "c.1896T>C het, c.2678A>G het",
+   "pharmcat": "the consensus table reports variants, not a diplotype",
+   "result": "unscored"
+  },
+  {
+   "sample": "NA18966",
+   "gene": "CYP2C19",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA18966",
+   "gene": "CYP2C9",
+   "getrm": "*1/undefined",
+   "pharmcat": "the consensus table reports variants, not a diplotype",
+   "result": "unscored"
+  },
+  {
+   "sample": "NA18966",
+   "gene": "TPMT",
+   "getrm": "*1/*3C",
+   "pharmcat": "*1/*3C",
+   "result": "match"
+  },
+  {
+   "sample": "NA18966",
+   "gene": "UGT1A1",
+   "getrm": "*1/*6",
+   "pharmcat": "*1/*6",
+   "result": "match"
+  },
+  {
+   "sample": "NA18966",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "NA18966",
+   "gene": "VKORC1",
+   "getrm": "AA",
+   "pharmcat": "T/T",
+   "result": "match"
+  },
+  {
+   "sample": "NA19109",
+   "gene": "DPYD",
+   "getrm": "*1/*9",
+   "pharmcat": "Reference/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA19109",
+   "gene": "CYP2C19",
+   "getrm": "*17/*17",
+   "pharmcat": "*17/*17",
+   "result": "match"
+  },
+  {
+   "sample": "NA19109",
+   "gene": "CYP2C9",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19109",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19109",
+   "gene": "UGT1A1",
+   "getrm": "*1/*60",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19109",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*15",
+   "pharmcat": "*15/*37 = Decreased Function, expected Decreased",
+   "result": "match"
+  },
+  {
+   "sample": "NA19109",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA19122",
+   "gene": "DPYD",
+   "getrm": "*1/*1",
+   "pharmcat": "Reference/Reference",
+   "result": "match"
+  },
+  {
+   "sample": "NA19122",
+   "gene": "CYP2C19",
+   "getrm": "*2/*35",
+   "pharmcat": "*2/*35",
+   "result": "match"
+  },
+  {
+   "sample": "NA19122",
+   "gene": "CYP2C9",
+   "getrm": "*1/*11",
+   "pharmcat": "*1/*11",
+   "result": "match"
+  },
+  {
+   "sample": "NA19122",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19122",
+   "gene": "UGT1A1",
+   "getrm": "*28/(*60)",
+   "pharmcat": "*1/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA19122",
+   "gene": "SLCO1B1",
+   "getrm": "*1B/*1B",
+   "pharmcat": "*37/*37 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "NA19122",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA19143",
+   "gene": "DPYD",
+   "getrm": "*1/*1",
+   "pharmcat": "Reference/Reference",
+   "result": "match"
+  },
+  {
+   "sample": "NA19143",
+   "gene": "CYP2C19",
+   "getrm": "*1/*39",
+   "pharmcat": "*1/*39",
+   "result": "match"
+  },
+  {
+   "sample": "NA19143",
+   "gene": "CYP2C9",
+   "getrm": "*1/*6",
+   "pharmcat": "*1/*6",
+   "result": "match"
+  },
+  {
+   "sample": "NA19143",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19143",
+   "gene": "UGT1A1",
+   "getrm": "(*28 + *60)/*60",
+   "pharmcat": "*1/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA19143",
+   "gene": "SLCO1B1",
+   "getrm": "*1B/*1B",
+   "pharmcat": "*37/*37 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "NA19143",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA19147",
+   "gene": "DPYD",
+   "getrm": "*1/*9",
+   "pharmcat": "Reference/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA19147",
+   "gene": "CYP2C19",
+   "getrm": "*1/*17",
+   "pharmcat": "*1/*17",
+   "result": "match"
+  },
+  {
+   "sample": "NA19147",
+   "gene": "CYP2C9",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19147",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19147",
+   "gene": "UGT1A1",
+   "getrm": "(*28 + *60)/(*28 + *60)",
+   "pharmcat": "*28/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA19147",
+   "gene": "SLCO1B1",
+   "getrm": "*1B/*1B",
+   "pharmcat": "*20/*30 = Indeterminate, expected Normal",
+   "result": "unscored"
+  },
+  {
+   "sample": "NA19147",
+   "gene": "VKORC1",
+   "getrm": "GA",
+   "pharmcat": "C/T",
+   "result": "match"
+  },
+  {
+   "sample": "NA19176",
+   "gene": "DPYD",
+   "getrm": "*1/*1",
+   "pharmcat": "Reference/Reference",
+   "result": "match"
+  },
+  {
+   "sample": "NA19176",
+   "gene": "CYP2C19",
+   "getrm": "*2/*17",
+   "pharmcat": "*17/*2",
+   "result": "match"
+  },
+  {
+   "sample": "NA19176",
+   "gene": "CYP2C9",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19176",
+   "gene": "TPMT",
+   "getrm": "*1/*8",
+   "pharmcat": "*1/*8",
+   "result": "match"
+  },
+  {
+   "sample": "NA19176",
+   "gene": "UGT1A1",
+   "getrm": "*28/(*60)",
+   "pharmcat": "*1/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA19176",
+   "gene": "SLCO1B1",
+   "getrm": "*1A/*1B",
+   "pharmcat": "*1/*37 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "NA19176",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA19207",
+   "gene": "DPYD",
+   "getrm": "c.85T>C, c.557A>G / no variants detected",
+   "pharmcat": "the consensus table reports variants, not a diplotype",
+   "result": "unscored"
+  },
+  {
+   "sample": "NA19207",
+   "gene": "CYP2C19",
+   "getrm": "*2/*17",
+   "pharmcat": "*17/*2",
+   "result": "match"
+  },
+  {
+   "sample": "NA19207",
+   "gene": "CYP2C9",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19207",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19207",
+   "gene": "UGT1A1",
+   "getrm": "(*36 +*60)/(*28 + *60)",
+   "pharmcat": "*28/*36",
+   "result": "match"
+  },
+  {
+   "sample": "NA19207",
+   "gene": "SLCO1B1",
+   "getrm": "*1A/*1B",
+   "pharmcat": "*37/*41 = Decreased Function, expected Normal",
+   "result": "MISMATCH"
+  },
+  {
+   "sample": "NA19207",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA19213",
+   "gene": "DPYD",
+   "getrm": "*1/*1",
+   "pharmcat": "Reference/Reference",
+   "result": "match"
+  },
+  {
+   "sample": "NA19213",
+   "gene": "CYP2C19",
+   "getrm": "*1/*39",
+   "pharmcat": "*1/*39",
+   "result": "match"
+  },
+  {
+   "sample": "NA19213",
+   "gene": "CYP2C9",
+   "getrm": "*1/*6",
+   "pharmcat": "*1/*6",
+   "result": "match"
+  },
+  {
+   "sample": "NA19213",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19213",
+   "gene": "UGT1A1",
+   "getrm": "(*36 + *60)/*60",
+   "pharmcat": "*1/*36",
+   "result": "match"
+  },
+  {
+   "sample": "NA19213",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*14",
+   "pharmcat": "*14/*37 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "NA19213",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA19226",
+   "gene": "DPYD",
+   "getrm": "*1/*9",
+   "pharmcat": "Reference/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA19226",
+   "gene": "CYP2C19",
+   "getrm": "*1/*2",
+   "pharmcat": "*1/*2",
+   "result": "match"
+  },
+  {
+   "sample": "NA19226",
+   "gene": "CYP2C9",
+   "getrm": "*1/*8",
+   "pharmcat": "*1/*8",
+   "result": "match"
+  },
+  {
+   "sample": "NA19226",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19226",
+   "gene": "UGT1A1",
+   "getrm": "*1/*60",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19226",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*1",
+   "pharmcat": "*31/*37 = Decreased Function, expected Normal",
+   "result": "MISMATCH"
+  },
+  {
+   "sample": "NA19226",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  },
+  {
+   "sample": "NA19819",
+   "gene": "DPYD",
+   "getrm": "*1/*9",
+   "pharmcat": "Reference/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA19819",
+   "gene": "CYP2C19",
+   "getrm": "*1/*17",
+   "pharmcat": "*1/*17",
+   "result": "match"
+  },
+  {
+   "sample": "NA19819",
+   "gene": "CYP2C9",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19819",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19819",
+   "gene": "UGT1A1",
+   "getrm": "*28/(*60)",
+   "pharmcat": "*1/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA19819",
+   "gene": "SLCO1B1",
+   "getrm": "*1B/*1B",
+   "pharmcat": "*37/*37 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "NA19819",
+   "gene": "VKORC1",
+   "getrm": "GA",
+   "pharmcat": "C/T",
+   "result": "match"
+  },
+  {
+   "sample": "NA19908",
+   "gene": "DPYD",
+   "getrm": "*1/*9",
+   "pharmcat": "Reference/c.85T>C",
+   "result": "match"
+  },
+  {
+   "sample": "NA19908",
+   "gene": "CYP2C19",
+   "getrm": "*1/*17",
+   "pharmcat": "*1/*17",
+   "result": "match"
+  },
+  {
+   "sample": "NA19908",
+   "gene": "CYP2C9",
+   "getrm": "*1/*5",
+   "pharmcat": "*1/*5 | *1/*36",
+   "result": "match"
+  },
+  {
+   "sample": "NA19908",
+   "gene": "TPMT",
+   "getrm": "*1/*1",
+   "pharmcat": "*1/*1",
+   "result": "match"
+  },
+  {
+   "sample": "NA19908",
+   "gene": "UGT1A1",
+   "getrm": "(*28 + *60)/*60",
+   "pharmcat": "*1/*28",
+   "result": "match"
+  },
+  {
+   "sample": "NA19908",
+   "gene": "SLCO1B1",
+   "getrm": "*1/*1",
+   "pharmcat": "*37/*37 = Normal Function, expected Normal",
+   "result": "match"
+  },
+  {
+   "sample": "NA19908",
+   "gene": "VKORC1",
+   "getrm": "GG",
+   "pharmcat": "C/C",
+   "result": "match"
+  }
+ ]
+}

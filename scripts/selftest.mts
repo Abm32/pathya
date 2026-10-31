@@ -9,6 +9,13 @@ import { overBudget } from "../src/lib/limit";
 // DPYD names the model may write, and checklist wording (bugs found by the benchmark)
 assert.equal(normaliseDiplotype("DPYD", "c.1236G>A (HapB3)/c.85T>C (*9A)"), "c.1129-5923C>G, c.1236G>A (HapB3)/c.85T>C (*9A)");
 assert.equal(normaliseDiplotype("DPYD", "*1/*2A"), "Reference/c.1905+1G>A (*2A)");
+// Names real reports and the GeT-RM consensus tables actually print, which PharmCAT does not accept as written.
+assert.equal(normaliseDiplotype("DPYD", "*1/*9"), "Reference/c.85T>C (*9A)");
+assert.equal(normaliseDiplotype("UGT1A1", "(*28 + *60)/*60"), "*28/*1");
+assert.equal(normaliseDiplotype("UGT1A1", "*60/*28"), "*1/*28");
+assert.equal(normaliseDiplotype("SLCO1B1", "*1A/*1B"), "*1/*37");
+assert.equal(normaliseDiplotype("SLCO1B1", "*1/*17"), "*1/*15");
+assert.equal(normaliseDiplotype("SLCO1B1", "*1/*21"), "*1/*21");   // no confident equivalent: pass through, PharmCAT leaves it uncalled
 assert.equal(dpydFromText("c.1236G>A (HapB3) Detected (homozygous)"), "c.1129-5923C>G, c.1236G>A (HapB3)/c.1129-5923C>G, c.1236G>A (HapB3)");
 assert.equal(dpydFromText("No tested variant detected"), "Reference/Reference");
 

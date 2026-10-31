@@ -125,20 +125,36 @@ export async function extractFromText(text: string, provider?: Provider): Promis
 
 const DPYD_NAMES: Record<string, string> = {
   "*1": "Reference", "reference": "Reference", "wildtype": "Reference", "wt": "Reference", "normal": "Reference",
-  "*2a": "c.1905+1G>A (*2A)", "c.1905+1g>a": "c.1905+1G>A (*2A)", "rs3918290": "c.1905+1G>A (*2A)", "ivs14+1g>a": "c.1905+1G>A (*2A)",
+  "*2": "c.1905+1G>A (*2A)", "*2a": "c.1905+1G>A (*2A)", "c.1905+1g>a": "c.1905+1G>A (*2A)", "rs3918290": "c.1905+1G>A (*2A)", "ivs14+1g>a": "c.1905+1G>A (*2A)",
   "*13": "c.1679T>G (*13)", "c.1679t>g": "c.1679T>G (*13)", "rs55886062": "c.1679T>G (*13)",
   "c.2846a>t": "c.2846A>T", "rs67376798": "c.2846A>T", "d949v": "c.2846A>T",
   "hapb3": "c.1129-5923C>G, c.1236G>A (HapB3)", "c.1236g>a": "c.1129-5923C>G, c.1236G>A (HapB3)", "rs56038477": "c.1129-5923C>G, c.1236G>A (HapB3)", "rs75017182": "c.1129-5923C>G, c.1236G>A (HapB3)", "c.1129-5923c>g": "c.1129-5923C>G, c.1236G>A (HapB3)",
-  "*9a": "c.85T>C (*9A)", "c.85t>c": "c.85T>C (*9A)", "rs1801265": "c.85T>C (*9A)", "c29r": "c.85T>C (*9A)",
+  "*9": "c.85T>C (*9A)", "*9a": "c.85T>C (*9A)", "c.85t>c": "c.85T>C (*9A)", "rs1801265": "c.85T>C (*9A)", "c29r": "c.85T>C (*9A)",
   "*3": "c.1898delC (*3)", "*4": "c.1601G>A (*4)", "*5": "c.1627A>G (*5)", "*6": "c.2194G>A (*6)", "*7": "c.295_298delTCAT (*7)", "*8": "c.703C>T (*8)",
   "*9b": "c.2657G>A (*9B)", "*10": "c.2983G>T (*10)", "*11": "c.1003G>T (*11)", "*12": "c.1156G>T (*12)",
 };
+
+/**
+ * Legacy SLCO1B1 star names, still printed by labs and by the GeT-RM consensus tables, mapped to the
+ * PharmVar names PharmCAT knows. *1B was renamed *37; *17 is *15 plus a promoter variant and carries the
+ * same decreased function. Anything else is passed through: a wrong guess is worse than an uncalled gene.
+ */
+const SLCO1B1_LEGACY: Record<string, string> = { "*1a": "*1", "*1b": "*37", "*17": "*15" };
+
+/** Drop the linkage markers PharmCAT folds into its own haplotypes, so "(*28 + *60)" is the lab's way of writing *28. */
+function ugt1a1Allele(p: string) {
+  const parts = p.replace(/[()]/g, "").split("+").map((x) => x.trim()).filter((x) => x && !/^\*(60|80)$/.test(x));
+  return parts.join("+") || "*1";
+}
 
 /** Normalise a diplotype to PharmCAT allele names (DPYD uses HGVS names; other genes keep star alleles). */
 export function normaliseDiplotype(gene: string, dip: string) {
   const parts = dip.split("/").map((p) => p.trim()).filter(Boolean);
   if (parts.length !== 2) return dip.trim();
-  if (gene.toUpperCase() !== "DPYD") return parts.join("/");
+  const g = gene.toUpperCase();
+  if (g === "UGT1A1") return parts.map(ugt1a1Allele).join("/");
+  if (g === "SLCO1B1") return parts.map((p) => SLCO1B1_LEGACY[p.toLowerCase()] ?? p).join("/");
+  if (g !== "DPYD") return parts.join("/");
   // exact alias first; otherwise any known DPYD variant named inside the text, e.g. "c.1236G>A (HapB3)"
   return parts.map((p) => DPYD_NAMES[p.toLowerCase().replace(/\s+/g, "")] ?? DPYD_TOKENS.find(([re]) => re.test(p))?.[1] ?? p).join("/");
 }

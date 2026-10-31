@@ -63,6 +63,7 @@ Third-party, and labelled as such wherever it appears: [PharmCAT 3.4](https://ph
 
 - **The model only reads.** It extracts and quotes; PharmCAT names; tested rules check; statistics are plain code. No advice is generated anywhere, and the eval fails if guideline or drug text, or an identifier, is stored.
 - **Extraction benchmark (held out).** 36 synthetic Indian lab reports in four layouts (star table, rsID table, narrative, variant checklist), each as a clean PDF, a phone photo and a harsh skewed photo: Muse Spark 1.3 and Muse Spark Open each read 177/177 gene calls exactly, against 58/59, 26/59 and 0/59 for an OCR + rules baseline. The development run caught two pipeline bugs, fixed before the held-out run. The reports, truth and harness are released as IndiPGx-Read v0.1. Method, limits and misses: [docs/BENCHMARK.md](docs/BENCHMARK.md).
+- **Real reference materials, not our own fixtures.** 24 Coriell DNA samples that both the CDC's GeT-RM programme (consensus genotypes agreed across clinical laboratories) and 1000 Genomes (30x GRCh38 sequence) have characterised: PharmCAT through our runner agrees with the laboratory consensus on 161 of 164 gene calls (98.2%), and reading the same results aloud reproduces the sequence phenotype 48 times in 50, identically on hosted Muse Spark and on open-weights Muse Spark Open. All three sequence mismatches are SLCO1B1 decreased-function alleles the consensus panel never typed — the project's own argument, arriving in its own benchmark. It also found two silent defects in our allele normalisation, now fixed. Method, scoring rules and limits: [docs/GETRM.md](docs/GETRM.md).
 - **Self-test.** `npx tsx scripts/selftest.mts` checks DPYD normalisation, coverage rules, de-identification, Wilson intervals and cohort counting offline.
 - **End-to-end eval.** `npx tsx scripts/eval.mts <url>` runs 6 cases (two VCFs, a lab PDF, the same report as a phone photo, that photo again forced onto the open-weights model, and results read aloud) through a live server: 6/6 on production, 2026-10-31.
 - **Live cohort check.** `npx tsx scripts/verify-cohort.mts <url>`: all 106 gene calls in the 24 public demo records match the benchmark ground truth, with no identifiers or drug text stored.
@@ -88,6 +89,8 @@ Checks:
 npx tsx scripts/selftest.mts                                   # offline, <1 s: normalisation, coverage, de-identification, statistics
 npx tsx scripts/eval.mts http://localhost:3000                 # 5 end-to-end cases (ACCESS_CODE=... for a gated host)
 npx tsx --env-file=.env scripts/bench.mts rules,muse,open      # extraction benchmark, see docs/BENCHMARK.md
+python3 scripts/getrm/fetch.py && python3 scripts/getrm/score.py   # real reference materials, see docs/GETRM.md
+npx tsx --env-file=.env scripts/getrm-read.mts 8 [baseten]     # the same real genotypes through the reader
 ```
 
 Production: `docker compose up -d --build` with the env in `.env`. EC2 steps, the access gate and the public sample report are in [docs/DEPLOY.md](docs/DEPLOY.md).
