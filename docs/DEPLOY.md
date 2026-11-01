@@ -84,5 +84,5 @@ PharmCAT needs a JVM and the preprocessor's Python/bcftools stack; Vercel Functi
 ```bash
 ACCESS_CODE=<code> npx tsx scripts/eval.mts https://<host>      # 4 end-to-end cases, logs in with the code
 curl -s -o /dev/null -w "%{http_code}\n" https://<host>/sample   # 307 to the pinned report, no code needed
-curl -s -X POST https://<host>/api/analyze                       # 401 with a sign-in message: runs stay gated
+curl -s -X POST https://<host>/api/analyze                       # 400 naming the fields: the endpoint is public, an empty body is a bad request
 ```
