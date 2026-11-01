@@ -1,6 +1,6 @@
 // Fast offline checks for the deterministic parts. No network, no Docker: npx tsx scripts/selftest.mts
 import assert from "node:assert/strict";
-import { dpydFromText, normaliseDiplotype, type LabExtract } from "../src/lib/pdf-extract";
+import { dpydFromText, normaliseDiplotype, toOutsideCalls, type LabExtract } from "../src/lib/pdf-extract";
 import { deidentify, quality } from "../src/lib/quality";
 import { cohortCsv, cohortStats, wilson, type CohortRecord } from "../src/lib/cohort";
 import type { PgxProfile } from "../src/lib/pharmcat";
@@ -22,6 +22,20 @@ assert.equal(normaliseDiplotype("UGT1A1", "*60/*28"), "*1/*28");
 assert.equal(normaliseDiplotype("SLCO1B1", "*1A/*1B"), "*1/*37");
 assert.equal(normaliseDiplotype("SLCO1B1", "*1/*17"), "*1/*15");
 assert.equal(normaliseDiplotype("SLCO1B1", "*1/*21"), "*1/*21");   // no confident equivalent: pass through, PharmCAT leaves it uncalled
+// "no variants detected" written as one side of a diplotype is the reference allele, in every gene.
+assert.equal(normaliseDiplotype("DPYD", "c.85T>C, c.868A>G, c.1218G>A/no variants detected"), "c.868A>G/Reference");
+assert.equal(normaliseDiplotype("CYP2C19", "*2/No variants detected"), "*2/*1");
+assert.equal(normaliseDiplotype("CYP2C9", "*3/wild type"), "*3/*1");
+
+// Both models quote a multi-variant chromosome correctly and then call the gene Reference. The quote wins.
+const read = (verbatim: string) =>
+  toOutsideCalls({
+    labName: "", reportDate: "", patientRef: "", methodNotes: "", warnings: [], testedVariants: [],
+    genes: [{ gene: "DPYD", diplotype: "Reference/Reference", phenotype: "", activityScore: "", verbatim }],
+  }).trim();
+assert.equal(read("DPYD: c.61C>T, c.85T>C, (c.1371C>T) / no variants detected."), "DPYD\tc.85T>C (*9A)/Reference");
+// A genuinely negative report still reads Reference: the guard must not invent a variant.
+assert.equal(read("DPYD: no variants detected."), "DPYD\tReference/Reference");
 assert.equal(dpydFromText("c.1236G>A (HapB3) Detected (homozygous)"), "c.1129-5923C>G, c.1236G>A (HapB3)/c.1129-5923C>G, c.1236G>A (HapB3)");
 assert.equal(dpydFromText("No tested variant detected"), "Reference/Reference");
 

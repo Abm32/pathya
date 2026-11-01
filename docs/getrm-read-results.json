@@ -1,15 +1,8 @@
 {
  "samples": 208,
  "compared": 580,
- "agree": 544,
+ "agree": 545,
  "rows": [
-  {
-   "sample": "HG00118",
-   "gene": "DPYD",
-   "report": "Reference/c.2846A>T = Intermediate Metabolizer",
-   "vcf": "c.1129-5923C>G, c.1236G>A (HapB3)/c.2846A>T = Intermediate Metabolizer",
-   "agree": true
-  },
   {
    "sample": "HG00129",
    "gene": "DPYD",
@@ -18,17 +11,17 @@
    "agree": true
   },
   {
+   "sample": "HG00118",
+   "gene": "DPYD",
+   "report": "Reference/c.2846A>T = Intermediate Metabolizer",
+   "vcf": "c.1129-5923C>G, c.1236G>A (HapB3)/c.2846A>T = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
    "sample": "HG00185",
    "gene": "DPYD",
    "report": "c.1627A>G (*5)/c.1905+1G>A (*2A) = Intermediate Metabolizer",
    "vcf": "Reference/c.1905+1G>A (*2A) = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "HG00133",
-   "gene": "TPMT",
-   "report": "*1/*2 = Intermediate Metabolizer",
-   "vcf": "*1/*2 = Intermediate Metabolizer",
    "agree": true
   },
   {
@@ -74,10 +67,10 @@
    "agree": true
   },
   {
-   "sample": "HG00277",
-   "gene": "NUDT15",
-   "report": "*1/*6 = Intermediate Metabolizer",
-   "vcf": "*1/*6 = Intermediate Metabolizer",
+   "sample": "HG00133",
+   "gene": "TPMT",
+   "report": "*1/*2 = Intermediate Metabolizer",
+   "vcf": "*1/*2 = Intermediate Metabolizer",
    "agree": true
   },
   {
@@ -88,6 +81,13 @@
    "agree": true
   },
   {
+   "sample": "HG00304",
+   "gene": "TPMT",
+   "report": "*3A/*16 = Poor Metabolizer",
+   "vcf": "*3A/*16 = Poor Metabolizer",
+   "agree": true
+  },
+  {
    "sample": "HG00325",
    "gene": "DPYD",
    "report": "Reference/Reference = Normal Metabolizer",
@@ -95,10 +95,10 @@
    "agree": true
   },
   {
-   "sample": "HG00304",
-   "gene": "TPMT",
-   "report": "*3A/*16 = Poor Metabolizer",
-   "vcf": "*3A/*16 = Poor Metabolizer",
+   "sample": "HG00277",
+   "gene": "NUDT15",
+   "report": "*1/*6 = Intermediate Metabolizer",
+   "vcf": "*1/*6 = Intermediate Metabolizer",
    "agree": true
   },
   {
@@ -160,14 +160,7 @@
   {
    "sample": "HG00537",
    "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "Reference/c.1627A>G (*5) = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "HG00538",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
+   "report": "Reference/c.1627A>G (*5) = Normal Metabolizer",
    "vcf": "Reference/c.1627A>G (*5) = Normal Metabolizer",
    "agree": true
   },
@@ -214,6 +207,13 @@
    "agree": false
   },
   {
+   "sample": "HG00538",
+   "gene": "DPYD",
+   "report": "Reference/c.1627A>G (*5) = Normal Metabolizer",
+   "vcf": "Reference/c.1627A>G (*5) = Normal Metabolizer",
+   "agree": true
+  },
+  {
    "sample": "HG00599",
    "gene": "NUDT15",
    "report": "*2/*2 = n/a",
@@ -223,7 +223,7 @@
   {
    "sample": "HG00613",
    "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
+   "report": "Reference/c.1627A>G (*5) = Normal Metabolizer",
    "vcf": "Reference/c.1627A>G (*5) = Normal Metabolizer",
    "agree": true
   },
@@ -326,13 +326,6 @@
    "agree": true
   },
   {
-   "sample": "HG01474",
-   "gene": "TPMT",
-   "report": "*1/*40 = Indeterminate",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": false
-  },
-  {
    "sample": "HG01631",
    "gene": "DPYD",
    "report": "c.299_302del/c.1627A>G (*5) = Indeterminate",
@@ -340,24 +333,17 @@
    "agree": false
   },
   {
+   "sample": "HG01474",
+   "gene": "TPMT",
+   "report": "*1/*40 = Indeterminate",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": false
+  },
+  {
    "sample": "HG01465",
    "gene": "NUDT15",
    "report": "*1/*4 = Intermediate Metabolizer",
    "vcf": "*1/*4 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "HG01809",
-   "gene": "CYP2C19",
-   "report": "*2/*2 = Poor Metabolizer",
-   "vcf": "*2/*2 = Poor Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "HG01809",
-   "gene": "CYP2C9",
-   "report": "*1/*13 = Intermediate Metabolizer",
-   "vcf": "*1/*13 = Intermediate Metabolizer",
    "agree": true
   },
   {
@@ -375,6 +361,20 @@
    "agree": true
   },
   {
+   "sample": "HG01809",
+   "gene": "CYP2C19",
+   "report": "*2/*2 = Poor Metabolizer",
+   "vcf": "*2/*2 = Poor Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "HG01809",
+   "gene": "CYP2C9",
+   "report": "*1/*13 = Intermediate Metabolizer",
+   "vcf": "*1/*13 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
    "sample": "HG02087",
    "gene": "CYP2C19",
    "report": "*1/*2 = Intermediate Metabolizer",
@@ -389,13 +389,6 @@
    "agree": true
   },
   {
-   "sample": "HG02496",
-   "gene": "TPMT",
-   "report": "*1/*24 = Indeterminate",
-   "vcf": "*1/*24 = Indeterminate",
-   "agree": true
-  },
-  {
    "sample": "HG02645",
    "gene": "DPYD",
    "report": "c.85T>C (*9A)/c.868A>G = Intermediate Metabolizer",
@@ -403,44 +396,51 @@
    "agree": true
   },
   {
+   "sample": "HG02496",
+   "gene": "TPMT",
+   "report": "*1/*24 = Indeterminate",
+   "vcf": "*1/*24 = Indeterminate",
+   "agree": true
+  },
+  {
+   "sample": "HG02852",
+   "gene": "CYP2C19",
+   "report": "*2/*35 = Poor Metabolizer",
+   "vcf": "*2/*35 = Poor Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "HG02852",
+   "gene": "CYP2C9",
+   "report": "*1/*11 = Intermediate Metabolizer",
+   "vcf": "*1/*11 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "HG02861",
+   "gene": "CYP2C19",
+   "report": "*2/*35 = Poor Metabolizer",
+   "vcf": "*2/*35 = Poor Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "HG02861",
+   "gene": "CYP2C9",
+   "report": "*1/*11 = Intermediate Metabolizer",
+   "vcf": "*1/*11 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
    "sample": "HG02772",
    "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
+   "report": "Reference/c.868A>G = Intermediate Metabolizer",
    "vcf": "Reference/c.868A>G = Intermediate Metabolizer",
-   "agree": false
-  },
-  {
-   "sample": "HG02861",
-   "gene": "CYP2C19",
-   "report": "*2/*35 = Poor Metabolizer",
-   "vcf": "*2/*35 = Poor Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "HG02861",
-   "gene": "CYP2C9",
-   "report": "*1/*11 = Intermediate Metabolizer",
-   "vcf": "*1/*11 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "HG02852",
-   "gene": "CYP2C19",
-   "report": "*2/*35 = Poor Metabolizer",
-   "vcf": "*2/*35 = Poor Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "HG02852",
-   "gene": "CYP2C9",
-   "report": "*1/*11 = Intermediate Metabolizer",
-   "vcf": "*1/*11 = Intermediate Metabolizer",
    "agree": true
   },
   {
    "sample": "HG03115",
    "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
+   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
    "vcf": "Reference/c.85T>C (*9A) = Normal Metabolizer",
    "agree": true
   },
@@ -466,13 +466,6 @@
    "agree": true
   },
   {
-   "sample": "HG03645",
-   "gene": "DPYD",
-   "report": "c.1896T>C/c.2279C>T = Intermediate Metabolizer",
-   "vcf": "c.1896T>C/c.2279C>T = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
    "sample": "HG03649",
    "gene": "DPYD",
    "report": "c.85T>C (*9A)/c.85T>C (*9A) = Normal Metabolizer",
@@ -480,10 +473,10 @@
    "agree": true
   },
   {
-   "sample": "HG03716",
+   "sample": "HG03645",
    "gene": "DPYD",
-   "report": "c.85T>C (*9A)/c.2279C>T = Intermediate Metabolizer",
-   "vcf": "Reference/c.2279C>T = Intermediate Metabolizer",
+   "report": "c.1896T>C/c.2279C>T = Intermediate Metabolizer",
+   "vcf": "c.1896T>C/c.2279C>T = Intermediate Metabolizer",
    "agree": true
   },
   {
@@ -494,11 +487,53 @@
    "agree": true
   },
   {
+   "sample": "HG03716",
+   "gene": "DPYD",
+   "report": "c.85T>C (*9A)/c.2279C>T = Intermediate Metabolizer",
+   "vcf": "Reference/c.2279C>T = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
    "sample": "HG03787",
    "gene": "DPYD",
    "report": "c.85T>C (*9A)/c.2043_2058del = Indeterminate",
    "vcf": "Reference/c.85T>C (*9A) = Normal Metabolizer",
    "agree": false
+  },
+  {
+   "sample": "NA06993",
+   "gene": "DPYD",
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "c.1601G>A (*4)/c.1627A>G (*5) = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA06993",
+   "gene": "CYP2C19",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA06993",
+   "gene": "CYP2C9",
+   "report": "*1/*2 = Intermediate Metabolizer",
+   "vcf": "*1/*2 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA06993",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA06993",
+   "gene": "SLCO1B1",
+   "report": "*1/*15 = Decreased Function",
+   "vcf": "*1/*15 = Decreased Function",
+   "agree": true
   },
   {
    "sample": "NA07000",
@@ -585,41 +620,6 @@
    "agree": true
   },
   {
-   "sample": "NA06993",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "c.1601G>A (*4)/c.1627A>G (*5) = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA06993",
-   "gene": "CYP2C19",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA06993",
-   "gene": "CYP2C9",
-   "report": "*1/*2 = Intermediate Metabolizer",
-   "vcf": "*1/*2 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA06993",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA06993",
-   "gene": "SLCO1B1",
-   "report": "*1/*15 = Decreased Function",
-   "vcf": "*1/*15 = Decreased Function",
-   "agree": true
-  },
-  {
    "sample": "NA07048",
    "gene": "DPYD",
    "report": "Reference/Reference = Normal Metabolizer",
@@ -652,48 +652,6 @@
    "gene": "SLCO1B1",
    "report": "*1/*1 = Normal Function",
    "vcf": "*1/*1 = Normal Function",
-   "agree": true
-  },
-  {
-   "sample": "NA07055",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "c.1627A>G (*5)/c.2846A>T = Intermediate Metabolizer",
-   "agree": false
-  },
-  {
-   "sample": "NA07055",
-   "gene": "CYP2C19",
-   "report": "*1/*17 = Rapid Metabolizer",
-   "vcf": "*1/*17 = Rapid Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA07055",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA07055",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA07055",
-   "gene": "UGT1A1",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA07055",
-   "gene": "SLCO1B1",
-   "report": "*1/*14 = Normal Function",
-   "vcf": "*1/*14 = Normal Function",
    "agree": true
   },
   {
@@ -781,45 +739,45 @@
    "agree": true
   },
   {
-   "sample": "NA07357",
+   "sample": "NA07055",
    "gene": "DPYD",
-   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
-   "vcf": "c.1627A>G (*5)/c.85T>C (*9A) = Normal Metabolizer",
-   "agree": true
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "c.1627A>G (*5)/c.2846A>T = Intermediate Metabolizer",
+   "agree": false
   },
   {
-   "sample": "NA07357",
+   "sample": "NA07055",
    "gene": "CYP2C19",
-   "report": "*2/*17 = Intermediate Metabolizer",
-   "vcf": "*2/*17 = Intermediate Metabolizer",
+   "report": "*1/*17 = Rapid Metabolizer",
+   "vcf": "*1/*17 = Rapid Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA07357",
+   "sample": "NA07055",
    "gene": "CYP2C9",
    "report": "*1/*1 = Normal Metabolizer",
    "vcf": "*1/*1 = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA07357",
+   "sample": "NA07055",
    "gene": "TPMT",
    "report": "*1/*1 = Normal Metabolizer",
    "vcf": "*1/*1 = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA07357",
+   "sample": "NA07055",
    "gene": "UGT1A1",
-   "report": "*1/*28 = Intermediate Metabolizer",
-   "vcf": "*1/*80+*28 = Intermediate Metabolizer",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA07357",
+   "sample": "NA07055",
    "gene": "SLCO1B1",
-   "report": "*1/*15 = Decreased Function",
-   "vcf": "*1/*15 = Decreased Function",
+   "report": "*1/*14 = Normal Function",
+   "vcf": "*1/*14 = Normal Function",
    "agree": true
   },
   {
@@ -862,6 +820,48 @@
    "gene": "SLCO1B1",
    "report": "*1/*14 = Normal Function",
    "vcf": "*1/*14 = Normal Function",
+   "agree": true
+  },
+  {
+   "sample": "NA07357",
+   "gene": "DPYD",
+   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
+   "vcf": "c.1627A>G (*5)/c.85T>C (*9A) = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA07357",
+   "gene": "CYP2C19",
+   "report": "*2/*17 = Intermediate Metabolizer",
+   "vcf": "*2/*17 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA07357",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA07357",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA07357",
+   "gene": "UGT1A1",
+   "report": "*1/*28 = Intermediate Metabolizer",
+   "vcf": "*1/*80+*28 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA07357",
+   "gene": "SLCO1B1",
+   "report": "*1/*15 = Decreased Function",
+   "vcf": "*1/*15 = Decreased Function",
    "agree": true
   },
   {
@@ -984,6 +984,83 @@
    "agree": true
   },
   {
+   "sample": "NA10851",
+   "gene": "DPYD",
+   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
+   "vcf": "Reference/c.85T>C (*9A) = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10851",
+   "gene": "CYP2C19",
+   "report": "*1/*17 = Rapid Metabolizer",
+   "vcf": "*1/*17 = Rapid Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10851",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10851",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10851",
+   "gene": "UGT1A1",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10851",
+   "gene": "SLCO1B1",
+   "report": "*1/*14 = Normal Function",
+   "vcf": "*1/*14 = Normal Function",
+   "agree": true
+  },
+  {
+   "sample": "NA10838",
+   "gene": "DPYD",
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "Reference/Reference = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10838",
+   "gene": "CYP2C19",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10838",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10838",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10838",
+   "gene": "SLCO1B1",
+   "report": "*1/*1 = Normal Function",
+   "vcf": "*1/*14 = Normal Function",
+   "agree": true
+  },
+  {
    "sample": "NA10847",
    "gene": "DPYD",
    "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
@@ -1026,80 +1103,38 @@
    "agree": true
   },
   {
-   "sample": "NA10838",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "Reference/Reference = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA10838",
-   "gene": "CYP2C19",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA10838",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA10838",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA10838",
-   "gene": "SLCO1B1",
-   "report": "*1/*1 = Normal Function",
-   "vcf": "*1/*14 = Normal Function",
-   "agree": true
-  },
-  {
-   "sample": "NA10851",
+   "sample": "NA10859",
    "gene": "DPYD",
    "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
-   "vcf": "Reference/c.85T>C (*9A) = Normal Metabolizer",
+   "vcf": "c.1627A>G (*5)/c.85T>C (*9A) = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA10851",
+   "sample": "NA10859",
    "gene": "CYP2C19",
-   "report": "*1/*17 = Rapid Metabolizer",
-   "vcf": "*1/*17 = Rapid Metabolizer",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA10851",
+   "sample": "NA10859",
    "gene": "CYP2C9",
    "report": "*1/*1 = Normal Metabolizer",
    "vcf": "*1/*1 = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA10851",
+   "sample": "NA10859",
    "gene": "TPMT",
    "report": "*1/*1 = Normal Metabolizer",
    "vcf": "*1/*1 = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA10851",
-   "gene": "UGT1A1",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA10851",
+   "sample": "NA10859",
    "gene": "SLCO1B1",
-   "report": "*1/*14 = Normal Function",
-   "vcf": "*1/*14 = Normal Function",
+   "report": "*1/*15 = Decreased Function",
+   "vcf": "*1/*15 = Decreased Function",
    "agree": true
   },
   {
@@ -1215,38 +1250,80 @@
    "agree": true
   },
   {
-   "sample": "NA10859",
+   "sample": "NA11839",
    "gene": "DPYD",
-   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
-   "vcf": "c.1627A>G (*5)/c.85T>C (*9A) = Normal Metabolizer",
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "Reference/c.1627A>G (*5) = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA10859",
+   "sample": "NA11839",
    "gene": "CYP2C19",
    "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*38 = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA10859",
+   "sample": "NA11839",
    "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
+   "report": "*2/*3 = Poor Metabolizer",
+   "vcf": "*2/*3 = Poor Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA10859",
+   "sample": "NA11839",
    "gene": "TPMT",
    "report": "*1/*1 = Normal Metabolizer",
    "vcf": "*1/*1 = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA10859",
+   "sample": "NA11839",
+   "gene": "UGT1A1",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA11839",
    "gene": "SLCO1B1",
-   "report": "*1/*15 = Decreased Function",
-   "vcf": "*1/*15 = Decreased Function",
+   "report": "*1/*37 = Normal Function",
+   "vcf": "*1/*37 = Normal Function",
+   "agree": true
+  },
+  {
+   "sample": "NA10865",
+   "gene": "DPYD",
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "Reference/Reference = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10865",
+   "gene": "CYP2C19",
+   "report": "*8/*17 = Intermediate Metabolizer",
+   "vcf": "*8/*17 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10865",
+   "gene": "CYP2C9",
+   "report": "*1/*2 = Intermediate Metabolizer",
+   "vcf": "*1/*2 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10865",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA10865",
+   "gene": "SLCO1B1",
+   "report": "*1/*1 = Normal Function",
+   "vcf": "*1/*20 = Normal Function",
    "agree": true
   },
   {
@@ -1290,167 +1367,6 @@
    "report": "*1/*1 = Normal Function",
    "vcf": "*14/*20 = Increased Function",
    "agree": false
-  },
-  {
-   "sample": "NA10865",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "Reference/Reference = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA10865",
-   "gene": "CYP2C19",
-   "report": "*8/*17 = Intermediate Metabolizer",
-   "vcf": "*8/*17 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA10865",
-   "gene": "CYP2C9",
-   "report": "*1/*2 = Intermediate Metabolizer",
-   "vcf": "*1/*2 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA10865",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA10865",
-   "gene": "SLCO1B1",
-   "report": "*1/*1 = Normal Function",
-   "vcf": "*1/*20 = Normal Function",
-   "agree": true
-  },
-  {
-   "sample": "NA11839",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "Reference/c.1627A>G (*5) = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA11839",
-   "gene": "CYP2C19",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*38 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA11839",
-   "gene": "CYP2C9",
-   "report": "*2/*3 = Poor Metabolizer",
-   "vcf": "*2/*3 = Poor Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA11839",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA11839",
-   "gene": "UGT1A1",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA11839",
-   "gene": "SLCO1B1",
-   "report": "*1/*37 = Normal Function",
-   "vcf": "*1/*37 = Normal Function",
-   "agree": true
-  },
-  {
-   "sample": "NA12006",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "Reference/Reference = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA12006",
-   "gene": "CYP2C19",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA12006",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA12006",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA12006",
-   "gene": "UGT1A1",
-   "report": "*1/*28 = Intermediate Metabolizer",
-   "vcf": "*1/*80+*28 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA12006",
-   "gene": "SLCO1B1",
-   "report": "*1/*21 = n/a",
-   "vcf": "*37/*37 = Normal Function",
-   "agree": false
-  },
-  {
-   "sample": "NA11993",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "Reference/c.1627A>G (*5) = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA11993",
-   "gene": "CYP2C19",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA11993",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA11993",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA11993",
-   "gene": "UGT1A1",
-   "report": "*28/*1 = Intermediate Metabolizer",
-   "vcf": "*1/*80+*28 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA11993",
-   "gene": "SLCO1B1",
-   "report": "*1/*15 = Decreased Function",
-   "vcf": "*1/*15 = Decreased Function",
-   "agree": true
   },
   {
    "sample": "NA12003",
@@ -1530,6 +1446,97 @@
    "agree": true
   },
   {
+   "sample": "NA11993",
+   "gene": "DPYD",
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "Reference/c.1627A>G (*5) = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA11993",
+   "gene": "CYP2C19",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA11993",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA11993",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA11993",
+   "gene": "UGT1A1",
+   "report": "*28/*1 = Intermediate Metabolizer",
+   "vcf": "*1/*80+*28 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA11993",
+   "gene": "SLCO1B1",
+   "report": "*1/*15 = Decreased Function",
+   "vcf": "*1/*15 = Decreased Function",
+   "agree": true
+  },
+  {
+   "sample": "NA12006",
+   "gene": "DPYD",
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "Reference/Reference = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA12006",
+   "gene": "CYP2C19",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA12006",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA12006",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA12006",
+   "gene": "UGT1A1",
+   "report": "*1/*28 = Intermediate Metabolizer",
+   "vcf": "*1/*80+*28 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA12006",
+   "gene": "SLCO1B1",
+   "report": "*1/*21 = n/a",
+   "vcf": "*37/*37 = Normal Function",
+   "agree": false
+  },
+  {
+   "sample": "NA12044",
+   "gene": "TPMT",
+   "report": "*1/*21 = Intermediate Metabolizer",
+   "vcf": "*1/*21 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
    "sample": "NA12156",
    "gene": "DPYD",
    "report": "Reference/Reference = Normal Metabolizer",
@@ -1570,13 +1577,6 @@
    "report": "*1/*21 = n/a",
    "vcf": "*1/*37 = Normal Function",
    "agree": false
-  },
-  {
-   "sample": "NA12044",
-   "gene": "TPMT",
-   "report": "*1/*21 = Intermediate Metabolizer",
-   "vcf": "*1/*21 = Intermediate Metabolizer",
-   "agree": true
   },
   {
    "sample": "NA12145",
@@ -1628,62 +1628,6 @@
    "agree": true
   },
   {
-   "sample": "NA12273",
-   "gene": "CYP2C19",
-   "report": "*1/*2 = Intermediate Metabolizer",
-   "vcf": "*1/*2 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA12273",
-   "gene": "CYP2C9",
-   "report": "*1/*2 = Intermediate Metabolizer",
-   "vcf": "*1/*2 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA12273",
-   "gene": "UGT1A1",
-   "report": "*1/*28 = Intermediate Metabolizer",
-   "vcf": "*1/*80+*28 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA12336",
-   "gene": "DPYD",
-   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
-   "vcf": "Reference/c.85T>C (*9A) = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA12336",
-   "gene": "CYP2C19",
-   "report": "*17/*17 = Ultrarapid Metabolizer",
-   "vcf": "*17/*17 = Ultrarapid Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA12336",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA12336",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA12336",
-   "gene": "SLCO1B1",
-   "report": "*1/*1 = Normal Function",
-   "vcf": "*1/*1 = Normal Function",
-   "agree": true
-  },
-  {
    "sample": "NA12236",
    "gene": "DPYD",
    "report": "c.85T>C (*9A)/c.85T>C (*9A) = Normal Metabolizer",
@@ -1723,6 +1667,62 @@
    "gene": "SLCO1B1",
    "report": "*1/*14 = Normal Function",
    "vcf": "*1/*14 = Normal Function",
+   "agree": true
+  },
+  {
+   "sample": "NA12336",
+   "gene": "DPYD",
+   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
+   "vcf": "Reference/c.85T>C (*9A) = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA12336",
+   "gene": "CYP2C19",
+   "report": "*17/*17 = Ultrarapid Metabolizer",
+   "vcf": "*17/*17 = Ultrarapid Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA12336",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA12336",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA12336",
+   "gene": "SLCO1B1",
+   "report": "*1/*1 = Normal Function",
+   "vcf": "*1/*1 = Normal Function",
+   "agree": true
+  },
+  {
+   "sample": "NA12273",
+   "gene": "CYP2C19",
+   "report": "*1/*2 = Intermediate Metabolizer",
+   "vcf": "*1/*2 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA12273",
+   "gene": "CYP2C9",
+   "report": "*1/*2 = Intermediate Metabolizer",
+   "vcf": "*1/*2 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA12273",
+   "gene": "UGT1A1",
+   "report": "*1/*28 = Intermediate Metabolizer",
+   "vcf": "*1/*80+*28 = Intermediate Metabolizer",
    "agree": true
   },
   {
@@ -1768,13 +1768,6 @@
    "agree": false
   },
   {
-   "sample": "NA12751",
-   "gene": "TPMT",
-   "report": "*1/*12 = Indeterminate",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": false
-  },
-  {
    "sample": "NA12753",
    "gene": "DPYD",
    "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
@@ -1808,6 +1801,13 @@
    "report": "*1/*1 = Normal Function",
    "vcf": "*1/*14 = Normal Function",
    "agree": true
+  },
+  {
+   "sample": "NA12751",
+   "gene": "TPMT",
+   "report": "*1/*12 = Indeterminate",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": false
   },
   {
    "sample": "NA12717",
@@ -2006,90 +2006,6 @@
    "agree": true
   },
   {
-   "sample": "NA18518",
-   "gene": "DPYD",
-   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
-   "vcf": "c.85T>C (*9A)/c.1627A>G (*5) = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18518",
-   "gene": "CYP2C19",
-   "report": "*2/*17 = Intermediate Metabolizer",
-   "vcf": "*2/*17 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18518",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18518",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18518",
-   "gene": "UGT1A1",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18518",
-   "gene": "SLCO1B1",
-   "report": "*1/*37 = Normal Function",
-   "vcf": "*1/*37 = Normal Function",
-   "agree": true
-  },
-  {
-   "sample": "NA18519",
-   "gene": "DPYD",
-   "report": "c.85T>C (*9A)/c.85T>C (*9A) = Normal Metabolizer",
-   "vcf": "c.85T>C (*9A)/c.85T>C (*9A) = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18519",
-   "gene": "CYP2C19",
-   "report": "*1/*17 = Rapid Metabolizer",
-   "vcf": "*1/*17 = Rapid Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18519",
-   "gene": "CYP2C9",
-   "report": "*1/*5 = Intermediate Metabolizer",
-   "vcf": "*1/*5 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18519",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18519",
-   "gene": "UGT1A1",
-   "report": "*1/*28 = Intermediate Metabolizer",
-   "vcf": "*1/*80+*28 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18519",
-   "gene": "SLCO1B1",
-   "report": "*37/*37 = Normal Function",
-   "vcf": "*37/*37 = Normal Function",
-   "agree": true
-  },
-  {
    "sample": "NA18526",
    "gene": "DPYD",
    "report": "Reference/Reference = Normal Metabolizer",
@@ -2174,45 +2090,87 @@
    "agree": false
   },
   {
-   "sample": "NA18552",
+   "sample": "NA18519",
    "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "Reference/c.1627A>G (*5) = Normal Metabolizer",
+   "report": "c.85T>C (*9A)/c.85T>C (*9A) = Normal Metabolizer",
+   "vcf": "c.85T>C (*9A)/c.85T>C (*9A) = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA18552",
+   "sample": "NA18519",
    "gene": "CYP2C19",
-   "report": "*1/*4 = Intermediate Metabolizer",
-   "vcf": "*1/*4 = Intermediate Metabolizer",
+   "report": "*1/*17 = Rapid Metabolizer",
+   "vcf": "*1/*17 = Rapid Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA18552",
+   "sample": "NA18519",
    "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
+   "report": "*1/*5 = Intermediate Metabolizer",
+   "vcf": "*1/*5 = Intermediate Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA18552",
+   "sample": "NA18519",
    "gene": "TPMT",
    "report": "*1/*1 = Normal Metabolizer",
    "vcf": "*1/*1 = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA18552",
+   "sample": "NA18519",
+   "gene": "UGT1A1",
+   "report": "*1/*28 = Intermediate Metabolizer",
+   "vcf": "*1/*80+*28 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18519",
+   "gene": "SLCO1B1",
+   "report": "*37/*37 = Normal Function",
+   "vcf": "*37/*37 = Normal Function",
+   "agree": true
+  },
+  {
+   "sample": "NA18518",
+   "gene": "DPYD",
+   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
+   "vcf": "c.85T>C (*9A)/c.1627A>G (*5) = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18518",
+   "gene": "CYP2C19",
+   "report": "*2/*17 = Intermediate Metabolizer",
+   "vcf": "*2/*17 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18518",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18518",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18518",
    "gene": "UGT1A1",
    "report": "*1/*1 = Normal Metabolizer",
    "vcf": "*1/*1 = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA18552",
+   "sample": "NA18518",
    "gene": "SLCO1B1",
-   "report": "*1/*15 = Decreased Function",
-   "vcf": "*15/*37 = Decreased Function",
+   "report": "*1/*37 = Normal Function",
+   "vcf": "*1/*37 = Normal Function",
    "agree": true
   },
   {
@@ -2258,6 +2216,48 @@
    "agree": true
   },
   {
+   "sample": "NA18552",
+   "gene": "DPYD",
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "Reference/c.1627A>G (*5) = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18552",
+   "gene": "CYP2C19",
+   "report": "*1/*4 = Intermediate Metabolizer",
+   "vcf": "*1/*4 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18552",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18552",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18552",
+   "gene": "UGT1A1",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18552",
+   "gene": "SLCO1B1",
+   "report": "*1/*15 = Decreased Function",
+   "vcf": "*15/*37 = Decreased Function",
+   "agree": true
+  },
+  {
    "sample": "NA18563",
    "gene": "DPYD",
    "report": "Reference/Reference = Normal Metabolizer",
@@ -2290,6 +2290,48 @@
    "gene": "SLCO1B1",
    "report": "*1/*15 = Decreased Function",
    "vcf": "*1/*15 = Decreased Function",
+   "agree": true
+  },
+  {
+   "sample": "NA18565",
+   "gene": "DPYD",
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "Reference/Reference = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18565",
+   "gene": "CYP2C19",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18565",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18565",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18565",
+   "gene": "UGT1A1",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18565",
+   "gene": "SLCO1B1",
+   "report": "*1/*1 = Normal Function",
+   "vcf": "*1/*1 = Normal Function",
    "agree": true
   },
   {
@@ -2377,48 +2419,6 @@
    "agree": true
   },
   {
-   "sample": "NA18565",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "Reference/Reference = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18565",
-   "gene": "CYP2C19",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18565",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18565",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18565",
-   "gene": "UGT1A1",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18565",
-   "gene": "SLCO1B1",
-   "report": "*1/*1 = Normal Function",
-   "vcf": "*1/*1 = Normal Function",
-   "agree": true
-  },
-  {
    "sample": "NA18603",
    "gene": "TPMT",
    "report": "*1/*6 = Intermediate Metabolizer",
@@ -2455,6 +2455,83 @@
   },
   {
    "sample": "NA18617",
+   "gene": "SLCO1B1",
+   "report": "*1/*1 = Normal Function",
+   "vcf": "*37/*37 = Normal Function",
+   "agree": true
+  },
+  {
+   "sample": "NA18861",
+   "gene": "DPYD",
+   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
+   "vcf": "Reference/c.85T>C (*9A) = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18861",
+   "gene": "CYP2C19",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18861",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18861",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18861",
+   "gene": "UGT1A1",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18861",
+   "gene": "SLCO1B1",
+   "report": "*1/*14 = Normal Function",
+   "vcf": "*1/*43 = Indeterminate",
+   "agree": false
+  },
+  {
+   "sample": "NA18873",
+   "gene": "DPYD",
+   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
+   "vcf": "Reference/c.557A>G = Intermediate Metabolizer",
+   "agree": false
+  },
+  {
+   "sample": "NA18873",
+   "gene": "CYP2C19",
+   "report": "*1/*2 = Intermediate Metabolizer",
+   "vcf": "*1/*2 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18873",
+   "gene": "CYP2C9",
+   "report": "*1/*8 = Intermediate Metabolizer",
+   "vcf": "*1/*8 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18873",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18873",
    "gene": "SLCO1B1",
    "report": "*1/*1 = Normal Function",
    "vcf": "*37/*37 = Normal Function",
@@ -2503,48 +2580,6 @@
    "agree": false
   },
   {
-   "sample": "NA18861",
-   "gene": "DPYD",
-   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
-   "vcf": "Reference/c.85T>C (*9A) = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18861",
-   "gene": "CYP2C19",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18861",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18861",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18861",
-   "gene": "UGT1A1",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18861",
-   "gene": "SLCO1B1",
-   "report": "*1/*14 = Normal Function",
-   "vcf": "*1/*43 = Indeterminate",
-   "agree": false
-  },
-  {
    "sample": "NA18855",
    "gene": "DPYD",
    "report": "c.85T>C (*9A)/c.85T>C (*9A) = Normal Metabolizer",
@@ -2584,55 +2619,6 @@
    "gene": "SLCO1B1",
    "report": "*37/*37 = Normal Function",
    "vcf": "*37/*37 = Normal Function",
-   "agree": true
-  },
-  {
-   "sample": "NA18873",
-   "gene": "DPYD",
-   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
-   "vcf": "Reference/c.557A>G = Intermediate Metabolizer",
-   "agree": false
-  },
-  {
-   "sample": "NA18873",
-   "gene": "CYP2C19",
-   "report": "*1/*2 = Intermediate Metabolizer",
-   "vcf": "*1/*2 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18873",
-   "gene": "CYP2C9",
-   "report": "*1/*8 = Intermediate Metabolizer",
-   "vcf": "*1/*8 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18873",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18873",
-   "gene": "SLCO1B1",
-   "report": "*1/*1 = Normal Function",
-   "vcf": "*37/*37 = Normal Function",
-   "agree": true
-  },
-  {
-   "sample": "NA18877",
-   "gene": "CYP2C19",
-   "report": "*1/*17 = Rapid Metabolizer",
-   "vcf": "*1/*17 = Rapid Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18877",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
    "agree": true
   },
   {
@@ -2678,6 +2664,62 @@
    "agree": true
   },
   {
+   "sample": "NA18877",
+   "gene": "CYP2C19",
+   "report": "*1/*17 = Rapid Metabolizer",
+   "vcf": "*1/*17 = Rapid Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18877",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18956",
+   "gene": "DPYD",
+   "report": "Reference/c.1774C>T = Intermediate Metabolizer",
+   "vcf": "Reference/Reference = Normal Metabolizer",
+   "agree": false
+  },
+  {
+   "sample": "NA18945",
+   "gene": "DPYD",
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "Reference/c.1896T>C = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18945",
+   "gene": "CYP2C19",
+   "report": "*1/*2 = Intermediate Metabolizer",
+   "vcf": "*1/*2 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18945",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18945",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA18945",
+   "gene": "SLCO1B1",
+   "report": "*1/*1 = Normal Function",
+   "vcf": "*1/*37 = Normal Function",
+   "agree": true
+  },
+  {
    "sample": "NA18959",
    "gene": "DPYD",
    "report": "Reference/Reference = Normal Metabolizer",
@@ -2720,13 +2762,6 @@
    "agree": true
   },
   {
-   "sample": "NA18956",
-   "gene": "DPYD",
-   "report": "Reference/c.1774C>T = Intermediate Metabolizer",
-   "vcf": "Reference/Reference = Normal Metabolizer",
-   "agree": false
-  },
-  {
    "sample": "NA18952",
    "gene": "DPYD",
    "report": "Reference/Reference = Normal Metabolizer",
@@ -2766,41 +2801,6 @@
    "gene": "SLCO1B1",
    "report": "*1/*1 = Normal Function",
    "vcf": "*1/*1 = Normal Function",
-   "agree": true
-  },
-  {
-   "sample": "NA18945",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "Reference/c.1896T>C = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18945",
-   "gene": "CYP2C19",
-   "report": "*1/*2 = Intermediate Metabolizer",
-   "vcf": "*1/*2 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18945",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18945",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA18945",
-   "gene": "SLCO1B1",
-   "report": "*1/*1 = Normal Function",
-   "vcf": "*1/*37 = Normal Function",
    "agree": true
   },
   {
@@ -2972,48 +2972,6 @@
    "agree": true
   },
   {
-   "sample": "NA19003",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "Reference/Reference = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19003",
-   "gene": "CYP2C19",
-   "report": "*1/*2 = Intermediate Metabolizer",
-   "vcf": "*1/*2 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19003",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19003",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19003",
-   "gene": "UGT1A1",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19003",
-   "gene": "SLCO1B1",
-   "report": "*37/*37 = Normal Function",
-   "vcf": "*37/*37 = Normal Function",
-   "agree": true
-  },
-  {
    "sample": "NA18992",
    "gene": "DPYD",
    "report": "Reference/Reference = Normal Metabolizer",
@@ -3063,11 +3021,60 @@
    "agree": true
   },
   {
-   "sample": "NA19079",
-   "gene": "NUDT15",
-   "report": "*2/*5 = n/a",
-   "vcf": "*3/*5 = Poor Metabolizer",
-   "agree": false
+   "sample": "NA19003",
+   "gene": "DPYD",
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "Reference/Reference = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19003",
+   "gene": "CYP2C19",
+   "report": "*1/*2 = Intermediate Metabolizer",
+   "vcf": "*1/*2 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19003",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19003",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19003",
+   "gene": "UGT1A1",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19003",
+   "gene": "SLCO1B1",
+   "report": "*37/*37 = Normal Function",
+   "vcf": "*37/*37 = Normal Function",
+   "agree": true
+  },
+  {
+   "sample": "NA19075",
+   "gene": "CYP2C19",
+   "report": "*1/*2 = Intermediate Metabolizer",
+   "vcf": "*1/*2 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19075",
+   "gene": "CYP2C9",
+   "report": "*1/*13 = Intermediate Metabolizer",
+   "vcf": "*1/*13 = Intermediate Metabolizer",
+   "agree": true
   },
   {
    "sample": "NA19035",
@@ -3112,17 +3119,94 @@
    "agree": false
   },
   {
-   "sample": "NA19075",
-   "gene": "CYP2C19",
-   "report": "*1/*2 = Intermediate Metabolizer",
-   "vcf": "*1/*2 = Intermediate Metabolizer",
+   "sample": "NA19079",
+   "gene": "NUDT15",
+   "report": "*2/*5 = n/a",
+   "vcf": "*3/*5 = Poor Metabolizer",
+   "agree": false
+  },
+  {
+   "sample": "NA19095",
+   "gene": "DPYD",
+   "report": "c.85T>C (*9A)/c.85T>C (*9A) = Normal Metabolizer",
+   "vcf": "c.85T>C (*9A)/c.85T>C (*9A) = Normal Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA19075",
+   "sample": "NA19095",
+   "gene": "CYP2C19",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19095",
    "gene": "CYP2C9",
-   "report": "*1/*13 = Intermediate Metabolizer",
-   "vcf": "*1/*13 = Intermediate Metabolizer",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19095",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19095",
+   "gene": "UGT1A1",
+   "report": "*28/*36 = Intermediate Metabolizer",
+   "vcf": "*36/*80+*28 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19095",
+   "gene": "SLCO1B1",
+   "report": "*37/*37 = Normal Function",
+   "vcf": "*20/*37 = Normal Function",
+   "agree": true
+  },
+  {
+   "sample": "NA19122",
+   "gene": "DPYD",
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "Reference/Reference = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19122",
+   "gene": "CYP2C19",
+   "report": "*2/*35 = Poor Metabolizer",
+   "vcf": "*2/*35 = Poor Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19122",
+   "gene": "CYP2C9",
+   "report": "*1/*11 = Intermediate Metabolizer",
+   "vcf": "*1/*11 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19122",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19122",
+   "gene": "UGT1A1",
+   "report": "*28/*1 = Intermediate Metabolizer",
+   "vcf": "*1/*80+*28 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19122",
+   "gene": "SLCO1B1",
+   "report": "*37/*37 = Normal Function",
+   "vcf": "*37/*37 = Normal Function",
    "agree": true
   },
   {
@@ -3168,48 +3252,6 @@
    "agree": true
   },
   {
-   "sample": "NA19095",
-   "gene": "DPYD",
-   "report": "c.85T>C (*9A)/c.85T>C (*9A) = Normal Metabolizer",
-   "vcf": "c.85T>C (*9A)/c.85T>C (*9A) = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19095",
-   "gene": "CYP2C19",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19095",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19095",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19095",
-   "gene": "UGT1A1",
-   "report": "*28/*36 = Intermediate Metabolizer",
-   "vcf": "*36/*80+*28 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19095",
-   "gene": "SLCO1B1",
-   "report": "*37/*37 = Normal Function",
-   "vcf": "*20/*37 = Normal Function",
-   "agree": true
-  },
-  {
    "sample": "NA19109",
    "gene": "DPYD",
    "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
@@ -3249,48 +3291,6 @@
    "gene": "SLCO1B1",
    "report": "*1/*15 = Decreased Function",
    "vcf": "*15/*37 = Decreased Function",
-   "agree": true
-  },
-  {
-   "sample": "NA19122",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "Reference/Reference = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19122",
-   "gene": "CYP2C19",
-   "report": "*2/*35 = Poor Metabolizer",
-   "vcf": "*2/*35 = Poor Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19122",
-   "gene": "CYP2C9",
-   "report": "*1/*11 = Intermediate Metabolizer",
-   "vcf": "*1/*11 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19122",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19122",
-   "gene": "UGT1A1",
-   "report": "*28/*1 = Intermediate Metabolizer",
-   "vcf": "*1/*80+*28 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19122",
-   "gene": "SLCO1B1",
-   "report": "*37/*37 = Normal Function",
-   "vcf": "*37/*37 = Normal Function",
    "agree": true
   },
   {
@@ -3462,6 +3462,48 @@
    "agree": false
   },
   {
+   "sample": "NA19226",
+   "gene": "DPYD",
+   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
+   "vcf": "Reference/c.85T>C (*9A) = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19226",
+   "gene": "CYP2C19",
+   "report": "*1/*2 = Intermediate Metabolizer",
+   "vcf": "*1/*2 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19226",
+   "gene": "CYP2C9",
+   "report": "*1/*8 = Intermediate Metabolizer",
+   "vcf": "*1/*8 = Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19226",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19226",
+   "gene": "UGT1A1",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19226",
+   "gene": "SLCO1B1",
+   "report": "*1/*1 = Normal Function",
+   "vcf": "*31/*37 = Decreased Function",
+   "agree": false
+  },
+  {
    "sample": "NA19213",
    "gene": "DPYD",
    "report": "Reference/Reference = Normal Metabolizer",
@@ -3539,62 +3581,6 @@
    "agree": true
   },
   {
-   "sample": "NA19226",
-   "gene": "DPYD",
-   "report": "Reference/c.85T>C (*9A) = Normal Metabolizer",
-   "vcf": "Reference/c.85T>C (*9A) = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19226",
-   "gene": "CYP2C19",
-   "report": "*1/*2 = Intermediate Metabolizer",
-   "vcf": "*1/*2 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19226",
-   "gene": "CYP2C9",
-   "report": "*1/*8 = Intermediate Metabolizer",
-   "vcf": "*1/*8 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19226",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19226",
-   "gene": "UGT1A1",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19226",
-   "gene": "SLCO1B1",
-   "report": "*1/*1 = Normal Function",
-   "vcf": "*31/*37 = Decreased Function",
-   "agree": false
-  },
-  {
-   "sample": "NA19395",
-   "gene": "CYP2C19",
-   "report": "*1/*3 = Intermediate Metabolizer",
-   "vcf": "*1/*3 = Intermediate Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19395",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
    "sample": "NA19327",
    "gene": "CYP2C19",
    "report": "*2/*35 = Poor Metabolizer",
@@ -3651,17 +3637,17 @@
    "agree": true
   },
   {
-   "sample": "NA19466",
+   "sample": "NA19395",
    "gene": "CYP2C19",
-   "report": "*1/*9 = Likely Intermediate Metabolizer",
-   "vcf": "*1/*9 = Likely Intermediate Metabolizer",
+   "report": "*1/*3 = Intermediate Metabolizer",
+   "vcf": "*1/*3 = Intermediate Metabolizer",
    "agree": true
   },
   {
-   "sample": "NA19466",
+   "sample": "NA19395",
    "gene": "CYP2C9",
-   "report": "*1/*9 = Normal Metabolizer",
-   "vcf": "*1/*9 = Normal Metabolizer",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
    "agree": true
   },
   {
@@ -3707,6 +3693,20 @@
    "agree": true
   },
   {
+   "sample": "NA19466",
+   "gene": "CYP2C19",
+   "report": "*1/*9 = Likely Intermediate Metabolizer",
+   "vcf": "*1/*9 = Likely Intermediate Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19466",
+   "gene": "CYP2C9",
+   "report": "*1/*9 = Normal Metabolizer",
+   "vcf": "*1/*9 = Normal Metabolizer",
+   "agree": true
+  },
+  {
    "sample": "NA19789",
    "gene": "DPYD",
    "report": "Reference/Reference = Normal Metabolizer",
@@ -3743,41 +3743,6 @@
   },
   {
    "sample": "NA19789",
-   "gene": "SLCO1B1",
-   "report": "*1/*1 = Normal Function",
-   "vcf": "*1/*37 = Normal Function",
-   "agree": true
-  },
-  {
-   "sample": "NA19785",
-   "gene": "DPYD",
-   "report": "Reference/Reference = Normal Metabolizer",
-   "vcf": "Reference/Reference = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19785",
-   "gene": "CYP2C19",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19785",
-   "gene": "CYP2C9",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19785",
-   "gene": "TPMT",
-   "report": "*1/*1 = Normal Metabolizer",
-   "vcf": "*1/*1 = Normal Metabolizer",
-   "agree": true
-  },
-  {
-   "sample": "NA19785",
    "gene": "SLCO1B1",
    "report": "*1/*1 = Normal Function",
    "vcf": "*1/*37 = Normal Function",
@@ -3826,6 +3791,41 @@
    "agree": true
   },
   {
+   "sample": "NA19785",
+   "gene": "DPYD",
+   "report": "Reference/Reference = Normal Metabolizer",
+   "vcf": "Reference/Reference = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19785",
+   "gene": "CYP2C19",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19785",
+   "gene": "CYP2C9",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19785",
+   "gene": "TPMT",
+   "report": "*1/*1 = Normal Metabolizer",
+   "vcf": "*1/*1 = Normal Metabolizer",
+   "agree": true
+  },
+  {
+   "sample": "NA19785",
+   "gene": "SLCO1B1",
+   "report": "*1/*1 = Normal Function",
+   "vcf": "*1/*37 = Normal Function",
+   "agree": true
+  },
+  {
    "sample": "NA19917",
    "gene": "DPYD",
    "report": "c.85T>C (*9A)/c.85T>C (*9A) = Normal Metabolizer",
@@ -3859,13 +3859,6 @@
    "report": "*1/*1 = Normal Function",
    "vcf": "*1/*37 = Normal Function",
    "agree": true
-  },
-  {
-   "sample": "NA19902",
-   "gene": "DPYD",
-   "report": "c.85T>C (*9A)/c.1054C>G+c.1896T>C = Indeterminate",
-   "vcf": "c.1896T>C/c.85T>C (*9A) = Normal Metabolizer",
-   "agree": false
   },
   {
    "sample": "NA19908",
@@ -3917,11 +3910,11 @@
    "agree": true
   },
   {
-   "sample": "NA20362",
+   "sample": "NA19902",
    "gene": "DPYD",
-   "report": "Reference/c.1129-5923C>G, c.1236G>A (HapB3) = Intermediate Metabolizer",
-   "vcf": "c.1129-5923C>G, c.1236G>A (HapB3)/c.557A>G = Intermediate Metabolizer",
-   "agree": true
+   "report": "c.85T>C (*9A)/c.1054C>G+c.1896T>C = Indeterminate",
+   "vcf": "c.1896T>C/c.85T>C (*9A) = Normal Metabolizer",
+   "agree": false
   },
   {
    "sample": "NA20296",
@@ -3964,6 +3957,13 @@
    "report": "*37/*37 = Normal Function",
    "vcf": "*27/*37 = Indeterminate",
    "agree": false
+  },
+  {
+   "sample": "NA20362",
+   "gene": "DPYD",
+   "report": "Reference/c.1129-5923C>G, c.1236G>A (HapB3) = Intermediate Metabolizer",
+   "vcf": "c.1129-5923C>G, c.1236G>A (HapB3)/c.557A>G = Intermediate Metabolizer",
+   "agree": true
   },
   {
    "sample": "NA19920",

@@ -155,9 +155,16 @@ const DPYD_BY_HGVS: Record<string, string> = Object.fromEntries(
   Object.values(DPYD_NAMES).map((name) => [name.replace(/\s*\(.*\)$/, "").toLowerCase().replace(/\s+/g, ""), name]),
 );
 
+const NO_VARIANT = /^\(?\s*(no\s+(tested\s+)?variants?\s+(detected|found|reported)|none\s+detected|not\s+detected|negative|wild[\s-]?type)\s*\)?$/i;
+
 /** Normalise a diplotype to PharmCAT allele names (DPYD uses HGVS names; other genes keep star alleles). */
 export function normaliseDiplotype(gene: string, dip: string) {
-  const parts = dip.split("/").map((p) => p.trim()).filter(Boolean);
+  const parts = dip
+    .split("/")
+    .map((p) => p.trim())
+    .filter(Boolean)
+    // A lab writes "no variants detected" on the chromosome where it found nothing: that is the reference allele.
+    .map((p) => (NO_VARIANT.test(p) ? "*1" : p));
   if (parts.length !== 2) return dip.trim();
   const g = gene.toUpperCase();
   if (g === "UGT1A1") return parts.map(ugt1a1Allele).join("/");
@@ -206,9 +213,21 @@ export function dpydFromText(text: string) {
   return `${found[0]}/${found[1]}`;
 }
 
+/** True when every side of a diplotype is the reference allele. */
+const isAllReference = (dip: string) => dip.split("/").every((p) => /^\s*(reference|\*1)\s*$/i.test(p));
+
 export function toOutsideCalls(x: LabExtract) {
   for (const g of x.genes) {
-    if (g.gene.toUpperCase() === "DPYD" && !g.diplotype.includes("/")) g.diplotype = dpydFromText(`${g.diplotype} ${g.verbatim}`);
+    if (g.gene.toUpperCase() !== "DPYD") continue;
+    if (!g.diplotype.includes("/")) {
+      g.diplotype = dpydFromText(`${g.diplotype} ${g.verbatim}`);
+      continue;
+    }
+    // A chromosome described by a list of variants gets read correctly into verbatim and then called
+    // Reference. The quote is the report's own words, so it wins over a call that dropped what it quotes.
+    if (!isAllReference(g.diplotype) || !/c\.\d/.test(g.verbatim)) continue;
+    const quoted = g.verbatim.replace(/^\s*[A-Za-z0-9]+\s*:\s*/, "").replace(/\s*\.\s*$/, "").trim();
+    if (quoted.split("/").length === 2) g.diplotype = quoted;
   }
   return x.genes
     .filter((g) => g.gene && (g.diplotype || g.phenotype || g.activityScore))

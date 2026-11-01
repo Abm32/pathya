@@ -84,7 +84,7 @@ TA6/TA7, which is `*1/*28` heterozygous. Here the sequence supports PharmCAT.
   loose variant text where the table gives no diplotype, and SLCO1B1 legacy names with no PharmVar
   equivalent such as `*21`.
 
-## 2. Dictated report → gene calls: 544 of 580 phenotypes agree with the sequence
+## 2. Dictated report → gene calls: 545 of 580 phenotypes agree with the sequence
 
 Each sample's real consensus genotypes are read aloud the way a laboratory would read them, put
 through Muse Spark and the app's normalisation, and run through PharmCAT. The result is compared
@@ -92,8 +92,8 @@ with that same person's calls from their 30x sequence, for all 208 samples.
 
 | reader | phenotype agreement | calls differing from the other reader |
 |---|---|---|
-| `muse-spark-1.3` (hosted) | 544/580 (93.8%) | 6 of 580 |
-| `meta-models/muse-spark-open-1026` (open weights, Baseten) | 543/580 (93.6%) | 6 of 580 |
+| `muse-spark-1.3` (hosted) | 545/580 (94.0%) | 6 of 580 |
+| `meta-models/muse-spark-open-1026` (open weights, Baseten) | 544/580 (93.8%) | 6 of 580 |
 
 Open weights are within one call of the hosted model over 580 comparisons. That is the claim the
 open-weights story rests on, and this is the evidence for it.
@@ -102,17 +102,32 @@ Where the two sides disagree, the reading is usually not what is wrong:
 
 - **17** are gene calls where the sequence already disagreed with the consensus in section 1, for the
   reasons catalogued there. The report agrees with the consensus; the sequence does not.
-- **15** are calls the consensus table leaves unscorable (structural variants, loose variant text).
-- **4** are reader-side, and three of those four are the same coverage gap again: the consensus text
-  says `*1/*1` or `*1/*9`, the reader reads exactly that, and the sequence carries a decreased-function
-  variant the laboratory never typed (`c.2846A>T`, `c.557A>G`).
+- **15** are calls the consensus table leaves unscorable, 16 on the open weights (structural variants,
+  loose variant text).
+- **3** are reader-side, and all three are the same coverage gap: the consensus text says `*1/*1`
+  (NA07048, NA07055) or `*1/*9` (NA18873), the reader reads exactly that, and the sequence carries a
+  decreased-function variant the laboratory never typed (`c.2846A>T`, `c.557A>G`).
 
-That leaves **one** genuine limitation of the reading path, identical on both models: HG02772's
-consensus entry lists five variants on one chromosome (`c.85T>C, c.868A>G, c.1218G>A, c.1358C>G,
-c.3067C>A`) and the model collapses it to Reference. A chromosome described by a list of variants is
-the hardest thing in this input format, and one in 208 is where it currently stands.
+No reading defect remains in the set. The reader is wrong nowhere that the report was right.
 
-## 3. Five defects this found, all now fixed
+### What the phenotype metric was hiding
+
+The headline moved by one call, and that number understates the defect it closed. Five samples had a
+chromosome written as a list of variants; both models quoted the list correctly into `verbatim` and
+then called the gene `Reference/Reference`. Only **one** of the five changed phenotype when fixed:
+
+```
+HG00537, HG00538, HG00613   Reference/Reference  ->  Reference/c.1627A>G (*5)   Normal either way
+HG03115                     Reference/Reference  ->  Reference/c.85T>C (*9A)    Normal either way
+HG02772                     Reference/Reference  ->  Reference/c.868A>G         Normal -> Intermediate
+```
+
+Four of the five scored as agreement while naming the wrong alleles, because a wrong allele whose
+function is normal lands on the same phenotype. A benchmark scored on phenotypes cannot see that, and
+`c.85T>C` — the variant this project exists for — was among the alleles being dropped in silence.
+The number to trust here is five calls corrected, not one call gained.
+
+## 3. Six defects this found, all now fixed
 
 Real reports write allele names that PharmCAT does not accept, and every one of these failed
 silently — the gene came back uncalled or Indeterminate rather than wrong, which is harder to notice.
@@ -132,9 +147,16 @@ silently — the gene came back uncalled or Indeterminate rather than wrong, whi
   to err in.
 - **Parenthesised alleles.** A lab writes `(*4)` or `(*15)` to mark an allele inferred rather than
   directly typed. The brackets were being sent to PharmCAT as part of the name.
+- **A quoted variant discarded by its own call.** On five samples both models copied a multi-variant
+  chromosome into `verbatim` exactly as printed and then returned `Reference/Reference`, throwing away
+  what they had just quoted. The quote is the report's own words, so it now wins: when a DPYD call
+  comes back all-reference and its quote carries HGVS, the quote is re-read. `no variants detected`
+  written as one side of a diplotype is also read as the reference allele now, in every gene, because
+  that is how laboratories print an empty chromosome.
 
-Every one is covered by an assertion in `scripts/selftest.mts`. Together they took the reading path
-from 38/50 on the first small run to 544/580 over all 208 samples.
+Every one is covered by an assertion in `scripts/selftest.mts`, the last of them with a negative case
+so the guard cannot invent a variant out of an empty report. Together they took the reading path from
+38/50 on the first small run to 545/580 over all 208 samples.
 
 ## What this does not show
 
