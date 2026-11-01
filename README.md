@@ -2,7 +2,7 @@
 
 **India's pharmacogenomic results are stuck in PDFs and WhatsApp photos. Pathya turns them into verified, de-identified research data.**
 
-**Live: https://pathya.anukritiai.com — no sign-up, no code.** Read a WhatsApp photo, dictate results, browse the [demo cohort](https://pathya.anukritiai.com/cohort), the [simulated-population cohort](https://pathya.anukritiai.com/cohort?c=india-sim) or a [sample record](https://pathya.anukritiai.com/sample). Live runs carry a small per-visitor hourly budget because each one spends model credits.
+**[Watch the 3-minute demo](https://youtu.be/21679gHAEqc)** · **Live: https://pathya.anukritiai.com — no sign-up, no code.** Read a WhatsApp photo, dictate results, browse the [demo cohort](https://pathya.anukritiai.com/cohort), the [simulated-population cohort](https://pathya.anukritiai.com/cohort?c=india-sim) or a [sample record](https://pathya.anukritiai.com/sample). Live runs carry a small per-visitor hourly budget because each one spends model credits.
 
 > **Research tool, not medical advice.** Pathya reads and standardises pharmacogenomic results and aggregates them into cohort statistics. It makes no dose, drug or test recommendation and has no patient-facing output. All data in this repository is synthetic.
 

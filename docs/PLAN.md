@@ -41,13 +41,18 @@ Kept because the rules ask judges to see what was built during the event, and be
 
 Built and verified: both ingestion paths, cohort statistics, curator review, two benchmarks (IndiPGx-Read v0.1 reading, IndiPGx-Pop v0.1 pooling), selftest, production eval 5/5, live at https://pathya.anukritiai.com.
 
-**Blocking, in order:**
+**Submitted 2026-11-01**, three days inside the Nov 4 9:00 PM ET deadline. Everything that was blocking
+is done:
 
-1. **Make the repo public.** Required by the rules; nothing else counts until it is done.
-2. **Record the demo video.** 25% of the score, currently zero. Script and capture are ready.
-3. Fill the SUBMISSION.md placeholders: team members, video URL, repo URL, judge access code.
-4. One researcher quote or one real lab report template ([LAB-CALLS.md](LAB-CALLS.md)) — the weakest point in Impact.
-5. Optional: X post for Most Viral; flag the open-weights bonus prize on the submission.
+1. ~~Make the repo public.~~ https://github.com/Abm32/pathya, history scanned for secrets first.
+2. ~~Record the demo video.~~ [2:53](https://youtu.be/21679gHAEqc), shot from the live site, built by `video/`.
+3. ~~Fill the SUBMISSION.md placeholders.~~ Done; the entry is filed.
+
+**Still open, and worth the remaining days:**
+
+4. One researcher quote or one real lab report template ([LAB-CALLS.md](LAB-CALLS.md)) — the weakest point in Impact,
+   and the only claim in the submission resting on synthetic layouts rather than a real lab's.
+5. Optional: X post for Most Viral; flag the open-weights bonus prize.
 
 ## Risks
 

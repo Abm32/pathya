@@ -1,7 +1,11 @@
 # Submission text: Pathya
 
 Meta Global AI Developer Hackathon 2026 · Startup track · Build for Your World
-Fill the bracketed fields before submitting. The video must open with one line on what existed before the event (nothing: the repo was created during the event) and must say "research tool, not medical advice".
+
+**Submitted 2026-11-01**, via cerebralvalley.ai, ahead of the Nov 4 9:00 PM ET deadline. What went in:
+team name Anukriti AI, Startups Track, Build for Your World, the project description below, the
+repository, the demo video, the two Meta-products answers and the Baseten partner feedback.
+This file is the source those answers were written from; it is kept as the record of what was claimed.
 
 ---
 
@@ -110,13 +114,15 @@ We left out Muse Image and SAM 3.1 on purpose: nothing here needs an image gener
 
 ## Built by
 
-Anukriti AI, Kochi, Kerala. [Team member names and roles]
+Anukriti AI, Kochi, Kerala. Submitted by Abhimanyu R B (`abhimanyurb`), sole team member on the entry.
 
 ## Links
 
 - Live demo: https://pathya.anukritiai.com. Open without a code: the story, the demo cohort (https://pathya.anukritiai.com/cohort), the simulated-population cohort (https://pathya.anukritiai.com/cohort?c=india-sim), a finished sample record (https://pathya.anukritiai.com/sample), a targeted-panel record showing which India-relevant variants the lab could not see (https://pathya.anukritiai.com/report/ec1531ccb77c), and the same report read by the open-weights model (https://pathya.anukritiai.com/report/73ee62927c10). No code, account or sign-up is needed for any of it, including live runs and dictation.
-- Demo video: https://youtu.be/21679gHAEqc (unlisted, 2:53, captions burned in)
-- Repository: https://github.com/Abm32/pathya (public since 2026-11-01)
+- Demo video: https://youtu.be/21679gHAEqc — 2:53 against a 3:00 limit, unlisted, captions burned in.
+  Shot from the live site rather than mockups; built by the scripts in [`video/`](../video/README.md).
+- Repository: https://github.com/Abm32/pathya — public since 2026-11-01. The whole history was scanned
+  for secrets before it was opened: no API key or access code appears in any commit.
 - Benchmark and dataset: `docs/BENCHMARK.md`
 - Real-data validation against GeT-RM reference materials: `docs/GETRM.md`
 
