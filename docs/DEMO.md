@@ -1,27 +1,50 @@
-# Demo video storyboard (hard limit 3:00, record Nov 3)
+# Demo video
 
-Judging (Official Rules, section 8): Impact 30%, Use of Meta AI tooling 25%, Demo 25%, Technical depth 20%. Judges watch the video, read the code and try the live product. Name the Meta model on screen in every scene.
+**Built. `video/out/pathya-demo.mp4`, 2:46 against a 3:00 limit, 1080p30, 35 MB, with `pathya-demo.srt`.**
+Rebuild or re-cut it from [`video/`](../video/README.md). The one step left is the upload.
 
-Required by the rules: the video opens with one line on what existed before the event (nothing: the repository was created during it), shows only what this team built, and runs no longer than three minutes. Target 2:52 so a slow cut does not push it over.
+Judging (Official Rules, section 8): Impact 30%, Use of Meta AI tooling 25%, Demo 25%, Technical depth 20%.
+Judges watch the video, read the code and try the live product.
 
-| t | Scene | On screen | Voice-over |
-|---|---|---|---|
-| 0:00 | Disclosure + hook | Title card: "Built during the event. Research tool, not medical advice." Then the WhatsApp photo, full screen | Everything here was built this week. This is a pharmacogenomic lab report from India, the way it really travels: a photo on WhatsApp. |
-| 0:10 | The gap | Home, chapter 01: the four tiles | India's evidence on these gene variants rests on two studies of about 3,600 people. Thousands of reports like this are issued every year, and none of them reach a dataset. |
-| 0:25 | Read | Hero: "Read a WhatsApp photo"; pipeline lights step by step, timer visible | Muse Spark reads the photo under a strict schema, quotes every gene call from the page, and records which variants the lab says it tested. |
-| 0:50 | Standardise + quality | Record page: calls table with quotes beside the photo. Then `/report/ec1531ccb77c`, a targeted DPYD panel, whose coverage cards read "not in this panel" | PharmCAT, CPIC's reference engine, standardises the names. Our rules check which India-relevant variants this panel never tested, and the patient reference is removed before anything is stored. |
-| 1:10 | Open weights | Click "read the same photo on open weights"; the record header reads `read by meta-models/muse-spark-open-1026` and the calls section is badged Muse Spark Open (pre-run: `/report/73ee62927c10`) | The same report, read again by Muse Spark Open. Open weights mean a biobank can run this inside its own network — which is the only version of this that could ever touch a real patient's report. |
-| 1:25 | Voice | "Read it aloud": dictate in Malayalam and English; transcript appears; record builds | Muse Voice takes results read aloud, Malayalam and English mixed, and Muse Spark reads the transcript into the same record. |
-| 1:45 | Curator + literature | Curator review chips; "Find Indian frequency data" with linked sources | A curator checks each call against the source. Muse Spark web search finds what has been published for India, with sources. |
-| 2:00 | Cohort | `/cohort`: carrier frequencies with intervals, the denominator columns, Download CSV | Every record joins a cohort. One CSV, ready for a study. |
-| 2:12 | Proof | Chapter 04: harsh-photo bars fill to 100% while OCR stays at 0 | On 36 held-out reports, including skewed, shadowed photos, Muse Spark and Spark Open each read all 177 gene calls exactly. OCR read none of the harsh ones. |
-| 2:28 | The harder half | `/cohort?c=india-sim`: the c.85T>C row, both estimate columns | Reading is the easy half. We simulated 120 Indian people, each with a report from a lab that tests only part of the panel. Counting a panel that never tested c.85T>C as a non-carrier puts it at 15%. The truth was 25. That ten-point error is downward, on the variant a quarter of Indians carry. Our own run also found a hole in our rule, and both numbers are on the page because of it. |
-| 2:48 | Close | Logo, "India's gene data, out of WhatsApp photos.", live URL | Pathya. Research data from the reports India already has. |
+Rules the film satisfies: it opens by saying everything was built during the event, it shows only what
+this team built, it names a Meta model on screen in every scene (the product's own header badges carry
+`MUSE SPARK 1.3`, `MUSE VOICE` and `SPARK OPEN` through all the app footage), it says "a research tool,
+not medical advice" aloud inside the first fifteen seconds, and it runs under three minutes.
 
-Recording notes:
-- Capture at 1440p, zoom to 125%. Pre-run one record so the wait can be cut, but show the real timer once (about 30 s).
-- Subtitles for the Malayalam segment.
-- Everything in the video is reachable without a code; say so once, because a judge will try it. Pre-run records: `/sample` (6 genes, 6 coverage gaps), `/report/ec1531ccb77c` (targeted panel), `/report/73ee62927c10` (read on open weights).
-- Sign in as a curator only for the review scene at 1:45; keep the code off screen.
-- Never show a drug, dose or patient advice. The product has none, and the video must not imply otherwise.
-- Say "research tool, not medical advice" out loud once, in the first fifteen seconds.
+## The cut
+
+| t | scene | on screen |
+|---|---|---|
+| 0:00 | hook | Title, then the WhatsApp photograph full frame, pushing in slowly |
+| 0:14 | gap | Two studies, ~3,600 people, 0 reports reaching a dataset; then the home page |
+| 0:26 | read | `/sample` — the calls table, each one quoted from the page |
+| 0:36 | standardise | `/report/ec1531ccb77c`, a targeted panel, coverage cards reading "not in this panel" |
+| 0:52 | open | `/report/73ee62927c10`, header reads `read by meta-models/muse-spark-open-1026` |
+| 1:04 | voice | Muse Voice, Malayalam and English mixed |
+| 1:15 | curate | Curator review, each call against its quoted source |
+| 1:24 | cohort | `/cohort` — frequencies, Wilson intervals, denominators, Download CSV |
+| 1:35 | **getrm** | 208 real reference DNAs, 622/646, 96.3%, then the per-gene table from [GETRM.md](GETRM.md) |
+| 2:01 | gap-found | The four SLCO1B1 samples the consensus panel never typed, all African-ancestry |
+| 2:17 | harder | 15% vs 25% on c.85T>C, then `/cohort?c=india-sim` |
+| 2:41 | close | Pathya · പഥ്യം · pathya.anukritiai.com |
+
+The proof scene leads with GeT-RM rather than our own held-out set: real public reference materials and
+real 30× genomes beat our fixtures on every axis a judge weighs. The scene after it is the benchmark
+producing the project's own coverage-gap argument without being asked to, which is the strongest thing
+in the film and is not a claim — it is a table.
+
+## Still to do by hand
+
+1. **Upload** `video/out/pathya-demo.mp4` to YouTube (unlisted is fine) or Vimeo, with `pathya-demo.srt`
+   as the caption track.
+2. Put the URL in [SUBMISSION.md](SUBMISSION.md) where the video placeholder is.
+3. **Make the repository public.** Nothing above counts while it is private.
+
+## Notes on the build
+
+Narration is local neural TTS, so it costs nothing and re-renders in seconds, but it is synthetic and
+sounds it. Re-recording the same script in a human voice is a real upgrade and needs no code change:
+drop twelve wav files into `video/out/vo/` under the same names and run `npm run cut`.
+
+There is no music bed. The narration carries it, and an unlicensed track is a risk a submission does
+not need.
