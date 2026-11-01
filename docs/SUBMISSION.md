@@ -115,7 +115,7 @@ Anukriti AI, Kochi, Kerala. [Team member names and roles]
 ## Links
 
 - Live demo: https://pathya.anukritiai.com. Open without a code: the story, the demo cohort (https://pathya.anukritiai.com/cohort), the simulated-population cohort (https://pathya.anukritiai.com/cohort?c=india-sim), a finished sample record (https://pathya.anukritiai.com/sample), a targeted-panel record showing which India-relevant variants the lab could not see (https://pathya.anukritiai.com/report/ec1531ccb77c), and the same report read by the open-weights model (https://pathya.anukritiai.com/report/73ee62927c10). No code, account or sign-up is needed for any of it, including live runs and dictation.
-- Demo video: [URL]
+- Demo video: https://youtu.be/21679gHAEqc (unlisted, 2:53, captions burned in)
 - Repository: https://github.com/Abm32/pathya (public since 2026-11-01)
 - Benchmark and dataset: `docs/BENCHMARK.md`
 - Real-data validation against GeT-RM reference materials: `docs/GETRM.md`

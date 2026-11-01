@@ -35,9 +35,11 @@ in the film and is not a claim — it is a table.
 
 ## Still to do by hand
 
-1. **Upload** `video/out/pathya-demo.mp4` to YouTube (unlisted is fine) or Vimeo, with `pathya-demo.srt`
-   as the caption track.
-2. Put the URL in [SUBMISSION.md](SUBMISSION.md) where the video placeholder is.
+1. ~~Upload the film.~~ Done — https://youtu.be/21679gHAEqc, unlisted, "not made for kids".
+   No YouTube caption track was added: the captions are burned into the picture, and a second track
+   would draw a duplicate line of text over them whenever a viewer turns CC on. `pathya-demo.srt`
+   is kept for any platform that wants captions as a separate file.
+2. ~~Put the URL in SUBMISSION.md.~~ Done.
 3. ~~Make the repository public.~~ Done — https://github.com/Abm32/pathya, verified reachable logged out.
 
 ## Notes on the build
