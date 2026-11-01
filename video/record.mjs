@@ -48,12 +48,12 @@ const site = async (page, url) => {
 // Each scene fills exactly its narration length. Card first, then the thing itself.
 const SHOTS = {
   "01-hook": async (p, d) => { await card(p, "01-hook"); await sleep(d * 0.36); await p.goto(PHOTO); await sleep(d * 0.64); },
-  "02-gap": async (p, d) => { await card(p, "02-gap"); await sleep(d * 0.45); await site(p, "/"); await sleep(0.8); await glide(p, 900, d * 0.55 - 1.2); },
+  "02-gap": async (p, d) => { await card(p, "02-gap"); await sleep(d * 0.45); await site(p, "/"); await p.evaluate(() => scrollTo(0, 980)); await sleep(0.8); await glide(p, 1800, d * 0.55 - 1.2); },   // chapter 01, the gap
   "03-read": async (p, d) => { await card(p, "03-read"); await sleep(d * 0.3); await site(p, "/sample"); await sleep(1); await glide(p, 520, d * 0.7 - 1.4); },
-  "04-standardise": async (p, d) => { await card(p, "04-standardise"); await sleep(d * 0.26); await site(p, "/report/ec1531ccb77c"); await sleep(1); await glide(p, 1500, d * 0.74 - 1.4); },
+  "04-standardise": async (p, d) => { await card(p, "04-standardise"); await sleep(d * 0.26); await site(p, "/report/ec1531ccb77c"); await sleep(1); await glide(p, 1006, d * 0.74 - 1.4); },   // 1006 is this page's maximum scroll: the coverage cards
   "05-open": async (p, d) => { await card(p, "05-open"); await sleep(d * 0.3); await site(p, "/report/73ee62927c10"); await sleep(1); await glide(p, 760, d * 0.7 - 1.4); },
-  "06-voice": async (p, d) => { await card(p, "06-voice"); await sleep(d * 0.42); await site(p, "/"); await sleep(0.6); await glide(p, 1750, d * 0.58 - 1); },
-  "07-curate": async (p, d) => { await card(p, "07-curate"); await sleep(d * 0.4); await site(p, "/report/ec1531ccb77c"); await sleep(0.7); await glide(p, 2600, d * 0.6 - 1.1); },
+  "06-voice": async (p, d) => { await card(p, "06-voice"); await sleep(d * 0.42); await site(p, "/"); await p.evaluate(() => scrollTo(0, 6180)); await sleep(0.6); await glide(p, 6820, d * 0.58 - 1); },   // chapter 06, where a visitor dictates one
+  "07-curate": async (p, d) => { await card(p, "07-curate"); await sleep(d * 0.34); await site(p, "/sample"); await p.evaluate(() => scrollTo(0, 620)); await sleep(0.7); await glide(p, 1297, d * 0.66 - 1.1); },   // the PMID annotations, then the curator review section
   "08-cohort": async (p, d) => { await card(p, "08-cohort"); await sleep(d * 0.3); await site(p, "/cohort"); await sleep(1); await glide(p, 900, d * 0.7 - 1.4); },
   "09-getrm": async (p, d) => { await card(p, "09-getrm"); await sleep(d * 0.44); await card(p, "09b-table"); await sleep(d * 0.56); },
   "10-gap-found": async (p, d) => { await card(p, "10-gap-found"); await sleep(d); },
