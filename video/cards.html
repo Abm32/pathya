@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pathya demo cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<style>
+  /* The product's own tokens, so the cards and the app footage read as one piece. */
+  :root {
+    --background: #06080a; --foreground: #e9eef0; --muted: #8b979c;
+    --line: rgba(255,255,255,.09); --line-strong: rgba(255,255,255,.16);
+    --card: rgba(255,255,255,.035);
+    --accent: #2ee6c8; --accent-strong: #7cf5e0; --accent-soft: rgba(46,230,200,.1);
+    --meta: #9aa6ff; --meta-soft: rgba(124,138,255,.14);
+    --warn: #ffb547; --danger: #ff6464; --ok: #5fe39a;
+    --brand: linear-gradient(120deg,#2ee6c8 0%,#7fd8e6 48%,#9aa6ff 100%);
+    --ease: cubic-bezier(.16,1,.3,1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; }
+  body {
+    background: var(--background); color: var(--foreground);
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01","cv05"; -webkit-font-smoothing: antialiased;
+    display: grid; place-items: center;
+  }
+  /* A slow drifting glow keeps a static card from looking like a frozen frame. */
+  body::before {
+    content: ""; position: fixed; inset: -30%;
+    background: radial-gradient(42% 42% at 28% 32%, rgba(46,230,200,.10), transparent 70%),
+                radial-gradient(38% 38% at 74% 68%, rgba(124,138,255,.10), transparent 70%);
+    animation: drift 24s var(--ease) infinite alternate; pointer-events: none;
+  }
+  @keyframes drift { to { transform: translate3d(3%, -2.5%, 0) scale(1.08); } }
+
+  .stage { width: 1500px; position: relative; z-index: 1; }
+  .eyebrow {
+    display: flex; align-items: center; gap: 18px;
+    font-size: 21px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 40px;
+  }
+  .eyebrow .num { color: var(--accent); font-variant-numeric: tabular-nums; }
+  .eyebrow .rule { flex: 1; height: 1px; background: var(--line-strong); }
+  .badge {
+    font-size: 19px; letter-spacing: .04em; text-transform: none; font-weight: 500;
+    color: var(--meta); background: var(--meta-soft); border: 1px solid rgba(154,166,255,.3);
+    padding: 9px 18px; border-radius: 999px; white-space: nowrap;
+  }
+  h1 { font-size: 92px; line-height: 1.04; font-weight: 600; letter-spacing: -.033em; max-width: 24ch; }
+  /* The sans stack's stylistic sets corrupt the serif italic ("fixtures" renders as "fïxtures"). */
+  h1 em { font-family: Newsreader, Georgia, serif; font-style: italic; font-weight: 300; letter-spacing: -.01em; font-feature-settings: normal; font-variant-ligatures: none; }
+  .grad { background: var(--brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sub { margin-top: 34px; font-size: 31px; font-weight: 300; color: var(--muted); max-width: 56ch; line-height: 1.46; text-wrap: balance; }
+
+  /* ---- per-gene table ---- */
+  .tbl { margin-top: 48px; font-variant-numeric: tabular-nums; border-collapse: collapse; width: 100%; font-size: 27px; }
+  .tbl th { text-align: right; font-weight: 500; font-size: 20px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: 0 0 18px; }
+  .tbl th:first-child, .tbl td:first-child { text-align: left; }
+  .tbl td { padding: 15px 0; border-top: 1px solid var(--line); text-align: right; }
+  .tbl td:first-child { color: var(--foreground); font-weight: 500; letter-spacing: .01em; }
+  .tbl td.c { color: var(--accent); font-weight: 500; }
+  .tbl td.dim { color: var(--muted); }
+  .tbl tr.sum td { border-top: 1px solid var(--line-strong); font-weight: 600; padding-top: 20px; }
+  .tbl tr { opacity: 0; animation: rise .7s var(--ease) forwards; }
+
+  /* Entrance: everything rises once, staggered, then holds. */
+  .r { opacity: 0; transform: translateY(24px); animation: rise .9s var(--ease) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  /* ---- numbers ---- */
+  .stats { display: flex; gap: 92px; margin-top: 62px; }
+  .stat .v { font-size: 104px; font-weight: 600; letter-spacing: -.04em; font-variant-numeric: tabular-nums; line-height: 1; }
+  .stat .l { margin-top: 16px; font-size: 22px; color: var(--muted); letter-spacing: .02em; }
+  .stat .v.accent { color: var(--accent); }
+
+  /* ---- bar comparison ---- */
+  .bars { margin-top: 56px; display: grid; gap: 30px; }
+  .bar { display: grid; grid-template-columns: 330px 1fr 150px; align-items: center; gap: 30px; }
+  .bar .name { font-size: 26px; color: var(--muted); text-align: right; }
+  .bar .track { height: 42px; background: rgba(255,255,255,.05); border-radius: 6px; overflow: hidden; }
+  .bar .fill { height: 100%; width: 0; border-radius: 6px; animation: grow 1.5s var(--ease) forwards; animation-delay: .5s; }
+  .bar .pct { font-size: 36px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  @keyframes grow { to { width: var(--w); } }
+
+  /* ---- sample rows ---- */
+  .rows { margin-top: 52px; display: grid; gap: 14px; font-variant-numeric: tabular-nums; }
+  .row {
+    display: grid; grid-template-columns: 220px 1fr 1fr; gap: 34px; align-items: center;
+    padding: 22px 30px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    font-size: 27px;
+  }
+  .row .id { color: var(--muted); letter-spacing: .04em; }
+  .row .was { color: var(--muted); }
+  .row .now { color: var(--warn); font-weight: 500; }
+  .row .arrow { color: var(--line-strong); }
+
+  .foot { margin-top: 56px; font-size: 24px; color: var(--muted); letter-spacing: .01em; }
+  .foot b { color: var(--foreground); font-weight: 500; }
+
+  /* ---- close ---- */
+  .close { text-align: center; }
+  .close .mark { font-size: 150px; font-weight: 600; letter-spacing: -.045em; }
+  .close .mal { font-family: Newsreader, serif; font-size: 62px; color: var(--muted); margin-top: 6px; font-weight: 300; }
+  .close .url { margin-top: 54px; font-size: 40px; color: var(--accent); letter-spacing: .01em; }
+  .close .rule { width: 190px; height: 2px; background: var(--brand); margin: 48px auto 0; transform-origin: center; animation: wipe 1.1s var(--ease) forwards; }
+  @keyframes wipe { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+</style>
+</head>
+<body>
+<div class="stage" id="stage"></div>
+<script>
+const MODEL = "muse-spark-1.3";
+const CARDS = {
+  "01-hook": {
+    n: "00", badge: "Built during the event",
+    h: `A lab report from India, <em>as it really travels</em>`,
+    sub: "A photograph on WhatsApp. A research tool, not medical advice.",
+  },
+  "02-gap": {
+    n: "01", badge: MODEL,
+    h: `India's evidence base is <span class="grad">two studies</span>`,
+    stats: [["~3,600", "people studied"], ["0", "reports reaching a dataset"]],
+  },
+  "03-read": { n: "02", badge: MODEL, h: `Read the photograph`, sub: "Strict schema. Every call quoted from the page. Panel coverage recorded." },
+  "04-standardise": { n: "03", badge: "PharmCAT 3.4.0 · CPIC", h: `Standardise, then <em>check what was never tested</em>`, sub: "Deterministic rules. The patient reference is stripped before storage." },
+  "05-open": { n: "04", badge: "muse-spark-open-1026", h: `The same photograph, <span class="grad">on open weights</span>`, sub: "A biobank can run this inside its own network." },
+  "06-voice": { n: "05", badge: "muse-voice-transcribe-1.0", h: `Read it aloud`, sub: "Malayalam and English, mixed, into the same record." },
+  "07-curate": { n: "06", badge: MODEL + " · web search", h: `A curator signs off <em>every call</em>`, sub: "Checked against the quoted source. Published Indian frequencies, with citations." },
+  "08-cohort": { n: "07", badge: "Wilson 95% CI", h: `Carrier frequencies. <span class="grad">One CSV.</span>`, sub: "Honest denominators: tested, not in panel, panel not documented." },
+  "09-getrm": {
+    n: "08", badge: "CDC GeT-RM · 1000 Genomes",
+    h: `We did not grade ourselves <em>on our own fixtures</em>`,
+    stats: [["208", "real reference DNAs"], ["622/646", "gene calls agree"], ["96.3%", "concordance", true]],
+    foot: "Truth: consensus genotypes agreed across clinical laboratories. Sequence: 30× GRCh38. <b>Every mismatch traced.</b>",
+  },
+  "09b-table": {
+    n: "08", badge: "PharmCAT 3.4.0, through the product's own runner",
+    h: `Gene by gene, <em>against the laboratories</em>`,
+    table: [
+      ["DPYD", 95, 9, "91%"], ["CYP2C19", 101, 0, "100%"], ["CYP2C9", 100, 0, "100%"],
+      ["TPMT", 95, 3, "97%"], ["NUDT15", 8, 3, "73%"], ["UGT1A1", 62, 3, "95%"],
+      ["SLCO1B1", 72, 6, "92%"], ["VKORC1", 89, 0, "100%"],
+    ],
+    sum: ["Total", 622, 24, "96.3%"],
+  },
+  "10-gap-found": {
+    n: "09", badge: "SLCO1B1 · the benchmark's own finding",
+    h: `The benchmark made <span class="grad">our argument for us</span>`,
+    rows: [
+      ["NA18484", "panel: *1A/*1B", "sequence: *37/*41"],
+      ["NA19207", "panel: *1A/*1B", "sequence: *37/*41"],
+      ["NA19226", "panel: *1/*1", "sequence: *31/*37"],
+      ["NA19700", "panel: *1/*1", "sequence: *37/*41"],
+    ],
+    foot: "All four African-ancestry. <b>A panel designed elsewhere, calling a carrier a non-carrier.</b>",
+  },
+  "11-harder": {
+    n: "10", badge: "120 simulated Indian people",
+    h: `Reading is <em>the easy half</em>`,
+    bars: [
+      ["Counting untested as negative", 15, "var(--danger)", "15%"],
+      ["True carrier frequency", 25, "var(--ok)", "25%"],
+    ],
+    foot: "c.85T>C — the DPYD variant <b>a quarter of Indians carry</b>. The error is ten points, and it points down.",
+  },
+  "12-close": { close: true },
+};
+
+const id = new URLSearchParams(location.search).get("id") || "01-hook";
+const c = CARDS[id];
+const stage = document.getElementById("stage");
+let delay = 0;
+const next = () => `style="animation-delay:${(delay += 0.13).toFixed(2)}s"`;
+
+if (c.close) {
+  stage.innerHTML = `<div class="close">
+    <div class="mark r" style="animation-delay:.05s">Pathya</div>
+    <div class="mal r" style="animation-delay:.18s">പഥ്യം</div>
+    <div class="rule" style="animation-delay:.5s"></div>
+    <div class="url r" style="animation-delay:.75s">pathya.anukritiai.com</div>
+  </div>`;
+} else {
+  const parts = [
+    `<div class="eyebrow r" ${next()}><span class="num">${c.n}</span><span class="rule"></span><span class="badge">${c.badge}</span></div>`,
+    `<h1 class="r" ${next()}>${c.h}</h1>`,
+  ];
+  if (c.sub) parts.push(`<p class="sub r" ${next()}>${c.sub}</p>`);
+  if (c.stats)
+    parts.push(`<div class="stats">${c.stats
+      .map((s) => `<div class="stat r" ${next()}><div class="v${s[2] ? " accent" : ""}">${s[0]}</div><div class="l">${s[1]}</div></div>`)
+      .join("")}</div>`);
+  if (c.rows)
+    parts.push(`<div class="rows">${c.rows
+      .map((r) => `<div class="row r" ${next()}><span class="id">${r[0]}</span><span class="was">${r[1]}</span><span class="now">${r[2]}</span></div>`)
+      .join("")}</div>`);
+  if (c.bars)
+    parts.push(`<div class="bars">${c.bars
+      .map((b) => `<div class="bar r" ${next()}><span class="name">${b[0]}</span><span class="track"><span class="fill" style="--w:${b[1] * 3.4}%;background:${b[2]}"></span></span><span class="pct" style="color:${b[2]}">${b[3]}</span></div>`)
+      .join("")}</div>`);
+  if (c.table) {
+    const row = (r, cls = "") =>
+      `<tr class="${cls}" ${next()}><td>${r[0]}</td><td class="dim">${r[1]}</td><td class="dim">${r[2]}</td><td class="c">${r[3]}</td></tr>`;
+    parts.push(`<table class="tbl">
+      <thead><tr class="r" ${next()}><th>gene</th><th>match</th><th>mismatch</th><th>concordance</th></tr></thead>
+      <tbody>${c.table.map((r) => row(r)).join("")}${row(c.sum, "sum")}</tbody></table>`);
+  }
+  if (c.foot) parts.push(`<div class="foot r" ${next()}>${c.foot}</div>`);
+  stage.innerHTML = parts.join("");
+}
+document.title = `card ${id}`;
+</script>
+</body>
+</html>

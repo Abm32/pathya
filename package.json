@@ -1,6 +1,6 @@
 {
   "name": "pathya",
-  "packageManager": "pnpm@10.9.7",
+  "packageManager": "pnpm@10.9.0",
   "version": "0.1.0",
   "private": true,
   "scripts": {

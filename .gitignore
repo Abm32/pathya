@@ -44,3 +44,8 @@ next-env.d.ts
 # app data
 /data
 .env
+
+# demo video build: clips, narration and the rendered film are large and reproducible
+video/out/
+video/node_modules/
+video/voices/

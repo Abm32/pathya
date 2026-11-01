@@ -1,0 +1,13 @@
+{
+  "name": "pathya-video",
+  "private": true,
+  "type": "module",
+  "description": "Demo video build. Separate from the app so a judge installing Pathya does not pull a browser automation stack.",
+  "scripts": {
+    "vo": "node tts.mjs",
+    "shoot": "node record.mjs",
+    "cut": "node cut.mjs",
+    "all": "node tts.mjs && node record.mjs && node cut.mjs"
+  },
+  "devDependencies": { "playwright": "1.56.1" }
+}
