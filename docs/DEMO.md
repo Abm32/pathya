@@ -1,6 +1,6 @@
 # Demo video
 
-**Built. `video/out/pathya-demo.mp4`, 2:46 against a 3:00 limit, 1080p30, 35 MB, with `pathya-demo.srt`.**
+**Built. `video/out/pathya-demo.mp4`, 2:53 against a 3:00 limit, 1080p30, 35 MB, captions burned in, with `pathya-demo.srt`.**
 Rebuild or re-cut it from [`video/`](../video/README.md). The one step left is the upload.
 
 Judging (Official Rules, section 8): Impact 30%, Use of Meta AI tooling 25%, Demo 25%, Technical depth 20%.
@@ -38,13 +38,19 @@ in the film and is not a claim — it is a table.
 1. **Upload** `video/out/pathya-demo.mp4` to YouTube (unlisted is fine) or Vimeo, with `pathya-demo.srt`
    as the caption track.
 2. Put the URL in [SUBMISSION.md](SUBMISSION.md) where the video placeholder is.
-3. **Make the repository public.** Nothing above counts while it is private.
+3. ~~Make the repository public.~~ Done — https://github.com/Abm32/pathya, verified reachable logged out.
 
 ## Notes on the build
 
-Narration is local neural TTS, so it costs nothing and re-renders in seconds, but it is synthetic and
-sounds it. Re-recording the same script in a human voice is a real upgrade and needs no code change:
-drop twelve wav files into `video/out/vo/` under the same names and run `npm run cut`.
+Narration is ElevenLabs `eleven_v4`, voiced by Esha, Indian English, at 0.95 speed — an Indian narrator
+for a film about India's data gap. It is still synthetic, and re-recording the same script in a human
+voice needs no code change: drop twelve wavs into `video/out/vo/` named `<scene-id>.wav`, run `npm run cut`,
+and every caption re-times itself to the new audio.
 
-There is no music bed. The narration carries it, and an unlicensed track is a risk a submission does
-not need.
+The narration is written to a hard 3:00 limit and currently lands at 2:53. Esha reads slower than the
+local voice this replaced, which cost 24 seconds the first time; the words were cut rather than the
+voice sped up. Numbers already printed on a card were the cheapest thing to cut.
+
+There is no music bed. Three ElevenLabs sound cues sit at −24 to −26 dB under the voice: a transition
+whoosh, a low swell under the GeT-RM card and a soft resolve at the end. An unlicensed music track is a
+risk a submission does not need.

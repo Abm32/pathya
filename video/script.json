@@ -1,78 +1,86 @@
 {
-  "voice": "en_GB-cori-high",
-  "lengthScale": 1.0,
-  "scenes": [
-    {
-      "id": "01-hook",
-      "card": "Built during the event. A research tool, not medical advice.",
-      "shot": "card+photo",
-      "vo": "Everything you are about to see was built during this event. It is a research tool, not medical advice. This is a pharmacogenomic lab report from India, travelling the way these reports really travel: a photograph on WhatsApp."
-    },
-    {
-      "id": "02-gap",
-      "card": "India's evidence base: two studies, about 3,600 people.",
-      "shot": "home",
-      "vo": "India's published evidence on these gene variants rests on about two studies and three and a half thousand people. Thousands of reports like this one are issued every year, and not one of them reaches a dataset."
-    },
-    {
-      "id": "03-read",
-      "card": "Muse Spark 1.3 reads the photograph.",
-      "shot": "analyze-photo",
-      "vo": "Muse Spark reads the photograph under a strict schema. It quotes every gene call directly from the page, and records which variants the laboratory says it actually tested."
-    },
-    {
-      "id": "04-standardise",
-      "card": "PharmCAT standardises. Deterministic rules check coverage.",
-      "shot": "record",
-      "vo": "PharmCAT, the reference engine behind the CPIC guidelines, standardises the allele names. Our own rules then check which India-relevant variants this panel never tested, and the patient reference is stripped before anything is stored."
-    },
-    {
-      "id": "05-open",
-      "card": "The same photograph, on open weights.",
-      "shot": "open-weights",
-      "vo": "Here is the same report read again by Muse Spark Open. Open weights mean a biobank can run this entirely inside its own network, which is the only version of this that could ever touch a real patient's report."
-    },
-    {
-      "id": "06-voice",
-      "card": "Muse Voice. Malayalam and English, mixed.",
-      "shot": "dictate",
-      "vo": "Muse Voice takes results read aloud, Malayalam and English mixed together the way people actually speak in a Kochi clinic, and Muse Spark reads that transcript into the very same record."
-    },
-    {
-      "id": "07-curate",
-      "card": "A human curator signs off every call.",
-      "shot": "curate",
-      "vo": "A curator checks each call against the quoted source before it counts. Muse Spark web search pulls what has been published for India, with the sources attached."
-    },
-    {
-      "id": "08-cohort",
-      "card": "Carrier frequencies. Wilson intervals. One CSV.",
-      "shot": "cohort",
-      "vo": "Every reviewed record joins a cohort. Carrier frequencies with confidence intervals, honest denominators, and one download that is ready for a study."
-    },
-    {
-      "id": "09-getrm",
-      "card": "208 real reference DNAs. 96.3%.",
-      "shot": "getrm",
-      "vo": "We did not grade ourselves on our own fixtures. We ran it against two public sources of truth: the CDC's reference materials programme, and real thirty-x genomes from the Thousand Genomes Project. Two hundred and eight real human samples. Six hundred and twenty-two of six hundred and forty-six gene calls agree with the laboratory consensus. Every single mismatch is traced and written down."
-    },
-    {
-      "id": "10-gap-found",
-      "card": "The benchmark argued our own case.",
-      "shot": "getrm-slco",
-      "vo": "And the benchmark made our argument for us. Six disagreements were decreased-function alleles that the consensus panel simply never looked for. All six were African-ancestry samples. A panel designed somewhere else, calling a carrier a non-carrier."
-    },
-    {
-      "id": "11-harder",
-      "card": "Reading is the easy half.",
-      "shot": "india-sim",
-      "vo": "Because reading the report is the easy half. We simulated a hundred and twenty Indian people, each with a report from a laboratory that tests only part of the panel. Counting a panel that never tested c.85T>C as a non-carrier puts the frequency at fifteen percent. The truth was twenty-five. A ten point error, downward, on the variant a quarter of Indians carry."
-    },
-    {
-      "id": "12-close",
-      "card": "pathya.anukritiai.com",
-      "shot": "close",
-      "vo": "Pathya. Research data, from the reports India already has."
-    }
-  ]
+ "voiceId": "NxYGDTZngCTtbvawEZyg",
+ "voiceName": "Esha - Clear, Warm (Indian English)",
+ "model": "eleven_v4",
+ "voiceSettings": {
+  "stability": 0.5,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true,
+  "speed": 0.95
+ },
+ "scenes": [
+  {
+   "id": "01-hook",
+   "card": "Built during the event. A research tool, not medical advice.",
+   "shot": "card+photo",
+   "vo": "Everything here was built during this event. It is a research tool, not medical advice. This is a pharmacogenomic lab report from India, travelling the way they really travel: a photograph on WhatsApp."
+  },
+  {
+   "id": "02-gap",
+   "card": "India's evidence base: two studies, about 3,600 people.",
+   "shot": "home",
+   "vo": "India's evidence on these gene variants rests on two studies and about three and a half thousand people. Thousands of reports like this are issued every year. None of them reach a dataset."
+  },
+  {
+   "id": "03-read",
+   "card": "Muse Spark 1.3 reads the photograph.",
+   "shot": "analyze-photo",
+   "vo": "Muse Spark reads the photograph under a strict schema, quoting every gene call from the page and recording which variants the laboratory says it tested."
+  },
+  {
+   "id": "04-standardise",
+   "card": "PharmCAT standardises. Deterministic rules check coverage.",
+   "shot": "record",
+   "vo": "PharmCAT, the engine behind the CPIC guidelines, standardises the allele names. Our rules check which India-relevant variants this panel never tested, and every identifier is stripped before storage."
+  },
+  {
+   "id": "05-open",
+   "card": "The same photograph, on open weights.",
+   "shot": "open-weights",
+   "vo": "The same report, read again by Muse Spark Open. Open weights mean a biobank can run this inside its own network, the only version that could ever touch a real patient's report."
+  },
+  {
+   "id": "06-voice",
+   "card": "Muse Voice. Malayalam and English, mixed.",
+   "shot": "dictate",
+   "vo": "Muse Voice takes results read aloud, Malayalam and English mixed the way people speak in a Kochi clinic. Muse Spark reads that transcript into the same record."
+  },
+  {
+   "id": "07-curate",
+   "card": "A human curator signs off every call.",
+   "shot": "curate",
+   "vo": "A curator checks each call against its quoted source. Muse Spark web search pulls what has been published for India, with sources."
+  },
+  {
+   "id": "08-cohort",
+   "card": "Carrier frequencies. Wilson intervals. One CSV.",
+   "shot": "cohort",
+   "vo": "Every reviewed record joins a cohort. Carrier frequencies with confidence intervals, honest denominators, and one download that is ready for a study."
+  },
+  {
+   "id": "09-getrm",
+   "card": "208 real reference DNAs. 96.3%.",
+   "shot": "getrm",
+   "vo": "We did not grade ourselves on our own fixtures. We ran it against two public sources of truth: the CDC's reference materials programme, and real 30x genomes from the Thousand Genomes Project. Two hundred and eight real people. Ninety-six percent of gene calls agree with the laboratory consensus, and every mismatch is traced."
+  },
+  {
+   "id": "10-gap-found",
+   "card": "The benchmark argued our own case.",
+   "shot": "getrm-slco",
+   "vo": "The benchmark also made our argument for us. Six disagreements were decreased-function alleles the consensus panel never looked for, all six African-ancestry samples: a panel designed elsewhere, calling a carrier a non-carrier."
+  },
+  {
+   "id": "11-harder",
+   "card": "Reading is the easy half.",
+   "shot": "india-sim",
+   "vo": "Because reading the report is the easy half. We simulated a hundred and twenty Indian people, each with a report from a lab that tests only part of the panel. Counting an untested panel as a negative puts the carrier frequency at fifteen percent. The truth was twenty-five: a ten point error, downward, on the variant a quarter of Indians carry."
+  },
+  {
+   "id": "12-close",
+   "card": "pathya.anukritiai.com",
+   "shot": "close",
+   "vo": "Pathya. Research data, from the reports India already has."
+  }
+ ]
 }
